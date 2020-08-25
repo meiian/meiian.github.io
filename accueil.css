@@ -1,0 +1,224 @@
+@font-face{
+    font-family: "Aller";
+    src:url("./font/corp.ttf");
+}
+
+@font-face{
+    font-family: "titi";
+    src:url("./font/titi2.ttf");
+}
+
+html{
+  background-color: rgb(20,20,20);
+  min-height: 100%;
+}
+
+body{
+  min-height: 100vh;
+  min-width: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+header{
+  background-color:#FDA50f;
+  width: 30vw;
+  max-width: 300px;
+  min-width: 200px;
+  height: 100vh;
+  display: grid;
+  grid-template-areas: "a b c"
+                       "d e f"
+                       "h i j";
+}
+
+header div#title{
+  height: max-content;
+  max-width: 300px;
+  min-width: 200px;
+  width: 30vw;
+  grid-area: b;
+}
+
+header div#title:after{
+  content: "";
+  display: block;
+  margin-left : 20px;
+  width: 60%;
+  border-bottom: solid #d9931c 2px;
+}
+
+header h1{
+  height:  max-content;
+  padding-left: 20px;
+}
+
+header ul{
+  grid-area: e;
+  list-style: none;
+  margin-bottom: auto;
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: 10%;
+  width: max-content;
+  height: max-content;
+}
+
+header li.active{
+  border-left: solid rgb(50,50,50) 3px;
+  margin-left: -2px;
+}
+
+
+header li{
+  padding-left: 5px;
+}
+
+header li a{
+  padding-top: 1px;
+}
+
+header p{
+  grid-area: i;
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 12px;
+  border-bottom: solid #d9931c 2px;
+}
+
+h1{
+  font-family: "Aller";
+  color: white;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+h2{
+  font-family: "Aller";
+}
+
+p{
+  font-family: "Aller";
+  color: white;
+}
+
+body article{
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-left : 0px;
+  display: grid;
+    background-color: rgb(50,50,50);
+  border-radius: 10px;
+  grid-template-areas: "a"
+    "b";
+}
+
+body article>div{
+  grid-area: a;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  padding-top : 5px;
+  border-radius: 10px;
+  background-color: #FDA50f;
+  display: flex;
+}
+
+
+body article section{
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 3%;
+  padding-bottom : 3%;
+  
+  display: grid;
+  grid-template-areas: "1 2 3";
+}
+
+body article section div{
+  display: flex;
+  margin-left : 15px;
+  padding-right: 10px;
+  margin-right: 15px;;
+}
+
+body article section div img{
+  height:32px;
+  width:32px;
+  padding: 3px;
+  object-fit: cover;
+}
+
+a{
+  text-decoration: none;
+  color: rgb(251,255,255);
+  font-family: "Titi";
+  font-size: 14px;
+  font-weight: normal;
+}
+
+body article section div h3{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#invis{
+  color: rgba(0,0,0,0);
+}
+
+div#Twitter{
+  border-bottom : solid #1da1f2 2px;
+}
+
+div#Discord{
+  border-bottom : solid  #8c9eff 2px;
+}
+
+div#YouTube{
+  border-bottom : solid  #ff0000 2px;
+}
+
+div#Twitter:hover{
+  background-color: #1da1f2;
+  border-radius : 5px;
+}
+div#Discord:hover{
+  background-color: #8c9eff;
+    border-radius : 5px;
+}
+div#YouTube:hover{
+  background-color: #ff0000;
+    border-radius : 5px;
+}
+
+footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: grid;
+  padding-bottom: 10px;
+}
+
+footer div p{
+  margin: 0;
+  text-align: center;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+footer div#wip{
+  width: max-content;
+  padding-left: 15px;
+    padding-right: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  border-top: solid #FDA50f 2px;
+}

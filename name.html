@@ -1,0 +1,119 @@
+<html>
+    <head>
+        <title>- who's that girl's name already? -</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name=" theme-color" content="#FDA50f">
+    </head>
+
+    <body>
+        <!--  LE STYLE PARCE QUE JE SUIS STYLEE -->
+        <style>
+            html,
+            body{
+                max-width: 100%;
+                max-height: 100%;
+                display: grid;
+                background-color: black;
+            }
+            #container{
+                display: grid;
+                justify-items: start;
+                text-align: center;
+                align-items: start;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: auto;
+                margin-bottom: auto;
+            }
+
+            #container>*{
+                grid-column-start: 1;
+                grid-row-start: 1;
+                width: 100%;
+            }
+
+            h4,
+            h3{
+                color: white;
+                font-family: "Source Sans Pro";
+                opacity: 0;
+            }
+
+            h4{
+                font-size: 2em;
+            }
+
+            h3{
+                font-size: 3em;
+            }
+
+            @keyframes slideIn{
+                0%{
+                    opacity: 0;
+                }
+                50%{
+                    opacity: 0;
+                }
+                100%{
+                    opacity : 1;
+                }
+            }
+            @keyframes slideOut{
+                80%{
+                    opacity: 1;
+                }
+                100%{
+                    opacity : 0;
+                }
+            }
+
+            #first{
+                animation: slideIn 1s;
+            }
+            #firsth{
+                animation : slideOut 3s;
+            }
+            #second{
+                animation: slideIn 1s;
+                animation-delay: 3s;
+            }
+            #secondth{
+                animation : slideOut 3s;
+                animation-delay: 3s;
+            }
+            #name{
+                animation: slideIn 1s;
+                animation-delay: 6s;
+            }
+        </style>
+
+        <!-- LE VRAI CONTENU  -->
+        <div id="container">
+            <div id="first">
+                <h4 id="firsth">Vous ne savez pas comment m'appeler?</h4>
+            </div>
+            <div id="second">
+                <h4 id="secondth">Alors voici le prénom du jour!</h4>
+            </div>
+            <div id="third">
+                <h3 id="name"></h3>
+            </div>
+        </div>
+    </body>
+
+    <!--  LE SCRIPT, PARCE QUE LA VIE EST SCRIPTEE  -->
+    <script>
+        let names = ['Alice', 'Lucie', 'Lina', 'Alisée', 'Théa', 'weebasse', 'Mei', 'gaufre'];
+        let date = new Date("Aug 23 2020");
+        number = Math.trunc((date.getFullYear()*(date.getMonth()+1))/date.getDate()/names.length);
+        console.log("number of the day : " + number + " name : " + names[number%names.length]);
+        document.getElementById("name").innerText = names[number%names.length];
+        function opacityName(){
+            setTimeout(function() {
+                document.getElementById("name").style.opacity = "1";
+            }, 7000);
+        }
+        opacityName();
+    </script>
+</html>
