@@ -44,8 +44,8 @@
                         transform: translateY(0);
               }
               100% {
-                -webkit-transform: translateY(-25px);
-                        transform: translateY(-25px);
+                -webkit-transform: translateY(-30px);
+                        transform: translateY(-30px);
               }
             }
             @-webkit-keyframes text-focus-in {
@@ -126,6 +126,7 @@
             #title{
                 -webkit-animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
                 -webkit-animation-delay: 2s;
+                line-height: 61%;
             }
 
             #bio{
@@ -181,7 +182,7 @@
         <div class="media m-auto" id="desc">
             <img src="./images/chinopp.gif" id="pfp" class="mr-3" alt="Profile Picture of Meian">
             <div class="media-body m-auto" id="other">
-                <h1 class="text-white" id="title">Meian</h1>
+                <h1 class="text-white text-left" id="title">Meian<br/><span id="name" style="font-size:20px; margin-left: 2px; color:#FDA50f"></span></h1>
                 <p class="text-secondary text-left" id="bio">Dévoreuse de Slice of Life, et aussi parfois ouvre VS Code.</p>
             </div>
         </div>
@@ -200,28 +201,33 @@
         document.getElementById("bggray").style.height = `${h}px`;
         console.log(h);
       }
-
-
-
       function colorFooter(x,y){
         switch (x){
           case 1 :
+            document.getElementById("name").style.color = "#1da1f2";
+            document.getElementById("name").style.transition = "color 1s";
             document.getElementById("bgred").style.transition = "background-color 1s";
             document.getElementById("bgred").style.backgroundColor = "#1da1f2";
             break;
           case 2 :
+            document.getElementById("name").style.color = "#b22cff";
+            document.getElementById("name").style.transition = "color 1s";
             document.getElementById("bgred").style.transition = "background-color 1s";
             document.getElementById("bgred").style.backgroundColor = "#b22cff";
             break;
           case 3 :
+            document.getElementById("name").style.color = "red";
+            document.getElementById("name").style.transition = "color 1s";
             document.getElementById("bgred").style.transition = "background-color 1s";
             document.getElementById("bgred").style.backgroundColor = "red";
             break;
           default : 
+          document.getElementById("name").style.color = "#FDA50f";
           document.getElementById("bgred").style.backgroundColor = "#FDA50f";
             break;
-        }        
-          
+        }           
       }
+
+      const _0x39ce=['Alisée','opacity','Théa','name','length','style','innerText','trunc','getElementById','number\x20of\x20the\x20day\x20:\x20','Mei','getFullYear','Lina','getMonth','getDate','Lucie','\x20name\x20:\x20'];(function(_0x131c17,_0x39ce7d){const _0xbca4ac=function(_0x56c040){while(--_0x56c040){_0x131c17['push'](_0x131c17['shift']());}};_0xbca4ac(++_0x39ce7d);}(_0x39ce,0xb4));const _0xbca4=function(_0x131c17,_0x39ce7d){_0x131c17=_0x131c17-0x0;let _0xbca4ac=_0x39ce[_0x131c17];return _0xbca4ac;};let names=['Alice',_0xbca4('0x5'),_0xbca4('0x2'),_0xbca4('0x7'),_0xbca4('0x9'),'weebasse',_0xbca4('0x0'),'gaufre'],date=new Date();number=Math[_0xbca4('0xe')](date[_0xbca4('0x1')]()*(date[_0xbca4('0x3')]()+0x1)/date[_0xbca4('0x4')]()/names[_0xbca4('0xb')]),console['log'](_0xbca4('0x10')+number+_0xbca4('0x6')+names[number%names[_0xbca4('0xb')]]),document[_0xbca4('0xf')](_0xbca4('0xa'))[_0xbca4('0xd')]=names[number%names[_0xbca4('0xb')]];
     </script>
 </html>
