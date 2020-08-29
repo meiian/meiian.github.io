@@ -227,7 +227,10 @@
             break;
         }           
       }
-
-      const _0x597f=['Mei','Asuka','length','Lina','gaufre','getMonth','Alice','number\x20of\x20the\x20day\x20:\x20','innerText','style','\x20name\x20:\x20','Alisée','opacity','Aug\x2023\x202020','getDate','log','Lucie','getFullYear','getElementById','Théa','name'];(function(_0x5797e3,_0x597f37){const _0x55fb84=function(_0xb8983b){while(--_0xb8983b){_0x5797e3['push'](_0x5797e3['shift']());}};_0x55fb84(++_0x597f37);}(_0x597f,0x1d4));const _0x55fb=function(_0x5797e3,_0x597f37){_0x5797e3=_0x5797e3-0x0;let _0x55fb84=_0x597f[_0x5797e3];return _0x55fb84;};let names=[_0x55fb('0x0'),_0x55fb('0xa'),_0x55fb('0x12'),_0x55fb('0x5'),_0x55fb('0xd'),'weebasse',_0x55fb('0xf'),_0x55fb('0x13'),_0x55fb('0x10')],date=new Date(_0x55fb('0x7'));number=Math['trunc'](date[_0x55fb('0xb')]()*(date[_0x55fb('0x14')]()+0x1)/date[_0x55fb('0x8')]()/names[_0x55fb('0x11')]),console[_0x55fb('0x9')](_0x55fb('0x1')+number+_0x55fb('0x4')+names[number%names[_0x55fb('0x11')]]),document[_0x55fb('0xc')](_0x55fb('0xe'))[_0x55fb('0x2')]=names[number%names['length']];
+        let names = ['Alice', 'Lucie', 'Lina', 'Alisée', 'Théa', 'weebasse', 'Mei', 'gaufre','Asuka'];
+        let date = new Date("Aug 23 2020");
+        number = Math.trunc((date.getFullYear()*(date.getMonth()+1))/date.getDate()/names.length);
+        console.log("number of the day : " + number + " name : " + names[number%names.length]);
+        document.getElementById("name").innerText = names[number%names.length];
     </script>
 </html>
