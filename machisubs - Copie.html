@@ -90,28 +90,59 @@
       </div>
 
       <div id="main">
-        <a class="carousel-control-prev" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
+        
           <div id="epcard" class="card text-white bg-dark m-auto">
+            <a id="epprev" class="carousel-control-prev" onClick="episode(0);" style="z-index: 1" role="button">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a id="epsuiv" class="carousel-control-next" onClick="episode(2)" style="z-index: 1"  role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
             <img id="epimg" src="./images/machi01.png" class="card-img-top">
-            <div class="card-body">
+            
+            <div class="card-body" style="z-index: 2" >
+              
               <h5 class="card-title">[VOSTFR][1080p] Machikado Mazoku</h5>
               <h6 id="epnum" class="card-subtitle mb-2 text-muted">Episode 1</h6>
               <a id="epmkv" href="#" class="card-link"><img src="./images/pc.png" width="32" class="mr-3 my-auto" alt="...">.mkv</a>
               <a id="epmp4" href="#" class="card-link"><img src="./images/mobile.png" width="32" class="mr-3 my-auto" alt="...">.mp4</a>
+              
               </div>
             </div>
         </div>
-        <a class="carousel-control-next" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
+        
       </div>
 
     </body>
 
     <script>
+      let ep = [
+        {
+          img: "./images/machi01.png",
+          mkv: "#",
+          mp4: "#"
+        },
+        {
+          img : "./images/Machi02.jpg",
+          mkv : "#",
+          mp4 : "#"
+        },
+      ]
+      function episode(x){
+        if(x > ep.length){
+          x = 1;
+        }
+        if(x <= 0) {
+          x = ep.length;
+        }
+        document.getElementById("epprev").setAttribute( "onClick", `javascript: episode(${x-1});`);
+        document.getElementById("epsuiv").setAttribute( "onClick", `javascript: episode(${x+1});`);
+        document.getElementById("epimg").src = ep[x-1].img;
+        document.getElementById("epnum").innerHTML = "Episode " + x;
+        document.getElementById("epmkv").href = ep[x-1].mkv;
+        document.getElementById("epmp4").href = ep[x-1].mp4;
+      }
     </script>
 </html>
