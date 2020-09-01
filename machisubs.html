@@ -60,6 +60,36 @@
             #epcard{
               width: min(50rem,80vw);
             }
+            #footer{
+              width: 100%;
+              position: fixed;
+              bottom: 0;
+              
+            }
+            #listep{
+              display: flex;
+              width: max-content;
+              margin-left: auto;
+              margin-right: auto;
+              margin-bottom: 5vh;
+            }
+            #epthumb{
+              width: 120px;
+            }
+            #epthumb:hover{
+              animation: blink-2 0.9s both;
+            }
+            @keyframes blink-2 {
+              0% {
+                opacity: 1;
+              }
+              50% {
+                opacity: 0.2;
+              }
+              100% {
+                opacity: 1;
+              }
+            }
             .bg-dark{
                 background-color: rgba(0,0,0,0)!important;
               }
@@ -111,7 +141,11 @@
               </div>
             </div>
         </div>
-        
+        <div id="footer">
+          <div id="listep">
+
+          </div>
+        </div>
       </div>
 
     </body>
@@ -128,7 +162,15 @@
           mkv : "#",
           mp4 : "#"
         },
-      ]
+      ];
+      for(let i=0 ; i < ep.length ; i++){
+        document.getElementById("listep").innerHTML += `<a onClick="episode(${i+1})"><div id="epthumb" class="card bg-dark text-white">
+                      <img src="${ep[i].img}" class="card-img">
+                      <div class="card-img-overlay">
+                        <h6 class="mt-5 card-title">Episode ${i+1}</h5>
+                      </div>
+                    </div> </a>`;
+      };
       function episode(x){
         if(x > ep.length){
           x = 1;
