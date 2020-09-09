@@ -1,0 +1,259 @@
+<html>
+    <head>
+        <title>- Emploi du Temps -</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="robots" content="noindex">
+        <meta name="googlebot" content="noindex">
+        <meta name="googlebot-news" content="nosnippet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="icon" type="image/png" href="./images/icon.jpg"/>
+        <meta name=" theme-color" content="#FDA50f">
+
+        <style>
+            body{
+                background-color: rgb(5,5,5);
+            }
+            #title{
+                padding: 20px;
+            }
+            #date{
+                margin-bottom: 0;
+            }
+            #totalgrid{
+                width: 80vw;
+                height: 75vh;
+                margin-left: auto;
+                margin-right: auto;
+                display: grid;
+                grid-template-columns: 50px auto auto auto auto auto;
+            }
+            .day{
+                border-left: solid white 1px;
+                border-right: solid white 1px;
+                padding: 5px;
+                display: grid;
+                width: 16vw;
+                grid-auto-rows: 14.285%;
+            }
+            .hour{
+                width: 100%;
+            }
+            #daytitle{
+                grid-row : 4;
+                margin-top: auto;
+                margin-bottom: auto;
+            }
+            .day:first-child{
+                border-left: solid black 0px;
+            }
+            .day:last-child{
+                border-right: solid black 0px;
+            }
+            .yellow{
+                background-color: #ffcd00;
+            }
+            .red{
+                background-color: #dc3030;
+            }
+            .blue{
+                background-color: #009bd6;
+            }
+            .orange{
+                background-color: orange;
+            }
+            .cyan{
+                background-color: rgb(64, 214, 214);
+            }
+            .purple{
+                background-color: #e04ba2;
+            }
+            .text-muted{
+                color: rgb(60,60,60)!important;
+                mix-blend-mode: color-burn;
+            }
+            #ue{
+                font-size: 16px;
+                display: flex;
+            }
+            .hours{
+                grid-auto-rows: 14.285%;
+                margin-right: 10px;
+                color: gray
+            }
+
+            .hours>*{
+                height: 13.8%;
+                text-align: right;
+            }
+            #inputs{
+                display: flex;
+            }
+            #footer{
+                position: fixed;
+                bottom: 0;
+                width: 100vw;
+                display: flex;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div id="title">
+            <h1 id="date" class="text-white">7 Sep. au 11 Sep.</h1>
+            <h5 id="cursus" class="text-secondary">CMI MI-Info L3</h5>
+            <div id="inputs">
+                <div class="input-group mb-3 input-group-sm" style="width: min(40vw,300px);">
+                    <div class="input-group-prepend" >
+                    <label class="input-group-text  text-white" style="background-color: rgb(10,10,10);" for="inputGroupSelect01">Cursus</label>
+                    </div>
+                    <select class="custom-select bg-dark text-white" id="inputGroupSelect01">
+                    <option selected value="1">CMI MI-Info L3</option>
+                    </select>
+                </div>
+                <div class="input-group ml-3 mb-3 input-group-sm" style="width: min(40vw,300px);">
+                    <div class="input-group-prepend" >
+                    <label class="input-group-text  text-white" style="background-color: rgb(10,10,10);" for="inputGroupSelect02">Date</label>
+                    </div>
+                    <select class="custom-select bg-dark text-white" id="inputGroupSelect01">
+                    <option selected value="1">7 Sep. au 11 Sep.</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div id="totalgrid">
+            <div class="hours">
+                <div style="grid-row: 1">8h</div>
+                <div style="grid-row: 2">9h40</div>
+                <div style="grid-row: 3">11h20</div>
+                <div style="grid-row: 4">12h50</div>
+                <div style="grid-row: 5">14h</div>
+                <div style="grid-row: 6">15h40</div>
+                <div style="grid-row: 7">17h20</div>
+                <div style="grid-row: 8">18h50</div>
+            </div>
+            <div id="day1" class="day"  >
+
+                <div id="daytitle">
+                    <h5 class="text-white text-center">Lundi</h5>
+                </div>
+
+                <div style="grid-row: 6" class="hour card yellow">
+                    <div class="p-2">
+                        <h5 id="ue" class="mb-2 card-title">Graphes <small class="ml-auto text-muted">Amphi F</small></h5>
+                        <h6 id="prof" class="card-subtitle mb-2 text-muted">Secret</h6>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div id="day2" class="day"  >
+
+                <div id="daytitle">
+                    <h5 class="text-white text-center">Mardi</h5>
+                </div>
+
+                <div style="grid-row: 2" class="hour card red">
+                    <div class="p-2">
+                        <h5 id="ue" class="mb-2 card-title">Anglais LV1 <small class="ml-auto text-muted">Salle 10</small></h5>
+                        <h6 id="prof" class="card-subtitle mb-2 text-muted">Secret</h6>
+                    </div>
+                </div>
+
+                <div style="grid-row: 3" class="hour card blue">
+                    <div class="p-2">
+                        <h5 id="ue" class="mb-2 card-title">Technologie Orientée Objet <small class="ml-auto text-muted">Amphi E</small></h5>
+                        <h6 id="prof" class="card-subtitle mb-2 text-muted">Secret</h6>
+                    </div>
+                </div>
+
+                <div style="grid-row: 5" class="hour card yellow">
+                    <div class="p-2">
+                        <h5 id="ue" class="mb-2 card-title">Graphes <small class="ml-auto text-muted">Amphi E</small></h5>
+                        <h6 id="prof" class="card-subtitle mb-2 text-muted">Secret</h6>
+                    </div>
+                </div>
+
+                <div style="grid-row: 6" class="hour card blue">
+                    <div class="p-2">
+                        <h5 id="ue" class="mb-2 card-title">Technologie Orientée Objet <small class="ml-auto text-muted">Amphi F</small></h5>
+                        <h6 id="prof" class="card-subtitle mb-2 text-muted">Secret</h6>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="day3" class="day"  >
+
+                <div id="daytitle">
+                    <h5 class="text-white text-center">Mercredi</h5>
+                </div>
+
+                <div style="grid-row: 1" class="hour card orange">
+                    <div class="p-2">
+                        <h5 id="ue" class="mb-2 card-title">Conception d'applic Internet <small class="ml-auto text-muted">Amphi F</small></h5>
+                        <h6 id="prof" class="card-subtitle mb-2 text-muted">Secret</h6>
+                    </div>
+                </div>
+
+                <div style="grid-row: 5" class="hour card yellow">
+                    <div class="p-2">
+                        <h5 id="ue" class="mb-2 card-title">Graphes<small class="ml-auto text-muted">Amphi E</small></h5>
+                        <h6 id="prof" class="card-subtitle mb-2 text-muted">Secret</h6>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="day4" class="day"  >
+
+                <div id="daytitle">
+                    <h5 class="text-white text-center">Jeudi</h5>
+                </div>
+
+                <div style="grid-row: 2 / span 2" class="hour card cyan">
+                    <div class="p-2">
+                        <h5 id="ue" class="mb-2 card-title">Logique<small class="ml-auto text-muted">Amphi F</small></h5>
+                        <h6 id="prof" class="card-subtitle mb-2 text-muted">Secret</h6>
+                    </div>
+                </div>
+
+                <div style="grid-row: 5" class="hour card purple">
+                    <div class="p-2">
+                        <h5 id="ue" class="mb-2 card-title">Bases de données<small class="ml-auto text-muted">Amphi G</small></h5>
+                        <h6 id="prof" class="card-subtitle mb-2 text-muted">Secret</h6>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="day5" class="day"  >
+
+                <div id="daytitle">
+                    <h5 class="text-white text-center">Vendredi</h5>
+                </div>
+                
+                <div style="grid-row: 2" class="hour card purple">
+                    <div class="p-2">
+                        <h5 id="ue" class="mb-2 card-title">Bases de données<small class="ml-auto text-muted">Amphi G</small></h5>
+                        <h6 id="prof" class="card-subtitle mb-2 text-muted">Secret</h6>
+                    </div>
+                </div>
+
+                <div style="grid-row: 5" class="hour card purple">
+                    <div class="p-2">
+                        <h5 id="ue" class="mb-2 card-title">Bases de données<small class="ml-auto text-muted">Amphi G</small></h5>
+                        <h6 id="prof" class="card-subtitle mb-2 text-muted">Secret</h6>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div id="footer">
+            <p class="text-muted mx-auto">2020 • Alice</p>
+        </div>
+    </body>
