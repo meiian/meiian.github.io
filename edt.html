@@ -11,6 +11,29 @@
         <meta name=" theme-color" content="#FDA50f">
 
         <style>
+            @-webkit-keyframes color-change-3x {
+                0% {
+                    background: #19dcea;
+                }
+                50% {
+                    background: #b22cff;
+                }
+                100% {
+                    background: #ea2222;
+                }
+                }
+                @keyframes color-change-3x {
+                0% {
+                    background: #19dcea;
+                }
+                50% {
+                    background: #b22cff;
+                }
+                100% {
+                    background: #ea2222;
+                }
+                }
+
             body{
                 background-color: rgb(5,5,5);
             }
@@ -68,6 +91,10 @@
             .purple{
                 background-color: #e04ba2;
             }
+            .rainbow {
+                -webkit-animation: color-change-3x 4s linear infinite alternate both;
+                animation: color-change-3x 4s linear infinite alternate both;
+            }
             .text-muted{
                 color: rgb(60,60,60)!important;
                 mix-blend-mode: color-burn;
@@ -86,6 +113,7 @@
                 height: 13.8%;
                 text-align: right;
             }
+            
             #inputs{
                 display: flex;
             }
@@ -96,29 +124,30 @@
                 display: flex;
             }
 
+            @media only screen and (max-width: 600px) {
+                #totalgrid{
+                   grid-template-columns: 50px auto;
+                }
+                .day{
+                    width: 70vw;
+                }
+                #inputDate{
+                    width: max-content;
+                }
+            }
         </style>
     </head>
 
-    <body>
+    <body onload="init()" onresize="changeDate()">
         <div id="title">
-            <h1 id="date" class="text-white">7 Sep. au 11 Sep.</h1>
-            <h5 id="cursus" class="text-secondary">CMI MI-Info L3</h5>
+            <h1 id="cursus" class="text-white mb-0">CMI MI-Info L3</h1>
+            <h5 id="date" class="text-secondary mb-1">date</h5>
             <div id="inputs">
-                <div class="input-group mb-3 input-group-sm" style="width: min(40vw,300px);">
-                    <div class="input-group-prepend" >
-                    <label class="input-group-text  text-white" style="background-color: rgb(10,10,10);" for="inputGroupSelect01">Cursus</label>
-                    </div>
-                    <select class="custom-select bg-dark text-white" id="inputGroupSelect01">
-                    <option selected value="1">CMI MI-Info L3</option>
-                    </select>
-                </div>
                 <div class="input-group ml-3 mb-3 input-group-sm" style="width: min(40vw,300px);">
                     <div class="input-group-prepend" >
-                    <label class="input-group-text  text-white" style="background-color: rgb(10,10,10);" for="inputGroupSelect02">Date</label>
+                    <label class="input-group-text text-white" style="background-color: rgb(10,10,10);">Date</label>
                     </div>
-                    <select class="custom-select bg-dark text-white" id="inputGroupSelect01">
-                    <option selected value="1">7 Sep. au 11 Sep.</option>
-                    </select>
+                    <input type="date" onchange="changeDate()" class="form-control bg-dark text-white" id="inputDate" aria-label="Sizing example input" aria-describedby="Champ de date">
                 </div>
             </div>
         </div>
@@ -253,7 +282,6 @@
         </div>
 
 
-        <div id="footer">
-            <p class="text-muted mx-auto">2020 • Alice</p>
-        </div>
+
+        <script src="edt.js"></script>
     </body>
