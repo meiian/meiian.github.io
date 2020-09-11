@@ -1018,6 +1018,12 @@ function day_itostr(x){
         case 5:
             return("Vendredi");
             break;
+        case 6:
+            return("Samedi");
+            break;
+        case 0:
+            return("Dimanche");
+            break;
     }
 }
 
