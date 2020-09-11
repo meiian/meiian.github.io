@@ -2,6 +2,8 @@
              DATA
 ##############################*/
 
+let updateTime = "11/09/2020";
+
 let ues = [
 
     /*#### GRAPHES ####*/
@@ -1065,6 +1067,7 @@ function init(){
     document.getElementById("inputDate").value = `${today.getFullYear()}-${(today.getMonth()+1 < 10)?"0":""}${today.getMonth()+1}-${today.getDate()}`;
     let dateStr = `${today.getDate()} ${month_itostr(today.getMonth())} ${today.getFullYear()}`;
     document.getElementById("date").innerHTML = dateStr;
+    document.getElementById("updateDate").innerHTML += updateTime;
     let isMobile = window.matchMedia("only screen and (max-width: 600px)").matches;
     if(isMobile){
         console.log("###########  MOBILE  #########")
