@@ -290,6 +290,14 @@
             <p class="ml-auto mr-4 text-white" id="updateDate">MAJ : </p>
         </div>
 
+        <script>
+            import {registerRoute} from 'workbox-routing';
+import {NetworkFirst} from 'workbox-strategies';
 
+registerRoute(
+  ({url}) => url.pathname.startsWith('/social-timeline/'),
+  new NetworkFirst()
+);
+        </script>
         <script src="edt.js"></script>
     </body>
