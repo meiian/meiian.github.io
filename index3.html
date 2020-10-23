@@ -30,7 +30,7 @@
         body {
             width: 100vw;
             height: 100vh;
-            background-color: rgb(10,10,10);
+            background-image: url("images/wp.jpg");
             color: white;
             display : flex;
         }
@@ -44,11 +44,16 @@
             text-decoration: none;
 
         }
-
+        #blur{
+            width: 100%;
+            height:100%;
+            backdrop-filter: blur(5px) brightness(30%) saturate(250%);
+            display : flex;
+        }
         #maincontainer {
             display: grid;
             grid-template-columns: auto auto;
-
+            
             width: 80vw;
             height: 90vh;
             margin: auto auto auto auto;
@@ -131,29 +136,31 @@
     </style>
 
     <body>
-        <div id="maincontainer">
-            <div id="leftcontainer">
-                <div id="leftinfos">
-                    <img src="./images/monmocat.jpg">
-                    <h1>Mieru</h1>
+        <div id="blur">
+            <div id="maincontainer">
+                <div id="leftcontainer">
+                    <div id="leftinfos">
+                        <img src="./images/monmocat.jpg">
+                        <h1>Mieru</h1>
+                    </div>
                 </div>
-            </div>
-            <div id="rightcontainer">
-                <a href="#"><div class="hoverlink">
-                    <h3 class="link">About me</h3>
-                </div></a>
-                <a  href="#"><div class="hoverlink">
-                    <h3 class="link">Hobbies</h3>
-                </div></a>
-                <a href="https://twitter.com/Mieru_n"><div class="hoverlink blue-link">
-                    <h3 class="link">Twitter</h3>
-                </div></a>
-                <a  href="https://www.twitch.tv/asuka_r1n"><div class="hoverlink purple-link">
-                    <h3 class="link">Twitch</h3>
-                </div></a>
-                <a href="#"><div class="hoverlink discord-link">
-                    <h3 class="link">Discord</h3>
-                </div></a>
+                <div id="rightcontainer">
+                    <a href="#"><div class="hoverlink">
+                        <h3 class="link">About me</h3>
+                    </div></a>
+                    <a  href="#"><div class="hoverlink">
+                        <h3 class="link">Hobbies</h3>
+                    </div></a>
+                    <a href="https://twitter.com/Mieru_n"><div class="hoverlink blue-link">
+                        <h3 class="link">Twitter</h3>
+                    </div></a>
+                    <a  href="https://www.twitch.tv/asuka_r1n"><div class="hoverlink purple-link">
+                        <h3 class="link">Twitch</h3>
+                    </div></a>
+                    <a href="#"><div class="hoverlink discord-link">
+                        <h3 class="link">Discord</h3>
+                    </div></a>
+                </div>
             </div>
         </div>
 
