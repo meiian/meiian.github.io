@@ -1,0 +1,186 @@
+<html>
+    <head>
+        <title>- Mieru -</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="icon" type="image/png" href="./images/icon.jpg"/>
+        <meta name=" theme-color" content="#FDA50f">
+    </head>
+
+    <style>
+
+        .slide-right {
+                    animation: slide-right 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+        }
+
+        @keyframes slide-right {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(100px);
+            transform: translateX(100px);
+  }
+}
+
+
+        html,
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: rgb(10,10,10);
+            color: white;
+            display : flex;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+
+        }
+
+        #maincontainer {
+            display: grid;
+            grid-template-columns: auto auto;
+
+            width: 80vw;
+            height: 90vh;
+            margin: auto auto auto auto;
+        }
+
+        #rightcontainer {
+            text-align: left;
+            margin-top: auto;
+            margin-bottom: auto;
+            height: max-content;
+            width: max-content;
+            padding-left: max(25px,2vw);
+        }
+
+        #leftcontainer {
+            text-align: center;
+            display: grid;
+            height: 100%;
+
+        }
+
+
+
+        #leftinfos {
+            margin-bottom: auto;
+            margin-top: auto;
+            margin-left: auto;
+            padding-right: max(25px,2vw);
+            border-right: solid white 1px;
+            width: max-content;
+            height: max-content;
+        }
+
+         #rightconainter a {
+             width: max-content;
+         }
+        #leftcontainer img {
+
+            width: 128px;
+            border-radius: 5px;
+        }
+
+        #leftcontainer h1{
+
+            height: max-content;
+        }
+
+
+        #rightcontainer h3 {
+            padding: 5px;
+            width: max-content;
+        }
+
+        .hoverlink {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 0%;
+            background-color: orange;
+            transition: max-width 0.6s ease-out, color 0.6s ease-out;
+            color: white;
+            border-radius: 2px;
+        }
+
+        .hoverlink:hover {
+
+            color: rgb(10,10,10);    
+        }
+
+        .blue-link {
+            background-color: #1da1f2;
+        }
+
+        .purple-link {
+            background-color: #9c2bfd;
+        }
+
+        .discord-link {
+            background-color: #6d82cb;
+        }
+    </style>
+
+    <body>
+        <div id="maincontainer">
+            <div id="leftcontainer">
+                <div id="leftinfos">
+                    <img src="./images/monmocat.jpg">
+                    <h1>Mieru</h1>
+                </div>
+            </div>
+            <div id="rightcontainer">
+                <a href="#"><div class="hoverlink">
+                    <h3 class="link">About me</h3>
+                </div></a>
+                <a  href="#"><div class="hoverlink">
+                    <h3 class="link">Hobbies</h3>
+                </div></a>
+                <a href="https://twitter.com/Mieru_n"><div class="hoverlink blue-link">
+                    <h3 class="link">Twitter</h3>
+                </div></a>
+                <a  href="https://www.twitch.tv/asuka_r1n"><div class="hoverlink purple-link">
+                    <h3 class="link">Twitch</h3>
+                </div></a>
+                <a href="#"><div class="hoverlink discord-link">
+                    <h3 class="link">Discord</h3>
+                </div></a>
+            </div>
+        </div>
+
+        <script>
+            var userSelection = document.getElementsByClassName('link');
+            window.onload = function(){
+                document.getElementById("rightcontainer").style.width = document.getElementsByClassName('link')[0].offsetWidth + 50;
+            };
+            function colorLink(event) {
+                if(event.target.innerHTML == "Discord"){
+                    event.target.innerHTML = "aliss#3173";
+                }
+                event.target.parentNode.parentNode.childNodes[0].style.maxWidth = event.target.scrollWidth;
+            }
+            function decolorLink(event) {
+                if(event.target.innerHTML == "aliss#3173"){
+                    event.target.innerHTML = "Discord";
+                }
+                event.target.parentNode.parentNode.childNodes[0].style.maxWidth = 0;
+            }
+            
+
+            for(let i = 0; i < userSelection.length; i++) {
+            userSelection[i].addEventListener("mouseover", colorLink);
+            userSelection[i].addEventListener("mouseout", decolorLink);
+            }
+
+        </script>
+    </body>
+</html>
