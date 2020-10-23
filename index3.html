@@ -179,10 +179,10 @@
                     </div>
                 </div>
                 <div id="rightcontainer">
-                    <a href="#" onclick="transition(`wip`,`orange`,`About me`)"><div class="hoverlink">
+                    <a href="#" id="aboutme"><div class="hoverlink">
                         <h3 class="link">About me</h3>
                     </div></a>
-                    <a  href="#" onclick="transition(`wip`,`orange`,`Hobbies`)"><div class="hoverlink">
+                    <a href="#" id="hobbies"><div class="hoverlink">
                         <h3 class="link">Hobbies</h3>
                     </div></a>
                     <a href="https://twitter.com/Mieru_n"><div class="hoverlink blue-link">
@@ -200,9 +200,27 @@
 
         <script>
             var userSelection = document.getElementsByClassName('link');
+
             window.onload = function(){
                 document.getElementById("rightcontainer").style.width = document.getElementsByClassName('link')[0].offsetWidth + 50;
             };
+
+            let aboutme = document.createElement("div");
+            aboutme.classList.add("m-auto");
+            aboutme.innerHTML = `<h1>Je m'appelle Alice<h1>`;
+
+            document.getElementById("aboutme").addEventListener("click", function(e) {
+                transition(aboutme, "orange", "About me");
+            });
+
+            let hobbies = document.createElement("div");
+            hobbies.classList.add("m-auto");
+            hobbies.innerHTML = `<h1>J'aime les animes<h1>`;
+
+            document.getElementById("hobbies").addEventListener("click", function(e) {
+                transition(hobbies, "orange", "Hobbies");
+            });
+
             function colorLink(event) {
                 if(event.target.innerHTML == "Discord"){
                     event.target.innerHTML = "aliss#3173";
