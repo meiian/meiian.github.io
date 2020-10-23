@@ -1,0 +1,137 @@
+<html>
+    <head>
+        <title>- Mieru -</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="icon" type="image/png" href="./images/icon.jpg"/>
+        <meta name=" theme-color" content="#FDA50f">
+    </head>
+<style>
+    @keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.tracking-in-expand {
+	        animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}
+    @keyframes slide-bottom {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(100px);
+            transform: translateY(100px);
+  }
+}
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        background-color: rgb(10,10,10);
+        position: relative;
+        display: flex;
+    }
+    #grid {
+        display: grid;
+        position: absolute;
+        top: 0;
+        grid-template-columns: auto auto auto auto auto auto auto;
+        width: 100%;
+        height: 100%;
+        z-index: 5;
+    }
+    .transi {
+        display: flex;
+        color: rgb(10,10,10);
+        max-height: 0%;
+        width: 100%;
+        background-color: #1da1f2;
+        transition: max-height 0.6s ease-in-out;
+    }
+</style>
+
+<body id="test">
+
+    <h1 class="text-white m-auto">avant</h1>
+    
+    <script>
+        let node = document.createElement("div");
+        node.classList.add("m-auto");
+        node.innerHTML = `<h1 class="text-white">après</h1>`;
+        transition(node, "red", "yo");
+
+        function purgeNodes(root, whitelist) {
+            const hash = new Set(whitelist); // for faster look-up
+            const blacklist = [...root.querySelectorAll("*")].reverse().filter( node =>
+                !node.children.length && !hash.has(node) && node.parentNode.removeChild(node)
+            );
+            return blacklist;
+        }
+
+        function transition(to, color, text) {
+            document.body.style.zIndex = "1";
+            document.body.innerHTML += `<div id="grid">
+                                            <div class="transi" style="background-color: ${color}">
+                                            </div>
+                                            <div class="transi" style="background-color: ${color}">
+                                            </div>
+                                            <div class="transi" style="background-color: ${color}">
+                                            </div>
+                                            <div class="transi" style="background-color: ${color}">
+                                            </div>
+                                            <div class="transi" style="background-color: ${color}">
+                                            </div>
+                                            <div class="transi" style="background-color: ${color}">
+                                            </div>
+                                            <div class="transi" style="background-color: ${color}">
+                                            </div>
+                                        </div>`;
+            var userSelection = document.getElementsByClassName('transi');
+            
+            for(let i = 0; i < userSelection.length; i++) {
+                userSelection[i].style.transitionDelay = `${0.15*i}s`;
+                
+                setTimeout(function () {
+                    userSelection[i].style.maxHeight = "100%";
+                    
+                }, 500);
+            }
+            setTimeout(function () {
+                userSelection[3].innerHTML = `<h2 class="m-auto tracking-in-expand transititle">${text}</h2>`;
+                }, 1800);
+            
+                setTimeout(function () {
+                    purgeNodes(document.body, document.querySelectorAll('.transi, .transititle'));
+                }, 4000);
+            for(let i = 0; i < userSelection.length; i++) {
+                
+                setTimeout(function () {
+                    userSelection[i].style.maxHeight = "0%";
+                }, 4000);
+            }
+            setTimeout(function () {
+                userSelection[3].innerHTML = "";
+                }, 6000);
+
+            setTimeout(function () {
+                document.body.prepend(to);
+                }, 4000);
+
+            setTimeout(function () {
+                document.getElementById("grid").remove();
+                }, 6000);
+            }
+        
+    </script>
+</body>
+</html>

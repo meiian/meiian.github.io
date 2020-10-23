@@ -9,6 +9,21 @@
     </head>
 
     <style>
+        @keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.tracking-in-expand {
+	        animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}
 
         .slide-right {
                     animation: slide-right 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
@@ -30,9 +45,10 @@
         body {
             width: 100vw;
             height: 100vh;
-            background-image: url("images/wp.jpg");
             color: white;
+            background-color: rgb(10,10,10);
             display : flex;
+            position: relative;
         }
 
         a {
@@ -53,8 +69,8 @@
         #maincontainer {
             display: grid;
             grid-template-columns: auto auto;
-            
-            width: 80vw;
+
+            width: 100vw;
             height: 90vh;
             margin: auto auto auto auto;
         }
@@ -107,6 +123,24 @@
             width: max-content;
         }
 
+        #grid {
+        display: grid;
+        position: absolute;
+        top: 0;
+        grid-template-columns: auto auto auto auto auto auto auto;
+        width: 100%;
+        height: 100%;
+        z-index: 5;
+    }
+    .transi {
+        display: flex;
+        color: rgb(10,10,10);
+        max-height: 0%;
+        width: 100%;
+        background-color: #1da1f2;
+        transition: max-height 0.6s ease-in-out;
+    }
+
         .hoverlink {
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -145,10 +179,10 @@
                     </div>
                 </div>
                 <div id="rightcontainer">
-                    <a href="#"><div class="hoverlink">
+                    <a href="#" onclick="transition(`wip`,`orange`,`About me`)"><div class="hoverlink">
                         <h3 class="link">About me</h3>
                     </div></a>
-                    <a  href="#"><div class="hoverlink">
+                    <a  href="#" onclick="transition(`wip`,`orange`,`Hobbies`)"><div class="hoverlink">
                         <h3 class="link">Hobbies</h3>
                     </div></a>
                     <a href="https://twitter.com/Mieru_n"><div class="hoverlink blue-link">
@@ -186,6 +220,69 @@
             for(let i = 0; i < userSelection.length; i++) {
             userSelection[i].addEventListener("mouseover", colorLink);
             userSelection[i].addEventListener("mouseout", decolorLink);
+            }
+
+
+            function purgeNodes(root, whitelist) {
+                const hash = new Set(whitelist); // for faster look-up
+                const blacklist = [...root.querySelectorAll("*")].reverse().filter( node =>
+                    !node.children.length && !hash.has(node) && node.parentNode.removeChild(node)
+                );
+                return blacklist;
+            }
+            
+            function transition(to, color, text) {
+                document.body.style.zIndex = "1";
+                document.body.innerHTML += `<div id="grid">
+                                                <div class="transi" style="background-color: ${color}">
+                                                </div>
+                                                <div class="transi" style="background-color: ${color}">
+                                                </div>
+                                                <div class="transi" style="background-color: ${color}">
+                                                </div>
+                                                <div class="transi" style="background-color: ${color}">
+                                                </div>
+                                                <div class="transi" style="background-color: ${color}">
+                                                </div>
+                                                <div class="transi" style="background-color: ${color}">
+                                                </div>
+                                                <div class="transi" style="background-color: ${color}">
+                                                </div>
+                                            </div>`;
+                var userSelection = document.getElementsByClassName('transi');
+                
+                for(let i = 0; i < userSelection.length; i++) {
+                    userSelection[i].style.transitionDelay = `${0.15*i}s`;
+                    
+                    setTimeout(function () {
+                        userSelection[i].style.maxHeight = "100%";
+                        
+                    }, 500);
+                }
+                setTimeout(function () {
+                    userSelection[3].innerHTML = `<h2 class="m-auto tracking-in-expand transititle">${text}</h2>`;
+                    }, 1800);
+                
+                    setTimeout(function () {
+                        purgeNodes(document.body, document.querySelectorAll('.transi, .transititle'));
+                    }, 4000);
+                for(let i = 0; i < userSelection.length; i++) {
+                    
+                    setTimeout(function () {
+                        userSelection[i].style.maxHeight = "0%";
+                    }, 4000);
+                }
+                setTimeout(function () {
+                    userSelection[3].innerHTML = "";
+                    }, 6000);
+
+                setTimeout(function () {
+                    document.body.prepend(to);
+                    }, 4000);
+
+                setTimeout(function () {
+                    document.getElementById("grid").remove();
+                    }, 6000);
             }
 
         </script>
