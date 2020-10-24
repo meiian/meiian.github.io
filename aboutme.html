@@ -221,44 +221,8 @@
     </style>
 
     <body>
-        <div id="blur">
-            <div id="maincontainer">
-                <div id="leftcontainer">
-                    <div id="leftinfos">
-                        <img src="./images/monmocat.jpg">
-                        <h1>Mieru</h1>
-                    </div>
-                </div>
-                <div id="rightcontainer">
-                    <a href="#aboutme" id="aboutme"><div class="hoverlink">
-                        <h3 class="link">About me</h3>
-                    </div></a>
-                    <a href="#" id="hobbies"><div class="hoverlink">
-                        <h3 class="link">Hobbies</h3>
-                    </div></a>
-                    <a href="https://twitter.com/Mieru_n"><div class="hoverlink blue-link">
-                        <h3 class="link">Twitter</h3>
-                    </div></a>
-                    <a  href="https://www.twitch.tv/asuka_r1n"><div class="hoverlink purple-link">
-                        <h3 class="link">Twitch</h3>
-                    </div></a>
-                    <a href="#"><div class="hoverlink discord-link">
-                        <h3 class="link">Discord</h3>
-                    </div></a>
-                </div>
-            </div>
-        </div>
-
-        <script>
-            var userSelection = document.getElementsByClassName('link');
-
-            window.onload = function(){
-                document.getElementById("rightcontainer").style.width = document.getElementsByClassName('link')[0].offsetWidth + 50;
-            };
-
-            let aboutme = document.createElement("div");
-            aboutme.setAttribute("id", "overallcontainer");
-            aboutme.innerHTML = `<div id="upcontainer" style="background-color:orange;   ">
+        <div id="overallcontainer">
+            <div id="upcontainer" style="background-color:orange;   ">
                 <div id="infos">
                     <h1 class="my-auto  ">About me</h1>
                 </div>
@@ -295,21 +259,19 @@
                     </div>
                   </div>
 
-            </div>`;
+            </div>
+        </div>
 
-            document.getElementById("aboutme").addEventListener("click", function(e) {
-                transition(aboutme, "orange", "About me");
-            });
+        <script>
+            var userSelection = document.getElementsByClassName('link');
 
-            let hobbies = document.createElement("div");
-            hobbies.classList.add("m-auto");
-            hobbies.innerHTML = `<h1>J'aime les animes<h1>`;
+            window.onload = function(){
+                let btngroups = document.getElementsByClassName('btngroup');
+                for(let i=0 ; i < btngroups.length ; i++)
+                    btngroups[i].style.width = document.getElementsByClassName('link')[i].offsetWidth;
+            };
 
-            document.getElementById("hobbies").addEventListener("click", function(e) {
-                transition(hobbies, "orange", "Hobbies");
-            });
-
-            function colorLink(event) {
+function colorLink(event) {
                 if(event.target.innerHTML == "Discord"){
                     event.target.innerHTML = "aliss#3173";
                 }
@@ -327,83 +289,6 @@
             userSelection[i].addEventListener("mouseover", colorLink);
             userSelection[i].addEventListener("mouseout", decolorLink);
             }
-
-            function adjustbtn() {
-                let btngroups = document.getElementsByClassName('btngroup');
-                console.log(btngroups);
-                for(let i=0 ; i < btngroups.length ; i++)
-                    btngroups[i].style.width = document.getElementsByClassName('link')[i].offsetWidth;
-                userSelection = document.getElementsByClassName('link');
-                for(let i = 0; i < userSelection.length; i++) {
-                    userSelection[i].addEventListener("mouseover", colorLink);
-                    userSelection[i].addEventListener("mouseout", decolorLink);
-                }
-            }
-
-
-            function purgeNodes(root, whitelist) {
-                const hash = new Set(whitelist); // for faster look-up
-                const blacklist = [...root.querySelectorAll("*")].reverse().filter( node =>
-                    !node.children.length && !hash.has(node) && node.parentNode.removeChild(node)
-                );
-                return blacklist;
-            }
-            
-            function transition(to, color, text) {
-                document.body.style.zIndex = "1";
-                document.body.innerHTML += `<div id="grid">
-                                                <div class="transi" style="background-color: ${color}">
-                                                </div>
-                                                <div class="transi" style="background-color: ${color}">
-                                                </div>
-                                                <div class="transi" style="background-color: ${color}">
-                                                </div>
-                                                <div class="transi" style="background-color: ${color}">
-                                                </div>
-                                                <div class="transi" style="background-color: ${color}">
-                                                </div>
-                                                <div class="transi" style="background-color: ${color}">
-                                                </div>
-                                                <div class="transi" style="background-color: ${color}">
-                                                </div>
-                                            </div>`;
-                var userSelection = document.getElementsByClassName('transi');
-                
-                for(let i = 0; i < userSelection.length; i++) {
-                    userSelection[i].style.transitionDelay = `${0.15*i}s`;
-                    
-                    setTimeout(function () {
-                        userSelection[i].style.maxHeight = "100%";
-                        
-                    }, 500);
-                }
-                setTimeout(function () {
-                    userSelection[3].innerHTML = `<h2 class="m-auto tracking-in-expand transititle">${text}</h2>`;
-                    }, 1800);
-                
-                    setTimeout(function () {
-                        purgeNodes(document.body, document.querySelectorAll('.transi, .transititle, script'));
-                    }, 4000);
-                for(let i = 0; i < userSelection.length; i++) {
-                    
-                    setTimeout(function () {
-                        userSelection[i].style.maxHeight = "0%";
-                    }, 4000);
-                }
-                setTimeout(function () {
-                    userSelection[3].innerHTML = "";
-                    }, 5000);
-
-                setTimeout(function () {
-                    document.body.prepend(to);
-                    adjustbtn();
-                    }, 4000);
-
-                setTimeout(function () {
-                    document.getElementById("grid").remove();
-                    }, 6000);
-            }
-
         </script>
     </body>
 </html>
