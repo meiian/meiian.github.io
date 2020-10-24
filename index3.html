@@ -218,6 +218,16 @@
             margin-right: auto;
             text-align: center;
         }
+        #homereturn {
+            position: fixed;
+            bottom: 5;
+            width: 100vw;
+            display: flex;
+        }
+        #homereturn button{
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
 
     <body>
@@ -230,7 +240,7 @@
                     </div>
                 </div>
                 <div id="rightcontainer">
-                    <a href="#aboutme" id="aboutme"><div class="hoverlink">
+                    <a href="#" id="aboutme"><div class="hoverlink">
                         <h3 class="link">About me</h3>
                     </div></a>
                     <a href="#" id="hobbies"><div class="hoverlink">
@@ -295,15 +305,24 @@
                     </div>
                   </div>
 
-            </div>`;
+            </div>
+            
+            <div id="homereturn">
+            <button type="button" class="btn btn-warning" onclick="location.reload();"><b>Home</b></button>
+        </div>`;
 
             document.getElementById("aboutme").addEventListener("click", function(e) {
                 transition(aboutme, "orange", "About me");
             });
 
             let hobbies = document.createElement("div");
-            hobbies.classList.add("m-auto");
-            hobbies.innerHTML = `<h1>J'aime les animes<h1>`;
+            hobbies.style.width = "100vw";
+            hobbies.style.height = "100vh";
+            hobbies.style.display = "flex";
+            hobbies.innerHTML = `<h1 class="m-auto">J'aime les animes</h1>
+                <div class="m-0" id="homereturn">
+            <button type="button" class="btn btn-warning" onclick="location.reload();"><b>Home</b></button>
+        </div>`;
 
             document.getElementById("hobbies").addEventListener("click", function(e) {
                 transition(hobbies, "orange", "Hobbies");
