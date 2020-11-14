@@ -6,231 +6,423 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <link rel="icon" type="image/png" href="./images/icon.jpg"/>
         <meta name=" theme-color" content="#FDA50f">
-
-        <style>
-            @-webkit-keyframes fade-in {
-              0% {
-                opacity: 0;
-              }
-              100% {
-                opacity: 1;
-              }
-            }
-            @-webkit-keyframes slide-left {
-              0% {
-                -webkit-transform: translateX(0);
-                        transform: translateX(0);
-              }
-              100% {
-                -webkit-transform: translateX(-100px);
-                        transform: translateX(-100px);
-              }
-            }
-            @-webkit-keyframes fade-in-left {
-              0% {
-                -webkit-transform: translateX(-50px);
-                        transform: translateX(-50px);
-                opacity: 0;
-              }
-              100% {
-                -webkit-transform: translateX(0);
-                        transform: translateX(0);
-                opacity: 1;
-              }
-            }
-            @-webkit-keyframes slide-top {
-              0% {
-                -webkit-transform: translateY(0);
-                        transform: translateY(0);
-              }
-              100% {
-                -webkit-transform: translateY(-30px);
-                        transform: translateY(-30px);
-              }
-            }
-            @-webkit-keyframes text-focus-in {
-              0% {
-                -webkit-filter: blur(12px);
-                        filter: blur(12px);
-                opacity: 0;
-              }
-              100% {
-                -webkit-filter: blur(0px);
-                        filter: blur(0px);
-                opacity: 1;
-              }
-            }
-            @-webkit-keyframes scale-in-ver-top {
-              0% {
-                -webkit-transform: scaleY(0);
-                        transform: scaleY(0);
-                -webkit-transform-origin: 100% 0%;
-                        transform-origin: 100% 0%;
-                opacity: 1;
-              }
-              100% {
-                -webkit-transform: scaleY(1);
-                        transform: scaleY(1);
-                -webkit-transform-origin: 100% 0%;
-                        transform-origin: 100% 0%;
-                opacity: 1;
-              }
-            }
-            body{
-                background-color: black;
-                display:grid;
-                width: 100%;
-            }
-            #pfp{
-                max-width: 128px;
-                border-radius: 128px;
-                border: 5px solid black;
-                box-shadow: 0px 0px 0px 2px white;
-                grid-column-start: 1;
-                grid-row-start: 1;
-                position: absolute;
-                left: 50%;
-                margin-left: -50px;
-                top: 50%;
-                margin-top: -50px;
-            }
-            #desc{
-                z-index: 15;
-                width: max-content;
-                height: max-content;
-                justify-items: start;
-                text-align: center;
-                align-items: start;
-            }
-            #social{
-                height: max-content;
-            }
-            #pfp{
-                -webkit-animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both, slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-                -webkit-animation-delay: 0s, 1s;
-            }
-            
-            #other{
-                -webkit-animation: fade-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-                -webkit-animation-delay: 1.2s;
-                grid-column-start: 1;
-                grid-row-start: 1;
-                position: absolute;
-                left: 50%;
-                margin-left: -50px;
-                top: 50%;
-                margin-top: -50px;
-                
-            }
-
-            #title{
-                -webkit-animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-                -webkit-animation-delay: 2s;
-                line-height: 63%;
-            }
-
-            #bio{
-                -webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-                -webkit-animation-delay: 2s;
-                position: absolute;
-                left: 50%;
-                margin-left: -52px;
-                margin-right: 10px;
-                top: 50%;
-                margin-top: -10px;
-                width: max-content;
-                max-width: 150%;
-                line-height: 100%;
-            }
-
-            #footer{
-                z-index: 15;
-                -webkit-animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-                -webkit-animation-delay: 3s;
-                position: fixed;
-                left: 0;
-                bottom: 0;
-                width: 100%;
-                display: flex;
-            }
-            #bgred{
-              z-index: 1;
-              width: 100vw;
-              height: 100vh;
-              background-color: #FDA50f;
-              -webkit-animation: scale-in-ver-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-              -webkit-animation-delay: 0.5s;
-            }
-            #bggray{
-              position: absolute;
-              top: 0;
-              z-index: 2;
-              width: 100vw;
-              height: 93vh;
-              background-color: black;
-              -webkit-animation: scale-in-ver-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-              -webkit-animation-delay: 1s;
-            }
-        </style>
     </head>
 
-    <body onload="footerSize()" onresize="footerSize()">
-      <div id="bgred">
-      </div>
-      <div id="bggray">
-      </div>
-        <div class="media m-auto" id="desc">
-            <img src="./images/monmocat.jpg" id="pfp" class="mr-3" alt="Profile Picture of Meian">
-            <div class="media-body m-auto" id="other">
-                <h1 class="text-white text-left" id="title">Mieru<br/><span id="name" style="font-size:20px; margin-left: 2px; color:#FDA50f"></span></h1>
-                <p class="text-secondary text-left" id="bio">Dévoreuse de Slice of Life, et aussi parfois ouvre VS Code.</p>
-            </div>
-        </div>
-        <div id="footer" >
-            <div class="mx-auto">
-                <a href="https://twitter.com/Mieru_n" onmouseover="colorFooter(1)" ontouchstart="colorFooter(1)" onmouseleave="colorFooter(0)" ontouchend="colorFooter(0)"><img width='64' src="./images/twitter.png"/></a>
-                <a href="https://twitch.tv/asuka_r1n" onmouseover="colorFooter(2)" ontouchstart="colorFooter(2)" onmouseleave="colorFooter(0)" ontouchend="colorFooter(0)"><img width='64' src="./images/twitch.png"/></a>
-                <a href="https://www.youtube.com/channel/UC2f2jKVzXycgYqXpqXZu6IA" onmouseover="colorFooter(3)" ontouchstart="colorFooter(3)" onmouseleave="colorFooter(0)" ontouchend="colorFooter(0)"><img width='64' src="./images/youtube.png"/></a>
-            </div>
-        </div>
-    </body>
+    <style>
+@keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.tracking-in-expand {
+	        animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}
 
-    <script>
-      function footerSize(){
-        var h = window.innerHeight - 64;
-        document.getElementById("bggray").style.height = `${h}px`;
-        console.log(h);
-      }
-      function colorFooter(x,y){
-        switch (x){
-          case 1 :
-            document.getElementById("name").style.color = "#1da1f2";
-            document.getElementById("name").style.transition = "color 1s";
-            document.getElementById("bgred").style.transition = "background-color 1s";
-            document.getElementById("bgred").style.backgroundColor = "#1da1f2";
-            break;
-          case 2 :
-            document.getElementById("name").style.color = "#b22cff";
-            document.getElementById("name").style.transition = "color 1s";
-            document.getElementById("bgred").style.transition = "background-color 1s";
-            document.getElementById("bgred").style.backgroundColor = "#b22cff";
-            break;
-          case 3 :
-            document.getElementById("name").style.color = "red";
-            document.getElementById("name").style.transition = "color 1s";
-            document.getElementById("bgred").style.transition = "background-color 1s";
-            document.getElementById("bgred").style.backgroundColor = "red";
-            break;
-          default : 
-          document.getElementById("name").style.color = "#FDA50f";
-          document.getElementById("bgred").style.backgroundColor = "#FDA50f";
-            break;
-        }           
-      }
-        let names = ['Alice', 'Lucie', 'Lina', 'Alisée', 'Théa', 'weebasse', 'Mei', 'gaufre', 'Asuka', 'Cocoa'];
-        let date = new Date();
-        number = Math.trunc((date.getFullYear()*(date.getMonth()+1))/date.getDate()/names.length);
-        console.log("number of the day : " + number + " name : " + names[number%names.length]);
-        document.getElementById("name").innerText = names[number%names.length];
-    </script>
+        .slide-right {
+                    animation: slide-right 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+        }
+
+        @keyframes slide-right {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(100px);
+            transform: translateX(100px);
+  }
+}
+
+
+        html,
+        body {
+            width: 100vw;
+            height: 100vh;
+            color: white;
+            background-color: rgb(10,10,10);
+            display : flex;
+            position: relative;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+
+        }
+        #blur{
+            width: 100%;
+            height:100%;
+            backdrop-filter: blur(5px) brightness(30%) saturate(250%);
+            display : flex;
+        }
+        #maincontainer {
+            display: grid;
+            grid-template-columns: auto auto;
+
+            width: 100vw;
+            height: 90vh;
+            margin: auto auto auto auto;
+        }
+
+        #rightcontainer {
+            text-align: left;
+            margin-top: auto;
+            margin-bottom: auto;
+            height: max-content;
+            width: max-content;
+            padding-left: max(25px,2vw);
+        }
+
+        #leftcontainer {
+            text-align: center;
+            display: grid;
+            height: 100%;
+
+        }
+
+
+
+        #leftinfos {
+            margin-bottom: auto;
+            margin-top: auto;
+            margin-left: auto;
+            padding-right: max(25px,2vw);
+            border-right: solid white 1px;
+            width: max-content;
+            height: max-content;
+        }
+
+         #rightconainter a {
+             width: max-content;
+         }
+        #leftcontainer img {
+
+            width: 128px;
+            border-radius: 5px;
+        }
+
+        #leftcontainer h1{
+
+            height: max-content;
+        }
+
+
+        #rightcontainer h3 {
+            padding: 5px;
+            width: max-content;
+        }
+
+        #grid {
+            display: grid;
+            position: absolute;
+            top: 0;
+            grid-template-columns: auto auto auto auto auto auto auto;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+        }
+        
+    .transi {
+        display: flex;
+        color: rgb(10,10,10);
+        max-height: 0%;
+        width: 100%;
+        background-color: #1da1f2;
+        transition: max-height 0.6s ease-in-out;
+    }
+
+        .hoverlink {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 0%;
+            background-color: orange;
+            transition: max-width 0.6s ease-out, color 0.6s ease-out;
+            color: white;
+            border-radius: 2px;
+        }
+
+        .hoverlink:hover {
+
+            color: rgb(10,10,10);    
+        }
+
+        .blue-link {
+            background-color: #1da1f2;
+        }
+
+        .purple-link {
+            background-color: #9c2bfd;
+        }
+
+        .discord-link {
+            background-color: #6d82cb;
+        }
+        .black-card {
+            background-color: rgb(10,10,10)!important;
+            text-align: center;
+        }
+
+        #overallcontainer {
+            display: grid;
+            grid-template-rows: auto auto;
+            width: 100%;
+            height: 100%;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        #upcontainer {
+            width: 100%;
+            text-align: center;
+            height: 10vh;
+        }
+
+        #downcontainer {
+            width: max-content;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px; 
+        }
+
+        #infos {
+            height: 100%;
+            width: max-content;
+            margin-left: auto;
+            margin-right: auto; ;
+            display: flex;
+        }
+
+        .btnlink {
+            margin-left: auto;
+            margin-right: auto;
+            width: max-content;
+        }
+        .btnlink h5 {
+            width: max-content;
+            padding: 5px;
+        }
+        .btngroup {
+            width: max-content;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        #homereturn {
+            position: fixed;
+            bottom: 5;
+            width: 100vw;
+            display: flex;
+        }
+        #homereturn button{
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+
+    <body>
+        <div id="blur">
+            <div id="maincontainer">
+                <div id="leftcontainer">
+                    <div id="leftinfos">
+                        <img src="./images/monmocat.jpg">
+                        <h1>Mieru</h1>
+                    </div>
+                </div>
+                <div id="rightcontainer">
+                    <a href="#" id="aboutme"><div class="hoverlink">
+                        <h3 class="link">About me</h3>
+                    </div></a>
+                    <a href="#" id="hobbies"><div class="hoverlink">
+                        <h3 class="link">Hobbies</h3>
+                    </div></a>
+                    <a href="https://twitter.com/Mieru_n"><div class="hoverlink blue-link">
+                        <h3 class="link">Twitter</h3>
+                    </div></a>
+                    <a  href="https://www.twitch.tv/asuka_r1n"><div class="hoverlink purple-link">
+                        <h3 class="link">Twitch</h3>
+                    </div></a>
+                    <a href="#"><div class="hoverlink discord-link">
+                        <h3 class="link">Discord</h3>
+                    </div></a>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var userSelection = document.getElementsByClassName('link');
+
+            window.onload = function(){
+                document.getElementById("rightcontainer").style.width = document.getElementsByClassName('link')[0].offsetWidth + 50;
+            };
+
+            let aboutme = document.createElement("div");
+            aboutme.setAttribute("id", "overallcontainer");
+            aboutme.innerHTML = `<div id="upcontainer" style="background-color:orange;   ">
+                <div id="infos">
+                    <h1 class="my-auto  ">About me</h1>
+                </div>
+            </div>
+
+            <div class="card-deck" id="downcontainer">
+
+                <div class="card black-card" style="width: 18rem;">
+                    <img src="./images/woman.png" style="width:120px;" class="card-img-top mx-auto" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Who I am</h5>
+                      <p class="card-text">My name is Alice,<br/> nearly in my twenties.<br/> My pronouns are <b>she/her</b>. <br/>I'm kind of shy and have social anxiety so don't take it personally if I don't answer you.   </p>
+                    </div>
+                  </div>
+
+                <div class="card black-card" style="width: 18rem;">
+                    <img src="./images/book.png" style="width:120px;" class="card-img-top mx-auto" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Studies</h5>
+                      <p class="card-text">Currently in 3rd year of a computer science degree in a small french city.</p>
+                    </div>
+                </div>
+
+                <div class="card black-card" style="width: 18rem;">
+                    <img src="./images/trophy.png" style="width:120px;" class="card-img-top mx-auto" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Speedrun</h5>
+                      <p class="card-text">3rd place speedrunning Adiboo and the Green Shadow. But I'm willing to be the WR someday.    </p>
+                      <div class="btngroup">
+                        <a class="btnlink" href="https://www.speedrun.com/adiboo_and_the_green_shadow"><div class="hoverlink">
+                            <h5 class="link">Speedrun.com</h5>
+                        </div></a>
+                      </div>
+                    </div>
+                  </div>
+
+            </div>
+            
+            <div id="homereturn">
+            <button type="button" class="btn btn-warning" onclick="location.reload();"><b>Home</b></button>
+        </div>`;
+
+            document.getElementById("aboutme").addEventListener("click", function(e) {
+                transition(aboutme, "orange", "About me");
+            });
+
+            let hobbies = document.createElement("div");
+            hobbies.style.width = "100vw";
+            hobbies.style.height = "100vh";
+            hobbies.style.display = "flex";
+            hobbies.innerHTML = `<h1 class="m-auto">J'aime les animes</h1>
+                <div class="m-0" id="homereturn">
+            <button type="button" class="btn btn-warning" onclick="location.reload();"><b>Home</b></button>
+        </div>`;
+
+            document.getElementById("hobbies").addEventListener("click", function(e) {
+                transition(hobbies, "orange", "Hobbies");
+            });
+
+            function colorLink(event) {
+                if(event.target.innerHTML == "Discord"){
+                    event.target.innerHTML = "aliss#3173";
+                }
+                event.target.parentNode.parentNode.childNodes[0].style.maxWidth = event.target.scrollWidth;
+            }
+            function decolorLink(event) {
+                if(event.target.innerHTML == "aliss#3173"){
+                    event.target.innerHTML = "Discord";
+                }
+                event.target.parentNode.parentNode.childNodes[0].style.maxWidth = 0;
+            }
+            
+
+            for(let i = 0; i < userSelection.length; i++) {
+            userSelection[i].addEventListener("mouseover", colorLink);
+            userSelection[i].addEventListener("mouseout", decolorLink);
+            }
+
+            function adjustbtn() {
+                let btngroups = document.getElementsByClassName('btngroup');
+                console.log(btngroups);
+                for(let i=0 ; i < btngroups.length ; i++)
+                    btngroups[i].style.width = document.getElementsByClassName('link')[i].offsetWidth;
+                userSelection = document.getElementsByClassName('link');
+                for(let i = 0; i < userSelection.length; i++) {
+                    userSelection[i].addEventListener("mouseover", colorLink);
+                    userSelection[i].addEventListener("mouseout", decolorLink);
+                }
+            }
+
+
+            function purgeNodes(root, whitelist) {
+                const hash = new Set(whitelist); // for faster look-up
+                const blacklist = [...root.querySelectorAll("*")].reverse().filter( node =>
+                    !node.children.length && !hash.has(node) && node.parentNode.removeChild(node)
+                );
+                return blacklist;
+            }
+            
+            function transition(to, color, text) {
+                document.body.style.zIndex = "1";
+                document.body.innerHTML += `<div id="grid">
+                                                <div class="transi" style="background-color: ${color}">
+                                                </div>
+                                                <div class="transi" style="background-color: ${color}">
+                                                </div>
+                                                <div class="transi" style="background-color: ${color}">
+                                                </div>
+                                                <div class="transi" style="background-color: ${color}">
+                                                </div>
+                                                <div class="transi" style="background-color: ${color}">
+                                                </div>
+                                                <div class="transi" style="background-color: ${color}">
+                                                </div>
+                                                <div class="transi" style="background-color: ${color}">
+                                                </div>
+                                            </div>`;
+                var userSelection = document.getElementsByClassName('transi');
+                
+                for(let i = 0; i < userSelection.length; i++) {
+                    userSelection[i].style.transitionDelay = `${0.15*i}s`;
+                    
+                    setTimeout(function () {
+                        userSelection[i].style.maxHeight = "100%";
+                        
+                    }, 500);
+                }
+                setTimeout(function () {
+                    userSelection[3].innerHTML = `<h2 class="m-auto tracking-in-expand transititle">${text}</h2>`;
+                    }, 1800);
+                
+                    setTimeout(function () {
+                        purgeNodes(document.body, document.querySelectorAll('.transi, .transititle, script'));
+                    }, 4000);
+                for(let i = 0; i < userSelection.length; i++) {
+                    
+                    setTimeout(function () {
+                        userSelection[i].style.maxHeight = "0%";
+                    }, 4000);
+                }
+                setTimeout(function () {
+                    userSelection[3].innerHTML = "";
+                    }, 5000);
+
+                setTimeout(function () {
+                    document.body.prepend(to);
+                    adjustbtn();
+                    }, 4000);
+
+                setTimeout(function () {
+                    document.getElementById("grid").remove();
+                    }, 6000);
+            }
+
+        </script>
+    </body>
 </html>

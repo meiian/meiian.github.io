@@ -1,0 +1,236 @@
+<html>
+    <head>
+        <title>- Mieru -</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="icon" type="image/png" href="./images/icon.jpg"/>
+        <meta name=" theme-color" content="#FDA50f">
+
+        <style>
+            @-webkit-keyframes fade-in {
+              0% {
+                opacity: 0;
+              }
+              100% {
+                opacity: 1;
+              }
+            }
+            @-webkit-keyframes slide-left {
+              0% {
+                -webkit-transform: translateX(0);
+                        transform: translateX(0);
+              }
+              100% {
+                -webkit-transform: translateX(-100px);
+                        transform: translateX(-100px);
+              }
+            }
+            @-webkit-keyframes fade-in-left {
+              0% {
+                -webkit-transform: translateX(-50px);
+                        transform: translateX(-50px);
+                opacity: 0;
+              }
+              100% {
+                -webkit-transform: translateX(0);
+                        transform: translateX(0);
+                opacity: 1;
+              }
+            }
+            @-webkit-keyframes slide-top {
+              0% {
+                -webkit-transform: translateY(0);
+                        transform: translateY(0);
+              }
+              100% {
+                -webkit-transform: translateY(-30px);
+                        transform: translateY(-30px);
+              }
+            }
+            @-webkit-keyframes text-focus-in {
+              0% {
+                -webkit-filter: blur(12px);
+                        filter: blur(12px);
+                opacity: 0;
+              }
+              100% {
+                -webkit-filter: blur(0px);
+                        filter: blur(0px);
+                opacity: 1;
+              }
+            }
+            @-webkit-keyframes scale-in-ver-top {
+              0% {
+                -webkit-transform: scaleY(0);
+                        transform: scaleY(0);
+                -webkit-transform-origin: 100% 0%;
+                        transform-origin: 100% 0%;
+                opacity: 1;
+              }
+              100% {
+                -webkit-transform: scaleY(1);
+                        transform: scaleY(1);
+                -webkit-transform-origin: 100% 0%;
+                        transform-origin: 100% 0%;
+                opacity: 1;
+              }
+            }
+            body{
+                background-color: black;
+                display:grid;
+                width: 100%;
+            }
+            #pfp{
+                max-width: 128px;
+                border-radius: 128px;
+                border: 5px solid black;
+                box-shadow: 0px 0px 0px 2px white;
+                grid-column-start: 1;
+                grid-row-start: 1;
+                position: absolute;
+                left: 50%;
+                margin-left: -50px;
+                top: 50%;
+                margin-top: -50px;
+            }
+            #desc{
+                z-index: 15;
+                width: max-content;
+                height: max-content;
+                justify-items: start;
+                text-align: center;
+                align-items: start;
+            }
+            #social{
+                height: max-content;
+            }
+            #pfp{
+                -webkit-animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both, slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+                -webkit-animation-delay: 0s, 1s;
+            }
+            
+            #other{
+                -webkit-animation: fade-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+                -webkit-animation-delay: 1.2s;
+                grid-column-start: 1;
+                grid-row-start: 1;
+                position: absolute;
+                left: 50%;
+                margin-left: -50px;
+                top: 50%;
+                margin-top: -50px;
+                
+            }
+
+            #title{
+                -webkit-animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+                -webkit-animation-delay: 2s;
+                line-height: 63%;
+            }
+
+            #bio{
+                -webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+                -webkit-animation-delay: 2s;
+                position: absolute;
+                left: 50%;
+                margin-left: -52px;
+                margin-right: 10px;
+                top: 50%;
+                margin-top: -10px;
+                width: max-content;
+                max-width: 150%;
+                line-height: 100%;
+            }
+
+            #footer{
+                z-index: 15;
+                -webkit-animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+                -webkit-animation-delay: 3s;
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                display: flex;
+            }
+            #bgred{
+              z-index: 1;
+              width: 100vw;
+              height: 100vh;
+              background-color: #FDA50f;
+              -webkit-animation: scale-in-ver-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+              -webkit-animation-delay: 0.5s;
+            }
+            #bggray{
+              position: absolute;
+              top: 0;
+              z-index: 2;
+              width: 100vw;
+              height: 93vh;
+              background-color: black;
+              -webkit-animation: scale-in-ver-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+              -webkit-animation-delay: 1s;
+            }
+        </style>
+    </head>
+
+    <body onload="footerSize()" onresize="footerSize()">
+      <div id="bgred">
+      </div>
+      <div id="bggray">
+      </div>
+        <div class="media m-auto" id="desc">
+            <img src="./images/monmocat.jpg" id="pfp" class="mr-3" alt="Profile Picture of Meian">
+            <div class="media-body m-auto" id="other">
+                <h1 class="text-white text-left" id="title">Mieru<br/><span id="name" style="font-size:20px; margin-left: 2px; color:#FDA50f"></span></h1>
+                <p class="text-secondary text-left" id="bio">Dévoreuse de Slice of Life, et aussi parfois ouvre VS Code.</p>
+            </div>
+        </div>
+        <div id="footer" >
+            <div class="mx-auto">
+                <a href="https://twitter.com/Mieru_n" onmouseover="colorFooter(1)" ontouchstart="colorFooter(1)" onmouseleave="colorFooter(0)" ontouchend="colorFooter(0)"><img width='64' src="./images/twitter.png"/></a>
+                <a href="https://twitch.tv/asuka_r1n" onmouseover="colorFooter(2)" ontouchstart="colorFooter(2)" onmouseleave="colorFooter(0)" ontouchend="colorFooter(0)"><img width='64' src="./images/twitch.png"/></a>
+                <a href="https://www.youtube.com/channel/UC2f2jKVzXycgYqXpqXZu6IA" onmouseover="colorFooter(3)" ontouchstart="colorFooter(3)" onmouseleave="colorFooter(0)" ontouchend="colorFooter(0)"><img width='64' src="./images/youtube.png"/></a>
+            </div>
+        </div>
+    </body>
+
+    <script>
+      function footerSize(){
+        var h = window.innerHeight - 64;
+        document.getElementById("bggray").style.height = `${h}px`;
+        console.log(h);
+      }
+      function colorFooter(x,y){
+        switch (x){
+          case 1 :
+            document.getElementById("name").style.color = "#1da1f2";
+            document.getElementById("name").style.transition = "color 1s";
+            document.getElementById("bgred").style.transition = "background-color 1s";
+            document.getElementById("bgred").style.backgroundColor = "#1da1f2";
+            break;
+          case 2 :
+            document.getElementById("name").style.color = "#b22cff";
+            document.getElementById("name").style.transition = "color 1s";
+            document.getElementById("bgred").style.transition = "background-color 1s";
+            document.getElementById("bgred").style.backgroundColor = "#b22cff";
+            break;
+          case 3 :
+            document.getElementById("name").style.color = "red";
+            document.getElementById("name").style.transition = "color 1s";
+            document.getElementById("bgred").style.transition = "background-color 1s";
+            document.getElementById("bgred").style.backgroundColor = "red";
+            break;
+          default : 
+          document.getElementById("name").style.color = "#FDA50f";
+          document.getElementById("bgred").style.backgroundColor = "#FDA50f";
+            break;
+        }           
+      }
+        let names = ['Alice', 'Lucie', 'Lina', 'Alisée', 'Théa', 'weebasse', 'Mei', 'gaufre', 'Asuka', 'Cocoa'];
+        let date = new Date();
+        number = Math.trunc((date.getFullYear()*(date.getMonth()+1))/date.getDate()/names.length);
+        console.log("number of the day : " + number + " name : " + names[number%names.length]);
+        document.getElementById("name").innerText = names[number%names.length];
+    </script>
+</html>
