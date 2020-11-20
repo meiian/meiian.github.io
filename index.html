@@ -71,7 +71,7 @@
             grid-template-columns: auto auto;
 
             width: 100vw;
-            height: 90vh;
+            height: 100vh;
             margin: auto auto auto auto;
         }
 
@@ -88,7 +88,8 @@
             text-align: center;
             display: grid;
             height: 100%;
-
+            background-color: orange;
+            transition : background-color 0.5s;
         }
 
 
@@ -98,7 +99,7 @@
             margin-top: auto;
             margin-left: auto;
             padding-right: max(25px,2vw);
-            border-right: solid white 1px;
+
             width: max-content;
             height: max-content;
         }
@@ -246,13 +247,13 @@
                     <a href="#" id="hobbies"><div class="hoverlink">
                         <h3 class="link">Hobbies</h3>
                     </div></a>
-                    <a href="https://twitter.com/mitsu_un"><div class="hoverlink blue-link">
+                    <a href="https://twitter.com/mitsu_un"><div  onmouseover="colorLeft('blue')" onmouseleave="colorLeft('default')" class="hoverlink blue-link">
                         <h3 class="link">Twitter</h3>
                     </div></a>
-                    <a  href="https://www.twitch.tv/asuka_r1n"><div class="hoverlink purple-link">
+                    <a href="https://www.twitch.tv/asuka_r1n"><div onmouseover="colorLeft('purple')" onmouseleave="colorLeft('default')" class="hoverlink purple-link">
                         <h3 class="link">Twitch</h3>
                     </div></a>
-                    <a href="#"><div class="hoverlink discord-link">
+                    <a href="#"><div onmouseover="colorLeft('discord')" onmouseleave="colorLeft('default')" class="hoverlink discord-link">
                         <h3 class="link">Discord</h3>
                     </div></a>
                 </div>
@@ -265,6 +266,23 @@
             window.onload = function(){
                 document.getElementById("rightcontainer").style.width = document.getElementsByClassName('link')[0].offsetWidth + 50;
             };
+
+            function colorLeft(color) {
+                switch(color) {
+                    case 'blue' :
+                        document.getElementById("leftcontainer").style.backgroundColor = "#1da1f2";
+                        break;
+                    case 'purple' :
+                        document.getElementById("leftcontainer").style.backgroundColor = "#9c2bfd";
+                        break;
+                    case 'discord' :
+                    document.getElementById("leftcontainer").style.backgroundColor = "#6d82cb";
+                        break;
+                    default :
+                    document.getElementById("leftcontainer").style.backgroundColor = "";
+                        break;
+                }
+            }
 
             let aboutme = document.createElement("div");
             aboutme.setAttribute("id", "overallcontainer");
