@@ -43,11 +43,12 @@
 
         html,
         body {
-            width: 100%;
-            height: 100%;
+            min-width: 100vw;
+            min-height: 100vh;
             color: white;
             background-color: rgb(9, 16, 24);
             display : flex;
+            position: relative;
 
         }
 
@@ -79,10 +80,9 @@
             text-align: left;
             margin-top: auto;
             margin-bottom: auto;
-            height: max-content;
-            width: max-content;
-            padding-left: max(25px,2vw);
-            text-shadow: 0px 0px 5px #000000;
+            height: 90vh;
+            width: 90vw;
+            
             
         }
 
@@ -95,7 +95,7 @@
             background-size: cover;
             background-position: center;
             transition : background-color 0.5s;
-            
+            z-index: 3;
         }
 
 
@@ -129,111 +129,7 @@
             width: max-content;
         }
 
-        #grid {
-            display: grid;
-            position: absolute;
-            top: 0;
-            grid-template-columns: auto auto auto auto auto auto auto;
-            width: 100%;
-            height: 100%;
-            z-index: 5;
-        }
-        
-    .transi {
-        display: flex;
-        color: rgb(10,10,10);
-        max-height: 0%;
-        width: 100%;
-        background-color: #1da1f2;
-        transition: max-height 0.6s ease-in-out;
-    }
 
-        .hoverlink {
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            max-width: 0%;
-            background-color: orange;
-            transition: max-width 0.6s ease-out, color 0.6s ease-out;
-            color: white;
-            border-radius: 2px;
-        }
-
-        .hoverlink:hover {
-
-            color: rgb(10,10,10);    
-        }
-
-        .blue-link {
-            background-color: #1da1f2;
-        }
-
-        .purple-link {
-            background-color: #9c2bfd;
-        }
-
-        .discord-link {
-            background-color: #6d82cb;
-        }
-        .black-card {
-            background-color: rgb(10,10,10)!important;
-            text-align: center;
-        }
-
-        #overallcontainer {
-            display: grid;
-            grid-template-rows: auto auto;
-            width: 100%;
-            height: 100%;
-            margin-top: auto;
-            margin-bottom: auto;
-        }
-
-        #upcontainer {
-            width: 100%;
-            text-align: center;
-            height: 10vh;
-        }
-
-        #downcontainer {
-            width: max-content;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 20px; 
-        }
-
-        #infos {
-            height: 100%;
-            width: max-content;
-            margin-left: auto;
-            margin-right: auto; ;
-            display: flex;
-        }
-
-        .btnlink {
-            margin-left: auto;
-            margin-right: auto;
-            width: max-content;
-        }
-        .btnlink h5 {
-            width: max-content;
-            padding: 5px;
-        }
-        .btngroup {
-            width: max-content;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
-        }
-        #homereturn {
-            position: fixed;
-            bottom: 5;
-            width: 100vw;
-            display: flex;
-        }
-        #homereturn button{
-            margin-left: auto;
-            margin-right: auto;
-        }
 
         .card-header {
             padding-bottom:0;
@@ -248,8 +144,8 @@
             height:max-content;
             margin-top: auto;
             padding-bottom: 0px; 
-            padding-top: 0px;
-            backdrop-filter: brightness(80%);
+            padding-top: 1px;
+            background-color: rgba(0,0,0,0.5);
             font-size: min(3vw,16px);
         }
         #perso h4 {
@@ -317,13 +213,56 @@
             background-color: rgba(0,0,0,0.5)!important;
         }
 
+        #etc {
+            background-color: rgb(10,10,10);
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            height: 75%;
+            display: flex;
+        }
+
+        #etc2 {
+            width: 70%;
+            
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        #syno {
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0px 0px 5px #000000;
+        }
+
+        .iconcara {
+            width: 90px;
+            transform: rotate(-10deg);
+        }
+
+        .bg-orange {
+            background-color: orange!important;
+        }
+
         @media only screen and (max-width: 600px) {
             #rightcontainer {
                 padding-top: 30vh;
-                padding-bottom: 30vh;
+                padding-bottom: 10vh;
+                height: max-content;
             }
-
+            #leftcontainer {
+                height: 100vh;
+            }
+            #etc {
+                height: max-content;
+            }
+            .note h2 {
+                font-size: 20px;
+            }
         }
+
     </style>
 
     <body>
@@ -336,35 +275,92 @@
                     <div id='blur' style="width: 10vw">
                     <div id="leftinfos">
                         <img src="./affiche.jpg">
-                        <h3 id="titleanime">Kiznaiver<p style="overflow-wrap:normal;color: gray; font-size: 16px;">キズナイーバー</p></h3>
-                        
+                        <h3 id="titleanime">Kiznaiver<p style="overflow-wrap:normal;color: gray; font-size: 16px;">キズナイーバー</p></h3>      
                     </div>
                 </div>
                 </div>
                 <div class="blackopa" style="width:90vw; display: flex;">
                 <div id="rightcontainer" class="m-auto">
-                    <div class="card bg-transparent" style="width:min(80vw,1200px);  word-wrap:normal;">
-                        <div class="card-header">
+                    <div id="syno" class="card bg-transparent" style="width:min(80vw,1200px);  word-wrap:normal;">
+                        <div style="background-color: rgba(0,0,0,0)" class="card-header">
                           <h4 class="title-red">Synopsis</h4>
                         </div>
                         <div class="card-body">
-                            <p>The fictional Japanese city named Sugomori City is built on reclaimed land. But as the years go by, the city's population is decreasing. One day, Sonosaki tells her classmate Katsuhira: "You have been selected to be a Kiznaiver." The Kizuna System, which allows Katsuhira to share his wounds, connects him to the classmates whose lives and personalities completely differ from his. The Kizuna System is an incomplete system for the implementation of world peace that connects people through wounds. All those who are connected to this system are called Kiznaivers. When one Kiznaiver is wounded, the system divides and transmits the wound among the other Kiznaivers.</p>
+                            <p>Sugomori City, une ville japonaise fictive, est construire sur des terres anciennement inexploitables. Mais alors que les années passent, la population de la ville baisse au lieu de monter. Katsuhira, un lycéen se faisant racketter quotidiennement, apprend par sa camarade de classe Sonosaki qu’il a été sélectionné pour être un Kiznaiver. Le système Kizuna, qui permet à Katsuhira de partager ses douleurs avec les autres, le relie avec d’autres de ses camarades de classe dont les vies et personnalités sont totalement différentes de la sienne. Le but du projet est de parvenir à la paix dans le monde en connectant les gens au travers de leurs blessures. Tous ceux connectés au système, appelés Kiznaivers, partagent chaque douleur que ressent n’importe quel autre Kiznaiver.</p>
                         </div>
                     </div>
-                    <div class="card-deck">
-                        <div class="card bg-transparent text-right text-bottom" style="width:max(20vw,240px);  word-wrap:normal;">
-                            <img src="./noriko.jpg" class="card-img" alt="...">
-                            <div id="perso" class="card-img-overlay">
-                            <h4 class="mb-0">Personnage préféré</h4>
-                                <p class="mb-1  ">Noriko Sonozaki</p>
-                            </div>
-                        </div>
-                        <div class="card bg-transparent" style="width:max(20vw,240px);  word-wrap:normal;">
-                            <div class="card-header">
-                              <h4 class="title-red">Critique</h4>
-                            </div>
-                            <div class="card-body">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus feugiat nibh vel tellus aliquet, eu convallis velit aliquam. Proin maximus, dolor eget volutpat cursus, elit risus commodo augue, commodo aliquam dolor neque eu ligula. Quisque tellus turpis, commodo ac porttitor vel, condimentum sit amet diam. Nunc pharetra sem ac cursus faucibus. Nunc eleifend imperdiet varius. Ut eu elementum urna. Donec in tortor blandit, sodales orci sed, hendrerit enim. Fusce sed eleifend.</p>
+                    <div id="etc">
+                        <div id="etc2" class="card-columns p-3" >
+                            
+
+                                    
+
+                                    <div class="card bg-transparent text-right text-bottom" style="word-wrap:normal;">
+                                        <img src="./noriko.jpg" class="card-img" alt="...">
+                                        <div id="perso" class="card-img-overlay">
+                                        <h4 class="mb-0">Personnage préféré</h4>
+                                            <p class="mb-1">Noriko Sonozaki</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="card bg-primary text-right text-bottom" style="height: 80px; overflow: hidden;">
+                                        <div class="media">
+                                                <img class="iconcara" src="../images/book2.png" width="64">
+                                            <div class="card-body media-body p-3">  
+                                                <h5 class="card-title m-0">Histoire</h5>
+                                                <p class="card-text">Excellent</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card bg-primary text-right text-bottom" style="height: 80px; overflow: hidden;">
+                                        <div class="media">
+                                                <img class="iconcara" src="../images/chara.png" width="64">
+                                            <div class="card-body media-body p-3">  
+                                                <h5 class="card-title m-0">Personnages</h5>
+                                                <p class="card-text">Excellent</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card bg-primary text-right text-bottom" style="height: 80px; overflow: hidden;">
+                                        <div class="media">
+                                                <img class="iconcara" src="../images/film.png" width="64">
+                                            <div class="card-body media-body p-3">  
+                                                <h5 class="card-title m-0">Visuels</h5>
+                                                <p class="card-text">Excellent</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card bg-primary text-right text-bottom" style="height: 80px; overflow: hidden;">
+                                        <div class="media">
+                                                <img class="iconcara" src="../images/music.png" width="64">
+                                            <div class="card-body media-body p-3">  
+                                                <h5 class="card-title m-0">OST</h5>
+                                                <p class="card-text">Excellent</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card bg-primary text-right text-bottom" style="height: 80px; overflow: hidden;">
+                                        <div class="media">
+                                                <img class="iconcara" src="../images/heart.png" width="64">
+                                            <div class="card-body media-body p-3">  
+                                                <h5 class="card-title m-0">Engouement</h5>
+                                                <p class="card-text">Excellent</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                            <div class="card bg-transparent" style="  word-wrap:normal;">
+                                <div class="card-header">
+                                <h4 class="title-red">Critique</h4>
+                                </div>
+                                <div class="card-body">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus feugiat nibh vel tellus aliquet, eu convallis velit aliquam. Proin maximus, dolor eget volutpat cursus, elit risus commodo augue, commodo aliquam dolor neque eu ligula. Quisque tellus turpis, commodo ac porttitor vel, condimentum sit amet diam. Nunc pharetra sem ac cursus faucibus. Nunc eleifend imperdiet varius. Ut eu elementum urna. Donec in tortor blandit, sodales orci sed, hendrerit enim. Fusce sed eleifend.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -392,5 +388,14 @@
                 <h2>Excellent</h2>
             </div>
         </div>
+
+        <script>
+            if(screen.width < 600){
+                console.log(document.getElementById("leftcontainer").scrollHeight);
+                console.log(document.getElementById("rightcontainer").scrollHeight);
+                document.getElementById("leftcontainer").style.height = document.getElementById("rightcontainer").scrollHeight;
+                console.log(document.getElementById("leftcontainer").scrollHeight);
+            }
+        </script>
     </body>
 </html>
