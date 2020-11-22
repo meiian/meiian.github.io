@@ -1,0 +1,147 @@
+<html>
+    <head>
+        <title>- Animes -</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="icon" type="image/png" href="./images/icon.jpg"/>
+        <meta name=" theme-color" content="#FDA50f">
+    </head>
+
+    <style>
+        html,body{
+            min-width: 100vw;
+            min-height: 100vh;
+            color: white;
+            background-color: rgb(10, 10, 10);
+            display : flex;
+            position: relative;
+            z-index: -10;
+        }
+
+        #searchbar {
+            width: 100vw;
+            height: max-content;
+            padding: 15px;
+            display: flex;
+            position: fixed;
+            background-color: orange;
+        }
+
+        #containsearch {
+            width: 50%;
+            height: max-content;
+            display: flex;
+            margin: auto auto auto auto;
+        }
+
+        #animlist {
+            width: 70vw;
+            margin-left: auto;
+            margin-right: auto;
+            height: max-content;
+            margin-top: 15vh;
+            z-index: -1;
+        }
+        #perso {
+            height:max-content;
+            margin-top: auto;
+            padding-bottom: 0px; 
+            padding-top: 1px;
+            background-color: rgba(0,0,0,0.5);
+            font-size: min(3vw,16px);
+            transition: background-color 0.5s;
+        }
+        .red:hover {
+            background-color: rgba(255,0,0,0.5)!important;
+        }
+        .orange:hover {
+            background-color: rgba(255, 136, 0, 0.5)!important;
+        }
+        .yellow:hover {
+            background-color: rgba(251, 255, 0, 0.5)!important;
+        }
+        .green:hover {
+            background-color: rgba(0, 255, 13, 0.5)!important;
+        }
+        .blue:hover {
+            background-color: rgba(0, 225, 255, 0.5)!important;
+        }
+        #perso h4 {
+            font-size: min(3vw,20px);
+            padding: 5px;
+        }
+
+        .card-img {
+            height: 248px;
+            width: auto;
+        }
+
+        #tri {
+            width: 70vw;
+            top: 10vh;
+            left: 15vw;
+            height: max-content;
+            position: absolute;
+        }
+
+        #triSelect {
+            border: solid 0px;
+            font-weight: bold;
+            padding-left: 3px;
+            padding-top: 5px;
+        }
+
+
+        @media only screen and (max-width: 600px) {
+            #animlist {
+                width: max-content;
+            }
+
+            .card-img {
+                height: auto;
+                width: 70vw;
+            }
+
+            #containsearch {
+                width: 80vw;
+            }
+
+            #perso h4 {
+                font-size: 20px;
+                padding: 5px;
+            }
+            .card {
+                padding: 0;
+                margin: 0;
+            }
+        }
+
+    </style>
+
+    <body>
+        <div id="searchbar">
+            <div id="containsearch">
+                <h4 class="my-auto pr-3">Mieru</h4>
+                <div class="input-group ">
+                    <input id="searchinput" type="text" class="form-control" placeholder="Anime..." aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+            </div>
+        </div>
+
+        <div id="tri">
+            <h5 class="text-muted">Tri par <select class="custom-select bg-transparent text-muted" id="triSelect" style="width: max-content;">
+                <option value="2" selected>Nom</option>
+                <option value="3">Note</option>
+              </select></h5>
+        </div>
+      
+
+        <div id="animlist" class="row row-cols-1 row-cols-md-6">  
+                   
+        </div>
+
+        <script src="./animes.js"></script>
+    </body>
+
+</html>
