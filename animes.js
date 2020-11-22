@@ -92,7 +92,7 @@ function printAnime(anim) {
     document.getElementById("animlist").innerHTML += `
     <div class="col mb-4">
                 <div class="card bg-transparent text-right text-bottom mx-auto" style="width: max-content; word-wrap:normal;">
-                    <a href="./${anim.folder}/critique.html">
+                    <a href="./${anim.folder}/critique">
                         <img src="./${anim.folder}/affiche.jpg" class="card-img" alt="...">
                         <div id="perso" class="card-img-overlay ${color}">
                         <h4 class="mb-0 text-white">${anim.name}</h4>
