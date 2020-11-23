@@ -43,29 +43,21 @@
             margin-top: 15vh;
             z-index: -1;
         }
-        #perso {
-            height:max-content;
-            margin-top: auto;
-            padding-bottom: 0px; 
-            padding-top: 1px;
-            background-color: rgba(0,0,0,0.5);
-            font-size: min(3vw,16px);
-            transition: background-color 0.5s;
-        }
+        
         .red:hover {
-            background-color: rgba(255,0,0,0.5)!important;
+            background-color: rgba(255,0,0,0.8)!important;
         }
         .orange:hover {
-            background-color: rgba(255, 136, 0, 0.5)!important;
+            background-color: rgba(255, 136, 0, 0.8)!important;
         }
         .yellow:hover {
-            background-color: rgba(251, 255, 0, 0.5)!important;
+            background-color: rgba(251, 255, 0, 0.8)!important;
         }
         .green:hover {
-            background-color: rgba(0, 255, 13, 0.5)!important;
+            background-color: rgba(0, 255, 13, 0.8)!important;
         }
         .blue:hover {
-            background-color: rgba(0, 225, 255, 0.5)!important;
+            background-color: rgba(0, 225, 255, 0.8)!important;
         }
         #perso h4 {
             font-size: min(3vw,20px);
@@ -92,7 +84,25 @@
             padding-left: 3px;
             padding-top: 5px;
         }
+        @media only screen and (min-width: 600px) {
+            #perso {
+                height: 0px;
+                overflow: hidden;
+                margin-top: auto;
+                padding: 0px;
+                display: flex;
+                text-justify: right;
+                transition: height 0.4s;
+                text-shadow: 0 0 4px black;
+                border-radius: 2px;
+            }
 
+            #perso h4 {
+                    margin-top: auto;
+                    height: max-content;
+                    width: 100%;
+            }
+        }
 
         @media only screen and (max-width: 600px) {
             #animlist {
@@ -115,6 +125,15 @@
             .card {
                 padding: 0;
                 margin: 0;
+            }
+            #perso {
+                height:max-content;
+                margin-top: auto;
+                padding-bottom: 0px; 
+                padding-top: 1px;
+                background-color: rgba(0,0,0,0.5);
+                font-size: min(3vw,16px);
+                transition: background-color 0.5s;
             }
         }
 

@@ -38,8 +38,6 @@ function sortAnime() {
             animes.forEach(element => {
                 printAnime(element);
             });
-            console.log("Tri par date : ");
-            console.log(animes);
             break;
         case "2":
             init();
@@ -48,8 +46,6 @@ function sortAnime() {
                 if (x < y) {return -1;}
                 if (x > y) {return 1;}
                 return 0;});
-            console.log("Tri par nom : ");
-            console.log(animsname);
             animsname.forEach(element => {
                 printAnime(element);
             });
@@ -59,18 +55,25 @@ function sortAnime() {
             let animsnote = filtered.sort(function(a, b){
                 return b.note - a.note;
             });
-            console.log("Tri par note : ");
-            console.log(animsnote);
             animsnote.forEach(element => {
                 printAnime(element);
             });
             break;
-    }
+    };
+    if(screen.width >= 600) {
+        document.querySelectorAll('.animvign').forEach(item => {
+            item.addEventListener('mouseenter', event => {
+              event.target.getElementsByClassName("desc")["perso"].style.height = event.target.scrollHeight;
+            });
+            item.addEventListener('mouseleave', event => {
+                event.target.getElementsByClassName("desc")["perso"].style.height = "0";
+              });
+        });
+    };
 }
 
 function printAnime(anim) {
     let color = "black";
-    console.log(anim.note);
     switch(anim.note) {
         case 1:
             color = "red";
@@ -88,13 +91,12 @@ function printAnime(anim) {
             color = "blue";
             break;
     }
-    console.log(color);
     document.getElementById("animlist").innerHTML += `
     <div class="col mb-4">
-                <div class="card bg-transparent text-right text-bottom mx-auto" style="width: max-content; word-wrap:normal;">
+                <div class="card bg-transparent text-right text-bottom mx-auto animvign" style="width: max-content; word-wrap:normal;">
                     <a href="./${anim.folder}/critique">
                         <img src="./${anim.folder}/affiche.jpg" class="card-img" alt="...">
-                        <div id="perso" class="card-img-overlay ${color}">
+                        <div id="perso" class="card-img-overlay ${color} desc">
                         <h4 class="mb-0 text-white">${anim.name}</h4>
                         </div>
                     </a>
@@ -102,6 +104,7 @@ function printAnime(anim) {
     </div>
     `;
 }
+
 
 
 
@@ -114,3 +117,4 @@ document.getElementById("searchinput").addEventListener('input', function() {
     filtered = animes.filter(checkName);
     sortAnime();
 });
+
