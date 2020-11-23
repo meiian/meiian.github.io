@@ -210,6 +210,10 @@ body {
     #etc {
         height: max-content;
     }
+    #etc2 {
+        width: 100%;
+        
+    }
     .note h2 {
         font-size: 20px;
     }
