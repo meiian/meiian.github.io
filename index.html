@@ -264,7 +264,7 @@
             var userSelection = document.getElementsByClassName('link');
 
             window.onload = function(){
-                document.getElementById("rightcontainer").style.width = document.getElementsByClassName('link')[0].offsetWidth + 50;
+                document.getElementById("rightcontainer").style.width = document.getElementsByClassName('link')[0].offsetWidth + 55;
             };
 
             function colorLeft(color) {
@@ -349,8 +349,10 @@
             function colorLink(event) {
                 if(event.target.innerHTML == "Discord"){
                     event.target.innerHTML = "mitsu#3173";
+                    event.target.parentNode.parentNode.childNodes[0].style.maxWidth = event.target.scrollWidth;
                 }
-                event.target.parentNode.parentNode.childNodes[0].style.maxWidth = event.target.scrollWidth;
+                else
+                    event.target.parentNode.parentNode.childNodes[0].style.maxWidth = event.target.scrollWidth;
             }
             function decolorLink(event) {
                 if(event.target.innerHTML == "mitsu#3173"){
