@@ -120,7 +120,7 @@ function printAnime(anim) {
                     <a href="./${anim.folder}/critique">
                         <img src="./${anim.folder}/affiche.jpg" class="card-img" alt="...">
                         <div id="perso" class="card-img-overlay ${color} desc">
-                        <h4 class="mb-0 text-white">${anim.name}<br/> <span class="badge ${badgecolor}">${anim.tags}</span></h4>
+                        <h4 class="mb-0 text-white">${anim.name}<br/> <span style="text-shadow: 0 0 0 black" class="badge ${badgecolor}">${anim.tags}</span></h4>
                         
                         </div>
                     </a>
