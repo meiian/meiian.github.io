@@ -22,7 +22,13 @@ let animes = [
         folder:"ochikobore",
         note:3,
         tags:"Slice of Life"
-    }
+    },
+    {
+        name:"Hitoribocchi no ○○ Seikatsu",
+        folder:"hitoribocchi",
+        note:5,
+        tags:"Slice of Life"
+    },
 ];
 
 console.log(animes);
