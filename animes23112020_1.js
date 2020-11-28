@@ -2,22 +2,26 @@ let animes = [
     {
         name:"Kiznaiver",
         folder:"kiznaiver",
-        note:5
+        note:5,
+        tags:"Drama"
     },
     {
         name:"Yuru Yuri",
         folder:"yuruyuri",
-        note:4
+        note:4,
+        tags:"Slice of Life"
     },
     {
         name:"Gochuumon wa Usagi desu ka? BLOOM",
         folder:"gochiusa-s3",
-        note:5
+        note:5,
+        tags:"Slice of Life"
     },
     {
         name:"Ochikobore Fruit Tart",
         folder:"ochikobore",
-        note:3
+        note:3,
+        tags:"Slice of Life"
     }
 ];
 
@@ -40,7 +44,12 @@ function sortAnime() {
     switch(trivalue) {
         case "1":
             init();
-            animes.forEach(element => {
+            let animstag = filtered.sort(function(a, b){var x = a.tags.toLowerCase();
+                var y = b.tags.toLowerCase();
+                if (x < y) {return -1;}
+                if (x > y) {return 1;}
+                return 0;});
+            animstag.forEach(element => {
                 printAnime(element);
             });
             break;
@@ -96,13 +105,23 @@ function printAnime(anim) {
             color = "blue";
             break;
     }
+    let badgecolor = "badge-primary";
+    switch(anim.tags) {
+        case "Slice of Life":
+            badgecolor="badge-success";
+            break;
+        case "Drama":
+            badgecolor="badge-danger";
+            break;
+    }
     document.getElementById("animlist").innerHTML += `
     <div class="col mb-4">
                 <div class="card bg-transparent text-right text-bottom mx-auto animvign" style="width: max-content; word-wrap:normal;">
                     <a href="./${anim.folder}/critique">
                         <img src="./${anim.folder}/affiche.jpg" class="card-img" alt="...">
                         <div id="perso" class="card-img-overlay ${color} desc">
-                        <h4 class="mb-0 text-white">${anim.name}</h4>
+                        <h4 class="mb-0 text-white">${anim.name}<br/> <span class="badge ${badgecolor}">${anim.tags}</span></h4>
+                        
                         </div>
                     </a>
                 </div>
@@ -115,7 +134,7 @@ function printAnime(anim) {
 
 function checkName(anim) {
 
-    return anim.name.toUpperCase().includes(document.getElementById("searchinput").value.toUpperCase());
+    return (anim.name.toUpperCase().includes(document.getElementById("searchinput").value.toUpperCase()) || anim.tags.toUpperCase().includes(document.getElementById("searchinput").value.toUpperCase()));
 }
 
 document.getElementById("searchinput").addEventListener('input', function() {
