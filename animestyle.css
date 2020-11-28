@@ -193,6 +193,19 @@ body {
     background-color: orange!important;
 }
 
+#return {
+    position: absolute;
+    top: 100;
+    right:0;
+    z-index: 50;
+    color: white;
+    background-color: orange;
+    padding: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-decoration: none;
+}
+
 @media only screen and (max-width: 600px) {
 
     #titleanime {
