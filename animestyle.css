@@ -208,7 +208,9 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
-
+    .nophone {
+        display: none;
+    }
     #titleanime {
         font-size: 18px;
         width: 100vw;
