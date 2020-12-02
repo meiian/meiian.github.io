@@ -207,7 +207,7 @@ body {
     right:0;
     z-index: 50;
     color: white;
-    background-color: orange;
+    background-color: #aa236d;
     padding: 15px;
     padding-left: 50px;
     padding-right: 50px;
@@ -215,19 +215,18 @@ body {
 }
 
 #criti {
-    background-color : darkorange;
-    color: rgb(10,10,10);
+    background-color : #aa236d;
 }
 
 #criti>h4 {
     margin-left: 3%;
     margin-top: 1%;
-    color: black;
+    color: #261d1d;
     font-weight: bold;
 }
 #criti>.card-body {
-    background-color: orange;
-    color: black;
+    background-color: #261d1d;
+    color: white;
     padding-top: 20px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
