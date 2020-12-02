@@ -208,6 +208,16 @@ body {
     text-decoration: none;
 }
 
+spoil {
+    filter: blur(10px);
+    font-style: italic;
+    transition: filter 0.2s;
+}
+
+spoil:hover {
+    filter: blur(0);
+}
+
 @media only screen and (max-width: 600px) {
     .nophone {
         display: none;

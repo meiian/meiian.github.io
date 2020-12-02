@@ -40,6 +40,12 @@ let animes = [
         folder:"wataten",
         note:1,
         tags:"Slice of Life"
+    },
+    {
+        name:"Princess Connect! Re:Dive",
+        folder:"priconne",
+        note:4,
+        tags:"Isekai"
     }
 ];
 
