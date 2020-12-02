@@ -112,9 +112,10 @@ body {
     bottom: 0;
     left:0;
     text-align: center;
-    background-color: cyan;
+    background-color: rgb(10,10,10);
     width: 90vw;
     margin-left: 10vw;
+    padding-top: 10px;
 
 
     display: grid;
@@ -122,10 +123,15 @@ body {
 }
 
 .note{
-    height: 100%;
+    height: max-content;
+    width: 80%;
+    margin-bottom: 15px;
+    border-radius: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
     filter: brightness(50%);
+    margin-left: auto;
+    margin-right: auto;
 }
 .red {
     background-color:red;
@@ -208,8 +214,28 @@ body {
     text-decoration: none;
 }
 
+#criti {
+    background-color : darkorange;
+    color: rgb(10,10,10);
+}
+
+#criti>h4 {
+    margin-left: 3%;
+    margin-top: 1%;
+    color: black;
+    font-weight: bold;
+}
+#criti>.card-body {
+    background-color: orange;
+    color: black;
+    padding-top: 20px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-weight: 500;
+}
+
 spoil {
-    filter: blur(10px);
+    filter: blur(5px);
     font-style: italic;
     transition: filter 0.2s;
 }
@@ -221,6 +247,16 @@ spoil:hover {
 @media only screen and (max-width: 600px) {
     .nophone {
         display: none;
+    }
+    #footer {
+        display: flex;
+    }
+    .note {
+        display:none;
+    }
+    .acti {
+        display: inline;  
+        width: 80vw;
     }
     #titleanime {
         font-size: 18px;
