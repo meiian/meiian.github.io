@@ -15,7 +15,7 @@
         }
     </style>
 
-    <body>
+    <body onresize="resize()" onload="resize()">
         <div style="position: fixed; z-index: 0; width: 100vw; height: 100vh">
             <video src="op.webm" width="1920" loop autoplay muted>
         </div>
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div id="etc">
-                        <div id="etc2" class="card-columns p-3" >
+                        <div id="etc2" class="card-columns" >
                             
 
                                     
@@ -141,13 +141,7 @@
             <img src="../images/home.png" width=32> <h4 class="pl-1 my-auto align-middle nophone">Retour</h4>
         </a>
 
-        <script>
-            if(screen.width < 600){
-                console.log(document.getElementById("leftcontainer").scrollHeight);
-                console.log(document.getElementById("rightcontainer").scrollHeight);
-                document.getElementById("leftcontainer").style.height = document.getElementById("rightcontainer").scrollHeight;
-                console.log(document.getElementById("leftcontainer").scrollHeight);
-            }
+        <script src="../animejs.js">
         </script>
     </body>
 </html>
