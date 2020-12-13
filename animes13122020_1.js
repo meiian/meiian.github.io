@@ -98,16 +98,6 @@ function sortAnime() {
             });
             break;
     };
-    if(screen.width >= 600) {
-        document.querySelectorAll('.animvign').forEach(item => {
-            item.addEventListener('mouseenter', event => {
-              event.target.getElementsByClassName("desc")["perso"].style.height = event.target.scrollHeight;
-            });
-            item.addEventListener('mouseleave', event => {
-                event.target.getElementsByClassName("desc")["perso"].style.height = "0";
-              });
-        });
-    };
 }
 
 function printAnime(anim) {
@@ -140,7 +130,7 @@ function printAnime(anim) {
     }
     document.getElementById("animlist").innerHTML += `
     <div class="col mb-4">
-                <div class="card bg-transparent text-right text-bottom mx-auto animvign" style="width: max-content; word-wrap:normal;">
+                <div onmouseout="resetFooter()" onmouseover="fillFooter('${anim.folder}','${anim.name}','${anim.tags}','${color}','${badgecolor}')" class="card bg-transparent text-right text-bottom mx-auto animvign" style="width: max-content; word-wrap:normal;">
                     <a href="./${anim.folder}/critique">
                         <img src="./${anim.folder}/affiche.jpg" class="card-img" alt="...">
                         <div id="perso" class="card-img-overlay ${color} desc">
@@ -151,6 +141,20 @@ function printAnime(anim) {
                 </div>
     </div>
     `;
+}
+
+function fillFooter(folder, name, tags, color, badgecolor) {
+    document.getElementById("animefooter").innerHTML = `
+        <img style="height:20vh; width: auto;" id="animefooterimg" src="./${folder}/affiche.jpg" class="card-img" alt="Affiche de ${name}">
+        <h4 id="animefootertitle" class="text-white">${name}<br/> <span style="text-shadow: 0 0 0 black; font-size: 12px;" class="mt-1 badge ${badgecolor}">${tags}</span></h4>
+    `;
+    document.getElementById("animefootertitle").style.marginLeft = document.getElementById("animefooterimg").scrollWidth + 15 + window.innerWidth*0.15;
+    document.getElementById("searchbar").className= `${color}`;
+}
+
+function resetFooter() {
+    document.getElementById("animefooter").innerHTML = '';
+    document.getElementById("searchbar").className = '';
 }
 
 

@@ -21,11 +21,10 @@
 
         #searchbar {
             width: 100vw;
-            height: 7vh;
-
+            height: max-content;
+            padding: 15px;
             display: flex;
             position: fixed;
-            bottom:0;
             background-color: #aa236d;
         }
 
@@ -33,15 +32,13 @@
             background-color: rgb(10, 10, 10);
             border: 0;
             color: white;
-            margin: 15;
-            margin-right: 15vw;
         }
 
         #containsearch {
             width: 50%;
             height: max-content;
             display: flex;
-            margin-left: auto;
+            margin: auto auto auto auto;
         }
 
         #animlist {
@@ -53,6 +50,21 @@
             z-index: -1;
         }
         
+        .red:hover {
+            background-color: rgba(255,0,0,0.5)!important;
+        }
+        .orange:hover {
+            background-color: rgba(255, 136, 0, 0.5)!important;
+        }
+        .yellow:hover {
+            background-color: rgba(251, 255, 0, 0.5)!important;
+        }
+        .green:hover {
+            background-color: rgba(0, 255, 13, 0.5)!important;
+        }
+        .blue:hover {
+            background-color: rgba(0, 225, 255, 0.5)!important;
+        }
         #perso h4 {
             font-size: min(3vw,20px);
             padding: 5px;
@@ -78,26 +90,6 @@
             padding-left: 3px;
             padding-top: 5px;
         }
-
-        #animefooter {
-            height: 7vh;
-            display: flex;
-        }
-
-        #animefooterimg {
-            position: absolute;
-            bottom: 15;
-            left: 15vw;
-        }
-
-        #animefootertitle{
-            padding:0;
-            margin-top: auto;
-            margin-bottom: auto;
-        }
-
-
-
         @media only screen and (min-width: 600px) {
             #perso {
                 height: 0px;
@@ -134,34 +126,10 @@
                 background-color: rgba(0, 225, 255, 0.5)!important;
             }
         }
+
         @media only screen and (max-width: 600px) {
             #animlist {
                 width: max-content;
-                margin-top: 80px;
-                padding-bottom: 10vh;
-            }
-            #tri {
-                position: absolute;
-                top: 20;
-            }
-            #animefooter {
-                height: 0;
-                width:0;
-            }
-            #searchinput {
-                    background-color: rgb(10, 10, 10);
-                    border: 0;
-                    color: white;
-                    margin: 15;
-                    margin-bottom: auto;
-                    margin-top: auto;
-            }
-
-            #containsearch {
-                    width: 80%;
-                    height: max-content;
-                    display: flex;
-                    margin: auto auto auto auto;
             }
 
             .card-img {
@@ -186,7 +154,7 @@
                 margin-top: auto;
                 padding-bottom: 0px; 
                 padding-top: 1px;
-                background-color: rgba(0,0,0,0.7);
+                background-color: rgba(0,0,0,0.5);
                 font-size: min(3vw,16px);
                 transition: background-color 0.5s;
             }
@@ -196,15 +164,12 @@
 
     <body>
         <div id="searchbar">
-            <div id="animefooter">
-
-            </div>
             <div id="containsearch">
+                <h4 class="my-auto pr-3">Maple</h4>
                 <div class="input-group ">
                     <input id="searchinput" type="text" class="form-control" placeholder="Anime ou genre..." aria-label="Username" aria-describedby="basic-addon1">
                 </div>
             </div>
-            
         </div>
 
         <div id="tri">
@@ -220,7 +185,7 @@
                    
         </div>
 
-        <script src="./animes13122020_1.js"></script>
+        <script src="./animes02122020_1.js"></script>
     </body>
 
 </html>
