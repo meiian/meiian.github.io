@@ -49,6 +49,8 @@ let animes = [
     }
 ];
 
+let notes = ["Pas bon", "Moyen", "Bon", "Très bon", "Excellent"];
+
 console.log(animes);
 
 
@@ -130,7 +132,7 @@ function printAnime(anim) {
     }
     document.getElementById("animlist").innerHTML += `
     <div class="col mb-4">
-                <div onmouseout="resetFooter()" onmouseover="fillFooter('${anim.folder}','${anim.name}','${anim.tags}','${color}','${badgecolor}')" class="card bg-transparent text-right text-bottom mx-auto animvign" style="width: max-content; word-wrap:normal;">
+                <div onmouseout="resetFooter()" onmouseover="fillFooter('${anim.folder}','${anim.name}','${anim.tags}','${color}','${anim.note}')" class="card bg-transparent text-right text-bottom mx-auto animvign" style="width: max-content; word-wrap:normal;">
                     <a href="./${anim.folder}/critique">
                         <img src="./${anim.folder}/affiche.jpg" class="card-img" alt="...">
                         <div id="perso" class="card-img-overlay ${color} desc">
@@ -143,10 +145,10 @@ function printAnime(anim) {
     `;
 }
 
-function fillFooter(folder, name, tags, color, badgecolor) {
+function fillFooter(folder, name, tags, color, note) {
     document.getElementById("animefooter").innerHTML = `
         <img style="height:20vh; width: auto;" id="animefooterimg" src="./${folder}/affiche.jpg" class="card-img" alt="Affiche de ${name}">
-        <h4 id="animefootertitle" class="text-white">${name}<br/> <span style="text-shadow: 0 0 0 black; font-size: 12px;" class="mt-1 badge ${badgecolor}">${tags}</span></h4>
+        <h4 id="animefootertitle" class="text-white">${name}<br/> <span style="text-shadow: 0 0 0 black; font-size: 12px;" class="mt-1">${tags} • ${notes[note-1]}</span></h4>
     `;
     document.getElementById("animefootertitle").style.marginLeft = document.getElementById("animefooterimg").scrollWidth + 15 + window.innerWidth*0.15;
     document.getElementById("searchbar").className= `${color}`;
