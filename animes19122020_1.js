@@ -89,12 +89,13 @@ sortAnime();
 document.getElementById("triSelect").addEventListener('change', sortAnime);
 
 document.getElementById("videocheck").addEventListener('change', function() {
-    document.cookie = "video=1";
+    document.cookie = "video=" + document.getElementById("videocheck").checked;
     console.log(getCookie("video"));
     sortAnime()});
 
 function init() {
     document.getElementById("animlist").innerHTML = "";
+    document.getElementById("videocheck").checked = getCookie("video");
 }
 
 function sortAnime() {
