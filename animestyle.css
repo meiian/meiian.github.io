@@ -117,7 +117,7 @@ body {
     width: 90vw;
     margin-left: 10vw;
     padding-top: 10px;
-
+    z-index: 42;
 
     display: grid;
     grid-template-columns: auto auto auto auto auto;
