@@ -96,6 +96,7 @@ document.getElementById("videocheck").addEventListener('change', function() {
 function init() {
     document.getElementById("animlist").innerHTML = "";
     document.getElementById("videocheck").checked = getCookie("video");
+    console.log(document.getElementById("videocheck").checked);
 }
 
 function sortAnime() {
