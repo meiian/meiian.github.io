@@ -3,55 +3,61 @@ let animes = [
         name:"Kiznaiver",
         folder:"kiznaiver",
         note:5,
-        tags:"Drama"
+        tags:["Drama","Romance","Sci-Fi"]
     },
     {
         name:"Yuru Yuri",
         folder:"yuruyuri",
         note:4,
-        tags:"Slice of Life"
+        tags:["Slice of Life","Comedy"]
     },
     {
         name:"Gochuumon wa Usagi desu ka? BLOOM",
         folder:"gochiusa-s3",
         note:5,
-        tags:"Slice of Life"
+        tags:["Slice of Life","Comedy"]
     },
     {
         name:"Ochikobore Fruit Tart",
         folder:"ochikobore",
         note:3,
-        tags:"Slice of Life"
+        tags:["Slice of Life","Comedy","Music","Ecchi"]
     },
     {
         name:"Hitoribocchi no ○○ Seikatsu",
         folder:"hitoribocchi",
         note:5,
-        tags:"Slice of Life"
+        tags:["Slice of Life","Comedy"]
     },
     {
         name:"Comic Girls",
         folder:"comicgirls",
         note:5,
-        tags:"Slice of Life"
+        tags:["Slice of Life","Comedy"]
     },
     {
         name:"Watashi ni Tenshi ga Maiorita!",
         folder:"wataten",
         note:1,
-        tags:"Slice of Life"
+        tags:["Slice of Life","Comedy"]
     },
     {
         name:"Princess Connect! Re:Dive",
         folder:"priconne",
         note:4,
-        tags:"Isekai"
+        tags:["Fantasy","Comedy","Adventure"]
     },
     {
         name:"Kono Subarashii Sekai ni Shukufuku wo!",
         folder:"konosuba",
         note:5,
-        tags:"Isekai"
+        tags:["Fantasy","Comedy","Adventure"]
+    },
+    {
+        name:"Majo no Tabitabi",
+        folder:"majonotabitabi",
+        note:4,
+        tags:["Fantasy","Adventure","Slice of Life"]
     }
 ];
 
@@ -76,8 +82,8 @@ function sortAnime() {
     switch(trivalue) {
         case "1":
             init();
-            let animstag = filtered.sort(function(a, b){var x = a.tags.toLowerCase();
-                var y = b.tags.toLowerCase();
+            let animstag = filtered.sort(function(a, b){var x = a.tags[0].toLowerCase();
+                var y = b.tags[0].toLowerCase();
                 if (x < y) {return -1;}
                 if (x > y) {return 1;}
                 return 0;});
@@ -142,7 +148,7 @@ function printAnime(anim) {
                     <a href="./${anim.folder}/critique">
                         <img src="./${anim.folder}/affiche.jpg" class="card-img" alt="...">
                         <div id="perso" class="card-img-overlay ${color} desc">
-                        <h4 class="mb-0 text-white">${anim.name}<br/> <span style="text-shadow: 0 0 0 black" class="mt-1 badge ${badgecolor}">${anim.tags}</span></h4>
+                        <h4 class="mb-0 text-white">${anim.name}<br/> <span style="text-shadow: 0 0 0 black" class="mt-1 badge ${badgecolor}">${anim.tags[0]}</span></h4>
                         
                         </div>
                     </a>
@@ -152,9 +158,16 @@ function printAnime(anim) {
 }
 
 function fillFooter(folder, name, tags, color, note) {
+    let fulltags = "";
+    let tagsarray = tags.split(',');
+    tagsarray.forEach((element,index) => {
+        fulltags += element;
+        if(index+1 < tagsarray.length)
+            fulltags += ", "; 
+    });
     document.getElementById("animefooter").innerHTML = `
         <img style="height:20vh; width: auto;" id="animefooterimg" src="./${folder}/affiche.jpg" class="card-img" alt="Affiche de ${name}">
-        <h4 id="animefootertitle" class="text-white">${name}<br/> <span style="text-shadow: 0 0 0 black; font-size: 12px;" class="mt-1">${tags} • ${notes[note-1]}</span></h4>
+        <h4 id="animefootertitle" class="text-white">${name}<br/> <span style="text-shadow: 0 0 0 black; font-size: 12px;" class="mt-1">${fulltags} • ${notes[note-1]}</span></h4>
     `;
     document.getElementById("animefootertitle").style.marginLeft = document.getElementById("animefooterimg").scrollWidth + 15 + window.innerWidth*0.15;
     document.getElementById("searchbar").className= `${color}`;
@@ -169,8 +182,8 @@ function resetFooter() {
 
 
 function checkName(anim) {
-
-    return (anim.name.toUpperCase().includes(document.getElementById("searchinput").value.toUpperCase()) || anim.tags.toUpperCase().includes(document.getElementById("searchinput").value.toUpperCase()));
+    let tagfound = anim.tags.find(element => element.toUpperCase().includes(document.getElementById("searchinput").value.toUpperCase()));
+    return (anim.name.toUpperCase().includes(document.getElementById("searchinput").value.toUpperCase()) || tagfound);
 }
 
 document.getElementById("searchinput").addEventListener('input', function() {
