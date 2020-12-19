@@ -9,3 +9,13 @@ function resize() {
         document.getElementById("etc").style.height = document.getElementById("etc2").scrollHeight + document.getElementById("footer").scrollHeight*2;
     }
 }
+
+var field = 'video';
+var url = window.location.href;
+if(url.indexOf('?' + field) != -1){
+    console.log("Video enabled");
+    let vid = document.createElement("div");
+    vid.id = "videobg";
+    vid.innerHTML = `<video src="op.webm" width="1920" loop autoplay muted>`;
+    document.body.prepend(vid);
+};

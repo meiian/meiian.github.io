@@ -3,7 +3,7 @@ body {
     min-width: 100vw;
     min-height: 100vh;
     color: white;
-    background-color: rgb(9, 16, 24);
+    background-color: rgb(10,10,10);
     display : flex;
     position: relative;
 
@@ -244,6 +244,10 @@ spoil {
 
 spoil:hover {
     filter: blur(0);
+}
+
+#videobg {
+    position: fixed; z-index: 0; width: 100vw; height: 100vh;
 }
 
 @media only screen and (max-width: 600px) {

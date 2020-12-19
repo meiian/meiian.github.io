@@ -63,8 +63,24 @@ let animes = [
 
 let notes = ["Pas bon", "Moyen", "Bon", "Très bon", "Excellent"];
 
-console.log(animes);
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
 
+console.log(animes);
+console.log(getCookie("video"));
 
 let filtered = animes;
 
@@ -72,6 +88,10 @@ sortAnime();
 
 document.getElementById("triSelect").addEventListener('change', sortAnime);
 
+document.getElementById("videocheck").addEventListener('change', function() {
+    document.cookie = "video=1";
+    console.log(getCookie("video"));
+    sortAnime()});
 
 function init() {
     document.getElementById("animlist").innerHTML = "";
@@ -142,10 +162,13 @@ function printAnime(anim) {
             badgecolor="badge-danger";
             break;
     }
+    let critiqueurl = `./${anim.folder}/critique.html`;
+    if(document.getElementById("videocheck").checked)
+        critiqueurl += '?video';
     document.getElementById("animlist").innerHTML += `
     <div class="col mb-4">
                 <div onmouseout="resetFooter()" onmouseover="fillFooter('${anim.folder}','${anim.name}','${anim.tags}','${color}','${anim.note}')" class="card bg-transparent text-right text-bottom mx-auto animvign" style="width: max-content; word-wrap:normal;">
-                    <a href="./${anim.folder}/critique">
+                    <a href="${critiqueurl}">
                         <img src="./${anim.folder}/affiche.jpg" class="card-img" alt="...">
                         <div id="perso" class="card-img-overlay ${color} desc">
                         <h4 class="mb-0 text-white">${anim.name}<br/> <span style="text-shadow: 0 0 0 black" class="mt-1 badge ${badgecolor}">${anim.tags[0]}</span></h4>
