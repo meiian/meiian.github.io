@@ -169,7 +169,7 @@ function printAnime(anim) {
     if(document.getElementById("videocheck").checked)
         critiqueurl += '?video';
     document.getElementById("animlist").innerHTML += `
-    <div class="col mb-4">
+    <div class="col mb-4 animcol">
                 <div onmouseout="resetFooter()" onmouseover="fillFooter('${anim.folder}','${anim.name}','${anim.tags}','${color}','${anim.note}')" class="card bg-transparent text-right text-bottom mx-auto animvign" style="width: max-content; word-wrap:normal;">
                     <a href="${critiqueurl}">
                         <img src="./${anim.folder}/affiche.jpg" class="card-img" alt="...">
