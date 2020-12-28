@@ -169,6 +169,9 @@
         .discord-link {
             background-color: #6d82cb;
         }
+        .red-link {
+            background-color: #aa236d;
+        }
         .black-card {
             background-color: rgb(10,10,10)!important;
             text-align: center;
@@ -244,8 +247,8 @@
                     <a href="#" id="aboutme"><div class="hoverlink">
                         <h3 class="link">About me</h3>
                     </div></a>
-                    <a href="#" id="hobbies"><div class="hoverlink">
-                        <h3 class="link">Hobbies</h3>
+                    <a href="./animes.html" id="hobbies"><div onmouseover="colorLeft('red')" onmouseleave="colorLeft('default')" class="hoverlink red-link">
+                        <h3 class="link">Animes</h3>
                     </div></a>
                     <a href="https://twitter.com/mitsu_un"><div  onmouseover="colorLeft('blue')" onmouseleave="colorLeft('default')" class="hoverlink blue-link">
                         <h3 class="link">Twitter</h3>
@@ -277,6 +280,9 @@
                         break;
                     case 'discord' :
                     document.getElementById("leftcontainer").style.backgroundColor = "#6d82cb";
+                        break;
+                    case 'red' :
+                        document.getElementById("leftcontainer").style.backgroundColor = "#aa236d";
                         break;
                     default :
                     document.getElementById("leftcontainer").style.backgroundColor = "";
