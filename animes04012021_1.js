@@ -58,6 +58,12 @@ let animes = [
         folder:"majonotabitabi",
         note:4,
         tags:["Fantasy","Adventure","Slice of Life"]
+    },
+    {
+        name:"Cardcaptor Sakura",
+        folder:"ccsakura",
+        note:5,
+        tags:["Fantasy","Magical Girl","Comedy","Drama","Romance"]
     }
 ];
 
