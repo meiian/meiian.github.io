@@ -159,12 +159,12 @@ function sortAnime() {
                 printAnime(element);
             });
             break;
-    };
+    };   
     $('[data-toggle="popover"]').popover({
-        container: 'body',
+        container: "body",
         html:true,
-        trigger: 'focus'
-      });   
+        trigger: "focus"
+      });
 }
 
 function printAnime(anim) {
@@ -196,12 +196,14 @@ function printAnime(anim) {
     }
     let badgecolor = "badge-primary";
     let critiqueurl = `./${animtoprint.folder}/critique.html`;
+    let popoverid = `link-${animtoprint.folder}`;
+    console.log("popoverid = " + popoverid);
     if(document.getElementById("videocheck").checked)
         critiqueurl += '?video';
     document.getElementById("animlist").innerHTML += `
-    <div class="col mb-4 animcol">
+    <div id="${animtoprint.folder}" class="col mb-4 animcol">
                 <div onmouseout="resetFooter()" onmouseover="fillFooter('${animtoprint.folder}','${anim.name}','${animtoprint.tags}','${color}','${animtoprint.note}')" class="card bg-transparent text-right text-bottom mx-auto animvign" style="width: max-content; word-wrap:normal;">
-                    <a ${(!multiple)?("href=\"" + critiqueurl + "\""):'href="#" data-trigger="focus" data-toggle="popover" title="' + anim.name + '" data-content="'+ seasonstoprint +'"'}>
+                    <a id="${popoverid}" ${(!multiple)?("href=\"" + critiqueurl + "\""):'href="#/" data-trigger="focus" data-toggle="popover" title="' + anim.name + '" data-content="'+ seasonstoprint +'"'}>
                         <img src="./${animtoprint.folder}/affiche.jpg" class="card-img" alt="...">
                         <div id="perso" class="card-img-overlay ${color} desc">
                         <h4 class="mb-0 text-white">${anim.name}<br/> <span style="text-shadow: 0 0 0 black" class="mt-1 badge ${badgecolor}">${animtoprint.tags[0]}</span></h4>
