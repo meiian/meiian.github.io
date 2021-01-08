@@ -65,6 +65,24 @@ let animes = [
         note:5,
         tags:["Fantasy","Magical Girl","Comedy","Drama","Romance"]
     },
+    {
+        name: "Yuru Camp",
+        multiple: true,
+        seasons:[
+            {
+                name: "Yuru Camp",
+                folder:"yurucamp",
+                note:5,
+                tags:["Comedy","Slice of Life"]
+            },
+            {
+                name: "Yuru Camp S2",
+                folder:"yurucamp-s2",
+                note:5,
+                tags:["Comedy","Slice of Life"]
+            }
+        ]
+    }
 ];
 
 let notes = ["Pas bon", "Moyen", "Bon", "Très bon", "Excellent"];
