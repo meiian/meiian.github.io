@@ -169,7 +169,7 @@ function printAnime(anim) {
     if(multiple){
         seasonstoprint += '<div class="seasons"><div class="seasonstext">';
         animtoprint = anim.seasons[anim.seasons.length-1];
-        anim.seasons.forEach(e => seasonstoprint += `<h5> <a href=\'./${e.folder}/critique.html\'>${e.name}</a></h5>`);
+        anim.seasons.forEach(e => seasonstoprint += `<h5> <a href=\'./${e.folder}/critique.html${(document.getElementById("videocheck").checked)?'?video':''}\'>${e.name}</a></h5>`);
         seasonstoprint += '</div></div>';
     }
     else
