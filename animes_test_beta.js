@@ -73,15 +73,14 @@ let animes = [
                 name: "Saison 1",
                 folder:"yurucamp",
                 note:5,
-                tags:["Comedy","Slice of Life"]
             },
             {
                 name: "Saison 2",
                 folder:"yurucamp-s2",
                 note:5,
-                tags:["Comedy","Slice of Life"]
             }
-        ]
+        ],
+        tags:["Slice of Life","Comedy"]
     }
 ];
 
@@ -130,7 +129,8 @@ function sortAnime() {
     switch(trivalue) {
         case "1":
             init();
-            let animstag = filtered.sort(function(a, b){var x = a.tags[0].toLowerCase();
+            let animstag = filtered.sort(function(a, b){
+                var x = a.tags[0].toLowerCase();
                 var y = b.tags[0].toLowerCase();
                 if (x < y) {return -1;}
                 if (x > y) {return 1;}
@@ -153,6 +153,10 @@ function sortAnime() {
         case "3":
             init();
             let animsnote = filtered.sort(function(a, b){
+                if(a.hasOwnProperty('multiple'))
+                    a = a.seasons[a.seasons.length-1];
+                if(b.hasOwnProperty('multiple'))
+                    b = b.seasons[b.seasons.length-1];
                 return b.note - a.note;
             });
             animsnote.forEach(element => {
@@ -197,11 +201,11 @@ function printAnime(anim) {
         critiqueurl += '?video';
     document.getElementById("animlist").innerHTML += `
     <div class="col mb-4 animcol">
-                <div id="${animtoprint.folder}" onmouseout="resetFooter()" onmouseover="fillFooter('${animtoprint.folder}','${anim.name}','${animtoprint.tags}','${color}','${animtoprint.note}')" class="card bg-transparent text-right text-bottom mx-auto animvign" style="width: max-content; word-wrap:normal;">
+                <div id="${animtoprint.folder}" onmouseout="resetFooter()" onmouseover="fillFooter('${animtoprint.folder}','${anim.name}','${anim.tags}','${color}','${animtoprint.note}')" class="card bg-transparent text-right text-bottom mx-auto animvign" style="width: max-content; word-wrap:normal;">
                     <a ${(!multiple)?("href=\"" + critiqueurl + "\""):'href="#/"'}>
                         <img src="./${animtoprint.folder}/affiche.jpg" class="card-img" alt="...">
                         <div id="perso" class="card-img-overlay ${color} desc">
-                        <h4 class="mb-0 text-white">${anim.name}<br/> <span style="text-shadow: 0 0 0 black" class="mt-1 badge ${badgecolor}">${animtoprint.tags[0]}</span></h4>
+                        <h4 class="mb-0 text-white">${anim.name}<br/> <span style="text-shadow: 0 0 0 black" class="mt-1 badge ${badgecolor}">${anim.tags[0]}</span></h4>
                         </div>
                     </a>
                     ${seasonstoprint}
