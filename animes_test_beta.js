@@ -1,3 +1,13 @@
+let seasonal = [
+    {
+        name:"Yuru Camp 2",
+        folder:"yurucamp-s2",
+        link:"https://anilist.co/anime/104459/Yuru-Camp-SEASON-2/",
+        note:-1,
+        tags:["Drama","Romance","Sci-Fi"]
+    }
+]
+
 let animes = [
     {
         name:"Kiznaiver",
@@ -100,7 +110,8 @@ function getCookie(cname) {
       }
     }
     return "";
-  }
+}
+
 
 console.log(animes);
 
