@@ -158,6 +158,10 @@
             color: rgb(10,10,10);    
         }
 
+        .whitehover:hover {
+            color: white;
+        }
+
         .blue-link {
             background-color: #1da1f2;
         }
@@ -172,10 +176,14 @@
         .red-link {
             background-color: #aa236d;
         }
+        .anilist-link {
+            background-color: #151f2e;
+        }
         .black-card {
             background-color: rgb(10,10,10)!important;
             text-align: center;
         }
+        
 
         #overallcontainer {
             display: grid;
@@ -240,7 +248,7 @@
                 <div id="leftcontainer">
                     <div id="leftinfos">
                         <img src="./images/monmocat.jpg">
-                        <h1>Mieru</h1>
+                        <h1>Maple</h1>
                     </div>
                 </div>
                 <div id="rightcontainer">
@@ -248,9 +256,12 @@
                         <h3 class="link">About me</h3>
                     </div></a>
                     <a href="./animes.html" id="hobbies"><div onmouseover="colorLeft('red')" onmouseleave="colorLeft('default')" class="hoverlink red-link">
-                        <h3 class="link">Animes</h3>
+                        <h3 class="link">Critiques</h3>
                     </div></a>
-                    <a href="https://twitter.com/mitsu_un"><div  onmouseover="colorLeft('blue')" onmouseleave="colorLeft('default')" class="hoverlink blue-link">
+                    <a href="https://anilist.co/user/Maiple/animelist"><div onmouseover="colorLeft('anilist')" onmouseleave="colorLeft('anilist')" class="hoverlink anilist-link whitehover">
+                        <h3 class="link">Anilist</h3>
+                    </div></a>
+                    <a href="https://twitter.com/mitsu_un"><div onmouseover="colorLeft('blue')" onmouseleave="colorLeft('default')" class="hoverlink blue-link">
                         <h3 class="link">Twitter</h3>
                     </div></a>
                     <a href="https://www.twitch.tv/asuka_r1n"><div onmouseover="colorLeft('purple')" onmouseleave="colorLeft('default')" class="hoverlink purple-link">
@@ -284,6 +295,9 @@
                     case 'red' :
                         document.getElementById("leftcontainer").style.backgroundColor = "#aa236d";
                         break;
+                    case 'anilist' :
+                        document.getElementById("leftcontainer").style.backgroundColor = "#151f2e";
+                        break;
                     default :
                     document.getElementById("leftcontainer").style.backgroundColor = "";
                         break;
@@ -304,7 +318,7 @@
                     <img src="./images/woman.png" style="width:120px;" class="card-img-top mx-auto" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">Who I am</h5>
-                      <p class="card-text">My name is Margot,<br/> nearly in my twenties.<br/> My pronouns are <b>she/her</b>. <br/>I'm kind of shy and have social anxiety so don't take it personally if I don't answer you.   </p>
+                      <p class="card-text">My name is Alice,<br/> freshly in my twenties.<br/> My pronouns are <b>she/her</b>. <br/>I'm kind of shy and have social anxiety so don't take it personally if I don't answer you.   </p>
                     </div>
                   </div>
 
