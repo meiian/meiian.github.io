@@ -67,6 +67,7 @@
 
     <script>
         let releaseDate = new Date("2021-11-23T00:00:00");
+        
         function updateCountdown(){
             let nowDate = new Date();
             let diffTime = releaseDate.getTime() - nowDate.getTime();
@@ -83,6 +84,7 @@
             let countdownString = `${(printDiffDays.length > 0)?'<div class="countdownPart"><div class="subtitle">Jours</div>' + printDiffDays + "</div> ":''}${(printDiffHours.length > 0)?'<div class="countdownPart"><div class="subtitle">Heures</div>' + printDiffHours + "</div> ":''}${(printDiffMin.length > 0)?'<div class="countdownPart"><div class="subtitle">Minutes</div>' +printDiffMin + "</div> ":''}${(printDiffSec.length > 0)?'<div class="countdownPart"><div class="subtitle">Secondes</div>' +printDiffSec + '</div>':''}`;
             document.getElementById("countdown").innerHTML = countdownString;
         }
+        updateCountdown();
         let refresh = setInterval(updateCountdown, 1000);
 
     </script>
