@@ -71,17 +71,20 @@
         function updateCountdown(){
             let nowDate = new Date();
             let diffTime = releaseDate.getTime() - nowDate.getTime();
-            let diffDays = diffTime /  (1000 * 3600 * 24);
-            let diffHours = (diffDays - Math.trunc(diffDays)) * (24);
-            let diffMin = (diffHours - Math.trunc(diffHours)) * 60;
-            let diffSec = (diffMin - Math.trunc(diffMin)) * 60;
+            let countdownString = "TO THE MOON";
+            if(diffTime>0){
+                let diffDays = diffTime /  (1000 * 3600 * 24);
+                let diffHours = (diffDays - Math.trunc(diffDays)) * (24);
+                let diffMin = (diffHours - Math.trunc(diffHours)) * 60;
+                let diffSec = (diffMin - Math.trunc(diffMin)) * 60;
 
-            let printDiffDays = `${(Math.trunc(diffDays)>0)?(diffDays<10)?'0'+Math.trunc(diffDays):Math.trunc(diffDays):''}`;
-            let printDiffHours = `${(Math.trunc(diffHours)>0 || printDiffDays.length > 0)?(diffHours<10)?'0'+Math.trunc(diffHours):Math.trunc(diffHours):''}`;
-            let printDiffMin = `${(Math.trunc(diffMin)>0 || printDiffHours.length > 0)?(diffMin<10)?'0'+Math.trunc(diffMin):Math.trunc(diffMin):''}`;
-            let printDiffSec = `${(Math.trunc(diffSec)>0 || printDiffMin.length > 0)?(diffSec<10)?'0'+Math.trunc(diffSec):Math.trunc(diffSec):''}`;
-            
-            let countdownString = `${(printDiffDays.length > 0)?'<div class="countdownPart"><div class="subtitle">Jours</div>' + printDiffDays + "</div> ":''}${(printDiffHours.length > 0)?'<div class="countdownPart"><div class="subtitle">Heures</div>' + printDiffHours + "</div> ":''}${(printDiffMin.length > 0)?'<div class="countdownPart"><div class="subtitle">Minutes</div>' +printDiffMin + "</div> ":''}${(printDiffSec.length > 0)?'<div class="countdownPart"><div class="subtitle">Secondes</div>' +printDiffSec + '</div>':''}`;
+                let printDiffDays = `${(Math.trunc(diffDays)>0)?(diffDays<10)?'0'+Math.trunc(diffDays):Math.trunc(diffDays):''}`;
+                let printDiffHours = `${(Math.trunc(diffHours)>0 || printDiffDays.length > 0)?(diffHours<10)?'0'+Math.trunc(diffHours):Math.trunc(diffHours):''}`;
+                let printDiffMin = `${(Math.trunc(diffMin)>0 || printDiffHours.length > 0)?(diffMin<10)?'0'+Math.trunc(diffMin):Math.trunc(diffMin):''}`;
+                let printDiffSec = `${(Math.trunc(diffSec)>0 || printDiffMin.length > 0)?(diffSec<10)?'0'+Math.trunc(diffSec):Math.trunc(diffSec):''}`;
+                
+                countdownString = `${(printDiffDays.length > 0)?'<div class="countdownPart"><div class="subtitle">Jours</div>' + printDiffDays + "</div> ":''}${(printDiffHours.length > 0)?'<div class="countdownPart"><div class="subtitle">Heures</div>' + printDiffHours + "</div> ":''}${(printDiffMin.length > 0)?'<div class="countdownPart"><div class="subtitle">Minutes</div>' +printDiffMin + "</div> ":''}${(printDiffSec.length > 0)?'<div class="countdownPart"><div class="subtitle">Secondes</div>' +printDiffSec + '</div>':''}`;
+            }
             document.getElementById("countdown").innerHTML = countdownString;
         }
         updateCountdown();
