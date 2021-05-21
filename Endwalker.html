@@ -83,8 +83,11 @@
                 let printDiffHours = `${(Math.trunc(diffHours)>0 || printDiffDays.length > 0)?(diffHours<10)?'0'+Math.trunc(diffHours):Math.trunc(diffHours):''}`;
                 let printDiffMin = `${(Math.trunc(diffMin)>0 || printDiffHours.length > 0)?(diffMin<10)?'0'+Math.trunc(diffMin):Math.trunc(diffMin):''}`;
                 let printDiffSec = `${(Math.trunc(diffSec)>0 || printDiffMin.length > 0)?(diffSec<10)?'0'+Math.trunc(diffSec):Math.trunc(diffSec):''}`;
-                
-                countdownString = `${(printDiffDays.length > 0)?'<div class="countdownPart"><div class="subtitle">Jours</div>' + printDiffDays + "</div> ":''}${(printDiffHours.length > 0)?'<div class="countdownPart"><div class="subtitle">Heures</div>' + printDiffHours + "</div> ":''}${(printDiffMin.length > 0)?'<div class="countdownPart"><div class="subtitle">Minutes</div>' +printDiffMin + "</div> ":''}${(printDiffSec.length > 0)?'<div class="countdownPart"><div class="subtitle">Secondes</div>' +printDiffSec + '</div>':''}`;
+                let daysSub = `<div class="countdownPart"><div class="subtitle">Jour${(Math.trunc(diffDays)>1)?'s':''}</div>`;
+                let hoursSub = `<div class="countdownPart"><div class="subtitle">Heure${(Math.trunc(diffHours)>1)?'s':''}</div>`;
+                let minSub = `<div class="countdownPart"><div class="subtitle">Minute${(Math.trunc(diffMin)>1)?'s':''}</div>`;
+                let secSub = `<div class="countdownPart"><div class="subtitle">Seconde${(Math.trunc(diffSec)>1)?'s':''}</div>`;
+                countdownString = `${(printDiffDays.length > 0)? daysSub + printDiffDays + "</div> ":''}${(printDiffHours.length > 0)?hoursSub + printDiffHours + "</div> ":''}${(printDiffMin.length > 0)?minSub +printDiffMin + "</div> ":''}${(printDiffSec.length > 0)?secSub +printDiffSec + '</div>':''}`;
             }
             document.getElementById("countdown").innerHTML = countdownString;
         }
