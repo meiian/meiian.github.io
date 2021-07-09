@@ -155,6 +155,11 @@ document.body.addEventListener("wheel",function(event) {
     scrollHandle(event.deltaY);
 });
 
+
+document.querySelector("#arrow > i").addEventListener("click", function() {
+    scrollHandle(1);
+});
+
 swipedetect(document.getElementById("arrow"), function(swipedir) {
     if(swipedir == 'up')
         scrollHandle(1);
