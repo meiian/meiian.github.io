@@ -151,24 +151,8 @@ for (let i=0 ; i < primaryBg.length ; i++) {
     primaryBg[i].style.backgroundColor = colorOfTheDay;
 }
 
-document.body.addEventListener("wheel",function(event) {
-    scrollHandle(event.deltaY);
-});
 
 
-document.querySelector("#arrow > i").addEventListener("click", function() {
-    scrollHandle(1);
-});
-
-swipedetect(document.getElementById("arrow"), function(swipedir) {
-    if(swipedir == 'up')
-        scrollHandle(1);
-})
-
-swipedetect(document.getElementById("projects"), function(swipedir) {
-    if(swipedir == "down")
-        scrollHandle(-1);
-})
 
 if(!debug){
     document.getElementById("about-me").style.height = "100vh";
@@ -182,7 +166,24 @@ if(!debug){
     let infosTimeout = setTimeout(function(){
         document.getElementById("about-me").style.height = null;
         hideElement("hello");
-        setTimeout(function(){showElement("informations"); showElement("arrow"), showElement("projects")},450);
+        setTimeout(function(){showElement("informations"); showElement("arrow"); showElement("projects")},450);
+        document.body.addEventListener("wheel",function(event) {
+            scrollHandle(event.deltaY);
+        });
+        
+        document.querySelector("#arrow > i").addEventListener("click", function() {
+            scrollHandle(1);
+        });
+        
+        swipedetect(document.getElementById("arrow"), function(swipedir) {
+            if(swipedir == 'up')
+                scrollHandle(1);
+        });
+        
+        swipedetect(document.getElementById("projects"), function(swipedir) {
+            if(swipedir == "down")
+                scrollHandle(-1);
+        });
     }, 1000);
 
     let nameInc = 0;

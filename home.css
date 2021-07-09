@@ -4,7 +4,7 @@ html,body{
     background-color: #1d1c23;
     margin: 0;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     font-family: -apple-system,BlinkMacSystemFont,"Calibri","Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     overflow: hidden;
