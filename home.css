@@ -254,6 +254,7 @@ a {
 @media screen and (max-width: 800px) {
     body {
         overflow-x: hidden;
+        flex-direction: row;
     }
     #about-me {
         width: 100vw;
