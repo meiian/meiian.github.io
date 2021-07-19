@@ -276,6 +276,7 @@ a {
 
     overflow-y: auto;
     width: 100vw;
+
 }
 
 .project {
@@ -366,6 +367,10 @@ a {
     margin-right: auto;
     margin-top: 20px;
     min-width: 600px;
+}
+.space {
+    width: 100%;
+    height: 150px;
 }
 @media screen and (max-width: 800px) {
     body {

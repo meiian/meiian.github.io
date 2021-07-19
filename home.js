@@ -160,16 +160,16 @@ function addProject(project) {
     projectNode.style.background = `url(${project.img}) 50% 50% no-repeat`;
     projectNode.style.backgroundSize = "cover";
     projectNode.addEventListener("mouseenter", function(){
-        document.querySelector("#" + project.id + " > .backdrop-desc").style.opacity = 1;
+        document.querySelector("#" + project.id + " .backdrop-desc").style.opacity = 1;
     });
     projectNode.addEventListener("mouseleave", function(){
-        document.querySelector("#" + project.id + " > .backdrop-desc").style.opacity = 0;
+        document.querySelector("#" + project.id + " .backdrop-desc").style.opacity = 0;
     });
     projectNode.addEventListener("touchstart", function(){
-        document.querySelector("#" + project.id + " > .backdrop-desc").style.opacity = 1;
+        document.querySelector("#" + project.id + " .backdrop-desc").style.opacity = 1;
     });
     projectNode.addEventListener("touchend", function(){
-        document.querySelector("#" + project.id + " > .backdrop-desc").style.opacity = 0;
+        document.querySelector("#" + project.id + " .backdrop-desc").style.opacity = 0;
     });
     projcont.appendChild(projectNode);
 }
@@ -236,6 +236,9 @@ projects.sort(function(a,b) {
 
 projects.forEach( e => addProject(e) );
 
+let spaceDiv = document.createElement("div");
+spaceDiv.className = "space";
+document.getElementById("projects").appendChild(spaceDiv);
 
 if(!debug){
     document.getElementById("about-me").style.height = "100vh";
