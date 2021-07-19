@@ -189,7 +189,7 @@ let projects = [
         name:"Compte à rebours Endwalker",
         desc:"Un compte à rebours pour la sortie d'Endwalker, l'extension du MMO Final Fantasy XIV sortie en Novembre 2021.",
         link:"./Endwalker.html",
-        img:"./images/endwalker.png",
+        img:"./images/endwalker.webp",
         size: 1
     },
     {
@@ -197,7 +197,7 @@ let projects = [
         name:"Mini-critiques d'animes",
         desc:"Un site créé pour accueillir des mini-critiques sur des animes que j'ai regardé. En pause pour le moment.",
         link:"./animes.html",
-        img:"./images/critiques_anime.png",
+        img:"./images/critiques_anime.webp",
         size: 1
     },
     {
@@ -205,7 +205,7 @@ let projects = [
         name:"Playthrough Pokémon Y Random",
         desc:"Un (petit) thread Twitter que j'ai fait sur ma partie de Pokémon Y en full randomisé.",
         link:"https://twitter.com/hikariwi/status/1334810551038464002",
-        img:"./images/pokemony.jpg",
+        img:"./images/pokemony.webp",
         size: 0
     },
     {
@@ -213,7 +213,7 @@ let projects = [
         name:"Playthrough Pokémon Ultra-Lune Random",
         desc:"Un autre (petit) thread Twitter que j'ai fait sur ma partie de Pokémon Ultra-Lune en full randomisé.",
         link:"https://twitter.com/hikariwi/status/1358154808918749184",
-        img:"./images/pokemonmoon.png",
+        img:"./images/pokemonmoon.webp",
         size: 0
     },
     {
@@ -221,7 +221,7 @@ let projects = [
         name:"WR Adibou et l'Ombre Verte",
         desc:"J'ai remporté 2 fois le World Record de speedrun sur Adibou et l'Ombre Verte sur PSX (emulée).",
         link:"https://www.speedrun.com/adiboo_and_the_green_shadow",
-        img:"./images/adibousr.png",
+        img:"./images/adibousr.webp",
         size: 2
     }
 ]
