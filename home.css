@@ -419,4 +419,9 @@ a {
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;
     }
+    #arrow {
+        margin-top: 85vh;
+        margin-bottom: 5vh;
+    }
+    
 }
