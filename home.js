@@ -58,6 +58,23 @@ function changeName(name) {
     setTimeout(function(){namespan.style.opacity = 1;},220);
 }
 
+function goToTitle() {
+    document.getElementById("about-me").style.height = null;
+    document.getElementById("arrow").style.marginTop = null;
+    document.getElementById("informations").style.height = null;
+    document.getElementById("informations").style.paddingTop = null;
+    document.getElementById("informations").style.padding = null;
+    document.getElementById("pfp").style.height = null;
+    document.getElementById("pfp").style.width = null;
+    document.getElementById("arrowback").style.opacity = null;
+    showElementWithoutAnim("whoami");
+    showElementWithoutAnim("likes");
+    showElementWithoutAnim("pronuns");
+    showElementWithoutAnim("mbti");
+    showElementWithoutAnim("langs");
+    showElementWithoutAnim("coloroftheday");
+}
+
 function scrollHandle(direction) {
     if (direction > 0) {
         hideElementWitouthAnim("whoami");
@@ -65,28 +82,16 @@ function scrollHandle(direction) {
         hideElementWitouthAnim("pronuns");
         hideElementWitouthAnim("mbti");
         hideElementWitouthAnim("langs");
+        hideElementWitouthAnim("coloroftheday");
         document.getElementById("about-me").style.height = "10vh";
         document.getElementById("arrow").style.marginTop = "0vh";
-
+        document.getElementById("arrowback").style.opacity = "1";
         document.getElementById("projects").style.marginBottom = "auto";
         document.getElementById("informations").style.height = "9vh";
         document.getElementById("informations").style.padding = "0px";
         document.getElementById("informations").style.paddingTop = "5px";
         document.getElementById("pfp").style.height = "8vh";
         document.getElementById("pfp").style.width = "auto";    
-    } else {
-        document.getElementById("about-me").style.height = null;
-        document.getElementById("arrow").style.marginTop = null;
-        document.getElementById("informations").style.height = null;
-        document.getElementById("informations").style.paddingTop = null;
-        document.getElementById("informations").style.padding = null;
-        document.getElementById("pfp").style.height = null;
-        document.getElementById("pfp").style.width = null;
-        showElementWithoutAnim("whoami");
-        showElementWithoutAnim("likes");
-        showElementWithoutAnim("pronuns");
-        showElementWithoutAnim("mbti");
-        showElementWithoutAnim("langs");
     }
   }
 
@@ -137,12 +142,86 @@ function scrollHandle(direction) {
     }, false)
 }
 
+function addProject(project) {
+    let projcont = document.getElementById("projects");
+    let projectNode = document.createElement("div");
+    projectNode.id = project.id;
+    projectNode.className = "project";
+    projectNode.innerHTML = 
+        `  
+        <div class="backdrop-desc">
+            <div class="proj-desc" style="background-color: ${getColorOfTheDay(today)}">
+                <h3><i class="bi bi-chevron-double-right"></i> ${project.name}</h3>
+                <p><i class="bi bi-card-text"></i> ${project.desc}</p>
+                <a href="${project.link}"><span class="tag">Accéder</span></a>
+            </div>
+        </div>
+        `;
+    projectNode.style.background = `url(${project.img}) 50% 50% no-repeat`;
+    projectNode.style.backgroundSize = "cover";
+    projectNode.addEventListener("mouseenter", function(){
+        document.querySelector("#" + project.id + " > .backdrop-desc").style.opacity = 1;
+    });
+    projectNode.addEventListener("mouseleave", function(){
+        document.querySelector("#" + project.id + " > .backdrop-desc").style.opacity = 0;
+    });
+    projectNode.addEventListener("touchstart", function(){
+        document.querySelector("#" + project.id + " > .backdrop-desc").style.opacity = 1;
+    });
+    projectNode.addEventListener("touchend", function(){
+        document.querySelector("#" + project.id + " > .backdrop-desc").style.opacity = 0;
+    });
+    projcont.appendChild(projectNode);
+}
+
 /////////////////////////////////////
 //              MAIN               //
 /////////////////////////////////////
 
 let debug = false;
 let names = ["Lucie", "Laïka", "Margot", "Alice"];
+let projects = [
+    {
+        id:"ew-countdown",
+        name:"Compte à rebours Endwalker",
+        desc:"Un compte à rebours pour la sortie d'Endwalker, l'extension du MMO Final Fantasy XIV sortie en Novembre 2021.",
+        link:"./Endwalker.html",
+        img:"./images/endwalker.png",
+        size: 1
+    },
+    {
+        id:"critiques-animes",
+        name:"Mini-critiques d'animes",
+        desc:"Un site créé pour accueillir des mini-critiques sur des animes que j'ai regardé. En pause pour le moment.",
+        link:"./animes.html",
+        img:"./images/critiques_anime.png",
+        size: 1
+    },
+    {
+        id:"pokemon-y-lp",
+        name:"Playthrough Pokémon Y Random",
+        desc:"Un (petit) thread Twitter que j'ai fait sur ma partie de Pokémon Y en full randomisé.",
+        link:"https://twitter.com/hikariwi/status/1334810551038464002",
+        img:"./images/pokemony.jpg",
+        size: 0
+    },
+    {
+        id:"pokemon-moon-lp",
+        name:"Playthrough Pokémon Ultra-Lune Random",
+        desc:"Un autre (petit) thread Twitter que j'ai fait sur ma partie de Pokémon Ultra-Lune en full randomisé.",
+        link:"https://twitter.com/hikariwi/status/1358154808918749184",
+        img:"./images/pokemonmoon.png",
+        size: 0
+    },
+    {
+        id:"adibou-sr",
+        name:"WR Adibou et l'Ombre Verte",
+        desc:"J'ai remporté 2 fois le World Record de speedrun sur Adibou et l'Ombre Verte sur PSX (emulée).",
+        link:"https://www.speedrun.com/adiboo_and_the_green_shadow",
+        img:"./images/adibousr.png",
+        size: 2
+    }
+]
 
 let today = new Date();
 let colorOfTheDay = getColorOfTheDay(today);
@@ -151,7 +230,11 @@ for (let i=0 ; i < primaryBg.length ; i++) {
     primaryBg[i].style.backgroundColor = colorOfTheDay;
 }
 
+projects.sort(function(a,b) {
+    return b.size - a.size;
+});
 
+projects.forEach( e => addProject(e) );
 
 
 if(!debug){
@@ -174,16 +257,25 @@ if(!debug){
         document.querySelector("#arrow > i").addEventListener("click", function() {
             scrollHandle(1);
         });
+
         
+        
+        document.querySelector("#arrowback").addEventListener("click", function() {
+            goToTitle();
+        });
+
         swipedetect(document.getElementById("arrow"), function(swipedir) {
             if(swipedir == 'up')
                 scrollHandle(1);
         });
-        
-        swipedetect(document.getElementById("projects"), function(swipedir) {
+
+        document.querySelector("#arrow > i").addEventListener("touchend", function() {
+            scrollHandle(1);
+        });
+        /*swipedetect(document.body, function(swipedir) {
             if(swipedir == "down")
                 scrollHandle(-1);
-        });
+        });*/
     }, 1000);
 
     let nameInc = 0;

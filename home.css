@@ -4,7 +4,7 @@ html,body{
     background-color: #1d1c23;
     margin: 0;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     font-family: -apple-system,BlinkMacSystemFont,"Calibri","Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     overflow: hidden;
@@ -121,6 +121,7 @@ a {
     width: max-content;
     margin-bottom: 5px;
     transition: 0.2s;
+    user-select: none;
 }
 
 .icon {
@@ -230,6 +231,24 @@ a {
     margin-top: 90vh;
 }
 
+#arrowback {
+    font-size: 32px;
+    color: white;
+    width: max-content;
+    text-align: center;
+    transition: 0.2s;
+    height: max-content;
+    display: flex;
+    margin-top: 90vh;
+    position: fixed;
+    bottom: 5vh;
+    right: 5vw;
+    padding: 10px;
+    border-radius: 25px;
+    opacity: 0;
+    z-index: 25;
+}
+
 #arrow>i {
     margin: auto;
 }
@@ -249,7 +268,101 @@ a {
 }
 
 #projects {
+    display: grid;
+    height: 90vh;
+
+    overflow-y: auto;
     width: 100vw;
+}
+
+.project {
+    width: 50vw;
+    min-width: 600px;
+    height: 300px;
+    margin: 25px;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    background-size: cover;
+    display: flex;
+}
+
+.project-sm {
+    width: 30vh;
+    height: 30vh;
+}
+
+.project-lg {
+    width: 90vh;
+    height: 90vh;
+}
+
+.backdrop-desc {
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0,0,0,0.5);
+    transition: 0.2s;
+    opacity: 0;
+    border-radius: 5px;
+}
+
+.proj-desc {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    width: 30%;
+    height: 100%;
+    margin-left: auto;
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.proj-desc h3 {
+    margin-top: auto;
+    margin-bottom: 5px;
+    margin-right: auto;
+    margin-left: 10px;
+    max-width: 90%;
+    text-align: left;
+}
+.proj-desc p {
+    margin-left: 10px;
+    margin-right: auto;
+    max-width: 90%;
+    text-align: left;
+}
+.proj-desc a {
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.proj-desc .tag {
+    font-size: 1.5rem;
+    background-color: rgba(0,0,0,0.2);
+    border : 1px solid rgba(255,255,255,0.3);
+    border-radius: 2px;
+    color: white;
+    padding: 10px;
+}
+
+.project img {
+    max-height: 100%;
+  min-width: 100%;
+    object-fit: cover;
+  vertical-align: bottom;
+}
+
+#projects .title {
+    color: white;
+    width: 50vw;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    min-width: 600px;
 }
 @media screen and (max-width: 800px) {
     body {
@@ -276,5 +389,30 @@ a {
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 20px;
+    }
+    #projects {
+        max-width: 100vw;
+        display: inline-block;
+        width: 95vw;
+        overflow-x: hidden;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .project {
+        width: 80vw;
+        max-width: 80vw;
+        min-width: 80vw;
+        height: 300px;
+    }
+    .proj-desc {
+        display: grid;
+        grid-template-rows: auto auto auto;
+        width: 70%;
+        height: 100%;
+        margin-left: auto;
+        color: white;
+        background-color: rgba(0,0,0,0.5);
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
     }
 }
