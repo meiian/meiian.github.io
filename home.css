@@ -151,6 +151,9 @@ a {
     color: white;
     display: grid;
     grid-template-columns: auto auto;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
 }
 
 #coloroftheday h4{
@@ -375,6 +378,7 @@ a {
         margin-top: 0px;
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
+        height: 85vh;
     }
     .card {
         grid-template-rows: auto auto;
