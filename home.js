@@ -67,6 +67,7 @@ function goToTitle() {
     document.getElementById("pfp").style.height = null;
     document.getElementById("pfp").style.width = null;
     document.getElementById("arrowback").style.opacity = null;
+    document.getElementById("arrow").style.marginBottom = null;
     showElementWithoutAnim("whoami");
     showElementWithoutAnim("likes");
     showElementWithoutAnim("pronuns");
@@ -85,6 +86,7 @@ function scrollHandle(direction) {
         hideElementWitouthAnim("coloroftheday");
         document.getElementById("about-me").style.height = "10vh";
         document.getElementById("arrow").style.marginTop = "0vh";
+        document.getElementById("arrow").style.marginBottom = "0vh";
         document.getElementById("arrowback").style.opacity = "1";
         document.getElementById("projects").style.marginBottom = "auto";
         document.getElementById("informations").style.height = "9vh";
@@ -92,6 +94,7 @@ function scrollHandle(direction) {
         document.getElementById("informations").style.paddingTop = "5px";
         document.getElementById("pfp").style.height = "8vh";
         document.getElementById("pfp").style.width = "auto";    
+
     }
   }
 
