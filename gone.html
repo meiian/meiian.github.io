@@ -1,0 +1,121 @@
+<head>
+    <title>Endwalker ?!?!1?!</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" type="image/png" href="./endwalker/EWicon.png"/>
+        <meta name="theme-color" content="#FDA50f">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
+</head>
+
+
+<style>
+
+    body{
+        max-width: 100vw;
+        max-height: 100vh;
+        overflow: hidden;
+        margin: 0px;
+        position: relative;
+        display: flex;
+        background-color: #1d1c23;
+        color: white;
+    }
+    h1{
+        font-family: 'Comfortaa', cursive;
+        height: max-content;
+        margin: auto;
+    }
+    #countdown{
+        display: flex;
+        font-size: 8rem;
+        flex-wrap: wrap;
+        color: white;
+        width: max-content;
+        max-width: 80vw;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        font-family: 'Comfortaa', cursive;
+        justify-content: flex-start;
+        padding-top: max(1.7rem, 10vh);
+        padding-bottom: max(1.7rem, 10vh);
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    .countdownPart {
+        display: inline-block;
+        padding-right: 20px;
+        width: max-content;
+        height: max-content;
+    }
+    .legend{
+        font-size: 0.5em;
+        color: #d2bc8f;
+    }
+    #footer {
+        display: grid;
+        position: fixed;
+        top:0;
+        left: 0;
+        width: 100vw;
+        height: max(1.5rem,10vh);
+        grid-template-columns: auto auto auto;
+        text-align: center;
+    }
+    .line {
+        width: 100%;
+        height: 50%;
+        border-bottom: solid 2px #d2bc8f;
+    }
+    @media screen and (max-width: 800px) {
+        #countdown {
+            max-width: 90vw;
+        }
+        .countdownPart:nth-child(even) {
+            width: 100%;
+            text-align: right;
+        }
+    }
+</style>
+
+<body>
+    <div id="footer">
+        <div class="line"></div>
+        <h1><span></span>Liberté</h1>
+        <div class="line"></div>
+    </div>
+    <p id="countdown"></p>
+
+    <script>
+        let releaseDate = new Date(2021, 9, 1, 15, 00, 00);
+        let trueHour = releaseDate.getHours() + (releaseDate.getTimezoneOffset() / 60);
+        releaseDate = new Date(2021, 8, 1, trueHour, 00, 00);
+        function updateCountdown(){
+            let nowDate = new Date();
+            let diffTime = releaseDate.getTime() - nowDate.getTime();
+            let countdownString = "ENFIN";
+            if(diffTime>0){
+                let diffDays = diffTime /  (1000 * 3600 * 24);
+                let diffHours = (diffDays - Math.trunc(diffDays)) * (24);
+                let diffMin = (diffHours - Math.trunc(diffHours)) * 60;
+                let diffSec = (diffMin - Math.trunc(diffMin)) * 60;
+
+                let printDiffDays = `${(Math.trunc(diffDays)>0)?(diffDays<10)?'0'+Math.trunc(diffDays):Math.trunc(diffDays):''}`;
+                let printDiffHours = `${(Math.trunc(diffHours)>0 || printDiffDays.length > 0)?(diffHours<10)?'0'+Math.trunc(diffHours):Math.trunc(diffHours):''}`;
+                let printDiffMin = `${(Math.trunc(diffMin)>0 || printDiffHours.length > 0)?(diffMin<10)?'0'+Math.trunc(diffMin):Math.trunc(diffMin):''}`;
+                let printDiffSec = `${(Math.trunc(diffSec)>0 || printDiffMin.length > 0)?(diffSec<10)?'0'+Math.trunc(diffSec):Math.trunc(diffSec):''}`;
+                let daysSub = `<div class="countdownPart">`;
+                let hoursSub = `<div class="countdownPart">`;
+                let minSub = `<div class="countdownPart">`;
+                let secSub = `<div class="countdownPart">`;
+                countdownString = `${(printDiffDays.length > 0)? daysSub + printDiffDays + "<span class='legend'>j</span></div> ":''}${(printDiffHours.length > 0)?hoursSub + printDiffHours + "<span class='legend'>h</span></div> ":''}${(printDiffMin.length > 0)?minSub +printDiffMin + "<span class='legend'>m</span></div> ":''}${(printDiffSec.length > 0)?secSub +printDiffSec + '<span class="legend">s</span></div>':''}`;
+            }
+            document.getElementById("countdown").innerHTML = countdownString;
+        }
+        updateCountdown();
+        let refresh = setInterval(updateCountdown, 1000);
+
+    </script>
+</body>
