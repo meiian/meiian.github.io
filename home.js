@@ -18,7 +18,6 @@ function getColorOfTheDay(day) {
     color.blue = color.blue + ((day.getFullYear()*2 + day.getMonth()*3 + day.getDate())%100) + ((colorToSaturate==1)?50:0);
     color.green = color.green + ((day.getFullYear()*3 + day.getMonth() + day.getDate()*2)%100) + ((colorToSaturate==2)?50:0);
     colorHex += ((color.red.toString(16).length<2)?'0':'') + color.red.toString(16) + ((color.blue.toString(16).length<2)?'0':'') + color.blue.toString(16) + ((color.green.toString(16).length<2)?'0':'') + color.green.toString(16);
-    document.getElementById("word-cotd").innerHTML = ntc.name(colorHex)[1];
     return colorHex;
 }
 
@@ -71,9 +70,7 @@ function goToTitle() {
     showElementWithoutAnim("whoami");
     showElementWithoutAnim("likes");
     showElementWithoutAnim("pronuns");
-    showElementWithoutAnim("mbti");
     showElementWithoutAnim("langs");
-    showElementWithoutAnim("coloroftheday");
 }
 
 function scrollHandle(direction) {
@@ -81,9 +78,7 @@ function scrollHandle(direction) {
         hideElementWitouthAnim("whoami");
         hideElementWitouthAnim("likes");
         hideElementWitouthAnim("pronuns");
-        hideElementWitouthAnim("mbti");
         hideElementWitouthAnim("langs");
-        hideElementWitouthAnim("coloroftheday");
         document.getElementById("about-me").style.height = "10vh";
         document.getElementById("arrow").style.marginTop = "0vh";
         document.getElementById("arrow").style.marginBottom = "0vh";
@@ -153,7 +148,7 @@ function addProject(project) {
     projectNode.innerHTML = 
         `  
         <div class="backdrop-desc">
-            <div class="proj-desc" style="background-color: ${getColorOfTheDay(today)}">
+            <div class="proj-desc" style="background-color: #4ed0e8">
                 <h3><i class="bi bi-chevron-double-right"></i> ${project.name}</h3>
                 <p><i class="bi bi-card-text"></i> ${project.desc}</p>
                 <a href="${project.link}"><span class="tag">Accéder</span></a>
@@ -228,6 +223,7 @@ let projects = [
 
 let today = new Date();
 let colorOfTheDay = getColorOfTheDay(today);
+colorOfTheDay = "#4ed0e8";
 let primaryBg = document.getElementsByClassName("primary-bg");
 for (let i=0 ; i < primaryBg.length ; i++) {
     primaryBg[i].style.backgroundColor = colorOfTheDay;
