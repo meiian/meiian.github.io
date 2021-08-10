@@ -196,7 +196,7 @@ function attachEvents(texts) {
             divNode.id = "saveNode";
             let instruNode = document.createElement("h5");
             instruNode.id = "instru-save";
-            instruNode.innerText = "Clic pour enregistrer.";
+            instruNode.innerText = "Click on picture to save.";
             canvas.addEventListener("click", function(){
                 let now = new Date();
                 let resizedCanvas = document.createElement("canvas");
