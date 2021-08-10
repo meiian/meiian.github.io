@@ -110,7 +110,16 @@ function attachEvents(texts) {
             divNode.id = "saveNode";
             let instruNode = document.createElement("h5");
             instruNode.id = "instru-save";
-            instruNode.innerText = "Clic-droit/Appui long pour enregistrer.";
+            instruNode.innerText = "Clic pour enregistrer.";
+            canvas.addEventListener("click", function(){
+                let now = new Date();
+                let a = document.createElement('a');
+                a.href = canvas.toDataURL("image/png");
+                a.download = 'AC_Mail_' + now.getFullYear() + "_" + (now.getMonth()+1) + "_" + now.getDate() + "_" + now.getHours() + now.getMinutes() + now.getSeconds();
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            })
             divNode.style.margin = "auto";
             divNode.appendChild(canvas);
             divNode.appendChild(instruNode);
