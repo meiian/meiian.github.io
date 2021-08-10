@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+    <title>AC Mail Maker</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" type="image/png" href="./images/pfp.webp"/>
+        <meta name="theme-color" content="#FDA50f">
+        <link rel="stylesheet" href="./ac-mail/ac_msg.css"/>
+        <script src="./ac-mail/html2canvas.min.js"></script>
+</head>
+
+
+<body>
+    <div id="part-1">
+        <div id="global-frame">
+            <div id="mail-frame">
+                <div class="line" id="mail-header"></div>
+                <div class="line" id="mail-l1"></div>
+                <div class="line" id="mail-l2"></div>
+                <div class="line" id="mail-l3"></div>
+                <div class="line" id="mail-l4"></div>
+                <div class="line" id="mail-l5"></div>
+                <div class="line" id="mail-l6"></div>
+                <div class="line" id="mail-footer"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="part-2">
+        <div id="menu">
+            <div class="menu-card" id="headerMenu">
+                <h5 class="menu-title" id="headerTitle"></h5>
+                <input type="text" class="longTextInput" id="headerInput" name="headerInput" required
+                minlength="0" maxlength="13">
+            </div>
+            <div class="menu-card" id="bodyMenu">
+                <h5 class="menu-title" id="bodyTitle"></h5>
+                <textarea id="bodyInput" name="bodyInput" cols="26" rows="6"></textarea>
+            </div>
+            <div class="menu-card" id="footerMenu">
+                <h5 class="menu-title" id="footerTitle"></h5>
+                <input type="text" class="longTextInput" id="footerInput" name="footerInput" required
+                minlength="0" maxlength="22">
+            </div>
+
+            <a class="button" id="savePic"></a>
+        </div>
+    </div>
+
+    <div id="pic-fullCont"></div>
+</body>
+
+<script src="./ac-mail/ac_msg.js"></script>
+
