@@ -17,6 +17,7 @@ const fr =
         },
 
         menu: {
+            site_title: "Créateur de Lettres AC",
             frames_title: "Cadres",
             header_title: "En-tête",
             header_input_placeholder: "Message pour [...] !",
@@ -38,6 +39,7 @@ const en =
         },
 
         menu: {
+            site_title: "AC Mail Maker",
             frames_title: "Frames",
             header_title: "Header",
             header_input_placeholder: "Mail for [...] !",
@@ -128,11 +130,13 @@ function fetchLanguage() {
     let lang = navigator.language || navigator.userLanguage;
     if(lang === "fr-FR")
         return fr;
-    if(lang === "en-EN")
+    else
         return en;
 }
 
 function fillTexts(texts) {
+    findID("site-title").innerText = texts.menu.site_title;
+
     findID("framesTitle").innerText = texts.menu.frames_title;
 
     findID("headerTitle").innerText = texts.menu.header_title;

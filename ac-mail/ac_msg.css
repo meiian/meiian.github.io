@@ -94,6 +94,12 @@ h5 {
     margin-bottom: 1rem;
 }
 
+#site-title {
+    text-align: center;
+    width: 100%;
+    font-size: 1.2rem;
+    color: #fffae4;
+}
 
 #framesGallery {
     display: flex;
@@ -227,6 +233,19 @@ textarea:focus, input:focus{
     color: white;
     background-color: #07aa7f;
     border-radius: 100px;
+}
+
+a {
+    text-decoration: none;
+    color: #07aa7f;
+   
+}
+
+#credits {
+    color: white;
+    width: 100%;
+    text-align: center;
+    justify-self: flex-end;
 }
 
 @media (max-width: 600px) {
