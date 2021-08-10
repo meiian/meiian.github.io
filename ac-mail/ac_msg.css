@@ -1,3 +1,8 @@
+:root {
+    --main-color : #633c00;
+    --secondary-color: #087100;
+}
+
 @font-face{
     font-family: Humming;
     src: url(./Humming.otf);
@@ -14,13 +19,7 @@ body {
     position: absolute;
 }
 
-@media (max-width: 600px) {
-    body {
-        grid-template-columns: none;
-        grid-template-rows: auto auto;
-        background-color: #70bbd2;
-    }
-}
+
 
 #part-1 {
     display: flex;
@@ -32,26 +31,32 @@ body {
 }
 
 #mail-frame {
-    background-image: url(./acTemplate.png);
+    background-image: url(./frames/roses.png);
     width: 506px;
     height: 345px;
+    max-width: 506px;
+    max-height: 345px;
     position: relative;
 }
 
 #global-frame {
     margin: auto;
+    width: 506px;
+    height: 345px;
+    max-width: 506px;
+    max-height: 345px;
 }
 
 .line {
     position: absolute;
     left: 70px;
     font-size: 22px;
-    color: #633c00;
+    color: var(--main-color);
 }
 
 #mail-header {
     top: 18px;
-    color: #087100;
+    color: var(--secondary-color);
 }
 
 #mail-l1 {
@@ -80,9 +85,53 @@ body {
 
 #mail-footer {
     top: 290px;
-    color: #087100;
+    color: var(--secondary-color);
     width: 360px;
     text-align: right;
+}
+
+h5 {
+    margin-bottom: 1rem;
+}
+
+
+#framesGallery {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent; 
+}
+   
+::-webkit-scrollbar-thumb {
+    background: #07aa7f; 
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background: #07aa7f; 
+}
+
+.frame-minia {
+    width: 128px;
+    height: auto;
+    border: solid 2px white;
+}
+
+.frame-minia-cont {
+    padding: 5px;
+    background-color: #e4d387;
+    width: max-content;
+    height: max-content;
+    display: flex;
+    border-radius: 5px;
+    margin-right: 1rem;
 }
 
 input {
@@ -117,6 +166,7 @@ textarea:focus, input:focus{
     padding-right: 1rem;
     padding-left: 1rem;
     margin: auto;
+    overflow: hidden;
 }
 
 .menu-card {
@@ -127,6 +177,7 @@ textarea:focus, input:focus{
     width: 100%;
     margin-top: 2rem;
     margin-bottom: 2rem;
+    border-radius: 5px;
 }
 
 .menu-title {
@@ -151,7 +202,7 @@ textarea:focus, input:focus{
 }
 
 #pic-fullCont {
-    background-color: rgba(0,0,0,0.7);
+    background-color: #70bbd2;
     position: absolute;
     top: 0;
     left: 0;
@@ -176,4 +227,13 @@ textarea:focus, input:focus{
     color: white;
     background-color: #07aa7f;
     border-radius: 100px;
+}
+
+@media (max-width: 600px) {
+    body {
+        grid-template-columns: none;
+        grid-template-rows: auto auto;
+        background-color: #70bbd2;
+    }
+
 }

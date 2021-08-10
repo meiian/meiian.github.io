@@ -17,6 +17,7 @@ const fr =
         },
 
         menu: {
+            frames_title: "Cadres",
             header_title: "En-tête",
             header_input_placeholder: "Message pour [...] !",
             header_input_placeholder_custom: "Entrez votre en-tête personnalisé.",
@@ -37,6 +38,7 @@ const en =
         },
 
         menu: {
+            frames_title: "Frames",
             header_title: "Header",
             header_input_placeholder: "Mail for [...] !",
             header_input_placeholder_custom: "Write your custom header.",
@@ -51,6 +53,61 @@ const en =
 
 
 /*  ##############################
+    #########   FRAMES   ##########
+    ##############################  */
+
+let frames = [
+    {
+        id: "roses",
+        url: "./ac-mail/frames/roses.png",
+        mainColor: "#633c00",
+        secondaryColor: "#087100"
+    },
+    {
+        id: "hello-kitty",
+        url: "./ac-mail/frames/hello-kitty.png",
+        mainColor: "#212121",
+        secondaryColor: "#532542"
+    },
+    {
+        id: "piano",
+        url: "./ac-mail/frames/piano.png",
+        mainColor: "#3e372b",
+        secondaryColor: "#023384"
+    },
+    {
+        id: "butterfly",
+        url: "./ac-mail/frames/butterfly.png",
+        mainColor: "#655334",
+        secondaryColor: "#dc6ff1"
+    },
+    {
+        id: "sea-stars",
+        url: "./ac-mail/frames/sea-stars.png",
+        mainColor: "#002e7b",
+        secondaryColor: "#12aec3"
+    },
+    {
+        id: "sea-mosaic",
+        url: "./ac-mail/frames/sea-mosaic.png",
+        mainColor: "#8a6230",
+        secondaryColor: "#ff97fe"
+    },
+    {
+        id: "mosaic",
+        url: "./ac-mail/frames/mosaic.png",
+        mainColor: "#002b7a",
+        secondaryColor: "#00a6ec"
+    },
+    {
+        id: "luxure",
+        url: "./ac-mail/frames/luxure.png",
+        mainColor: "#ffd6bd",
+        secondaryColor: "#fca84f"
+    }
+]
+
+/*  ##############################
     #########   MAIN   ###########
     ##############################  */
 window.onload = main();
@@ -58,6 +115,7 @@ window.onload = main();
 function main() {
     let texts = fetchLanguage();
     fillTexts(texts);
+    fillFrames();
     attachEvents(texts);
 }
 
@@ -75,6 +133,8 @@ function fetchLanguage() {
 }
 
 function fillTexts(texts) {
+    findID("framesTitle").innerText = texts.menu.frames_title;
+
     findID("headerTitle").innerText = texts.menu.header_title;
     findID("headerInput").placeholder = texts.menu.header_input_placeholder_custom;
 
@@ -87,7 +147,29 @@ function fillTexts(texts) {
     findID("savePic").innerText = texts.menu.savePic_button;
 }
 
+function fillFrames() {
+    findID("framesMenu").style.maxWidth = findID("headerMenu").scrollWidth - 20 + "px";
+    frames.forEach(function(frame){
+        let frameNode = document.createElement("div");
+        frameNode.classList.add("frame-minia-cont");
+        frameNode.id = frame.id;
+        frameNode.innerHTML = `
+            <img id="${frame.id}-img" class="frame-minia" src="${frame.url}" href="${frame.id}"/>
+        `;
+        frameNode.addEventListener("click", function(){
+            findID("mail-frame").style.backgroundImage = "url(" + frame.url + ")";
+            console.log(frame.mainColor);
+            document.documentElement.style.setProperty('--main-color', frame.mainColor);
+            document.documentElement.style.setProperty('--secondary-color', frame.secondaryColor);
+        });
+        findID("framesGallery").appendChild(frameNode);
+    });
+    
+}
+
 function attachEvents(texts) {
+    window.onresize = function(){findID("framesMenu").style.maxWidth = findID("headerMenu").scrollWidth - 20 + "px";};
+
     findID("headerInput").addEventListener("input", function(){
         findID("mail-header").innerText = findID("headerInput").value;
     })
@@ -113,8 +195,15 @@ function attachEvents(texts) {
             instruNode.innerText = "Clic pour enregistrer.";
             canvas.addEventListener("click", function(){
                 let now = new Date();
+                let resizedCanvas = document.createElement("canvas");
+                let resizedContext = resizedCanvas.getContext("2d");
+
+                resizedCanvas.height = "345";
+                resizedCanvas.width = "506";
+
+                resizedContext.drawImage(canvas, 0, 0, 506, 345);
                 let a = document.createElement('a');
-                a.href = canvas.toDataURL("image/png");
+                a.href = resizedCanvas.toDataURL();
                 a.download = 'AC_Mail_' + now.getFullYear() + "_" + (now.getMonth()+1) + "_" + now.getDate() + "_" + now.getHours() + now.getMinutes() + now.getSeconds();
                 document.body.appendChild(a);
                 a.click();
