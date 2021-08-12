@@ -180,6 +180,14 @@ let debug = false;
 let names = ["Lucie", "Laïka", "Margot", "Alice"];
 let projects = [
     {
+        id:"ac-mail",
+        name:"Créateur de lettres AC",
+        desc:"Pour créer des lettres comme dans Animal Crossing New Leaf sauf que c'est sur votre navigateur.",
+        link:"./ac-mail.html",
+        img:"./ac-mail/twitter-card.png",
+        size: 1
+    },
+    {
         id:"ew-countdown",
         name:"Compte à rebours Endwalker",
         desc:"Un compte à rebours pour la sortie d'Endwalker, l'extension du MMO Final Fantasy XIV sortie en Novembre 2021.",
@@ -187,6 +195,7 @@ let projects = [
         img:"./images/endwalker.webp",
         size: 1
     },
+    
     {
         id:"critiques-animes",
         name:"Mini-critiques d'animes",
