@@ -1,15 +1,15 @@
 <head>
-    <title>chibi dawn?§?§?§?§§?</title>
+    <title>doggo doko??§?§?§?§?§</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="icon" type="image/png" href="./pokemon-bdsp/icon.png"/>
+        <link rel="icon" type="image/png" href="./pokemon-arceus/icon.png"/>
         <meta name="theme-color" content="#466caf">
 
         <meta name="twitter:card" content="summary">
-        <meta name="twitter:title" content="Compte à rebours - Pokémon BDSP">
+        <meta name="twitter:title" content="Compte à rebours - Légendes Pokémon Arceus">
         <meta name="twitter:description" content="Combien de temps avant de pouvoir y jouer ?">
 
-        <meta property="og:title" content="Compte à rebours - Pokémon BDSP" />
+        <meta property="og:title" content="Compte à rebours - Légendes Pokémon Arceus" />
         <meta property="og:type" content="website" />
         <meta property="og:description" content="Combien de temps avant de pouvoir y jouer ?" />
 </head>
@@ -47,16 +47,9 @@
         padding-bottom: 50px;
     }
     #logo1 {
-        background: url(./pokemon-bdsp/bd-logo.webp) no-repeat center center;
-        width: 330px;
-        height: 195px;
-        background-size: contain;
-        background-repeat: no-repeat;
-    }
-    #logo2 {
-        background: url(./pokemon-bdsp/sp-logo.webp) no-repeat center center;
-        width: 330px;
-        height: 195px;
+        background: url(./pokemon-arceus/logo.webp) no-repeat center center;
+        width: 335px;
+        height: 248px;
         background-size: contain;
         background-repeat: no-repeat;
     }
@@ -86,32 +79,31 @@
     @media (max-width: 600px) {
 
         #logos>*{
-            width: 40vw;
-            height: 200px;
+            width: 80vw;
+            height: 400px;
         }
     }
 </style>
 
 <body>
     <video autoplay muted loop id="video">
-        <source src="./pokemon-bdsp/video.webm" type="video/mp4">
+        <source src="./pokemon-arceus/video.webm" type="video/mp4">
       </video>
     <div id="center">
         <div id="logos">
             <div id="logo1"></div>
-            <div id="logo2"></div>
         </div>
         <p id="countdown"></p>
     </div>
 
     <script>
-        let releaseDate = new Date(2021, 10, 19, 00, 00, 00);
+        let releaseDate = new Date(2022, 0, 28, 00, 00, 00);
         let trueHour = releaseDate.getHours() + (releaseDate.getTimezoneOffset() / 60);
-        releaseDate = new Date(2021, 10, 19, trueHour, 00, 00);
+        releaseDate = new Date(2022, 0, 28, trueHour, 00, 00);
         function updateCountdown(){
             let nowDate = new Date();
             let diffTime = releaseDate.getTime() - nowDate.getTime();
-            let countdownString = "CHIBI DAWNNNNNNNNN";
+            let countdownString = "ANCIENT DOGGO TIME";
             if(diffTime>0){
                 let diffDays = diffTime /  (1000 * 3600 * 24);
                 let diffHours = (diffDays - Math.trunc(diffDays)) * (24);
