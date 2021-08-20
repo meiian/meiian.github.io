@@ -290,12 +290,12 @@ if(!debug){
     }, 1000);
 
     let nameInc = 0;
-    let nameInterval = setInterval(function() {
+    /*let nameInterval = setInterval(function() {
         if(nameInc >= names.length)
             nameInc = 0;
         changeName(names[nameInc]);
         nameInc++;
-    }, 4000);
+    }, 4000);*/
 }
 else{
     let debugHidden = ["hello"];
