@@ -208,7 +208,7 @@ let projects = [
         id:"pokemon-y-lp",
         name:"Playthrough Pokémon Y Random",
         desc:"Un (petit) thread Twitter que j'ai fait sur ma partie de Pokémon Y en full randomisé.",
-        link:"https://twitter.com/hikariwi/status/1334810551038464002",
+        link:"https://twitter.com/Azusa471/status/1334810551038464002",
         img:"./images/pokemony.webp",
         size: 0
     },
@@ -216,7 +216,7 @@ let projects = [
         id:"pokemon-moon-lp",
         name:"Playthrough Pokémon Ultra-Lune Random",
         desc:"Un autre (petit) thread Twitter que j'ai fait sur ma partie de Pokémon Ultra-Lune en full randomisé.",
-        link:"https://twitter.com/hikariwi/status/1358154808918749184",
+        link:"https://twitter.com/Azusa471/status/1358154808918749184",
         img:"./images/pokemonmoon.webp",
         size: 0
     },
