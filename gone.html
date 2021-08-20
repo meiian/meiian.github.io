@@ -89,9 +89,9 @@
     <p id="countdown"></p>
 
     <script>
-        let releaseDate = new Date(2021, 9, 1, 15, 00, 00);
+        let releaseDate = new Date(2021, 9, 4, 15, 00, 00);
         let trueHour = releaseDate.getHours() + (releaseDate.getTimezoneOffset() / 60);
-        releaseDate = new Date(2021, 8, 1, trueHour, 00, 00);
+        releaseDate = new Date(2021, 8, 4, trueHour, 00, 00);
         function updateCountdown(){
             let nowDate = new Date();
             let diffTime = releaseDate.getTime() - nowDate.getTime();
