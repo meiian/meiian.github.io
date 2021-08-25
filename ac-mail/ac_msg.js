@@ -106,6 +106,24 @@ let frames = [
         url: "./ac-mail/frames/luxure.png",
         mainColor: "#ffd6bd",
         secondaryColor: "#fca84f"
+    },
+    {
+        id: "rounard",
+        url: "./ac-mail/frames/rounard.png",
+        mainColor: "#215984",
+        secondaryColor: "#009aa5"
+    },
+    {
+        id: "cow",
+        url: "./ac-mail/frames/cow.png",
+        mainColor: "#007d29",
+        secondaryColor: "#bd5100"
+    },
+    {
+        id: "air-mail",
+        url: "./ac-mail/frames/air-mail.png",
+        mainColor: "#313429",
+        secondaryColor: "#73085a"
     }
 ]
 
