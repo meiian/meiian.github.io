@@ -55,7 +55,7 @@ function showMessage(message) {
                     document.getElementById("actual-question-list").id = null;
                 });
             else
-                question_node.style.color = "gray";
+                question_node.classList.add("already")
             question_node.innerHTML = `<h3>${FR.questions[i].msg}</h3>`;
             questions_node.append(question_node)
         }

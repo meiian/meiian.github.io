@@ -95,7 +95,6 @@ body {
 .questions-list {
     margin-left: auto;
     width: 65%;
-    background-color: white;
     padding: 0.5rem;
     border-radius: 5px;
     margin-bottom: 1em;
@@ -106,6 +105,14 @@ body {
     margin: 0px;
     margin-top: 0.2em;
     margin-bottom: 0.2em;
+    background-color: white;
+    border-radius: 5px;
+    padding: 0.5em 1em;
+}
+
+.already h3 {
+    background-color: rgb(30,30,30);
+    color: gray;
 }
 
 @media (min-width: 600px) {
