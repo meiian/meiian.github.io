@@ -1,0 +1,127 @@
+@font-face {
+    font-family: Source;
+    src: url(../font/SourceSansPro-Regular.ttf);
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background-color: rgb(191, 255, 234);
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Source;
+    margin: 0px;
+}
+
+#global-container {
+    width: 50vw;
+    height: 90vh;
+    margin: auto;
+    display: grid;
+    grid-template-rows: 7% auto;
+    position: relative;
+}
+
+#phone-bg {
+    position: absolute;
+    top:0px;
+    left: 0px;
+    background-image: url(./images/phone-wp.png);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#phone-header {
+    background-color: rgba(0,0,0,0.8);
+    padding: 1em 1em;
+    font-weight: bold;
+    font-size: 1.3rem;
+    max-height: max-content;
+    color: white;
+    backdrop-filter: blur(5px);
+}
+
+#messages {
+    overflow: auto;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.message:first-child {
+    margin-top: auto;
+}
+
+.message {
+    display: flex;
+    font-size: 1.3rem;
+    margin-bottom: 1em;
+}
+
+.message-body {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: solid white 5px;
+    border-radius: 5px;
+    padding: 0.5em 1em;
+    max-width: 65%;
+    margin: 0px;
+    margin-left: 1em;
+    line-height: 100%;
+    height: max-content;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.reply {
+    margin-left: auto;
+    max-width: 65%;
+}
+
+.reply>.message-body {
+    max-width: max-content;
+}
+
+.face {
+    height: 4em;
+    margin-top: auto;
+}
+
+.questions-list {
+    margin-left: auto;
+    width: 65%;
+    background-color: white;
+    padding: 0.5rem;
+    border-radius: 5px;
+    margin-bottom: 1em;
+    height: max-content;
+}
+
+.questions-list h3 {
+    margin: 0px;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+}
+
+@media (min-width: 600px) {
+    #global-container {
+        border: solid 15px black;
+        border-radius: 15px;
+    }
+}
+
+@media (max-width: 600px) {
+    #global-container {
+        width: 100vw;
+        height: 100vh;
+        margin: auto;
+    }
+    .questions-list {
+        width: 80%;
+    }
+}
