@@ -195,6 +195,9 @@ body {
         height: -webkit-fill-available;
         margin: auto;
     }
+    .message {
+        font-size: 1rem;
+    }
     .questions-list {
         width: 80%;
     }
