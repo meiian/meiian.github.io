@@ -1,0 +1,120 @@
+body {
+    background-image: url(bg.webp);
+    overflow: hidden;
+}
+
+.blur-bg {
+    backdrop-filter: blur(5px);
+    display: inherit;
+    width: 100vw;
+}
+
+#numbers {
+    height: 100vh;
+    width: max-content;
+    position: fixed;
+    left: 55vw;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    transform: scale(1.3);
+}
+
+#title {
+    font-size: 64px;
+    font-weight: bold;
+    color: #f1c063;
+    text-shadow: 0px 0px 3px black;
+}
+
+#primo {
+    font-size:128px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0rem 3rem;
+    display: flex;
+    border-radius: 100px;
+    color: white;
+    border: solid 1px white;
+}
+
+#primo img {
+    width: 0.8em;
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+
+    margin-right: 0.2em;
+}
+
+#nbPulls {
+    font-size: 64px;
+}
+
+#pityInfos {
+    font-size:44px;
+    color: #f79382;
+    width: max-content;
+    line-height: 100%;
+}
+
+#nbPullsPity {
+    color: white;
+}
+
+#pity img {
+    width: 1em;
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+
+    margin-left: 0.2em;
+}
+
+#pityPrimosCont {
+    font-size: 32px;
+}
+
+#cumulated_div {
+    position: relative;
+    background-color: #2e2322;
+    z-index: -2;
+    border-radius: 100px;
+}
+
+#cumulated_fond {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #c1412a;
+    z-index: -1;
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
+}
+
+#estimatedPulls {
+    width: 50%;
+    display: grid;
+    grid-template-rows: auto auto;
+}
+
+#deadlinePulls {
+    height: max-content;
+    line-height: 100%;
+}
+
+.separator {
+    height: 0px;
+    width: 100%;
+    border-top: solid 1px white;
+}
+
+#pity {
+    display: grid;
+    grid-template-rows: 16px auto;
+}
+
+#infos-wall {
+    justify-content: center;
+    width: 100%;
+}
