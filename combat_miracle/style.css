@@ -1,0 +1,133 @@
+@font-face {
+    font-family: Source;
+    src: url(../font/SourceSansPro-Regular.ttf);
+}
+
+body {
+    margin: 0px;
+    width: 100vw;
+    height: 100vh;
+    font-family: Source;
+    display: flex;
+}
+
+#footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 10vh;
+    background-color: red;
+    display: flex;
+}
+
+#main-container {
+    display: flex;
+    width: 90%;
+    height: 90vh;
+    margin-right: auto;
+    margin-left: auto;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+}
+
+#picture-frame {
+    height: max-content;
+    margin: auto;
+    margin-left: 0px;
+    display: flex;
+    width: 1219px;
+    height: 515px;
+    position: relative;
+    transform: scale(0.7);
+}
+
+#picture-frame img:first-child {
+    border-radius: 5px;
+    width: 790px;
+    height: auto;
+    position: absolute;
+    top: 39px;
+    left: 218px;
+}
+
+#switch {
+    position: absolute;
+    width: 1219px;
+    height: 515px;
+    height: auto;
+    top: 0px;
+    left: 0px;
+}
+
+#description-frame {
+    margin: auto;
+    padding: 2em;
+    max-width: 50em;
+    width: max-content;
+    padding-left: 0px;
+}
+
+#footer-title {
+    width: max-content;
+    margin: auto;
+}
+
+#arrows {
+    display: flex;
+    width: 100vw;
+    position: fixed;
+    height: 90vh;
+    top: 0px;
+    left: 0px;   
+}
+
+#arrows svg {
+    width: 64px;
+    height: 64px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#arrow-left {
+   height: 100%;
+   display: flex;
+}
+
+#arrow-right {
+    height: 100%;
+   display: flex;
+    margin-left: auto;
+}
+
+@media (max-width: 600px) {
+    body {
+        height: -webkit-fill-available;
+    }
+
+    #main-container {
+        flex-direction: column;
+    }
+
+    #description-frame {
+        max-width: 85vw;
+        padding: 1em;
+        margin-top: 0px;
+    }
+
+    #picture-frame {
+        padding: 0em;
+        max-width: 100vw;
+        margin: 0px;
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 5px;
+    }
+
+    #arrows {
+        height: 10vh;
+        top: 90vh;
+        z-index: 5;
+    }
+}
