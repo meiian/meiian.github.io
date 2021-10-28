@@ -30,6 +30,14 @@ body {
     
 }
 
+.max-width {
+    width: 100%;
+}
+
+.max-height {
+    height: 100%;
+}
+
 /* #########################
           BACKGROUNDS
    ######################### */
@@ -86,6 +94,14 @@ body {
     text-transform: uppercase;
 }
 
+.text-center {
+    text-align: center;
+}
+
+.line-100 {
+    line-height: 100%;
+}
+
 .title {
     font-size: 2rem;
     font-weight: bold;
@@ -96,8 +112,40 @@ body {
     color: var(--main-color);
 }
 
+.button-title {
+    border-radius: 100px;
+    padding: 0.6rem 2rem;
+    background-color: var(--main-color);
+    color: white;
+    font-weight: bold;
+    display: block;
+    width: max-content;
+    height: max-content;
+    text-decoration: none;
+    user-select: none;
+}
+
 .subtitle {
     font-size: 1.4rem;
+}
+
+.framed-title {
+    border: solid var(--main-color) 5px;
+    width: max-content;
+    border-radius: 15px;
+    font-weight: bold;
+    padding-right: 1rem;
+    font-size: 2rem;
+}
+
+.framed-title>span {
+    color: white;
+    background-color: var(--main-color);
+    padding: 5px;
+    border-radius: 15px;
+    
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 .quote {
@@ -133,10 +181,18 @@ body {
     font-weight: bold;
 }
 
+.input-color>label {
+    background-color: var(--color);
+}
+
 .input-with-label>input {
     border: solid 1px var(--main-color);
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+
+.input-color>input {
+    border: solid 1px var(--color);
 }
 
 .input-with-label>input:focus {
@@ -178,6 +234,17 @@ body {
     margin-left: 0.5rem;
 }
 
+/* #########################
+            BUTTONS
+   ######################### */
+
+.badge {
+    background-color: var(--main-color);
+    padding: 0.3rem;
+    border-radius: 5px;
+    line-height: 100%;
+
+}
 
 /* #########################
             BUTTONS
@@ -195,8 +262,12 @@ body {
     text-decoration: none;
     user-select: none;
     transition: filter 0.2s;
+    cursor: pointer;
 }
 
+.button-color {
+    background-color: var(--color);
+}
 
 .button:hover {
     filter: brightness(80%);
@@ -236,8 +307,12 @@ body {
     max-height: 20rem;
 }
 
+.card-color {
+    background-color: var(--color);
+}
+
 .card-img-in-bg {
-    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.8)) ,var(--bg-image) center center no-repeat;
+    background: linear-gradient(var(--color1) , var(--color2) 60%) ,var(--bg-image) center center / cover no-repeat;
 }
 
 .card-code {
@@ -487,6 +562,10 @@ body {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+}
+
+.justify-center {
+    justify-content: center;
 }
 
 /* #########################

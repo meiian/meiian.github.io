@@ -1,0 +1,91 @@
+<head>
+    <title>hu tao</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" type="image/png" href="./pokemon-bdsp/icon.png"/>
+        <link rel="stylesheet" href="./Mizu/mizu.css"/>
+        <link rel="stylesheet" href="./hutao/style.css"/>
+        <meta name="theme-color" content="#466caf">
+</head>
+
+<body>
+    <div class="blur-bg">
+        <img src="hutao/hutao.webp">
+        <div id="numbers">
+                <div id="title">Objectif Hu Tao</div>
+                <div id="primo"><img src="hutao/primo.png"><span id="primoCount"></span></div>
+                <div id="infos-wall" class="card-deck">
+                    <div id="estimatedPulls" class="card card-color text-strong" style="--color: #f1c063;">
+                        <div class="mx-auto" style="font-size: 5rem;">
+                            <span id="deadlinePulls"></span>
+                        </div>
+                        <div class="mx-auto text-strong text-medium">Pulls estimés au 2 Novembre.</div>
+                    </div>
+                    <div id="pity" class="card card-color text-white py-small" style="--color: #c53a27;">
+                        <div class="text-strong" style="line-height: 100%; height: max-content; margin-top: 5px">Hu Tao garantie</div>
+                        <div class="flex m-auto" style="padding: 0px; height: max-content;">
+                            <div id="pityInfos" class="text-center text-strong ml-small m-auto"><span id="nbPullsPity">10</span><div class="separator"></div><span id="pityMax">180</span></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="cumulated_div" class="text-big mx-auto text-strong mb-small" style="--main-color: black; color: #f1c063;">
+                    <div id="cumulated_fond"></div>
+                    <div style="padding: 0.5rem 3rem;">Chances d'obtenir Hu Tao : <span id="cumulated_drop" class="text-big-big"></span>%</div>
+                    
+                </div>
+                
+        </div>
+    </div>
+</body>
+
+<script>
+    const Months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+
+    Date.prototype.addDays = function(days) {
+        var date = new Date(this.valueOf());
+        date.setDate(date.getDate() + days);
+        return date;
+    }
+    
+    function cumulated_drop_rate(nbPulls) {
+        if(nbPulls < 90)
+            return parseFloat(arrondi((1 - (1 - (1/166.6666666))**nbPulls) * 100 / 2))
+        if(nbPulls == 90)
+            return 50.00;
+        if(nbPulls < 180)
+            return 50 + parseFloat(arrondi((1 - (1 - (1/166.6666666))**(nbPulls-90)) * 100))
+        return 100;
+    }
+
+    function printDate(date) {
+        return date.getDate() + " " + Months[date.getMonth()]
+    }
+
+    function arrondi(x) {
+        return Number.parseFloat(x).toFixed(2);
+    }
+
+    let today = new Date();
+    let deadline = new Date("2021-11-02");
+    let primos = 12824;
+    let pulls = Math.floor(primos / 160);
+    let alreadyPull = 31;
+    let pityPulls = pulls + alreadyPull;
+    let pityPrimos = 180*160 - primos - alreadyPull*160;
+    let deadlineDaysRemaining = (deadline.getTime() - today.getTime()) / (1000 * 3600 * 24); 
+    let deadlinePrimos = deadlineDaysRemaining * 60 + primos + alreadyPull*160;
+    let deadlinePulls = Math.floor(deadlinePrimos / 160);
+    let daysRemain = Math.ceil(pityPrimos / 60);
+    let dateEstimated = today.addDays(daysRemain);
+    console.log(printDate(dateEstimated));
+    if(pityPrimos < 0)
+        pityPrimos = 0;
+    if(daysRemain < 0)
+        daysRemain = 0;
+    document.getElementById("primoCount").innerText = primos;
+    document.getElementById("nbPullsPity").innerText = pityPulls;
+    document.getElementById("cumulated_drop").innerText = cumulated_drop_rate(pityPulls).toFixed(2);
+    document.getElementById("cumulated_fond").style.width = `${cumulated_drop_rate(pityPulls)}%`;
+    document.getElementById("deadlinePulls").innerText = deadlinePulls;
+</script>
