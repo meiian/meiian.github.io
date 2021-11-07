@@ -107,7 +107,7 @@
     <script>
         let releaseDate = new Date(2021, 10, 19, 00, 00, 00);
         let trueHour = releaseDate.getHours() + (releaseDate.getTimezoneOffset() / 60);
-        releaseDate = new Date(2021, 10, 19, trueHour, 00, 00);
+        releaseDate = new Date(2021, 10, 19, 00, 00, 00);
         function updateCountdown(){
             let nowDate = new Date();
             let diffTime = releaseDate.getTime() - nowDate.getTime();
