@@ -1,0 +1,112 @@
+body{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: black;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    z-index: 5;
+    margin: 2px;
+}
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #07aa7f;
+}
+
+#drop-disclaimer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: #70bbd2;
+    color: white;
+    z-index: 10;
+}
+
+#drop-square{
+    padding: 10vh 10vw;
+    border: dashed 5px white;
+}
+
+#pfps {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+}
+
+#options {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100vw;
+}
+
+#options>*{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#pfp-zone {
+    width: 500px;
+    height: 500px;
+    margin-right: 10px;
+    position: relative;
+    overflow: auto;
+}
+
+
+#preview {
+    position: absolute;
+    min-width: 500px;
+    width: auto;
+    height: 100%;
+    
+}
+
+#pfp-zone2 {
+    width: 500px;
+    height: 500px;
+    margin-left: 10px;
+    position: relative;
+    overflow: auto;
+}
+
+
+#preview2 {
+    position: absolute;
+    min-width: 500px;
+    width: auto;
+    height: 100%;
+    
+}
+
+svg {
+    position: sticky;
+    width: 500px;
+    top:0;
+    left: 0;
+}
+
+.button {
+    background-color: #70bbd2;
+    color: white;
+    padding: 1em 2em;
+}
