@@ -1,0 +1,61 @@
+<head>
+    <title>Conception de PP Liées</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" type="image/png" href="./ac-mail/favico.png"/>
+        <meta name="theme-color" content="#70bbd2">
+        <link rel="stylesheet" href="./pp-crop/pp-crop.css"/>
+        <script src="./ac-mail/html2canvas.min.js"></script>
+</head>
+
+<body>
+  <div id="drop-disclaimer">
+    <div id="drop-square">
+      <h5>Glissez votre image ici.</h5>
+    </div>
+  </div>
+
+  <div id="pfps">
+    <div id="pfp-zone">
+        <img id="preview" src="" alt="">   
+        <svg id="circle" viewbox="0 0 500 500" width="100%">
+            <defs>
+              <mask id="mask" x="0" y="0" width="500" height="500">
+                <rect x="0" y="0" width="500" height="500" fill="#fff"/>
+                <circle cx="250" cy="250" r="250" />
+              </mask>
+            </defs>
+            <rect x="0" y="0" width="500" height="500" mask="url(#mask)" fill-opacity="0.7"/>    
+          </svg>
+           
+    </div>
+
+    <div id="pfp-zone2">
+      <img id="preview2" src="" alt="">   
+      <svg id="circle2" viewbox="0 0 500 500" width="100%">
+          <defs>
+            <mask id="mask" x="0" y="0" width="500" height="500">
+              <rect x="0" y="0" width="500" height="500" fill="#fff"/>
+              <circle cx="250" cy="250" r="250" />
+            </mask>
+          </defs>
+          <rect x="0" y="0" width="500" height="500" mask="url(#mask)" fill-opacity="0.7"/>    
+        </svg>
+         
+    </div>
+  </div>
+
+  <div id='options'>
+    <div class="zoom-cont">
+      <input type="range" min="1" max="100" value="1" class="slider" id="zoom">
+    </div>
+    <div id="save-cont">
+      <div id="save-button" class="button">
+        Enregistrer les 2 PP liées
+      </div>
+    </div>
+  </div>
+    
+</body>
+
+<script src="./pp-crop/script.js"></script>
