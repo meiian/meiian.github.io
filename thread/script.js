@@ -64,7 +64,7 @@ function print_thread_parts(thread_parts) {
         </div>`;
         thread_part.addEventListener("click", function(){
             card = this.lastChild;
-            copyTextToClipboard(card.innerText)
+            copyTextToClipboard(card.firstElementChild.innerText)
             copied_alert = document.createElement("div");
             copied_alert.className = "copied";
             copied_alert.id = `thread-part-${i}-copied`;
@@ -80,10 +80,7 @@ function print_thread_parts(thread_parts) {
 
 
 function create_thread_parts(text) {
-    reg = 
     thread_parts = text.match(/([\s\S]{1,280})(?<!\s)(?!\w)/g);
-    console.log(text)
-    console.log(thread_parts)
     if (thread_parts == null)
         thread_parts = [];
     print_thread_parts(thread_parts);
