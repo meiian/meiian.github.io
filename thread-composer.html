@@ -1,0 +1,45 @@
+<head>
+    <title>Thread Composer</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" type="image/png" href="./thread/thread-composer.png"/>
+        <link rel="stylesheet" href="./Mizu/mizu.css"/>
+        <link rel="stylesheet" href="./thread/style.css"/>
+        <meta name="theme-color" content="#1da1f2">
+
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="Thread Composer">
+        <meta name="twitter:description" content="Helps you write threads for Twitter.">
+
+        <meta property="og:title" content="Thread Composer" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Helps you write threads for Twitter." />
+</head>
+
+<body>
+    <div class="global-container pt-big">
+        <div id="left-area">
+            <div class="text-big-big">Twitter Thread Composer</div>
+            <div class="text-medium">Helps you write threads for Twitter.</div>
+            <div class="text-medium">Click on each thread part to copy it.</div>
+            <div class="pt">
+                <div class="text-medium">Your text:</div>
+                <div class="text-input-cont">
+                    <textarea id="text-input" name="text-input" cols="50" rows="20" placeholder="Enter your text here."></textarea>
+                </div>
+            </div>
+            <div class="pt-big mobile-hidden">
+                <div class="text-big">Parts : <span id="nb-parts"></span></div>
+                <div class="text-big">Characters : <span id="nb-characters"></span></div>
+            </div>
+        </div>
+        <div id="right-area">
+            <div class="text-big">Your thread :</div>
+            <div id="thread-parts">
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+<script src="./thread/script.js"> </script>
