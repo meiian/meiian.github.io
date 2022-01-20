@@ -97,13 +97,13 @@
     </div>
 
     <script>
-        let releaseDate = new Date(2022, 0, 28, 00, 00, 00);
+        let releaseDate = new Date(2022, 0, 28, 01, 00, 00);
         let trueHour = releaseDate.getHours() + (releaseDate.getTimezoneOffset() / 60);
         releaseDate = new Date(2022, 0, 28, trueHour, 00, 00);
         function updateCountdown(){
             let nowDate = new Date();
             let diffTime = releaseDate.getTime() - nowDate.getTime();
-            let countdownString = "ANCIENT DOGGO TIME";
+            let countdownString = "ARSUS";
             if(diffTime>0){
                 let diffDays = diffTime /  (1000 * 3600 * 24);
                 let diffHours = (diffDays - Math.trunc(diffDays)) * (24);
