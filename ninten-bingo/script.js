@@ -38,7 +38,7 @@ window.addEventListener('resize', () => {
     document.documentElement.style.setProperty('--vh', `${vh}px`);
   });
 
-  
+
 const sum = (a, b) => a + b;
 
 function check_if_bingo_stayed(grille, is_bingo) {
@@ -206,6 +206,7 @@ document.getElementById("known-issues").addEventListener("click", function(){
     `Liste des bugs connus :
     <ul>
         <li>Des bugs d'affichage des couleurs des cases peuvent apparaître après avoir enlevé une case d'une ligne/colonne/diagonale ayant été en bingo.</li>
+        <li>Le bas de l'écran peut être coupé sur téléphone.</li>
     </ul>`;
     show_alert(text);
 });
