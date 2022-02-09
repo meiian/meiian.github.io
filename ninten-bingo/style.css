@@ -1,6 +1,7 @@
 body {
     width: 100vw;
     height: 100vh;
+    background-color: rgb(5,5,5);
     height: calc(var(--vh, 1vh) * 100);
     overflow: hidden;
 }
@@ -144,6 +145,10 @@ p {
     #global-cont {
         flex-direction: column; 
         width: 100vw;
+    }
+
+    body {
+        background-color: white;
     }
 
     #side-content {
