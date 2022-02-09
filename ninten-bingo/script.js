@@ -27,6 +27,18 @@ let grille_text =
 
 const current_direct = "Feb_2022";
 
+// Mobile CSS adjustment
+
+let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+window.addEventListener('resize', () => {
+    // We execute the same script as before
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  });
+
+  
 const sum = (a, b) => a + b;
 
 function check_if_bingo_stayed(grille, is_bingo) {
