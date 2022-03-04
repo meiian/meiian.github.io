@@ -1,0 +1,38 @@
+<head>
+    <title>recursif</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" type="image/png" href="./feur/present.png"/>
+        <link rel="stylesheet" href="./Mizu/mizu.css"/>
+        <meta name="theme-color" content="#1da1f2">
+</head>
+
+<style>
+    body {
+        display: flex;
+    }
+    iframe{
+        width: 80%;
+        height: 80%;
+        margin: auto;
+        border: solid black 0px;
+    }
+</style>
+
+<body>
+    <iframe></iframe>
+</body>
+
+<script>
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+    }
+    let color = "rgb(" + getRandomInt(255) + "," + getRandomInt(255) + "," + getRandomInt(255) + ")";
+    document.body.style.backgroundColor = color;
+
+    const iframeEl = document.querySelector('iframe');
+    const nextQueryValue = !location.search ? 1 :
+      Number(location.search.split("?").pop()) + 1;
+
+    iframeEl.src = `recursif.html?${nextQueryValue}`;
+</script>
