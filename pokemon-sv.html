@@ -1,0 +1,149 @@
+<head>
+    <title>pokemon siesta</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" type="image/png" href="./pokemon-sv/icon.png"/>
+        <meta name="theme-color" content="#466caf">
+
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="Compte à rebours - Pokémon Ecarlate et Violet">
+        <meta name="twitter:description" content="Combien de temps avant de pouvoir y jouer ?">
+
+        <meta property="og:title" content="Compte à rebours - Pokémon Ecarlate et Violet" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Combien de temps avant de pouvoir y jouer ?" />
+</head>
+
+
+<style>
+
+    body{
+        max-width: 100vw;
+        max-height: 100vh;
+        overflow: hidden;
+        background-color: black;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+    }
+
+    #video {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -1;
+        filter: brightness(70%) blur(10px);
+    }
+
+    #logos {
+        width: 100vw;
+        display: flex;
+        height: max-content;
+        margin: auto;
+        flex-wrap: nowrap;
+        justify-content: center;
+        padding-bottom: 50px;
+    }
+    #logo1 {
+        background: url(./pokemon-sv/s-logo.webp) no-repeat center center;
+        width: 330px;
+        height: 195px;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    #logo2 {
+        background: url(./pokemon-sv/v-logo.webp) no-repeat center center;
+        width: 330px;
+        height: 195px;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    #countdown{
+        display: flex;
+        font-size: 42px;
+        font-size: clamp(16px, 6vw, 42px);
+        color: white;
+        font-family: Calibri, Arial;
+        width: max-content;
+        max-width: 90vw;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        font-weight: bold;
+        text-shadow: 0px 0px 5px black;;
+    }
+    .countdownPart {
+
+        padding-right: 20px;
+    }
+
+    #center {
+        margin: auto;
+    }
+
+    #tbd {
+        margin-left: auto;
+        margin-right: auto;
+        width: max-content;
+        font-size: 16px;
+        color: white;
+        font-family: Calibri, Arial;
+        font-weight: bold;
+        text-shadow: 0px 0px 5px black;
+    }
+
+    @media (max-width: 600px) {
+
+        #logos>*{
+            width: 40vw;
+            height: 200px;
+        }
+    }
+</style>
+
+<body>
+    <video autoplay muted loop id="video">
+        <source src="./pokemon-sv/video.webm" type="video/mp4">
+      </video>
+    <div id="center">
+        <div id="logos">
+            <div id="logo1"></div>
+            <div id="logo2"></div>
+        </div>
+        <p id="countdown"></p>
+        <p id="tbd">(date précise à déterminer)</p>
+    </div>
+
+    <script>
+        let releaseDate = new Date(2022, 12, 31, 23, 59, 99);
+        let trueHour = releaseDate.getHours() + (releaseDate.getTimezoneOffset() / 60);
+        releaseDate = new Date(2022, 12, 31, 23, 59, 59);
+        function updateCountdown(){
+            let nowDate = new Date();
+            let diffTime = releaseDate.getTime() - nowDate.getTime();
+            let countdownString = "¡¡¡¡¡¡vamos!!!!!!";
+            if(diffTime>0){
+                let diffDays = diffTime /  (1000 * 3600 * 24);
+                let diffHours = (diffDays - Math.trunc(diffDays)) * (24);
+                let diffMin = (diffHours - Math.trunc(diffHours)) * 60;
+                let diffSec = (diffMin - Math.trunc(diffMin)) * 60;
+
+                let printDiffDays = `${(Math.trunc(diffDays)>0)?(diffDays<10)?'0'+Math.trunc(diffDays):Math.trunc(diffDays):''}`;
+                let printDiffHours = `${(Math.trunc(diffHours)>0 || printDiffDays.length > 0)?(diffHours<10)?'0'+Math.trunc(diffHours):Math.trunc(diffHours):''}`;
+                let printDiffMin = `${(Math.trunc(diffMin)>0 || printDiffHours.length > 0)?(diffMin<10)?'0'+Math.trunc(diffMin):Math.trunc(diffMin):''}`;
+                let printDiffSec = `${(Math.trunc(diffSec)>0 || printDiffMin.length > 0)?(diffSec<10)?'0'+Math.trunc(diffSec):Math.trunc(diffSec):''}`;
+                let daysSub = `<div class="countdownPart"><div class="subtitle">Jour${(Math.trunc(diffDays)>1)?'s':''}</div>`;
+                let hoursSub = `<div class="countdownPart"><div class="subtitle">Heure${(Math.trunc(diffHours)>1)?'s':''}</div>`;
+                let minSub = `<div class="countdownPart"><div class="subtitle">Minute${(Math.trunc(diffMin)>1)?'s':''}</div>`;
+                let secSub = `<div class="countdownPart"><div class="subtitle">Seconde${(Math.trunc(diffSec)>1)?'s':''}</div>`;
+                countdownString = `${(printDiffDays.length > 0)? daysSub + printDiffDays + "</div> ":''}${(printDiffHours.length > 0)?hoursSub + printDiffHours + "</div> ":''}${(printDiffMin.length > 0)?minSub +printDiffMin + "</div> ":''}${(printDiffSec.length > 0)?secSub +printDiffSec + '</div>':''}`;
+            }
+            document.getElementById("countdown").innerHTML = countdownString;
+        }
+        updateCountdown();
+        let refresh = setInterval(updateCountdown, 1000);
+
+    </script>
+</body>
