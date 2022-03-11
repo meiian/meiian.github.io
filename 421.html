@@ -75,16 +75,113 @@
 
             <div id="table-cont">
                 <div id="table">
-
+                    <div id="dices-cont">
+                        <div id="dice-1" class="dice"><img src="./421/images/dice/5.png"/></div>
+                        <div id="dice-2" class="dice"><img src="./421/images/dice/2.png"/></div>
+                        <div id="dice-3" class="dice"><img src="./421/images/dice/1.png"/></div>
+                    </div>
                 </div>
             </div>
 
             <div id="actions-cont">
+                <div id="banque-cont" class="joueur-cont" style="--color: #9b12df">
+                    <div class="joueur-name-cont"><p id="banque-position" class="joueur-position">Banque</p></div>
+                    <div class="jeton-cont banque-jeton">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+                        </svg>
+                        <p id="banque-jetons">0</p>
+                    </div>
+                </div>
 
+                <div id="lancer-infos-cont">
+                    <p id="lancer-infos" class="text-strong">Lancer <span id="lancer-infos-count">1</span></p>
+                    <a class="button text-big">Relancer</a>
+                    <p id="tour-infos" class="text-strong">Tour <span id="tour-infos-count">14</span></p>
+                </div>
+
+                <div id="score-infos-cont">
+                    <p id="score-infos-count" class="text-strong">521</p>
+                    <div class="separator"></div>
+                    <div class="jeton-cont">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+                        </svg>
+                        <p id="score-infos-jetons">0</p>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="right-column">
+            <div id="account-menu">
+                <div id="account-menu-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                      </svg>
+                    Miel
+                </div>
+            </div>
+            <div id="logbox">
+                <div id="log">
+                    <div class="log-bloc">
+                        <p class="text-strong">Tour 11 - <span class="text-color" style="--color: #ff2632">J2</span></p>
+                        <p>Lancer 1 : 541</p>
+                        <p>Lancer 2 : 632</p>
+                    </div>
 
+                    <div class="log-bloc">
+                        <p class="text-strong">Tour 12 - <span class="text-color" style="--color: #00a600">J3</span></p>
+                        <p>Lancer 1 : 632</p>
+                    </div>
+
+                    <div class="log-bloc">
+                        <p class="text-strong">Tour 13 - <span class="text-color" style="--color: #ae8300">J4</span></p>
+                        <p>Lancer 1 : 641</p>
+                        <p>Lancer 2 : 211</p>
+                        <p>Lancer 2 : 311</p>
+                    </div>
+
+                    <div class="log-bloc">
+                        <p class="text-strong">Tour 14 - <span class="text-color" style="--color: #1691eb">J1</span></p>
+                        <p>Lancer 1 : 521</p>
+                    </div>
+                    <div class="log-bloc">
+                        <p class="text-strong">Tour 14 - <span class="text-color" style="--color: #1691eb">J1</span></p>
+                        <p>Lancer 1 : 521</p>
+                    </div>
+                    <div class="log-bloc">
+                        <p class="text-strong">Tour 14 - <span class="text-color" style="--color: #1691eb">J1</span></p>
+                        <p>Lancer 1 : 521</p>
+                    </div>
+                    <div class="log-bloc">
+                        <p class="text-strong">Tour 14 - <span class="text-color" style="--color: #1691eb">J1</span></p>
+                        <p>Lancer 1 : 521</p>
+                    </div>
+                    <div class="log-bloc">
+                        <p class="text-strong">Tour 14 - <span class="text-color" style="--color: #1691eb">J1</span></p>
+                        <p>Lancer 1 : 521</p>
+                    </div>
+                    <div class="log-bloc">
+                        <p class="text-strong">Tour 14 - <span class="text-color" style="--color: #1691eb">J1</span></p>
+                        <p>Lancer 1 : 521</p>
+                    </div>
+                    <div class="log-bloc">
+                        <p class="text-strong">Tour 14 - <span class="text-color" style="--color: #1691eb">J1</span></p>
+                        <p>Lancer 1 : 521</p>
+                    </div>
+                    <div class="log-bloc">
+                        <p class="text-strong">Tour 14 - <span class="text-color" style="--color: #1691eb">J1</span></p>
+                        <p>Lancer 1 : 521</p>
+                    </div>
+                    <div class="log-bloc">
+                        <p class="text-strong">Tour 14 - <span class="text-color" style="--color: #1691eb">J1</span></p>
+                        <p>Lancer 1 : 521</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
