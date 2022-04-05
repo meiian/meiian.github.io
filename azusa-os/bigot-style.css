@@ -1,0 +1,55 @@
+:root {
+    --main-color: #dd3b75;
+    --secondary-color: #ffd8e5;
+}
+
+@font-face {
+    font-family: Tenorite;
+    src: url("../font/tenorite.ttf");
+}
+
+
+body{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    font-family: Tenorite;
+    display: flex;
+    overflow: hidden;
+    background-color: var(--secondary-color);
+}
+
+#bigot-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+#oops-message {
+    background-color: #fffae4;
+    border-radius: 15px;
+    height: max-content;
+    width: 90%;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 24px;
+    margin: auto;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+}
+
+#title-message {
+    background-color: var(--main-color);
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2px 10px;
+    border-radius: 25px;
+    color: white;
+    margin-top: -1em;
+}
+
+#body-message {
+    margin-top: 0.5em;
+    text-align: center;
+    color: #4d4436;
+}

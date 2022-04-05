@@ -1,0 +1,295 @@
+:root {
+    --main-color: #dd3b75;
+    --secondary-color: #ffd8e5;
+}
+
+@font-face {
+    font-family: Tenorite;
+    src: url("../font/tenorite.ttf");
+}
+
+
+body{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    font-family: Tenorite;
+    display: flex;
+    overflow: hidden;
+}
+
+
+::-webkit-resizer {
+
+}
+
+svg {
+    pointer-events: none;
+}
+
+.window-body * {
+    pointer-events: none;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+
+#dock-container {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    display: flex;
+    height: max-content;
+    z-index: 10001;
+}
+
+#dock {
+    font-size: 36px;
+    font-weight: bold;
+    background-color: var(--secondary-color);
+    color: var(--main-color);
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+#dock-hour-date {
+    margin-left: 15px;
+    height: 1em;
+}
+
+#dock-apps {
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+#dock-apps>a {
+    cursor: pointer;
+    height: 100%;
+    width: 56px;
+    align-items: center;
+    margin-left: 4px;
+    margin-right: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.active-app {
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    border-radius: 15px;
+}
+
+#dock-apps svg {
+    height: 36px;
+    width: auto;
+}
+
+.window {
+    width: 500px;
+    height: 500px;
+    border: 2px solid var(--main-color);
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+    resize: both;
+    overflow: auto;
+    position: absolute;
+    min-width: 100px;
+    min-height: 50px;
+    display: grid;
+    grid-template-rows: 26px auto;
+}
+
+.window-header {
+    background-color: var(--main-color);
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 5px 15px;
+    display: flex;
+    justify-content: space-between;
+}
+.active-window {
+    z-index: 10000;
+}
+
+.window-header-icons {
+    display: flex;
+}
+
+.window-title {
+    display: flex;
+}
+
+.window-title>* {
+    margin-right: 5px;
+}
+
+.window-title svg {
+    min-width: 16px;
+}
+
+.window-body {
+    background-color: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.pfp img{
+    border-radius: 100000px;
+    border: solid 5px white;
+    width: 256px;
+    height: auto;
+}
+
+.pfp {
+    border: solid 5px var(--main-color);
+    width: max-content;
+    height: max-content;
+    border-radius: 100000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.centered {
+    margin: auto;
+}
+
+.centered-text {
+    text-align: center;
+}
+
+.colored-text {
+    color: var(--main-color);
+}
+
+#about-me-window {
+    min-width: 586px;
+    min-height: 688px;
+}
+
+#countdown-window {
+    min-width: 609px;
+    min-height: 244px;
+}
+
+#links-window {
+    min-width: 222px;
+    min-height: 376px;
+}
+
+#links-list {
+    display: flex;
+    flex-direction: column;
+
+}
+
+#links-list>a {
+    margin-top: 10px;
+}
+
+.link-a {
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px 25px;
+    font-size: 32px;
+    pointer-events: all;
+    color: var(--main-color);
+    text-decoration: none;
+    border: solid 2px var(--main-color);
+    box-shadow: 0px 0px 0px rgba(0,0,0,0);
+    transition: background-color 0.5s, color 0.5s, box-shadow 0.5s, border 0.5s;
+    font-weight: bold;
+}
+
+.link-a:hover {
+    background-color: var(--color);
+    color: white;
+    box-shadow: 0px 0px 5px var(--color);
+    border: solid 2px var(--color);
+}
+
+.link-a p {
+    margin: 0px;
+    height: 1em;
+    text-align: center;
+}
+
+#countdown-list {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.countdown-logos,
+.countdown-multi-logos {
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 10px 15px;
+    width: max-content;
+}
+
+.countdown-logos img {
+    width: auto;
+    height: 64px;
+    z-index: 1;
+    margin-bottom: 10px;
+}
+
+.countdown-multi-logos img {
+    width: auto;
+    height: 46px;
+    z-index: 1;
+    margin-bottom: 10px;
+}
+
+.countdown-cont {
+    width: 90%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 25px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.countdown-count-cont {
+    z-index: 1;
+    display: flex;
+    margin: auto;
+}
+
+.countdown-video {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    z-index: 0;
+    filter: brightness(70%) blur(2px);
+}
+
+.countdown-part {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-weight: bold;
+    font-size: 28px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-shadow: 0px 0px 5px black;
+}
