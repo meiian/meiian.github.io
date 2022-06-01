@@ -113,13 +113,12 @@
             <div id="logo2"></div>
         </div>
         <p id="countdown"></p>
-        <p id="tbd">(date précise à déterminer)</p>
     </div>
 
     <script>
-        let releaseDate = new Date(2022, 11, 31, 23, 59, 99);
+        let releaseDate = new Date(2022, 11, 18, 0, 0, 0);
         let trueHour = releaseDate.getHours() + (releaseDate.getTimezoneOffset() / 60);
-        releaseDate = new Date(2022, 11, 31, 23, 59, 59);
+        releaseDate = new Date(2022, 10, 18, 0, 0, 0);
         function updateCountdown(){
             let nowDate = new Date();
             let diffTime = releaseDate.getTime() - nowDate.getTime();
