@@ -9,23 +9,23 @@ let grille =
 
 let grille_img =
 [ 
-    ["silksong", "foote", "kidicarus", "online", "mp4"],
-    ["", "xenoblade", "splatoon", "themes", "swsports"],
-    ["bayonetta", "mk8dlc", "", "mario3d", "omt"],
-    ["", "mother", "pikmin", "lal", "wwhd"],
-    ["dk", "zelda", "", "", "rabbids"], 
+    ["triangle", "kirb", "rabbids", "zelda", "fallguys"],
+    ["", "sonic", "splatoon", "silksong", "mk"],
+    ["bayonetta", "themes", "", "monolith", "chocobo"],
+    ["", "", "omt", "foote", "mother"],
+    ["genshin", "aa", "mario3d", "fireemblem", "online"], 
 ]
 
 let grille_text =
 [ 
-    ["", "", "", "GB / GBA", ""],
-    ["Plein de trailers à la suite dont tout le monde osef", "", "", "Les<br>thèmes<br>???", ""],
-    ["", "<br><br>2ème<br>vague", "Libre", "Nouveau Mario 3D", "One more thing"],
-    ["Nouveau BR 99", "", "", "", ""],
-    ["", "Des news sur Zelda", "Nouvelle franchise", "Un port<br>Wii U", ""], 
+    ["", "", "", "Des news sur Zelda", ""],
+    ["Un port<br>Wii U", "", "", "", "MARIO<br>KART<br>10"],
+    ["", "Les<br>thèmes<br>???", "Libre", "", "Le vrai Mario<br>Kart 10"],
+    ["Nouveau BR 99", "Plein de trailers à la suite dont tout le monde osef", "One more thing", "Mario Foute", ""],
+    ["", "AA7", "Nouveau Mario 3D", "", "Encore plus d'arnaque ???"], 
 ]
 
-const current_direct = "Jun_2022";
+const current_direct = "Feb_2022";
 
 // Mobile CSS adjustment
 
