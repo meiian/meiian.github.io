@@ -1,0 +1,327 @@
+@font-face {
+    font-family: "Shippori";
+    src: url("../font/ShipporiAntique.ttf") format("truetype");
+}
+
+@keyframes fade-in {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+h1, h2, h3, h4, h5, p, div {
+    margin: 0px;
+}
+
+a {
+    text-decoration: none;
+    color: initial;
+}
+
+:root {
+    --main-color: #ffc721;
+}
+
+body {
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    font-family: "Shippori";
+    display: flex;
+    overflow: hidden;
+    animation-name: fade-in;
+    animation-duration: 1s;
+}
+
+#big-picture-cont {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+    display: flex;
+}
+
+#big-picture-cont:empty {
+    display: none;
+}
+
+.big-picture {
+    height: 80%;
+    width: auto;
+    margin: auto;
+}
+
+#page-title {
+    font-size: calc(2rem + 4vmin);
+    margin-top: auto;
+    margin-bottom: auto;
+    color: var(--main-color);
+}
+
+#home-cont {
+    height: calc(100% - 3vmin);
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+    margin-top: 3vmin;
+    width: 70vw;
+    
+}
+
+#header-cont {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    height: max-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#icon {
+    width: 150px;
+    height: 150px;
+    border-radius: 10000000px;
+    border: solid 5px white;
+}
+
+#icon-cont {
+    padding: 5px;
+    background-color: var(--main-color);
+    width: max-content;
+    height: max-content;
+    border-radius: 100000000px;
+}
+
+.img-cont {
+    position: relative;
+}
+
+.img-desc-cont {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.img-desc-cont:hover {
+    opacity: 1;
+}
+
+.img-desc {
+    font-size: 0.8em;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    height: max-content;
+    margin-bottom: 5px;
+    background: var(--main-color);
+    border-radius: 10px;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.svg-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 32px;
+}
+
+
+#links-bar {
+    color: white;
+    background-color: var(--main-color);
+    height: max-content;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px 20px;
+    border-radius: 15px;
+    display: flex;
+}
+
+#links-bar .svg-icon {
+    color: white;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.bar-link-cont {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 8px;
+    border-radius: 10000px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.bar-link-cont:hover {
+    color: var(--main-color);
+    background-color: white;
+}
+
+#links-bar .bar-link-cont:hover .svg-icon {
+    color: var(--main-color);
+}
+
+#para-cont {
+    margin-top: 2em;
+    font-size: 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#team-cont {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+.poke-cont {
+    font-size: 12px;
+}
+
+.poke-cont p {
+    text-align: center;
+}
+
+.hori-sep {
+    border: solid 1px var(--main-color);
+    width: 15%;
+    min-width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    transition: width 0.2s, height 0.2s;
+}
+
+.button {
+    color: var(--main-color);
+    background-color: white;
+    border: solid 2px var(--main-color);
+    padding: 0.3em 1em;
+    border-radius: 15px;
+    width: max-content;
+    transition: color 0.2s, background-color 0.2s;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--main-color);
+    color: white;
+}
+
+#card-button {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    font-size: 16px;
+}
+
+.strong {
+    font-weight: bold;
+}
+
+.main-colored {
+    color: var(--main-color);
+}
+
+@media (min-width: 500px) {
+    .pc-hidden {
+        display: none;
+    }
+
+    #home-cont {
+        height: max-content;
+        margin:auto;
+        
+    }
+}
+
+@media (max-width: 500px) {
+    .mobile-hidden {
+        display: none;
+    }
+
+    #header-cont {
+        flex-direction: row;
+        margin: 0px;
+        margin-left: 5vw;
+    }
+
+    #home-cont {
+        width: 100%;
+        overflow: auto;
+        max-height: 100vh;
+    }
+
+    #icon {
+        height: 90px;
+        width: 90px;
+    }
+
+    #page-title {
+        margin-left: 10px;
+    }
+
+    #links-bar {
+        flex-direction: column;
+        padding: 10px 10px;
+        margin: 0px;
+        position: fixed;
+        left: 5vw;
+        top: calc(3vmin + 110px + 50px);
+    }
+
+    .bar-link-cont {
+        margin: 0px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 0px;
+    }
+
+    .bar-link-cont:hover {
+        color: white;
+        background-color: rgba(0,0,0,0);
+    }
+    
+    #links-bar .bar-link-cont:hover .svg-icon {
+        color: white
+    }
+
+    #body-cont {
+        margin-left: calc(70px + 5vw);
+        margin-right: 12px;
+    }
+
+    #para-cont {
+        text-align: left;
+        font-size: calc(1rem + 1vmin);
+        overflow: auto;
+        margin-top: 50px;
+    }
+
+    #team-cont {
+        justify-content: center;
+    }
+
+    .button {
+        max-width: 50%;
+        text-align: center;
+    }
+
+    .big-picture {
+        width: 80%;
+        height: auto;
+    }
+}
