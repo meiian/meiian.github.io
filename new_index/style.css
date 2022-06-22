@@ -32,6 +32,35 @@ body {
     animation-duration: 1s;
 }
 
+#bg {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -50;
+    background-image: radial-gradient(var(--main-color) 10%, transparent 10%),
+      radial-gradient(rgb(223, 223, 223) 10%, transparent 10%);
+      transform: rotate(-15deg) scale(1.5);
+    background-color: white;
+    background-position: 0 0, 12px 12px;
+    background-size: 25px 25px;
+}
+
+#bg-2 {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -49;
+    transform: rotate(15deg) scale(0.6, 0.9);
+    background-color: white;
+    background-position: 0 0, 25px 25px;
+    background-size: 50px 50px;
+    filter: blur(7px);
+}
+
 #big-picture-cont {
     position: fixed;
     top: 0px;
@@ -175,6 +204,7 @@ body {
     text-align: center;
     display: flex;
     flex-direction: column;
+    text-shadow: white 0px 0 5px;
 }
 
 #team-cont {
@@ -184,6 +214,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
+    justify-content: center;
 }
 
 .poke-cont {
@@ -236,7 +267,7 @@ body {
     color: var(--main-color);
 }
 
-@media (min-width: 500px) {
+@media (min-width: 600px) {
     .pc-hidden {
         display: none;
     }
@@ -248,7 +279,7 @@ body {
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
     .mobile-hidden {
         display: none;
     }
@@ -311,9 +342,6 @@ body {
         margin-top: 50px;
     }
 
-    #team-cont {
-        justify-content: center;
-    }
 
     .button {
         max-width: 50%;
@@ -323,5 +351,12 @@ body {
     .big-picture {
         width: 80%;
         height: auto;
+    }
+
+    #bg-2 {
+        height: 80%;
+        background-color: white;
+        transform: initial;
+        filter: blur(2px);
     }
 }
