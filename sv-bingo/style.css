@@ -1,0 +1,218 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(5,5,5);
+    height: calc(var(--vh, 1vh) * 100);
+    overflow: hidden;
+}
+
+#video {
+    z-index: -1;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    filter: blur(15px) brightness(70%);
+    width: 100vw;
+    height: auto;
+}
+
+#alert-cont {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: flex;
+}
+
+#alert-cont:empty {
+    display: none;
+}
+
+#alert-msg {
+    margin: auto;
+    background-color:rgba(0,0,0,0.7);
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    max-width: min(25em, 80vw);
+}
+
+#global-cont {
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#known-issues {
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+    padding: 5px 15px;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#known-issues:hover {
+    background-color: rgba(0,0,0,0.5);
+}
+
+#side-content {
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.text-color {
+    color: red;
+}
+
+.direct-logo {
+    width: 25vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#current-direct {
+    background: linear-gradient(#da2d2a, #9b3888);
+    border-radius: 5px;
+    padding: 5px 15px;
+    width: max-content;
+    color: white;
+    text-align: center;
+}
+
+p {
+    margin: 0px;
+}
+
+
+
+#grille-cont {
+    background-color: rgba(0,0,0,0.7);
+    width: max-content;
+    height: max-content;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto;
+    padding: 25px;
+    margin-top: auto;
+    margin-bottom: auto;
+    border-radius: 10px;
+}
+
+.square-cont {
+    width: 150px;
+    height: 150px;
+    background-color: rgba(255,255,255,0.2);
+    margin: 5px;
+    background-size: cover;
+    display: flex;
+    position: relative;
+}
+
+.square-cont:hover {
+    filter: brightness(70%);
+}
+.square-label {
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-family: Calibri, Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 100%;
+    text-shadow:
+            -2px -2px 0 rgb(58, 38, 38),
+            0   -2px 0 rgb(58, 38, 38),
+            2px -2px 0 rgb(58, 38, 38),
+            2px  0   0 rgb(58, 38, 38),
+            2px  2px 0 rgb(58, 38, 38),
+            0    2px 0 rgb(58, 38, 38),
+            -2px  2px 0 rgb(58, 38, 38),
+            -2px  0   0 rgb(58, 38, 38);
+        color: white;
+}
+
+.overlay { 
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.completed {
+    background-color: rgba(255, 200, 0, 0.7);
+}
+
+.bingo {
+    background-color: rgba(0, 255, 0, 0.5)
+}
+
+@media (max-width: 1200px) {
+    #global-cont {
+        flex-direction: column; 
+        width: 100vw;
+    }
+
+
+    #side-content {
+        width: 100vw;
+        position: relative;
+    }
+
+    .direct-logo {
+        height: 50px;
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+    }
+
+    #grille-cont {
+        margin: auto;
+        max-width: calc(100vw - 50px);
+        overflow: auto;
+        border-radius: 0px;
+    }
+    .other {
+        position: absolute;
+        bottom: 5px;
+        left: 5px;
+        font-size: 8px;
+        margin-bottom: 0px;
+    }
+
+    #known-issues {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+    }
+
+    #logo-cont {
+        flex-direction: row;
+    }
+    #video {
+        z-index: -1;
+        position: fixed;
+        top: 0px;
+        left: calc(var(--vh, 1vh) * -50);
+        filter: blur(15px) brightness(70%);
+        height: calc(var(--vh, 1vh) * 100);
+        width: auto;
+    }
+}
