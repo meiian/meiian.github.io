@@ -44,7 +44,7 @@ const sum = (a, b) => a + b;
 function check_if_bingo_stayed(grille, is_bingo) {
     for(i = 0 ; i < grille.length ; i++) {
         for(j = 0 ; j < grille.length ; j++) {
-            if(is_bingo.filter(e => (e.index == i || e.index == j || e.type == "diag")).length == 0){
+            if(is_bingo.filter(e => ((e.index == i && e.type == "line") || (e.index == j && e.type == "column") || (e.type == "diag" && (i == j)))).length == 0){
                 let actual_square = document.querySelector("#square-" + i + j + " .overlay");
                 if(actual_square != null){
                     actual_square.classList.remove("bingo");
