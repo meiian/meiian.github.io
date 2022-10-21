@@ -1,0 +1,395 @@
+:root {
+    --yellow : #f7f429;
+}
+
+@font-face {
+    font-family: "Barlow";
+    src: url("../font/Barlow/Barlow-Medium.woff2") format("woff2"), 
+        url("../font/Barlow/Barlow-Medium.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Barlow Bold";
+    src: url("../font/Barlow/Barlow-Bold.woff2") format("woff2"), 
+    url("../font/Barlow/Barlow-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Barlow Black";
+    src: url("../font/Barlow/Barlow-Black.woff2") format("woff2"), 
+    url("../font/Barlow/Barlow-Black.ttf") format("truetype");
+}
+
+body {
+    color: white;
+    font-family: "Barlow";
+    margin: 0px;
+    overflow: hidden;
+}
+
+h1 {
+    margin: 0px;
+}
+
+a {
+    text-decoration: none;
+}
+
+i {
+    height: max-content;
+    width: max-content;
+    font-style: normal;
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+}
+
+i svg {
+    font-size: 1em;
+    height: 1em;
+    width: 1em;
+    margin-top: auto;
+}
+
+.bold {
+    font-family: "Barlow Bold";
+}
+
+.yellow {
+    color: var(--yellow);
+}
+
+#global-cont {
+    z-index: 50;
+    mix-blend-mode: multiply;
+    background-color: black;
+    width: 100vw;
+    display: flex;
+    height: 100%;
+}
+
+#squares-cont {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    width: 50vw;
+    height: 80vh;
+    margin: auto;
+    justify-content: center;
+    align-content: center;
+}
+
+.square {
+    border: 2px solid white;
+    width: 200px;
+    height: 200px;
+    animation: 2s 2s 1 normal both squares-open;
+    margin: 10px;
+    -webkit-box-shadow: 0px 0px 200px 0px #FFFFFF; 
+    box-shadow: 0px 0px 200px 0px #FFFFFF;
+    color: black;
+    font-size: 32px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: "Barlow Black";
+    display: flex;
+}
+
+.square > div > svg {
+    font-size: 36px;
+    width: 100%;
+    fill: black;
+    transition: fill 0.2s;
+}
+
+.square > div {
+    margin: auto;
+    width: 50%;
+}
+
+.full-square {
+    background-color: white;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.full-square:hover {
+    background-color: black;
+    color: white;
+}
+
+.full-square:hover svg {
+    fill: white;
+}
+
+.text-br {
+    animation: 2s 1s 1 normal both square-br,
+    2s 3s 1 normal both squares-open;
+}
+
+.text-bm {
+    animation: 2s 1s 1 normal both square-bm,
+    2s 3s 1 normal both squares-open,
+    2s 4s 1 normal backwards squares-full;
+}
+
+.text-bl {
+    animation: 2s 1s 1 normal both square-bl,
+    2s 3s 1 normal both squares-open;
+}
+
+.text-r {
+    animation: 2s 1s 1 normal both square-r,
+    2s 3s 1 normal both squares-open,
+    2s 4s 1 normal backwards squares-full;
+}
+
+.text-m {
+    animation: 2s 1s 1 normal both square-m,
+    2s 3s 1 normal both squares-open;
+}
+
+.text-l {
+    animation: 2s 1s 1 normal both square-l,
+    2s 3s 1 normal both squares-open,
+    2s 4s 1 normal backwards squares-full;
+}
+
+.text-tr {
+    animation: 2s 1s 1 normal both square-tr,
+    2s 3s 1 normal both squares-open;
+}
+
+.text-tm {
+    animation: 2s 1s 1 normal both square-tm,
+    2s 3s 1 normal both squares-open,
+    2s 4s 1 normal backwards squares-full;
+}
+
+.text-tl {
+    animation: 2s 1s 1 normal both square-tl,
+    2s 3s 1 normal both squares-open;
+}
+
+@keyframes square-br {
+    0%{
+        border: solid 0px black;
+        border-left: 2px solid white;
+        border-top: 2px solid white;
+        margin: 0px;
+    }
+    100%{
+        border: 2px solid white;
+        margin: 0px;
+    }
+}
+
+@keyframes square-bm {
+    0%{
+        border: solid 0px black;
+        border-top: 2px solid white;
+        margin: 0px;
+    }
+    100%{
+        border: 2px solid white;
+        margin: 0px;
+    }
+}
+
+@keyframes square-bl {
+    0%{
+        border: solid 0px black;
+        border-right: 2px solid white;
+        border-top: 2px solid white;
+        margin: 0px;
+    }
+    100%{
+        border: 2px solid white;
+        margin: 0px;
+    }
+}
+
+@keyframes square-r {
+    0%{
+        border: solid 0px black;
+        border-left: 2px solid white;
+        margin: 0px;
+    }
+    100%{
+        border: 2px solid white;
+        margin: 0px;
+    }
+}
+
+@keyframes square-m {
+    0%{
+        border: solid 0px black;
+        margin: 0px;
+    }
+    100%{
+        border: 2px solid white;
+        margin: 0px;
+    }
+}
+
+@keyframes square-l {
+    0%{
+        border: solid 0px black;
+        border-right: 2px solid white;
+        margin: 0px;
+    }
+    100%{
+        border: 2px solid white;
+        margin: 0px;
+    }
+}
+
+@keyframes square-tr {
+    0%{
+        border: solid 0px black;
+        border-left: 2px solid white;
+        border-bottom: 2px solid white;
+        margin: 0px;
+    }
+    100%{
+        border: 2px solid white;
+        margin: 0px;
+    }
+}
+
+@keyframes square-tm {
+    0%{
+        border: solid 0px black;
+        border-bottom: 2px solid white;
+        margin: 0px;
+    }
+    100%{
+        border: 2px solid white;
+        margin: 0px;
+    }
+}
+
+@keyframes square-tl {
+    0%{
+        border: solid 0px black;
+        border-right: 2px solid white;
+        border-bottom: 2px solid white;
+        margin: 0px;
+    }
+    100%{
+        border: 2px solid white;
+        margin: 0px;
+    }
+}
+
+#name {
+    color: black;
+    animation: 2s 3s 1 normal both name-light;
+    text-transform: lowercase;
+    height: max-content;
+    margin: auto;
+    font-size: min(32px, 4vw);
+}
+
+@keyframes name-light {
+    0%{color: black;}
+    100%{color: white;}
+}
+
+
+#side-cont {
+    grid-column: 2;
+    margin-left: auto;
+    display: flex;
+}
+
+#side-options-cont {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 50px;
+    color: white;
+}
+
+.option {
+    font-size: 1.5vw;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    text-align: right;
+    justify-content: space-between;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+#pseudo-cont {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    font-size: 3vw;
+}
+
+@keyframes squares-open {
+    0%{margin: 0px;
+        -webkit-box-shadow: 0px 0px 00px 0px #FFFFFF; 
+        box-shadow: 0px 0px 00px 0px #FFFFFF;}
+    100%{margin: 10px;
+        -webkit-box-shadow: 0px 0px 200px 0px #FFFFFF; 
+        box-shadow: 0px 0px 200px 0px #FFFFFF;}
+}
+
+@keyframes squares-full {
+    0%{background-color: black;
+        -webkit-box-shadow: 0px 0px 00px 0px #FFFFFF; 
+        box-shadow: 0px 0px 00px 0px #FFFFFF;}
+    100%{background-color: white;
+        -webkit-box-shadow: 0px 0px 200px 0px #FFFFFF; 
+        box-shadow: 0px 0px 200px 0px #FFFFFF;}
+}
+
+#rainbow-bg {
+    z-index: 2;
+
+}
+
+#rainbow-bg { 
+    z-index: 0;
+    height: 100%;
+    width: 100%;
+    left:0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    pointer-events: none;
+  background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+  background-size: 1800% 1800%;
+  mix-blend-mode: multiply;
+  
+    animation: rainbow 18s ease infinite;}
+  
+    @keyframes rainbow { 
+		0%{filter: hue-rotate(0deg)}
+		50%{filter: hue-rotate(180deg)}
+		100%{filter: hue-rotate(360deg)}
+	}
+
+@media (max-width: 800px) {
+    body {
+        width: 100vw;
+        overflow: hidden;
+    }
+    #global-cont {
+        width: 100vw;
+        overflow: auto;
+    }
+
+    #squares-cont {
+        width: 100vw;
+    }
+
+    .square {
+        width: 25vw;
+        height: 25vw;
+    }
+}
