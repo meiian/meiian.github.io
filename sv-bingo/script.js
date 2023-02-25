@@ -18,11 +18,11 @@ let grille_img =
 
 let grille_text =
 [ 
-    ["Region Name", "Evil Teams", "More Multiplayer Activities", "Regional Bird Pokemon", "New Rival(s)"],
-    ["More City Details", "New Gym Leader", "More clothes", "New Vehicle", "Regional Forms"],
-    ["Regional Fake?", "Charizard", "A Pokemon is shown", "Region Map", "Champion Reveal"],
-    ["Grape & Orange Explanation", "New Pseudo Legendary", "Regional Lass", "Smoliv Evolution", "Vivillon Returns"],
-    ["Camp-like feature", "Lechonk Evolution", "The Gimmick", "New Gym Concepts", "Objectmon"], 
+    ["Detective Pikachu 2", "Académie Manzana", "Nouveau Légendaire sur Unite", "Pokémon GO n'est pas mort", "Nouveaux personnages sur SV"],
+    ["Suicune & Viridium Paradoxes", "LE SUD DE KALOS", "Nouveau Donjon Mystère", "Enfin des tenues sur SV", "Le Troisième Légendaire révélé"],
+    ["Nouvelles formes régionales", "Dracaufeu a droit à un traitement spécial encore une fois", "Pikachu apparait à l'écran", "Mise à jour de SV pour bugfix dès la fin", "Anniv des 3.5 ans de MasterSEX"],
+    ["DLC en plusieurs phases", "Nouvelle série spin-off", "Pokémon HOME<br>(on y croit tous)", "Pokémon Ranger n'a pas été oublié", "ALISMA EST MECHANTE"],
+    ["Pokémon Sleep (zzz)", "Les jeux GBA sur le NSO", "Nouveaux Paradoxes", "Le prochain raid 7 étoiles est annoncé", "Vous pouvez préco dès maintenant"], 
 ]
 
 const current_direct = "Jun_2022";

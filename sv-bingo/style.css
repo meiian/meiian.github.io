@@ -82,7 +82,10 @@ body {
 }
 
 #current-direct {
-    background: linear-gradient(#da2d2a, #9b3888);
+    background: linear-gradient(#1c7dc2, #2c5ca9);
+    border: solid 5px #fdd703;
+    -webkit-box-shadow: inset -3px 3px 3px 0px rgba(0,0,0,0.53); 
+    box-shadow: inset -3px 3px 3px 0px rgba(0,0,0,0.53);
     border-radius: 5px;
     padding: 5px 15px;
     width: max-content;
