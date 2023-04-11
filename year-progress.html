@@ -1,0 +1,77 @@
+<head>
+    <title>feur</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="./Mizu/mizu.css"/>
+        <meta name="theme-color" content="#1da1f2">
+</head>
+
+<style>
+    @font-face {
+        font-family: Rodin;
+        src: url("./font/Rodin.woff2") format("woff2"),
+            url("./font/Rodin.otf") format("otf");
+    }
+    body{
+        background-color: black;
+    }
+    h5 {
+        margin: 0px;
+    }
+    #title {
+        color: white;
+    }
+
+    #total-progress-bar-cont {
+        width: 500px;
+        height: 30px;
+        border: solid 1px white;
+    }
+
+    #total-progress-bar {
+        width: 0%;
+        height: 100%;
+        background-color: green;
+        display: flex;
+        justify-content: center;
+    }
+
+    #total-progress-label {
+        font-family: Rodin;
+        color: white;
+    }
+</style>
+
+<body>
+    <div class="global-container flex">
+        <div class="m-auto">
+            <div id="title">
+                <h5>2022-2023 <span id="days-left"></span></h5>
+            </div>
+            <div id="total-progress-bar-cont">
+                <div id="total-progress-bar">
+                    <div id="total-progress-label"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+<script>
+    let start_date = new Date("2022-09-05");
+    let end_date = new Date("2023-09-05");
+    let work_date = new Date("2023-03-06");
+    let today = new Date();
+    let diff_days = (today.getTime() - start_date.getTime()) / (1000 * 3600 * 24);
+    let remaining_days = (end_date.getTime() - today.getTime()) / (1000 * 3600 * 24);
+    let total_days = (end_date.getTime() - start_date.getTime()) / (1000 * 3600 * 24);
+    let total_work_days = (end_date.getTime() - work_date.getTime()) / (1000 * 3600 * 24);
+    let work_days = (total_work_days > remaining_days)?remaining_days:total_work_days;
+    let true_work_days = work_days - (Math.floor((work_days/7)) * 2) - 18 - 6;
+    let progress_total = Math.round(diff_days/total_days * 100);
+
+    document.getElementById("total-progress-bar").style.width = progress_total + '%';
+    document.getElementById("total-progress-label").innerText = progress_total + '%';
+    document.getElementById("days-left").innerText = "• " + Math.ceil(remaining_days) + " days left (" + Math.ceil(true_work_days) + " work days)."
+</script>
