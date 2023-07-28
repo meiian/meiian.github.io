@@ -18,14 +18,35 @@
         font-family: OPTI;
         src: url(./endwalker/OPTI.otf);
     }
-    #bg {
+    #bg-cont {
         position: fixed;
+        overflow: hidden;
         right: 0;
         bottom: 0;
-        min-width: 100%;
-        min-height: 100%;
+        width: 100vw;
+        height: 100vh;
         z-index: -1;
         filter: brightness(70%);
+    }
+
+    #bg-cont > iframe {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100vw;
+        height: 100vh;
+        transform: translate(-50%, -50%);
+    }
+
+    @media (min-aspect-ratio: 16/9) {
+        #bg-cont > iframe {
+            height: 56.25vw;
+        }
+    }
+    @media (max-aspect-ratio: 16/9) {
+        #bg-cont > iframe  {
+            width: 177.78vh;
+        }
     }
 
     #logo {
@@ -68,7 +89,9 @@
 </style>
 
 <body>
-    <iframe width="560" height="315" id="bg" src="https://www.youtube.com/embed/pewJBTyhceY?autoplay=1&controls=0&disablekb=1&showinfo=0&rel=0&start=0&enablejsapi=1&iv_load_policy=3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <div id="bg-cont">
+        <iframe width="560" height="315" id="bg" src="https://www.youtube.com/embed/pewJBTyhceY?autoplay=1&loop=1&controls=0&disablekb=1&showinfo=0&rel=0&mute=1&start=0&enablejsapi=1&iv_load_policy=3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
     <div id="logo"></div>
     
     <p id="countdown"></p>
