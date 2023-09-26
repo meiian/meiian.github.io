@@ -108,9 +108,9 @@
     <div id="note">*Au plus tard</div>
 
     <script>
-        let releaseDate = new Date(2024, 9, 22, 00, 00, 00);
+        let releaseDate = new Date(2024, 8, 22, 0, 0, 0);
         let trueHour = releaseDate.getHours() + (releaseDate.getTimezoneOffset() / 60);
-        releaseDate = new Date(2024, 9, 22, trueHour, 00, 00);
+        releaseDate = new Date(2024, 8, 22, trueHour, 0, 0);
         function updateCountdown(){
             let nowDate = new Date();
             let diffTime = releaseDate.getTime() - nowDate.getTime();
