@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+    <title>TootRecap</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="./icon.ico"/>
+    <meta name="theme-color" content="#70bbd2">
+    <link rel="stylesheet" href="./spinner.css"/>
+    <link rel="stylesheet" href="./template.css"/>
+    <link rel="stylesheet" href="./intro.css"/>
+    <script type="text/javascript" src="utilites.js"></script>
+    <script type="text/javascript" src="text.js"></script>
+    <script type="text/javascript" src="fetch.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+</head>
+
+<body>
+    <div id="alert-cont"></div>
+    <div id="app-cont">
+        <div class="flex-column flex-center my-auto">
+            <h1 id="toot-recap-title">TootRecap</h1>
+            <div class="intro-form-cont">
+                <div>Enter your handle just below!</div>
+                <input type="text" id="handle-input" name="handle-input" minlength="6" maxlength="255" placeholder="e.g. @example@example.org" required>
+                <div class="mt">Or you can drag & drop your already existing statuses file below.</div>
+                <div id="drag-drop-statuses" class="flex-center flex-column">
+                    <div class="flex-center flex-column">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1z"/>
+                            <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                        </svg>
+                        <span>Drag & drop your file here or click here.</span>
+                    </div>
+                </div>
+                <div id="intro-form-warning">
+                    <div class="warning-title">WARNING</div>
+                    <div class="warning-body">Enter only an handle from a trusted Fediverse instance in the field above.<br/>
+                        As you wouldn't type any random URL in your address bar, don't type any random handle in there.<br/>
+                        You shouldn't have any issues with the instance your account is on.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
