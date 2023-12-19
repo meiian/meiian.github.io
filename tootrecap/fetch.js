@@ -25,6 +25,29 @@ async function fetch_account(handle, instance_name) {
     }
 }
 
+async function fetch_account_by_id(acc_id, instance_name) {
+    const instance_url = "https://" + instance_name + "/";
+    try {
+        const acc_response = await fetch(
+            instance_url + "api/v1/accounts/" + acc_id,
+            {
+                method: "GET"
+            }
+        )
+        if(acc_response.ok) {
+            const json = await acc_response.json();
+            return json;
+        }
+        else
+            throw {
+                name : 'HttpError',
+                error : new Error("Error in getting account infos : " + acc_response.status)
+            }
+    } catch (error) {
+        show_alert("Error in getting account infos from instance.");
+    }
+}
+
 
 async function fetch_statuses(acc_id, instance_name, max_id=2^53, since_id=0) {
     const instance_url = "https://" + instance_name + "/";

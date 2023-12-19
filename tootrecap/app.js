@@ -124,6 +124,35 @@ function show_month_graph(dates) {
     return html_dates;
 }
 
+function top_five_replied(accs) {
+    const ordered_accs = Object.entries(accs).sort((a,b) => b[1]-a[1]);
+    if(ordered_accs.length === 0)
+        return {};
+    let max_limit = 5;
+    if(max_limit > ordered_accs.length)
+        max_limit = ordered_accs.length;
+    let ret_dict = {}
+    for(let i = 0 ; i < max_limit ; i++) {
+        ret_dict[ordered_accs[i][0]] = ordered_accs[i][1];
+    }
+    return ret_dict;
+}
+
+function show_most_replied(accs) {
+    const ordered_accs = Object.values(accs).sort((a,b) => b.replies_count - a.replies_count);
+    if(ordered_accs.length === 0)
+        return 'No replies. :(';
+    let max_limit = 5
+    if(max_limit > ordered_accs.length)
+        max_limit = ordered_accs.length;
+    let replied_acc_html = "";
+    const max_value = ordered_accs[0].replies_count;
+    for(let i = 0 ; i < max_limit ; i++) {
+        replied_acc_html += `<div class="top-replies-row"><div class="bar-bg" style="--value: ${Math.round(ordered_accs[i].replies_count/max_value*100)}%"></div><span>#${i+1} <img class="pfp" src="${ordered_accs[i].avatar_static}"> ${display_name_emoji(ordered_accs[i])}</span> <span>${ordered_accs[i].replies_count}</span></div>`
+    }
+    return replied_acc_html;
+}
+
 async function show_results() {
     const no_reblogs = statuses.filter((s) => s["reblog"] === null);
     const status_with_medias = no_reblogs.filter((s) => s["media_attachments"].length > 0);
@@ -147,9 +176,25 @@ async function show_results() {
     });
     const fav_embed = await fetch_oembed(most_famous_status_by_fav["url"], instance_name);
 
+    const replies_ids = no_reblogs.map(a => a.in_reply_to_account_id);
+    let replies_ids_count = {};
+
+    for(let i = 0; i < replies_ids.length; i++){
+        if(replies_ids[i] !== null && replies_ids[i] !== acc_id)
+            replies_ids_count[replies_ids[i]] = (replies_ids_count[replies_ids[i]]||0) + 1;
+    }
+
+    const five_first_replied = top_five_replied(replies_ids_count);
+
+    let replies_accs = {};
+    for (const acc in five_first_replied) {
+        replies_accs[acc] = await fetch_account_by_id(acc, instance_name);
+        replies_accs[acc]["replies_count"] = five_first_replied[acc];
+    }
+
     apps = {}
     for (const s of no_reblogs){
-        if(s["application"] !== null) {
+        if(s["application"] !== null && s["application"] !== undefined) {
             const app_name = s["application"]["name"];
             if(app_name in apps) {
                 apps[app_name] += 1;
@@ -191,7 +236,7 @@ async function show_results() {
             <div id="profile">
                 <img class="profile-picture" src="${account_json["avatar"]}">
                 <div class="profile-infos">
-                    <div class="profile-name">${account_json["display_name"]}</div>
+                    <div class="profile-name">${display_name_emoji(account_json)}</div>
                     <div class="profile-handle">@${account_json["username"]}</div>
                     <div class="profile-numbers">
                         <div><span>${account_json["statuses_count"]}</span> <span>Posts</span></div>
@@ -230,19 +275,22 @@ async function show_results() {
                 ${show_apps_usage(apps)}
             </div>
             ${show_month_graph(not_empty_dates)}
+            <div id="top-replies">
+                <div class="title">Accounts you've sent the most replies</div>
+                ${show_most_replied(replies_accs)}
+            </div>
     `;
 
     let embed_cont = document.createElement("div");
     embed_cont.id = "embed-cont";
     embed_cont.innerHTML = `
-        <div class="embed-title">Most famous status</div>
         <div id="embed-row" class="flex">
             <div class="embed-cell">
                 <div class="embed-cell-title">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
                     <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
                     <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z"/>
-                    </svg> Reboosts
+                    </svg> Most famous status by reposts count
                 </div>
                 ${reblog_embed.html}
             </div>
@@ -250,7 +298,7 @@ async function show_results() {
                 <div class="embed-cell-title">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
                     <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-                    </svg> Favourites
+                    </svg> Most famous status by favs count
                 </div>
                 ${fav_embed.html}
             </div>
@@ -327,10 +375,10 @@ async function process_statuses() {
     let real_total_fetch_time = real_end - real_start;
     document.getElementById("loader-statuses-desc-1").innerText = `All public statuses fetched!`;
     document.getElementById("loader-statuses-desc-2").innerText = `${Math.round(real_total_fetch_time/1000)}s to fetch all statuses.`;
-    newest_id = get_newest_status_id(statuses);
 
     if(statuses.length > 0 && statuses.filter((s) => s["reblog"] === null).length > 0) {
         setTimeout(function(){
+            newest_id = get_newest_status_id(statuses);
             show_results();
         }, 2000);
     }
@@ -353,7 +401,7 @@ function is_account_good(json) {
     acc_details_node.innerHTML = `
         <img class="account-pfp" alt="Maybe your avatar." src="${json.avatar}">
         <div class="profile-infos">
-            <div class="profile-name"><b>${json.display_name}</b></div>
+            <div class="profile-name"><b>${display_name_emoji(json)}</b></div>
             <div class="profile-handle">@${json.username}</div>
             <div class="profile-numbers">
                 <div><span>${json.statuses_count}</span> <span>Posts</span></div>

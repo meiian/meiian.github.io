@@ -5,7 +5,9 @@
 
 :root {
     --border-radius : 3px;
+    --app-width : 50%;
 }
+
 
 html {
     height: 100%;
@@ -82,6 +84,12 @@ a {
     margin: auto 0;
 }
 
+.display-name-emoji {
+    width: 1em;
+    height: 1em;
+    margin-left: 0.5em;
+}
+
 #alert-cont {
     position: fixed;
     bottom: 0px;
@@ -89,6 +97,7 @@ a {
     display: flex;
     align-items: center;
     width: 100vw;
+    justify-content: center;
 }
 
 #alert-cont .alert-body {
@@ -137,7 +146,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    width: 50%;
+    width: var(--app-width);
 }
 
 .profile-infos {
@@ -205,7 +214,7 @@ a {
 #stats-cont {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: var(--app-width);
     margin-top: 2rem;
 }
 
@@ -413,14 +422,13 @@ a {
 
 #save-button {
     margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 #embed-cont {
-    width: 50%;
+    width: var(--app-width);
     margin-top: 1rem;
-    background-color: white;
     color: black;
-    border-radius: var(--border-radius);
 }
 
 #embed-cont>div {
@@ -434,15 +442,78 @@ a {
 }
 
 .embed-title {
-    font-size: 1.5rem;
+    font-size: 0.8rem;
     padding: 1rem;
 }
 
 .embed-cell {
     padding: 1rem;
     width: 100%;
+    background-color: white;
+    border-radius: var(--border-radius);
+}
+
+.embed-cell:first-child {
+    margin-right: 0.5rem;
+}
+
+.embed-cell:last-child {
+    margin-left: 0.5rem;
 }
 
 .embed-cell-title {
-    font-size: 1.5rem;
+    font-size: 0.8rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 0.5rem;
+}
+
+.embed-cell-title svg {
+    margin-right: 0.5rem;
+}
+
+#top-replies {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+}
+
+#top-replies>.title {
+    font-size: 0.8rem;
+}
+
+.top-replies-row {
+    color: black;
+    display: flex;
+    position: relative;
+    margin: 0.2rem 0px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+}
+
+.top-replies-row .pfp {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--border-radius);
+    margin: 0px 1rem;
+}
+
+.top-replies-row .bar-bg {
+    background-color: #ddd;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: var(--value);
+    height: 100%;
+    z-index: 0;
+    border-radius: var(--border-radius);
+}
+
+.top-replies-row>span {
+    z-index: 1;
+    display: flex;
+    align-items: center;
 }

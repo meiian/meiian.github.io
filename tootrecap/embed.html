@@ -1,0 +1,32 @@
+<body>
+
+</body>
+
+
+
+<script>
+    const test_obj = {
+        username: "akane",
+        instance_name: "mstdn.shalyu.run",
+        handle: "@akane@mstdn.shalyu.run",
+        created : new Date(),
+        newest_id : 45641895121651,
+        statuses : [
+            {
+                "a":1,
+                "b":1
+            },
+            {
+                "a":2,
+                "b":2
+            }
+        ]
+    }
+    const data_blob = new Blob([JSON.stringify(test_obj)], {type:'text/plain'});
+    const data_str = URL.createObjectURL(new Blob([JSON.stringify(test_obj)], {type:'text/plain'}));
+    let data_node = document.createElement("a");
+    data_node.setAttribute("href", data_str);
+    data_node.setAttribute("download", test_obj["username"] + "_" + test_obj["created"].toLocaleString('fr-fr').replaceAll(/\/|\:| /g, "_") + ".json");
+    data_node.innerText = "Download (" + data_blob.size + ")";
+    document.body.append(data_node);
+</script>

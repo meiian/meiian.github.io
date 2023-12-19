@@ -1,0 +1,20 @@
+@media only screen and (max-width: 600px) {
+    :root {
+        --border-radius : 3px;
+        --app-width : 98%;
+        font-size: 12px;
+    }
+
+    #embed-row {
+        flex-direction: column;
+    }
+
+    .embed-cell,
+    .embed-cell:first-child,
+    .embed-cell:last-child {
+        margin: 0px;
+        width: 95%;
+        margin-bottom: 1rem;
+    }
+
+}
