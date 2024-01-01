@@ -77,9 +77,9 @@ function fill_empty_months(dates) {
     for(let y = year_min; y <= year_max; y++) {
         let m_min = month_min;
         let m_max = month_max;
-        if(y === year_max && y !== year_min)
+        if(y !== year_min)
             m_min = 1;
-        if(y !== year_max && y === year_min)
+        if(y !== year_max)
             m_max = 12;
         for(let m = m_min; m <= m_max ; m++) {
             const key_m = y + "-" + ((m < 10)?'0':'') + m;
@@ -102,7 +102,8 @@ function show_month_graph(dates) {
         }, {}
     );
     const max_value = Math.max(...Object.values(dates));
-    let buf_html = ""
+    let buf_html = "";
+
     for (const m in dates_ordered) {
         buf_html += `
             <div class="month-bar-cont">
@@ -221,8 +222,10 @@ async function show_results() {
 
     let not_empty_dates = dates;
 
+
     if(Object.keys(dates).length !== 0 && dates.constructor === Object)
         not_empty_dates = fill_empty_months(dates);
+
 
 
     let bg_img = document.createElement("div");
@@ -305,6 +308,20 @@ async function show_results() {
         </div>
     `;
 
+    const statuses_text = no_reblogs.map((x) => extractContent(x.content)).map((x) => x.split(/ +/g));
+
+    const word_counter = {};
+ 
+    statuses_text.forEach(status => status.forEach(word => {
+        if (word_counter[word]) {
+            word_counter[word] += 1;
+        } else {
+            word_counter[word] = 1;
+        }
+    }));
+
+    const word_rank = Object.entries(word_counter).sort((a,b) => b[1]-a[1])
+
     clear_app();
     append_to_app(bg_img);
     append_to_app(profile_card);
@@ -348,10 +365,6 @@ async function process_statuses() {
 
         buf_statuses = await fetch_statuses(acc_id, instance_name, max_id, newest_id);
         clear_alert();
-        /*if(((max_statuses_nb - buf_statuses.length)/40) >= 300 && average_time <= 1100) {
-            console.log("Throttle, average time : " + average_time);
-            await new Promise(r => setTimeout(r, 2000));
-        }*/
         end = Date.now();
         time_of_one_request = end - start;
         times_of_requests.push(time_of_one_request);
@@ -453,10 +466,10 @@ async function process_handle() {
 
     let instance_infos = await check_instance(handle_cut.instance_name);
 
+
     if(instance_infos !== null) {
         instance_name = handle_cut.instance_name;
         account_json = await fetch_account(handle, instance_name);
-        console.log(account_json);
         acc_id = account_json.id;
         is_account_good(account_json);
     }

@@ -370,11 +370,10 @@ a {
 #apps-used-cont #apps-used-title {
     position: absolute;
     top:0px;
-    left: 0px;
+    left: 1rem;
     display: flex;
     flex-direction: row;
-    width: 100%;
-    justify-content: center;
+    justify-content: left;
     color: white;
     font-size: 0.8rem;
     color: white;

@@ -80,14 +80,14 @@ async function check_instance(instance_name) {
     const instance_url = "https://" + instance_name + "/";
     try {
         const response = await fetch(
-            instance_url + "api/v2/instance/",
+            instance_url + "api/v1/instance/",
             {
                 method: "GET"
             }
         )
         if(response.ok) {
             const json = await response.json();
-            if(json.domain === instance_name) {
+            if(json.uri === instance_name || (json.uri + '/') === instance_url) {
                 let to_return = {
                     "domain" : json.domain,
                     "title" : json.title

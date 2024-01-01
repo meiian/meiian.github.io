@@ -19,3 +19,12 @@ function display_name_emoji(acc) {
     }
     return name;
 }
+
+function extractContent(s) {
+    let s2 = s.replaceAll(/<\/?(br||p) *\/?>/g, " ");
+    let span = document.createElement('span');
+    span.innerHTML = s2.trim();
+    let to_return = span.textContent || span.innerText;
+    to_return = to_return.replaceAll(/\@\w+/g, "");
+    return to_return.trim();
+  };
