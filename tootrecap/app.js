@@ -154,6 +154,25 @@ function show_most_replied(accs) {
     return replied_acc_html;
 }
 
+function word_cloud(l) {
+    let word_list = '';
+    let max_words = l.length;
+    if(max_words > 75)
+        max_words = 75;
+    const l2 = shuffle(l.slice(0, max_words));
+    for(let i = 0; i < max_words; i++) {
+        const red = Math.random()*150;
+        const blue = Math.random()*150;
+        const green = Math.random()*150;
+        const font_size = (l2[i][1]/32*10)+8;
+        const left = (Math.random()*100);
+        const top = (((i + max_words)/max_words)-1)*95;
+        const min_bar = Math.random()*15;
+        word_list += `<span class="word-in-cloud" style="top: max(${min_bar}px, calc(${top}% - ${font_size/2}px)); left: max(${min_bar}px, calc(${left}% - ${Math.ceil(l[i][0].length/2)}em)); font-size: ${font_size}px; color: rgb(${red},${green},${blue})">${l2[i][0]}</span>`;
+    }
+    return word_list;
+}
+
 async function show_results() {
     const no_reblogs = statuses.filter((s) => s["reblog"] === null);
     const status_with_medias = no_reblogs.filter((s) => s["media_attachments"].length > 0);
@@ -226,6 +245,24 @@ async function show_results() {
     if(Object.keys(dates).length !== 0 && dates.constructor === Object)
         not_empty_dates = fill_empty_months(dates);
 
+        
+    const statuses_text = no_reblogs.map((x) => extractContent(x.content)).map((x) => x.split(/ |'|’+/g));
+
+    const word_counter = {};
+ 
+    statuses_text.forEach(status => status.forEach(word => {
+        if(!stopwords.includes(word) && word.length > 1) {
+            if (word_counter[word]) {
+                word_counter[word] += 1;
+            } else {
+                word_counter[word] = 1;
+            }
+        }
+    }));
+
+    const word_rank = Object.entries(word_counter).sort((a,b) => b[1]-a[1])
+
+    console.log(word_rank);
 
 
     let bg_img = document.createElement("div");
@@ -282,6 +319,13 @@ async function show_results() {
                 <div class="title">Accounts you've sent the most replies</div>
                 ${show_most_replied(replies_accs)}
             </div>
+
+            <div id="cloud-word-cont">
+                <div class="title">Word cloud</div>
+                <div id="cloud-word">
+                ${word_cloud(word_rank)}
+                </div>
+            </div>
     `;
 
     let embed_cont = document.createElement("div");
@@ -308,19 +352,8 @@ async function show_results() {
         </div>
     `;
 
-    const statuses_text = no_reblogs.map((x) => extractContent(x.content)).map((x) => x.split(/ +/g));
 
-    const word_counter = {};
- 
-    statuses_text.forEach(status => status.forEach(word => {
-        if (word_counter[word]) {
-            word_counter[word] += 1;
-        } else {
-            word_counter[word] = 1;
-        }
-    }));
 
-    const word_rank = Object.entries(word_counter).sort((a,b) => b[1]-a[1])
 
     clear_app();
     append_to_app(bg_img);
