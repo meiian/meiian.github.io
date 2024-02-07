@@ -246,7 +246,7 @@ async function show_results() {
         not_empty_dates = fill_empty_months(dates);
 
         
-    const statuses_text = no_reblogs.map((x) => extractContent(x.content)).map((x) => x.split(/ |'|’+/g));
+    const statuses_text = no_reblogs.map((x) => extractContent(remove_links(x.content.toLowerCase()))).map((x) => x.split(/ |'|’+/g));
 
     const word_counter = {};
  
@@ -379,7 +379,7 @@ function show_loader_statuses() {
 async function process_statuses() {
     let buf_statuses = [1];
     let max_id = "999999999999999999";
-    let max_statuses_nb = account_json["statuses_count"];
+    let max_statuses_nb = account_json["statuses_count"] - statuses.length;
     const nb_requests_max = Math.ceil(max_statuses_nb / 40);
     let nb_statuses_fetched = 0;
     let time_of_one_request = 0;
@@ -405,10 +405,11 @@ async function process_statuses() {
             times_of_requests.shift();
         average_time = times_of_requests.reduce((acc, x) => acc + x, 0,) / times_of_requests.length;
         calulcated_total_fetch_time = (average_time * (max_statuses_nb/40));
+        remaining_time =  (average_time * ((max_statuses_nb - nb_statuses_fetched) / 40));
 
         
         
-        document.getElementById("loader-statuses-desc-1").innerText = `Fetching statuses... Estimated time : ${Math.round(calulcated_total_fetch_time/1000)}s`;
+        document.getElementById("loader-statuses-desc-1").innerText = `Fetching statuses... Estimated time : ${Math.round(remaining_time/1000)}s`;
         
         statuses = statuses.concat(buf_statuses);
 

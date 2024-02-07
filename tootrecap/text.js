@@ -20,6 +20,10 @@ function display_name_emoji(acc) {
     return name;
 }
 
+function remove_links(t) {
+    return t.replaceAll(/<a.*>.+<\/a>/g, " ");
+}
+
 function extractContent(s) {
     let s2 = s.replaceAll(/<\/?(br||p) *\/?>/g, " ");
     let span = document.createElement('span');
