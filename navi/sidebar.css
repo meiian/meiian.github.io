@@ -1,0 +1,82 @@
+#sidebar-r {
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0px;
+  padding-left: 2em;
+  padding-top: 2em;
+  border-left: solid 1px gray;
+}
+
+#search-input {
+  background: #404040;
+  border: solid 0px black;
+  border-radius: var(--border-radius);
+  padding: 0.5em 1em;
+  color: white;
+  width: 20em;
+  font-family: "Onest";
+  outline: rgba(0,0,0,0);
+  height: 1.5em;
+}
+
+
+
+#sidebar-l {
+  display: flex;
+  position: sticky;
+  flex-direction: column;
+  top: 0px;
+  padding-right: 2em;
+  padding-top: 2em;
+  border-right: solid 1px gray;
+}
+
+.profile-icon {
+  width: 86px;
+  height: 86px;
+  border-radius: 100%;
+}
+
+.profile-name {
+  font-size: 2em;
+  font-weight: bold;
+  color: white;
+  width: 10em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: right;
+  margin-top: 0.2em;
+}
+
+.profile-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 3em;
+}
+
+.menu-item {
+  background: none;
+  color: white;
+  outline: black 0px;
+  border: solid 0px black;
+  font-size: 1.5em;
+  font-weight: bold;
+  font-family: "Onest";
+  cursor: pointer;
+  padding: 0.2em 0.8em;
+  border-radius: var(--border-radius);
+  transition: background 0.2s;
+  margin-top: 0.5em;
+}
+
+.menu-item:hover {
+  background: rgba(255,255,255,0.1);
+}

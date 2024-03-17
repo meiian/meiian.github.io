@@ -1,0 +1,108 @@
+.intro-form-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+#toot-recap-title {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0px;
+}
+
+#intro-form-warning {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: red;
+    border-radius: var(--border-radius);
+    padding: 0.5rem;
+    margin-top: 1rem;
+}
+
+#intro-form-warning .warning-body {
+    font-size: 0.9rem;
+}
+
+#intro-form-warning .warning-title {
+    font-weight: bold;
+}
+
+#handle-input {
+    outline: none;
+    border-radius: var(--border-radius);
+    border: solid 0px white;
+    height: 2rem;
+    font-family: "Onest";
+    font-size: 1.3rem;
+    width: 20rem;
+    padding: 0.3rem;
+    margin-top: 0.5rem;
+}
+
+.overlay-cont {
+    z-index: 100000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.acc-show-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.acc-details-node {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.acc-show-cont .account-pfp {
+    border-radius: var(--border-radius);
+    width: 15rem;
+    height: 15rem;
+}
+
+#loader-statuses-desc {
+    color: white;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+}
+
+#drag-drop-statuses {
+    background-color: #303030;
+    width: 100%;
+    height: 10rem;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+#drag-drop-statuses svg {
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 1rem;
+}
+

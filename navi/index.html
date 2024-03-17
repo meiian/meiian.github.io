@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<head>
+    <title>Navi</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="./icon.png"/>
+    <meta name="theme-color" content="#70bbd2">
+    <link rel="stylesheet" href="./spinner.css"/>
+    <link rel="stylesheet" href="./common.css"/>
+    <link rel="stylesheet" href="./intro.css"/>
+    <link rel="stylesheet" href="./toot.css"/>
+    <link rel="stylesheet" href="./sidebar.css"/>
+    <link rel="stylesheet" href="./medias_gallery.css"/>
+    <link rel="stylesheet" href="./mobile.css"/>
+    <script type="text/javascript" src="jszip.min.js"></script>
+    <script type="text/javascript" src="stopwords.js"></script>
+    <script type="text/javascript" src="utilites.js"></script>
+    <script type="text/javascript" src="text.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+</head>
+
+<body>
+    <div id="alert-cont"></div>
+    <div id="app-cont">
+        <div class="flex-column flex-center my-auto">
+            <h1 id="toot-recap-title"><img class="app-icon" src="./icon.png">Navi</h1>
+            <p class="desc">Explore your Mastodon archive to recollect precious memories!<br>
+            Just drop your compressed archive below to start.</p>
+            <div class="intro-form-cont">
+                <div class="ac-label">Archive (.zip file)</div>
+                <div id="drag-drop-statuses" class="flex-center flex-column">
+                    <div class="flex-center flex-column">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1z"/>
+                            <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                        </svg>
+                        <span>Click here to select your archive<br>or drag & drop your archive here.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
