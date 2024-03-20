@@ -12,6 +12,9 @@
     --border-accent-color: #b6ff1c;
 }
 
+.hidden {
+    display: none;
+}
 
 html {
     height: 100%;
@@ -63,6 +66,7 @@ a {
 
 }
 
+
 #explorer-cont {
     width: 100%;
     min-height: 100%;
@@ -109,4 +113,21 @@ a {
 .app-icon {
     width: 48px;
     height: 48px;
+}
+
+.mobile-menu {
+    display: none;
+}
+
+.button {
+    width: max-content;
+    font-family: 'Onest';
+    background: var(--accent-color);
+    color: var(--text-accent-color);
+    border: solid 0px black;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: var(--border-radius);
+    padding: 0.3em 1em;
+    cursor: pointer;
 }

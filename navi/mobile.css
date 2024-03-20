@@ -1,20 +1,100 @@
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
     :root {
         --border-radius : 3px;
         --app-width : 98%;
-        font-size: 12px;
     }
 
-    #embed-row {
-        flex-direction: column;
+    #toots-cont {
+        max-width: 100%;
+        width: 100%;
+        min-width: 100%;
     }
 
-    .embed-cell,
-    .embed-cell:first-child,
-    .embed-cell:last-child {
-        margin: 0px;
-        width: 95%;
-        margin-bottom: 1rem;
+    .toot-pfp > img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .toot-cont {
+        width: 95vw;
+        padding: 1em 2.5vw;
+    }
+
+    #sidebar-l {
+        display: none;
+    }
+
+    #sidebar-r {
+        display: none;
+    }
+
+    #sidebar-r.mobile-visible {
+        display: flex;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: calc(100% - 4em);
+        height: 100%;
+        z-index: 10000000;
+        background: var(--bg-color);
+        padding: 2em;
+    }
+
+    #sidebar-l.mobile-visible {
+        display: flex;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        z-index: 10000000;
+        width: 100%;
+        height: 100%;
+        background: var(--bg-color);
+        justify-content: left;
+        align-items: center;
+    }
+
+    #sidebar-l.mobile-visible>.profile-cont {
+        align-items: center;
+    }
+
+    #sidebar-l.mobile-visible>.profile-cont>.profile-name {
+        text-align: center;
+    }
+
+    .mobile-menu {
+        display: flex;
+        width: calc(100% - 2em);
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        padding: 1em;
+        color: white;
+        border-top: solid 1px lightgray;
+        background-color: var(--bg-color);
+        z-index: 10000000;
+        justify-content: space-between;
+    }
+
+    .mobile-button>svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .mobile-button {
+        cursor: pointer;
+    }
+
+    .media-popup-text {
+        width: 100%;
+    }
+
+    #stats-cont,
+    #media-gallery:last-of-type {
+        padding-bottom: 4em;
+    }
+
+    .load-more {
+        padding-bottom: 4em;
     }
 
 }

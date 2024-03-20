@@ -42,24 +42,30 @@ function init_app() {
     append_to_explorer(toots_cont);
     append_to_explorer(create_right_sidebar());
 
+    append_to_explorer(create_mobile_buttons());
+
     make_toots_page();
 }
 
 function make_toots_page() {
     clearInterval(load_more_timeout);
     clear_toots();
+    hide_mobile_conts();
     search_toots("");
 }
 
 function make_medias_page() {
     clearInterval(load_more_timeout);
     clear_toots();
+    hide_mobile_conts();
     show_medias();
 }
 
 function make_stats_page() {
     clearInterval(load_more_timeout);
     clear_toots();
+    hide_mobile_conts();
+    show_stats();
 }
 
 function create_right_sidebar() {
@@ -76,7 +82,16 @@ function create_right_sidebar() {
         }
     })
 
+    const search_button = document.createElement("button");
+    search_button.innerText = "Search";
+    search_button.classList.add("button");
+    search_button.id = "search-button";
+    search_button.addEventListener("click", function(e) {
+        launch_search();
+    })
+
     sidebar_node.appendChild(search_node);
+    sidebar_node.appendChild(search_button);
     return sidebar_node;
 }
 
@@ -225,10 +240,11 @@ function scroll_to_top() {
     
 function launch_search() {
     search_toots(document.getElementById("search-input").value);
+    hide_mobile_conts();
 }
 
 function search_toots(keyword) {
-    filtered_toots = archive.outbox.orderedItems.filter(t => t.object.content && t.object.content.toLowerCase().includes(keyword.toLowerCase()));
+    filtered_toots = archive.outbox.orderedItems.filter(t => t.object.content !== undefined && t.type === "Create" && t.object.content.toLowerCase().includes(keyword.toLowerCase()));
     clear_toots();
     create_title_toots_cont("Toots", filtered_toots.length);
     scroll_to_top();

@@ -6,6 +6,7 @@
   padding-left: 2em;
   padding-top: 2em;
   border-left: solid 1px gray;
+  align-items: center;
 }
 
 #search-input {
@@ -20,6 +21,9 @@
   height: 1.5em;
 }
 
+#search-button {
+  margin-top: 0.5em;
+}
 
 
 #sidebar-l {
