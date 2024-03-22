@@ -249,7 +249,8 @@ function search_toots(keyword) {
     create_title_toots_cont("Toots", filtered_toots.length);
     scroll_to_top();
     chunks = [...toot_chunks(filtered_toots, 50)];
-    build_toots(0);
+    if(chunks.length > 0)
+        build_toots(0);
 }
 
 async function build_toots(i) {
@@ -386,15 +387,29 @@ async function load_image(x) {
     if(medias_blobs[x.url]) {
         url_blob = medias_blobs[x.url]
     } else {
-        media_blob = await compressed_file.find(f => f.filename.includes(x.url)).getData(new zip.BlobWriter());
-        url_blob = URL.createObjectURL(media_blob.slice(0, media_blob.size, x.mediaType))
-        medias_blobs[x.url] = url_blob;
+        const media_file = compressed_file.find(f => f.filename.includes(x.url));
+        if (media_file) {
+            const media_blob = await media_file.getData(new zip.BlobWriter());
+            url_blob = URL.createObjectURL(media_blob.slice(0, media_blob.size, x.mediaType))
+            medias_blobs[x.url] = url_blob;
+        }
+        else {
+            medias_blobs[x.url] = "";
+            url_blob = "";
+        }        
     }
     return new Promise(resolve => {
-        const media_node = new Image();
-        media_node.onload = function() {resolve(media_node);}
-        media_node.src = url_blob;
-        media_node.alt = x.name || "";
+        if (url_blob) {
+            const media_node = new Image();
+            media_node.onload = function() {resolve(media_node);}
+            media_node.src = url_blob;
+            media_node.alt = x.name || "";
+        }
+        else {
+            const media_node = document.createElement("div");
+            media_node.innerHTML = "<div class='media-error'>Media could not load.</div>"
+            resolve(media_node);
+        }
     })
 }
 
@@ -403,19 +418,34 @@ async function load_video_link(x) {
     if(medias_blobs[x.url]) {
         url_blob = medias_blobs[x.url]
     } else {
-        media_blob = await compressed_file.find(f => f.filename.includes(x.url)).getData(new zip.BlobWriter());
-        url_blob = URL.createObjectURL(media_blob.slice(0, media_blob.size, x.mediaType))
-        medias_blobs[x.url] = url_blob;
+        const media_file = compressed_file.find(f => f.filename.includes(x.url));
+        if (media_file) {
+            const media_blob = await media_file.getData(new zip.BlobWriter());
+            url_blob = URL.createObjectURL(media_blob.slice(0, media_blob.size, x.mediaType))
+            medias_blobs[x.url] = url_blob;
+        }
+        else {
+            medias_blobs[x.url] = "";
+            url_blob = "";
+        }   
     }
     return new Promise(resolve => {
-        const media_node = document.createElement("a");
-        media_node.style.color = "var(--accent-color)";
-        media_node.addEventListener("click", function(e) {
-            e.stopPropagation();
-            open_media_popup(url_blob, x);
-        })
-        media_node.innerText = "Ouvrir la vidéo";
-        resolve(media_node);
+        if (url_blob) {
+            const media_node = document.createElement("a");
+            media_node.style.color = "var(--accent-color)";
+            media_node.addEventListener("click", function(e) {
+                e.stopPropagation();
+                open_media_popup(url_blob, x);
+            })
+            media_node.innerText = "Open video";
+            resolve(media_node);
+        }
+        else {
+            const media_node = document.createElement("a");
+            media_node.style.color = "var(--accent-color)";
+            media_node.innerText = "Video could not load.";
+            resolve(media_node);
+        }
     })
 }
 
@@ -424,17 +454,31 @@ async function load_video(x, controls=false) {
     if(medias_blobs[x.url]) {
         url_blob = medias_blobs[x.url]
     } else {
-        media_blob = await compressed_file.find(f => f.filename.includes(x.url)).getData(new zip.BlobWriter());
-        url_blob = URL.createObjectURL(media_blob.slice(0, media_blob.size, x.mediaType))
-        medias_blobs[x.url] = url_blob;
+        const media_file = compressed_file.find(f => f.filename.includes(x.url));
+        if (media_file) {
+            const media_blob = await media_file.getData(new zip.BlobWriter());
+            url_blob = URL.createObjectURL(media_blob.slice(0, media_blob.size, x.mediaType))
+            medias_blobs[x.url] = url_blob;
+        }
+        else {
+            medias_blobs[x.url] = "";
+            url_blob = "";
+        }  
     }
     return new Promise(resolve => {
-        const media_node = document.createElement("video");
-        if (controls)
-            media_node.setAttribute("controls", "controls");
-        media_node.onloadeddata = function() {resolve(media_node);}
-        media_node.src = url_blob;
-        media_node.load();
+        if (url_blob) {
+            const media_node = document.createElement("video");
+            if (controls)
+                media_node.setAttribute("controls", "controls");
+            media_node.onloadeddata = function() {resolve(media_node);}
+            media_node.src = url_blob;
+            media_node.load();
+        }
+        else {
+            const media_node = document.createElement("div");
+            media_node.innerHTML = "<div class='media-error'>Media could not load.</div>"
+            resolve(media_node);
+        }
     })
 }
 
@@ -443,16 +487,30 @@ async function load_audio(x) {
     if(medias_blobs[x.url]) {
         url_blob = medias_blobs[x.url]
     } else {
-        media_blob = await compressed_file.find(f => f.filename.includes(x.url)).getData(new zip.BlobWriter());
-        url_blob = URL.createObjectURL(media_blob.slice(0, media_blob.size, x.mediaType))
-        medias_blobs[x.url] = url_blob;
+        const media_file = compressed_file.find(f => f.filename.includes(x.url));
+        if (media_file) {
+            const media_blob = await media_file.getData(new zip.BlobWriter());
+            url_blob = URL.createObjectURL(media_blob.slice(0, media_blob.size, x.mediaType))
+            medias_blobs[x.url] = url_blob;
+        }
+        else {
+            medias_blobs[x.url] = "";
+            url_blob = "";
+        }  
     }
     return new Promise(resolve => {
-        const media_node = document.createElement("audio");
-        media_node.setAttribute("controls", "controls");
-        media_node.onloadeddata = function() {resolve(media_node);}
-        media_node.src = url_blob;
-        media_node.load();
+        if (url_blob) {
+            const media_node = document.createElement("audio");
+            media_node.setAttribute("controls", "controls");
+            media_node.onloadeddata = function() {resolve(media_node);}
+            media_node.src = url_blob;
+            media_node.load();
+        }
+        else {
+            const media_node = document.createElement("div");
+            media_node.innerHTML = "<div class='media-error'>Media could not load.</div>"
+            resolve(media_node);
+        }
     })
 }
 
@@ -461,15 +519,29 @@ async function load_audio_preview(x) {
     if(medias_blobs[x.url]) {
         url_blob = medias_blobs[x.url]
     } else {
-        media_blob = await compressed_file.find(f => f.filename.includes(x.url)).getData(new zip.BlobWriter());
-        url_blob = URL.createObjectURL(media_blob.slice(0, media_blob.size, x.mediaType))
-        medias_blobs[x.url] = url_blob;
+        const media_file = compressed_file.find(f => f.filename.includes(x.url));
+        if (media_file) {
+            const media_blob = await media_file.getData(new zip.BlobWriter());
+            url_blob = URL.createObjectURL(media_blob.slice(0, media_blob.size, x.mediaType))
+            medias_blobs[x.url] = url_blob;
+        }
+        else {
+            medias_blobs[x.url] = "";
+            url_blob = "";
+        }  
     }
     return new Promise(resolve => {
-        const media_node = new Image();
-        media_node.onload = function() {resolve(media_node);}
-        media_node.src = archive.avatar;
-        media_node.alt = "Audio file";
+        if (url_blob) {
+            const media_node = new Image();
+            media_node.onload = function() {resolve(media_node);}
+            media_node.src = archive.avatar;
+            media_node.alt = "Audio file";
+        }
+        else {
+            const media_node = document.createElement("div");
+            media_node.innerHTML = "<div class='media-error'>Media could not load.</div>"
+            resolve(media_node);
+        }
     })
 }
 
@@ -497,7 +569,7 @@ async function build_toot(t) {
 
 function fill_attachments() {
     attachments = archive.outbox.orderedItems.map(t => {
-        if(t.object.attachment) {
+        if(t.object.attachment && t.type === "Create") {
             const medias = t.object.attachment.flat();
             for (let i=0; i < medias.length ; i++) {
                 medias[i].text = t.object.content;
