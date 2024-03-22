@@ -51,7 +51,7 @@ function uint8array_to_url(a, dataType) {
     return URL.createObjectURL(blob_image);
 }
 
-function dropHandler(ev) {  
+async function dropHandler(ev) {  
     ev.preventDefault();
   
     if (ev.dataTransfer.items) {
@@ -74,22 +74,32 @@ function dropHandler(ev) {
                 </div>
           `;
 
-          let zip = new JSZip();
-          zip.loadAsync(file).then(function(z) {
-            if(z.files["actor.json"] && z.files["outbox.json"] && z.files["avatar.png"]) {
-                z.files["actor.json"].async("string").then(x => archive["actor"] = JSON.parse(x));
-                z.files["outbox.json"].async("string").then(x => archive["outbox"] = JSON.parse(x));
-                z.files["avatar.png"].async("uint8array").then(x => archive["avatar"] = uint8array_to_url(x, "image/png"));
-                compressed_file = z.files;
-            }
-            else {
-                show_alert("Your file seems to be corrupted. Reloading the page...", 2000);
+          const reader = new zip.ZipReader(new zip.BlobReader(file));
+          const entries = await reader.getEntries();
+
+          const outbox_cp = entries.find(f => f.filename === "outbox.json");
+          const actor_cp = entries.find(f => f.filename === "actor.json");
+          const avatar_cp = entries.find(f => f.filename === "avatar.png");
+
+          if(outbox_cp && actor_cp && avatar_cp) {
+            const outbox = JSON.parse(await outbox_cp.getData(new zip.TextWriter()));
+            const actor = JSON.parse(await actor_cp.getData(new zip.TextWriter()));
+            const avatar = uint8array_to_url(await avatar_cp.getData(new zip.Uint8ArrayWriter()), "image/png");
+
+            archive["outbox"] = outbox; 
+            archive["actor"] = actor; 
+            archive["avatar"] = avatar; 
+            compressed_file = entries;
+          }
+          else {
+            show_alert("There seems to be a problem with your file. Reloading the page...", 2000);
                 setTimeout(function() {
                     location.reload();
                 }, 2000)
-                return 1;
-            }
-          });
+            return 1;
+          }
+          
+          await reader.close();
         }
     }
     document.getElementById("drag-drop-statuses").removeEventListener("drop", dropHandler);
@@ -106,7 +116,7 @@ function onClickFileHanlder(ev) {
     file_input.type = "file";
     file_input.accept = "application/zip";
 
-    file_input.addEventListener('change', function(e) {
+    file_input.addEventListener('change', async function(e) {
         if(file_input.files.length > 1) {
             show_alert("You should drop only one file.", 3000);
             return 1;
@@ -125,14 +135,32 @@ function onClickFileHanlder(ev) {
                   </div>
             `;
   
-            let zip = new JSZip();
-            zip.loadAsync(file).then(function(z) {
-              z.files["actor.json"].async("string").then(x => archive["actor"] = JSON.parse(x));
-              z.files["outbox.json"].async("string").then(x => archive["outbox"] = JSON.parse(x));
-              z.files["avatar.png"].async("uint8array").then(x => archive["avatar"] = uint8array_to_url(x, "image/png"));
-              compressed_file = z.files;
-              file_input = window._protected_reference = undefined;
-            });
+            const reader = new zip.ZipReader(new zip.BlobReader(file));
+            const entries = await reader.getEntries();
+
+            const outbox_cp = entries.find(f => f.filename === "outbox.json");
+            const actor_cp = entries.find(f => f.filename === "actor.json");
+            const avatar_cp = entries.find(f => f.filename === "avatar.png");
+
+            if(outbox_cp && actor_cp && avatar_cp) {
+                const outbox = JSON.parse(await outbox_cp.getData(new zip.TextWriter()));
+                const actor = JSON.parse(await actor_cp.getData(new zip.TextWriter()));
+                const avatar = uint8array_to_url(await avatar_cp.getData(new zip.Uint8ArrayWriter()), "image/png");
+
+                archive["outbox"] = outbox; 
+                archive["actor"] = actor; 
+                archive["avatar"] = avatar; 
+                compressed_file = entries;
+            }
+            else {
+                show_alert("There seems to be a problem with your file. Reloading the page...", 2000);
+                    setTimeout(function() {
+                        location.reload();
+                    }, 2000)
+                return 1;
+            }
+            
+            await reader.close();
           }
 
     });

@@ -386,7 +386,7 @@ async function load_image(x) {
     if(medias_blobs[x.url]) {
         url_blob = medias_blobs[x.url]
     } else {
-        media_blob = await compressed_file[x.url].async("blob");
+        media_blob = await compressed_file.find(f => f.filename === x.url).getData(new zip.BlobWriter());
         url_blob = URL.createObjectURL(media_blob.slice(0, media_blob.size, x.mediaType))
         medias_blobs[x.url] = url_blob;
     }
@@ -403,7 +403,7 @@ async function load_video_link(x) {
     if(medias_blobs[x.url]) {
         url_blob = medias_blobs[x.url]
     } else {
-        media_blob = await compressed_file[x.url].async("blob");
+        media_blob = await compressed_file.find(f => f.filename === x.url).getData(new zip.BlobWriter());
         url_blob = URL.createObjectURL(media_blob.slice(0, media_blob.size, x.mediaType))
         medias_blobs[x.url] = url_blob;
     }
@@ -424,7 +424,7 @@ async function load_video(x, controls=false) {
     if(medias_blobs[x.url]) {
         url_blob = medias_blobs[x.url]
     } else {
-        media_blob = await compressed_file[x.url].async("blob");
+        media_blob = await compressed_file.find(f => f.filename === x.url).getData(new zip.BlobWriter());
         url_blob = URL.createObjectURL(media_blob.slice(0, media_blob.size, x.mediaType))
         medias_blobs[x.url] = url_blob;
     }
@@ -443,7 +443,7 @@ async function load_audio(x) {
     if(medias_blobs[x.url]) {
         url_blob = medias_blobs[x.url]
     } else {
-        media_blob = await compressed_file[x.url].async("blob");
+        media_blob = await compressed_file.find(f => f.filename === x.url).getData(new zip.BlobWriter());
         url_blob = URL.createObjectURL(media_blob.slice(0, media_blob.size, x.mediaType))
         medias_blobs[x.url] = url_blob;
     }
@@ -461,7 +461,7 @@ async function load_audio_preview(x) {
     if(medias_blobs[x.url]) {
         url_blob = medias_blobs[x.url]
     } else {
-        media_blob = await compressed_file[x.url].async("blob");
+        media_blob = await compressed_file.find(f => f.filename === x.url).getData(new zip.BlobWriter());
         url_blob = URL.createObjectURL(media_blob.slice(0, media_blob.size, x.mediaType))
         medias_blobs[x.url] = url_blob;
     }
@@ -695,10 +695,10 @@ async function open_media_popup(url, media) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("drag-drop-statuses").addEventListener("drop", function(e){
+    document.getElementById("drag-drop-statuses").addEventListener("drop", async function(e){
         e.stopPropagation();
         e.preventDefault();
-        dropHandler(e);
+        await dropHandler(e);
         const retry_read_json = setInterval(function(){
             if(archive["outbox"] !== undefined) {
                 clearInterval(retry_read_json);
