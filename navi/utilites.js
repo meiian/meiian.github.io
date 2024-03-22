@@ -78,18 +78,17 @@ async function dropHandler(ev) {
           const entries = await reader.getEntries();
 
           const outbox_cp = entries.find(f => f.filename.includes("outbox.json"));
-          const actor_cp = entries.find(f => f.filename.includes("actor.json"));
-          const avatar_cp = entries.find(f => f.filename.includes("avatar.png"));
-
-          if(outbox_cp && actor_cp && avatar_cp) {
-            const outbox = JSON.parse(await outbox_cp.getData(new zip.TextWriter()));
-            const actor = JSON.parse(await actor_cp.getData(new zip.TextWriter()));
-            const avatar = uint8array_to_url(await avatar_cp.getData(new zip.Uint8ArrayWriter()), "image/png");
-
-            archive["outbox"] = outbox; 
-            archive["actor"] = actor; 
-            archive["avatar"] = avatar; 
-            compressed_file = entries;
+          const actor_cp = entries.find(f => f.filename.includes("actor.json"));   
+          
+          if(outbox_cp && actor_cp) {
+              const outbox = JSON.parse(await outbox_cp.getData(new zip.TextWriter()));
+              const actor = JSON.parse(await actor_cp.getData(new zip.TextWriter()));
+              const avatar_cp = entries.find(f => f.filename.includes(actor.icon.url));
+              const avatar = uint8array_to_url(await avatar_cp.getData(new zip.Uint8ArrayWriter()), actor.icon.mediaType);     
+              archive["outbox"] = outbox; 
+              archive["actor"] = actor; 
+              archive["avatar"] = avatar; 
+              compressed_file = entries;
           }
           else {
             show_alert("There seems to be a problem with your file. Reloading the page...", 2000);
@@ -140,12 +139,12 @@ function onClickFileHanlder(ev) {
 
             const outbox_cp = entries.find(f => f.filename.includes("outbox.json"));
             const actor_cp = entries.find(f => f.filename.includes("actor.json"));
-            const avatar_cp = entries.find(f => f.filename.includes("avatar.png"));
 
-            if(outbox_cp && actor_cp && avatar_cp) {
+            if(outbox_cp && actor_cp) {
                 const outbox = JSON.parse(await outbox_cp.getData(new zip.TextWriter()));
                 const actor = JSON.parse(await actor_cp.getData(new zip.TextWriter()));
-                const avatar = uint8array_to_url(await avatar_cp.getData(new zip.Uint8ArrayWriter()), "image/png");
+                const avatar_cp = entries.find(f => f.filename.includes(actor.icon.url));
+                const avatar = uint8array_to_url(await avatar_cp.getData(new zip.Uint8ArrayWriter()), actor.icon.mediaType);
 
                 archive["outbox"] = outbox; 
                 archive["actor"] = actor; 
