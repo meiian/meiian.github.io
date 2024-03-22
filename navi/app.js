@@ -17,6 +17,7 @@ let chunk_to_render = 0;
 let medias_blobs = {};
 let load_more_timeout = null;
 let attachments = [];
+const media_regex = /.*?\/?(?<url>media_attachments\/files\/.+)/;
 
 function init_app() {
     fill_attachments();
@@ -387,7 +388,11 @@ async function load_image(x) {
     if(medias_blobs[x.url]) {
         url_blob = medias_blobs[x.url]
     } else {
-        const media_file = compressed_file.find(f => f.filename.includes(x.url));
+        const media_file = compressed_file.find(f => {
+            const match_a = f.filename.match(media_regex);
+            const match_b = x.url.match(media_regex);
+            return match_a && match_b && match_a.groups.url.includes(match_b.groups.url);
+        });
         if (media_file) {
             const media_blob = await media_file.getData(new zip.BlobWriter());
             url_blob = URL.createObjectURL(media_blob.slice(0, media_blob.size, x.mediaType))
@@ -418,7 +423,11 @@ async function load_video_link(x) {
     if(medias_blobs[x.url]) {
         url_blob = medias_blobs[x.url]
     } else {
-        const media_file = compressed_file.find(f => f.filename.includes(x.url));
+        const media_file = compressed_file.find(f => {
+            const match_a = f.filename.match(media_regex);
+            const match_b = x.url.match(media_regex);
+            return match_a && match_b && match_a.groups.url.includes(match_b.groups.url);
+        });
         if (media_file) {
             const media_blob = await media_file.getData(new zip.BlobWriter());
             url_blob = URL.createObjectURL(media_blob.slice(0, media_blob.size, x.mediaType))
@@ -454,7 +463,11 @@ async function load_video(x, controls=false) {
     if(medias_blobs[x.url]) {
         url_blob = medias_blobs[x.url]
     } else {
-        const media_file = compressed_file.find(f => f.filename.includes(x.url));
+        const media_file = compressed_file.find(f => {
+            const match_a = f.filename.match(media_regex);
+            const match_b = x.url.match(media_regex);
+            return match_a && match_b && match_a.groups.url.includes(match_b.groups.url);
+        });
         if (media_file) {
             const media_blob = await media_file.getData(new zip.BlobWriter());
             url_blob = URL.createObjectURL(media_blob.slice(0, media_blob.size, x.mediaType))
@@ -487,7 +500,11 @@ async function load_audio(x) {
     if(medias_blobs[x.url]) {
         url_blob = medias_blobs[x.url]
     } else {
-        const media_file = compressed_file.find(f => f.filename.includes(x.url));
+        const media_file = compressed_file.find(f => {
+            const match_a = f.filename.match(media_regex);
+            const match_b = x.url.match(media_regex);
+            return match_a && match_b && match_a.groups.url.includes(match_b.groups.url);
+        });
         if (media_file) {
             const media_blob = await media_file.getData(new zip.BlobWriter());
             url_blob = URL.createObjectURL(media_blob.slice(0, media_blob.size, x.mediaType))
@@ -519,7 +536,11 @@ async function load_audio_preview(x) {
     if(medias_blobs[x.url]) {
         url_blob = medias_blobs[x.url]
     } else {
-        const media_file = compressed_file.find(f => f.filename.includes(x.url));
+        const media_file = compressed_file.find(f => {
+            const match_a = f.filename.match(media_regex);
+            const match_b = x.url.match(media_regex);
+            return match_a && match_b && match_a.groups.url.includes(match_b.groups.url);
+        });
         if (media_file) {
             const media_blob = await media_file.getData(new zip.BlobWriter());
             url_blob = URL.createObjectURL(media_blob.slice(0, media_blob.size, x.mediaType))
