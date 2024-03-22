@@ -77,9 +77,9 @@ async function dropHandler(ev) {
           const reader = new zip.ZipReader(new zip.BlobReader(file));
           const entries = await reader.getEntries();
 
-          const outbox_cp = entries.find(f => f.filename === "outbox.json");
-          const actor_cp = entries.find(f => f.filename === "actor.json");
-          const avatar_cp = entries.find(f => f.filename === "avatar.png");
+          const outbox_cp = entries.find(f => f.filename.includes("outbox.json"));
+          const actor_cp = entries.find(f => f.filename.includes("actor.json"));
+          const avatar_cp = entries.find(f => f.filename.includes("avatar.png"));
 
           if(outbox_cp && actor_cp && avatar_cp) {
             const outbox = JSON.parse(await outbox_cp.getData(new zip.TextWriter()));
@@ -138,9 +138,9 @@ function onClickFileHanlder(ev) {
             const reader = new zip.ZipReader(new zip.BlobReader(file));
             const entries = await reader.getEntries();
 
-            const outbox_cp = entries.find(f => f.filename === "outbox.json");
-            const actor_cp = entries.find(f => f.filename === "actor.json");
-            const avatar_cp = entries.find(f => f.filename === "avatar.png");
+            const outbox_cp = entries.find(f => f.filename.includes("outbox.json"));
+            const actor_cp = entries.find(f => f.filename.includes("actor.json"));
+            const avatar_cp = entries.find(f => f.filename.includes("avatar.png"));
 
             if(outbox_cp && actor_cp && avatar_cp) {
                 const outbox = JSON.parse(await outbox_cp.getData(new zip.TextWriter()));
