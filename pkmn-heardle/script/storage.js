@@ -46,6 +46,7 @@ function updateStats() {
             }
         }
         else {
+            stats.currentStreak = 0;
             stats.nbWinByTries[0] += 1;
         }
 
