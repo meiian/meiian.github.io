@@ -3,6 +3,7 @@ const music_list = musics.map(m => m.title);
 document.addEventListener("DOMContentLoaded", function() {
     const autocomplete = new autoComplete({
         placeHolder: "Know it? Search for the artist / title",
+        searchEngine: "loose",
         data: {
             src: music_list,
             cache: true,
