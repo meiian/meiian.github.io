@@ -1,0 +1,212 @@
+:root {
+    --p5-red: #f71a07;
+    --p5-red-dark: #530b05;
+    --p5-pattern-dark-gray: rgb(53, 53, 53); 
+    --p5-green: #11c991;
+    --p5-purple: #f259d8;
+}
+
+@font-face {
+    font-family: "Arsenal";
+    src: url("../../font/Arsenal-Regular.ttf");
+}
+
+body {
+    font-family: "Franklin Gothic", "Arsenal";
+}
+
+#autoComplete {
+    background-color: black;
+    box-shadow: -2px 2px 0px 6px #FFF;
+    transform: rotate(-1deg);
+}
+
+#play-btn {
+    transform: rotate(5deg);
+    border-radius: 0px;
+    box-shadow: 2px 2px 0px 4px white;
+    border: solid 0px black;
+    transition: box-shadow 0.1s, background-color 0.1s, color 0.1s;
+}
+
+#play-btn:hover {
+    box-shadow: 2px 2px 0px 4px var(--p5-red);
+    background-color: white;
+    color: red;
+}
+
+@keyframes submitbuttonanim {
+    50% {
+        box-shadow: -6px 3px 0px 0px white;
+        color: white;
+    }
+}
+
+@keyframes skipbuttonanim {
+    50% {
+        box-shadow: 6px 3px 0px -2px white;
+        color: white;
+    }
+}
+
+#submit-button {
+    background-color: black;
+    font-family: "Franklin Gothic", "Arsenal";
+    box-shadow: 12px 3px 0px 0px var(--p5-red);
+    transform: skew(0deg, 1deg);
+    transition: background-color 0.1s, box-shadow 0.1s, color 0.1s;
+}
+
+#skip-button {
+    background-color: black;
+    box-shadow: -12px 3px 0px -2px var(--p5-purple);
+    font-family: "Franklin Gothic", "Arsenal";
+    transform: skew(-1deg, -1deg);
+    transition: background-color 0.1s, box-shadow 0.1s, color 0.1s;
+}
+
+#share-button {
+    background-color: black;
+    box-shadow: 12px 3px 0px 0px var(--p5-red);
+    font-family: "Franklin Gothic", "Arsenal";
+    transform: skew(0deg, 1deg);
+    transition: background-color 0.1s, box-shadow 0.1s, color 0.1s;
+}
+
+#submit-button:hover {
+    background-color: var(--p5-red);
+    color: black;
+    box-shadow: 12px 3px 0px 0px white;
+    animation: 1s infinite submitbuttonanim;
+    animation-timing-function: cubic-bezier(.6,-0.28,.74,.05);
+}
+
+#skip-button:hover {
+    background-color: var(--p5-purple);
+    color: black;
+    box-shadow: -12px 3px 0px -2px white;
+    animation: 1s infinite skipbuttonanim;
+    animation-timing-function: cubic-bezier(.6,-0.28,.74,.05);
+}
+
+#share-button:hover {
+    background-color: var(--p5-red);
+    color: black;
+    box-shadow: 12px 3px 0px 0px white;
+    animation: 1s infinite submitbuttonanim;
+    animation-timing-function: cubic-bezier(.6,-0.28,.74,.05);
+}
+
+.time-display-cont {
+    transform: skew(-1deg, -1deg);
+}
+
+.time-display {
+    text-shadow: 2px 2px 0px black;
+    font-weight: bold;
+    background-color: var(--p5-red);
+    padding: 3px 10px;
+}
+
+#footer {
+    position: relative;
+    background: linear-gradient(to bottom, #0a0a0a, transparent);
+}
+
+#footer-bg-1 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(var(--p5-red-dark) 5%, transparent 5%), linear-gradient(var(--p5-pattern-dark-gray) 5%, transparent 5%), linear-gradient(var(--p5-pattern-dark-gray) 5%, transparent 5%);
+    background-position: 0 0, 0px 15px, 0px -15px;
+    background-size: 1px 120px;
+    z-index: -1000;
+    background-attachment: fixed;
+}
+
+#footer-bg-2 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, var(--p5-red-dark) 5%, transparent 5%), linear-gradient(to right, var(--p5-pattern-dark-gray) 5%, transparent 5%), linear-gradient(to right, var(--p5-pattern-dark-gray) 5%, transparent 5%);
+    background-position: 0px 0px, 15px 0px, -15px 0px;
+    background-size: 120px 1px;
+    z-index: -1000;
+    background-attachment: fixed;
+}
+
+#controls-play-time {
+    margin-bottom: 0.5em;
+}
+
+.progress-bar-checkmark {
+    background-color: white;
+    transform: rotate(8deg);
+    width: 3px;
+    height: 150%;
+    top: -2px;
+}
+
+.full-separation {
+    box-shadow: 2px 2px 0px 4px white;
+    margin-bottom: 0.25em;
+}
+
+.try-name {
+    background-color: black;
+    box-shadow: 2px 2px 0px 4px gray;
+    transform: rotate(-1deg);
+    margin-bottom: 0.7em;
+    border: solid 0px black;
+}
+
+.try-name-skip {
+    box-shadow: 2px 2px 0px 4px #444;
+}
+
+.try-name-fail {
+    box-shadow: 2px 2px 0px 4px var(--p5-red);
+}
+
+
+@keyframes resultsshadowanim {
+    50% {
+        box-shadow: -6px 5px 0px 0px rgba(255,0,0,0.5), 6px -3px 0px 0px rgba(0,0,255,0.5), -8px -7px 0px 0px rgba(0,255,0,0.5);
+        color: white;
+    }
+}
+
+#results {
+    box-shadow: 12px 1px 0px 0px rgba(255,0,0,0.5), -12px 3px 0px 0px rgba(0,0,255,0.5), 16px -3px 0px 0px rgba(0,255,0,0.5);
+    background-color: black;
+    transform: skew(1deg,0deg);
+    animation: 1s infinite resultsshadowanim;
+    animation-timing-function: cubic-bezier(.6,-0.28,.74,.05);
+}
+
+#heardle-title>span:nth-child(6n) {
+    color: black;
+    background-color: white;
+    display: inline-block;
+    transform: rotate(5deg);
+}
+
+.popup-display {
+    background-color: black;
+    box-shadow: 4px 5px 0px 8px white;
+    transform: skew(-3deg,0deg);
+}
+
+.autoComplete_wrapper > ul > li:hover {
+    background-color: #e32503;
+  color: white;
+}
+
+.autoComplete_wrapper > ul > li:hover > mark {
+  color: #0ed8db;
+}
+
