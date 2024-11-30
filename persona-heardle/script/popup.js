@@ -1,5 +1,5 @@
 function showStats() {
-    const stats = JSON.parse(localStorage.getItem("stats"));
+    const stats = JSON.parse(localStorage.getItem("stats_persona"));
 
     const graph_games_by_tries = stats.nbWinByTries.map(function(x, index) {
         return `
