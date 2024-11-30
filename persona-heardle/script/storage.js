@@ -1,16 +1,16 @@
 function checkIfStorageExists() {
-    const previous_games = JSON.parse(localStorage.getItem("previous_games"));
+    const previous_games = JSON.parse(localStorage.getItem("previous_games_persona"));
     if(previous_games === null) {
         initStorage();
     }
-    const stats = JSON.parse(localStorage.getItem("stats"));
+    const stats = JSON.parse(localStorage.getItem("stats_persona"));
     if(stats === null) {
         initStatsStorage();
     }
 }
 
 function initStorage() {
-    localStorage.setItem("previous_games", "{}");
+    localStorage.setItem("previous_games_persona", "{}");
 }
 
 function initStatsStorage() {
@@ -21,20 +21,20 @@ function initStatsStorage() {
         currentStreak: 0,
         highestStreak: 0
     }
-    localStorage.setItem("stats", JSON.stringify(stats));
+    localStorage.setItem("stats_persona", JSON.stringify(stats));
 }
 
 function addGameToStorage() {
-    let previous_games = JSON.parse(localStorage.getItem("previous_games"));
+    let previous_games = JSON.parse(localStorage.getItem("previous_games_persona"));
     if(previous_games) {
         const current_game = createResultsForStorage();
         previous_games[current_game.date] = current_game;
-        localStorage.setItem("previous_games", JSON.stringify(previous_games));
+        localStorage.setItem("previous_games_persona", JSON.stringify(previous_games));
     }
 }
 
 function updateStats() {
-    const stats = JSON.parse(localStorage.getItem("stats"));
+    const stats = JSON.parse(localStorage.getItem("stats_persona"));
     if(stats) {
         stats.gamePlayed++;
         if(game.result === GAME_RESULTS.WON) {
@@ -50,7 +50,7 @@ function updateStats() {
             stats.nbWinByTries[0] += 1;
         }
 
-        localStorage.setItem("stats", JSON.stringify(stats));
+        localStorage.setItem("stats_persona", JSON.stringify(stats));
     }
 }
 
@@ -62,7 +62,7 @@ function checkIfTodayAlreadyPlayed() {
 }
 
 function getTodayPlay() {
-    const previous_games = JSON.parse(localStorage.getItem("previous_games"));
+    const previous_games = JSON.parse(localStorage.getItem("previous_games_persona"));
     let today_game = null;
     if (previous_games) {
         today_game = previous_games[today.toLocaleDateString('en-US')]
