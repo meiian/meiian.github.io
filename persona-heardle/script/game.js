@@ -259,7 +259,7 @@ function showResults() {
     let results_msg = `You didn't get today's ${GAME_NAMES.GAME_TITLE}. Better luck tomorrow!`;
     if(game.triesResults.includes(TRIES.SUCCESS)) {
         game.result = GAME_RESULTS.WON;
-        results_msg = `You found today's Poké Heardle in ${game.nbTries} tr${(game.nbTries>1)?"ies":"y"}. Good job!`;
+        results_msg = `You found today's ${GAME_NAMES.GAME_TITLE} in ${game.nbTries} tr${(game.nbTries>1)?"ies":"y"}. Good job!`;
     }
     else {
         game.result = GAME_RESULTS.LOST;
