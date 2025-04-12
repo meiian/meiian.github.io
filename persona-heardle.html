@@ -6,18 +6,18 @@
         <meta name="theme-color" content="#FDA50f">
         <link rel="stylesheet" href="./persona-heardle/autocompletejs/css/autoComplete.css"/>
         <script src="./persona-heardle/autocompletejs/autoComplete.min.js"></script>
-        <link rel="stylesheet" href="./persona-heardle/style/global.css?v=1.0.1"/>
-        <script src="./persona-heardle/data/musics.js?v=1.0.1"></script>
-        <script src="./persona-heardle/script/constants.js?v=1.0.1"></script>
-        <script src="./persona-heardle/script/utils.js?v=1.0.1"></script>
-        <script src="./persona-heardle/script/storage.js?v=1.0.1"></script>
-        <script src="./persona-heardle/script/popup.js?v=1.0.1"></script>
-        <script src="./persona-heardle/script/search.js?v=1.0.1"></script>
-        <script src="./persona-heardle/script/choose.js?v=1.0.1"></script>
-        <script src="./persona-heardle/script/game.js?v=1.0.1"></script>
-        <script src="./persona-heardle/script/buttons.js?v=1.0.1"></script>
-        <script src="./persona-heardle/script/p5.js?v=1.0.1"></script>
-        <link rel="stylesheet" href="./persona-heardle/style/p5.css?v=1.0.1"/>
+        <link rel="stylesheet" href="./persona-heardle/style/global.css?v=1.1.0"/>
+        <script src="./persona-heardle/data/musics.js?v=1.1.0"></script>
+        <script src="./persona-heardle/script/constants.js?v=1.1.0"></script>
+        <script src="./persona-heardle/script/utils.js?v=1.1.0"></script>
+        <script src="./persona-heardle/script/storage.js?v=1.1.0"></script>
+        <script src="./persona-heardle/script/popup.js?v=1.1.0"></script>
+        <script src="./persona-heardle/script/search.js?v=1.1.0"></script>
+        <script src="./persona-heardle/script/choose.js?v=1.1.0"></script>
+        <script src="./persona-heardle/script/game.js?v=1.1.0"></script>
+        <script src="./persona-heardle/script/buttons.js?v=1.1.0"></script>
+        <script src="./persona-heardle/script/p5.js?v=1.1.0"></script>
+        <link rel="stylesheet" href="./persona-heardle/style/p5.css?v=1.1.0"/>
 </head>
 
 <body>
@@ -89,7 +89,8 @@
                 </div>
 
                 <div class="autoComplete_wrapper remove-when-results">
-                    <input id="autoComplete" type="search" dir="ltr" spellcheck=false autocorrect="off" autocomplete="off" autocapitalize="off">
+                    <input id="autoComplete-game" class="autoComplete" type="search" dir="ltr" spellcheck=false autocorrect="off" autocomplete="off" autocapitalize="off">
+                    <input id="autoComplete-music" class="autoComplete" type="search" dir="ltr" spellcheck=false autocorrect="off" autocomplete="off" autocapitalize="off" disabled>
                 </div>
 
                 <div class="flex pad flex-center flex-between row remove-when-results">

@@ -153,30 +153,56 @@ function checkAudioTime() {
 }
 
 function makeTry() {
-    const titleTried = document.getElementById("autoComplete").value;
+    const titleTried = document.getElementById("autoComplete-music").value;
+    const gameTried = document.getElementById("autoComplete-game").value;
     let isCorrect = false;
+    let gameCorrect = false;
 
     // Count a try only if title correct
-    if(musics_available.find(x => x.title === titleTried)) {
-        isCorrect = (musicOTD.title === titleTried);
+    if(musics_available.find(x => x.titleDisplay === titleTried && x.game === gameTried)) {
+        gameCorrect = (musicOTD.game === gameTried);
+        isCorrect = (musicOTD.titleDisplay === titleTried && gameCorrect);
+        
 
         if(isCorrect) {
             game.triesResults[game.nbTries] = TRIES.SUCCESS;
             game.nbTries += 1;
-            UTILS.clearInput("autoComplete");
+            UTILS.clearInput("autoComplete-music");
+            UTILS.clearInput("autoComplete-game");
             
             showResults()
         }
-        else {
-            game.triesResults[game.nbTries] = TRIES.FAILED;
+        else if (gameCorrect) {
+            game.triesResults[game.nbTries] = TRIES.PARTIAL_SUCCESS;
             game.nbTries += 1;
-            UTILS.clearInput("autoComplete");
+            UTILS.clearInput("autoComplete-music");
+
+            document.getElementById("autoComplete-game").disabled = true;
 
             if(game.nbTries > 5) {
                 showResults();
             }
             else {
-                addTryName(titleTried, TRIES.FAILED, game.nbTries);
+                addTryName(UTILS.concatGameMusic(gameTried, titleTried), TRIES.PARTIAL_SUCCESS, game.nbTries);
+                game.currentPlaytime = game.maxPlaytime * RULES.TIMES[game.nbTries];
+                document.getElementById("current-time").innerText = UTILS.secondsToDisplay(Math.floor(player.getCurrentTime()));
+                document.getElementById("max-time").innerText = UTILS.secondsToDisplay(game.currentPlaytime);
+                document.getElementById("playback-time-bar").setAttribute("style", `--value: 0%`)
+                document.getElementById("playback-time-bar-bg").setAttribute("style", `--bg-value: ${RULES.TIMES[game.nbTries]*100}%`);
+            }
+        }
+        else {
+            game.triesResults[game.nbTries] = TRIES.FAILED;
+            game.nbTries += 1;
+            UTILS.clearInput("autoComplete-music");
+            UTILS.clearInput("autoComplete-game");
+            document.getElementById("autoComplete-music").disabled = true;
+
+            if(game.nbTries > 5) {
+                showResults();
+            }
+            else {
+                addTryName(UTILS.concatGameMusic(gameTried, titleTried), TRIES.FAILED, game.nbTries);
                 game.currentPlaytime = game.maxPlaytime * RULES.TIMES[game.nbTries];
                 document.getElementById("current-time").innerText = UTILS.secondsToDisplay(Math.floor(player.getCurrentTime()));
                 document.getElementById("max-time").innerText = UTILS.secondsToDisplay(game.currentPlaytime);
@@ -190,7 +216,10 @@ function makeTry() {
 /* Skip try */
 function skipTry() {
     game.triesResults[game.nbTries] = TRIES.SKIP;
-    UTILS.clearInput("autoComplete");
+    UTILS.clearInput("autoComplete-music");
+    if(!document.getElementById("autoComplete-game").disabled) {
+        UTILS.clearInput("autoComplete-game");
+    }
     game.nbTries += 1;
     if(game.nbTries < 6) {
         addTryName("SKIPPED", TRIES.SKIP, game.nbTries);
@@ -249,6 +278,9 @@ function showResults() {
                 break;
             case TRIES.SKIP:
                 try_class = "try-skipped";
+                break;
+            case TRIES.PARTIAL_SUCCESS:
+                try_class = "try-partial-success";
                 break;
             default:
                 break;
@@ -329,6 +361,9 @@ function shareResultsToClipboard() {
             case TRIES.SKIP:
                 square = RESULTS_SHARE.SKIP;
                 break;
+            case TRIES.PARTIAL_SUCCESS:
+                square = RESULTS_SHARE.PARTIAL_SUCCESS;
+                break;
             default:
                 break;
         }
@@ -362,6 +397,10 @@ function addTryName(title, status, index) {
             break;
         case TRIES.SKIP:
             try_node.classList.add("try-name-skip");
+            break;
+        case TRIES.PARTIAL_SUCCESS:
+            try_node.classList.add("try-name-partial-success");
+            break;
         default:
             break;
     }

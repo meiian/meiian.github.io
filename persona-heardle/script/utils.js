@@ -43,5 +43,9 @@ const UTILS =
         let tomorrow = new Date(today.getTime());
         tomorrow.setDate(today.getDate() + 1);
         return tomorrow;
+    },
+
+    concatGameMusic(game, music) {
+        return music + " - " + game;
     }
 }

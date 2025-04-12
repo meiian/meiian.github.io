@@ -4,6 +4,7 @@
     --p5-pattern-dark-gray: rgb(53, 53, 53); 
     --p5-green: #11c991;
     --p5-purple: #f259d8;
+    --p4-yellow: #f7e801;
 }
 
 @font-face {
@@ -15,11 +16,18 @@ body {
     font-family: "Franklin Gothic", "Arsenal";
 }
 
-#autoComplete {
+#autoComplete-game,
+#autoComplete-music {
     background-color: black;
     box-shadow: -2px 2px 0px 6px #FFF;
     transform: rotate(-1deg);
 }
+
+#autoComplete-game:disabled,
+#autoComplete-music:disabled {
+    filter: brightness(0.2);
+}
+
 
 #play-btn {
     transform: rotate(5deg);
@@ -170,6 +178,10 @@ body {
 
 .try-name-fail {
     box-shadow: 2px 2px 0px 4px var(--p5-red);
+}
+
+.try-name-partial-success {
+    box-shadow: 2px 2px 0px 4px var(--p4-yellow);
 }
 
 
