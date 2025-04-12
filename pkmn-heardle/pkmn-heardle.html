@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<head>
+    <title>Pkmn Heardle</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="theme-color" content="#FDA50f">
+        <link rel="stylesheet" href="./autocompletejs/css/autoComplete.css"/>
+        <script src="./autocompletejs/autoComplete.js"></script>
+        <link rel="stylesheet" href="./style/global.css?v=1.0.1"/>
+        <script src="./data/musics.js?v=1.0.1"></script>
+        <script src="./script/constants.js?v=1.0.1"></script>
+        <script src="./script/utils.js?v=1.0.1"></script>
+        <script src="./script/storage.js?v=1.0.1"></script>
+        <script src="./script/popup.js?v=1.0.1"></script>
+        <script src="./script/search.js?v=1.0.1"></script>
+        <script src="./script/choose.js?v=1.0.1"></script>
+        <script src="./script/game.js?v=1.0.1"></script>
+        <script src="./script/buttons.js?v=1.0.1"></script>
+</head>
+
+<body>
+    <div id="popup" style="display: none;"></div>
+    <div id="youtube-player"></div>
+
+    <div id="app-cont">
+        <div id="header">
+            <div id="header-content">
+                <div>
+                    <div class="button button-small" id="info-btn"></div>
+                </div>
+                <span>Poké Heardle</span>
+                <div>
+                    <div class="button button-small" id="stats-btn"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="app-body">
+            <div id="try-list">
+                <div id="try-name-1" class="try-name try-name-active">
+                    <span></span>
+                </div>
+                <div id="try-name-2" class="try-name">
+                    <span></span>
+                </div>
+                <div id="try-name-3" class="try-name">
+                    <span></span>
+                </div>
+                <div id="try-name-4" class="try-name">
+                    <span></span>
+                </div>
+                <div id="try-name-5" class="try-name">
+                    <span></span>
+                </div>
+                <div id="try-name-6" class="try-name">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer">
+            <div class="full-separation">
+                <div id="playback-time-bar" class="progress-bar" style="--value:0%;">
+                    <div id="playback-time-bar-bg" class="progress-bar-bg"  style="--bg-value:0%;"></div>
+                    <div class="progress-bar-fill"></div>
+                    <div class="progress-bar-checkmark remove-when-results" style="--value: 6.25%"></div>
+                    <div class="progress-bar-checkmark remove-when-results" style="--value: 12.5%"></div>
+                    <div class="progress-bar-checkmark remove-when-results" style="--value: 25%"></div>
+                    <div class="progress-bar-checkmark remove-when-results" style="--value: 43.75%"></div>
+                    <div class="progress-bar-checkmark remove-when-results" style="--value: 68.75%"></div>
+                </div>
+            </div>
+            <div id="controls" class="flex flex-column flex-center wait-for-player-ready">
+                
+                <div class="flex pad flex-center flex-between row">
+                    <div>
+                        <span id="current-time" class="time-display">0:00</span>
+                    </div>
+
+                    <span class="button" id="play-btn"></span>
+
+                    <div>
+                        <span id="max-time" class="time-display">0:00</span>
+                    </div>
+                </div>
+
+                <div class="autoComplete_wrapper remove-when-results">
+                    <input id="autoComplete" type="search" dir="ltr" spellcheck=false autocorrect="off" autocomplete="off" autocapitalize="off">
+                </div>
+
+                <div class="flex pad flex-center flex-between row remove-when-results">
+                    <button id="skip-button">SKIP</button>
+                    <button id="submit-button">SUBMIT</button>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    
+</body>

@@ -48,7 +48,8 @@ const TRIES =
     NOTHING: 0,
     SUCCESS : 1,
     FAILED : 2,
-    SKIP: 3
+    SKIP: 3,
+    PARTIAL_SUCCESS: 4
 }
 
 
@@ -60,7 +61,8 @@ const RESULTS_SHARE =
     NOTHING: "⬜",
     SUCCESS: "🟩",
     FAILED: "🟥",
-    SKIP: "⬛"
+    SKIP: "⬛",
+    PARTIAL_SUCCESS: "🟨"
 }
 
 /**

@@ -4,6 +4,8 @@
 
 :root {
     --red: #b91818;
+    --orange-yellow : rgb(202, 165, 0);
+    --dark-gray: rgb(71, 71, 71);
 }
 
 /**
@@ -144,6 +146,8 @@ button {
 
 .autoComplete_wrapper {
     width: 100%;
+    display: flex;
+    justify-content: space-around;
 }
 
 .time-display {
@@ -181,6 +185,10 @@ button {
     background: white;
 }
 
+.try-partial-success {
+    background: var(--orange-yellow);
+}
+
 .try-name {
     border: solid #444 1px;
     padding: 0.5em;
@@ -198,6 +206,10 @@ button {
 
 .try-name-skip {
     color: #444;
+}
+
+.try-name-partial-success {
+    border-color: var(--orange-yellow);
 }
 
 .popup-display {
@@ -378,16 +390,31 @@ button {
     display: none;
 }
 
-#autoComplete {
-    width: 100%;
+#autoComplete-game,
+#autoComplete-music {
+    width: 95%;
     background-color: rgba(0,0,0,0);
     border-color: gray;
     border-radius: 0px;
     color: white;
 }
 
-#autoComplete::placeholder {
+#autoComplete-game {
+    background-image: url(./images/controller.svg);
+}
+
+#autoComplete-music {
+    background-image: url(./images/music.svg);
+}
+
+#autoComplete-game::placeholder,
+#autoComplete-music::placeholder {
     color: gray;
+}
+
+#autoComplete-game:disabled,
+#autoComplete-music:disabled {
+    filter: brightness(0.2);
 }
 
 #skip-button {
