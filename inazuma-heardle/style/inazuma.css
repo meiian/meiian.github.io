@@ -1,0 +1,154 @@
+:root {
+    --border-radius: 20px;
+}
+
+button {
+    
+    padding: 0.5em 1em;
+}
+
+
+#submit-button {
+    background: linear-gradient(90deg, #7cff85 0%, #eaff00 100%);
+    color: #006836;
+}
+
+#skip-button {
+    background: linear-gradient(60deg, #ffc000, #ff3f3a);
+    color: white;
+}
+
+/*#footer {
+   background: linear-gradient(60deg, rgba(24, 0, 143,0.0) 0%, rgba(24, 0, 143,0.7) 35%, rgba(0, 77, 182,0.7) 50%, rgba(0, 184, 238,0.6) 65%, rgba(0, 184, 238,0.0) 100%) 0% 0%;
+}*/
+
+/*.full-separation {
+    border: solid 0px white;
+}
+
+.progress-bar {
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+}
+
+.progress-bar-fill {
+    background: linear-gradient(60deg, #ffc000, #ff3f3a);
+    margin-left: 10px;
+    margin-right: 10px;
+    width: calc(var(--value) - 10px);
+    z-index: 2;
+}
+
+.progress-bar-checkmark {
+    height: calc(100% - 20px);
+    left: calc(var(--value + 10px));
+    display: none;
+}*/
+
+.progress-bar-fill {
+    background: linear-gradient(60deg, #ffc000, #ff3f3a);
+}
+
+#autoComplete-game, #autoComplete-music {
+    background-color: white;
+    color:#2a91c8;
+    
+    font-size: 0.8rem;
+}
+
+.time-display {
+    text-shadow: black 0px 0px 5px;
+}
+
+/*.try-name {
+    
+    padding: 0.5em 1em;
+    color: white;
+    font-weight: bold;
+    border-width: 0px;
+    background: url(./images/bg_soccer_pat.png) repeat center center, linear-gradient(60deg, rgba(255, 255, 255,0.1) 0%, rgba(255, 255, 255, 0.1) 36%, rgba(255, 255, 255, 0.1) 100%) 0% 0%;
+}
+
+.try-name-fail {
+    background: url(./images/bg_soccer_pat.png) repeat center center, linear-gradient(60deg, rgb(143, 0, 0) 0%, rgb(182, 0, 0) 36%, rgb(238, 0, 0) 100%) 0% 0%;
+}
+
+.try-name-active {
+    background: url(./images/bg_soccer_pat.png) repeat center center, linear-gradient(60deg, rgba(255, 255, 255,0.8) 0%, rgba(255, 255, 255, 0.6) 36%, rgba(255, 255, 255, 0.9) 100%) 0% 0%;
+}
+
+.try-name-partial-success {
+    background: url(./images/bg_soccer_pat.png) repeat center center, linear-gradient(60deg, rgb(125, 143, 0) 0%, rgb(176, 182, 0) 36%, rgb(238, 156, 0) 100%) 0% 0%;
+}
+
+.try-name-skip {
+    background: url(./images/bg_soccer_pat.png) repeat center center, linear-gradient(60deg, rgb(68, 68, 68) 0%, rgb(64, 64, 64) 36%, rgb(130, 130, 130) 100%) 0% 0%;
+}*/
+
+#results {
+  
+  padding: 0.5em 1em;
+  background: url(./images/bg_soccer_pat.png) repeat center center, linear-gradient(60deg, rgb(223, 247, 255) 0%, rgb(255, 255, 255) 36%, rgb(13, 177, 233) 100%) 0% 0%;
+  color: black;
+}
+
+
+#results span, #results span:visited, #results span:hover, #results span:focus, #results span:active {
+    color: black;
+}
+
+.youtube-link>span {
+    color: white!important;
+}
+
+.popup-display-title {
+    background: linear-gradient(90deg, #7cff85 0%, #eaff00 100%);
+    font-weight: bold;
+    color: black;
+    padding: 0.5em 0em;
+}
+
+.popup-display {
+    
+    padding: 0px;
+}
+
+.popup-body {
+    padding: 1em;
+}
+
+.popup-display a {
+    color: #0d86d3;
+}
+
+
+.text-muted a {
+    color: gray;
+}
+
+.try-skipped {
+    background: none;
+    color: white;
+}
+
+.try-failed {
+    background: none;
+    color: var(--red);
+}
+
+.try-partial-success {
+    background: none;
+    color: var(--orange-yellow);
+}
+
+.try-success {
+    background: none;
+    color: green;
+}
+
+.try-nothing {
+    background: none;
+    color: gray;
+}
