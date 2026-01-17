@@ -7,7 +7,7 @@
 
 const CHANNELS_NOT_AVAILABLE =
 [
-    
+    "@videogamemusicresources5745"
 ]
 
 /**
