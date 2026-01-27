@@ -8,7 +8,8 @@
 const CHANNELS_NOT_AVAILABLE =
 [
     "@videogamemusicresources5745",
-    "@clubpenguin_radio"
+    "@clubpenguin_radio",
+    "@GoldenrodRadio251"
 ]
 
 /**
