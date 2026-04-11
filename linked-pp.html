@@ -16,37 +16,63 @@
   </div>
 
   <div id="pfps">
-    <div id="pfp-zone">
-        <img id="preview" src="" alt="">   
-        <svg id="circle" viewbox="0 0 500 500" width="100%">
-            <defs>
-              <mask id="mask" x="0" y="0" width="500" height="500">
-                <rect x="0" y="0" width="500" height="500" fill="#fff"/>
-                <circle cx="250" cy="250" r="250" />
-              </mask>
-            </defs>
-            <rect x="0" y="0" width="500" height="500" mask="url(#mask)" fill-opacity="0.7"/>    
-          </svg>
-           
+    <div>
+      <div class="pfp-with-vertical-scroll">
+        <div id="pfp-zone">
+            <img id="preview" src="" alt="">   
+            <svg id="circle" viewbox="0 0 500 500" width="100%">
+                <defs>
+                  <mask id="mask" x="0" y="0" width="500" height="500">
+                    <rect x="0" y="0" width="500" height="500" fill="#fff"/>
+                    <circle cx="250" cy="250" r="250" />
+                  </mask>
+                </defs>
+                <rect x="0" y="0" width="500" height="500" mask="url(#mask)" fill-opacity="0.7"/>    
+              </svg>
+              
+        </div>
+        <div class="scroll-vertical-cont">
+          <input type="range" min="0" max="100" value="0" class="slider" id="scroll-v1">
+        </div>
+      </div>
+      <div class="scroll-cont">
+        <input type="range" min="0" max="100" value="0" class="slider" id="scroll-h1">
+      </div>
     </div>
 
-    <div id="pfp-zone2">
-      <img id="preview2" src="" alt="">   
-      <svg id="circle2" viewbox="0 0 500 500" width="100%">
-          <defs>
-            <mask id="mask" x="0" y="0" width="500" height="500">
-              <rect x="0" y="0" width="500" height="500" fill="#fff"/>
-              <circle cx="250" cy="250" r="250" />
-            </mask>
-          </defs>
-          <rect x="0" y="0" width="500" height="500" mask="url(#mask)" fill-opacity="0.7"/>    
-        </svg>
-         
+    <div>
+      <div class="pfp-with-vertical-scroll">
+        <div id="pfp-zone2">
+          <img id="preview2" src="" alt="">   
+          <svg id="circle2" viewbox="0 0 500 500" width="100%">
+              <defs>
+                <mask id="mask" x="0" y="0" width="500" height="500">
+                  <rect x="0" y="0" width="500" height="500" fill="#fff"/>
+                  <circle cx="250" cy="250" r="250" />
+                </mask>
+              </defs>
+              <rect x="0" y="0" width="500" height="500" mask="url(#mask)" fill-opacity="0.7"/>    
+            </svg>
+            
+        </div>
+        <div class="scroll-vertical-cont">
+          <input type="range" min="0" max="100" value="0" class="slider" id="scroll-v2">
+        </div>
+      </div>
+      <div class="scroll-cont">
+        <input type="range" min="0" max="100" value="0" class="slider" id="scroll-h2">
+      </div>
     </div>
+  </div>
+
+  <div id='preview-icons'>
+    <div id='preview-1'></div>
+    <div id='preview-2'></div>
   </div>
 
   <div id='options'>
     <div class="zoom-cont">
+      <p>Zoom</p>
       <input type="range" min="1" max="100" value="1" class="slider" id="zoom">
     </div>
     <div id="save-cont">

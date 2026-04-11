@@ -1,3 +1,6 @@
+let timeout_render_preview_1 = null;
+let timeout_render_preview_2 = null;
+
 function dropHandler(ev) {
     console.log('File(s) dropped');
   
@@ -29,6 +32,18 @@ function dropHandler(ev) {
     document.body.removeEventListener("drop", dropHandler);
     document.body.removeEventListener("dragover", dragOverHandler);
     document.getElementById("drop-disclaimer").remove();
+    if(timeout_render_preview_1 === null) {
+      timeout_render_preview_1 = setTimeout(function() {
+        add_preview_icon_1();
+        timeout_render_preview_1 = null;
+      }, 500);
+    }
+    if(timeout_render_preview_2 === null) {
+      timeout_render_preview_2 = setTimeout(function() {
+        add_preview_icon_2();
+        timeout_render_preview_2 = null;
+      }, 500);
+    }
   }
 
   function dragOverHandler(ev) {
@@ -74,6 +89,60 @@ function savePic() {
     document.getElementById("pfp-zone2").appendChild(circle2);
 }
 
+function scroll_pfp1() {
+  hscroll_value = (parseInt(document.getElementById("scroll-h1").value) / 100) * document.getElementById("pfp-zone").scrollLeftMax;
+  vscroll_value = (parseInt(document.getElementById("scroll-v1").value) / 100) * document.getElementById("pfp-zone").scrollTopMax;
+  document.getElementById("pfp-zone").scrollTo(hscroll_value, vscroll_value);
+  if(timeout_render_preview_1 === null) {
+    timeout_render_preview_1 = setTimeout(function() {
+      add_preview_icon_1();
+      timeout_render_preview_1 = null;
+    }, 500);
+  }
+}
+
+function scroll_pfp2() {
+  hscroll_value = (parseInt(document.getElementById("scroll-h2").value) / 100) * document.getElementById("pfp-zone2").scrollLeftMax;
+  vscroll_value = (parseInt(document.getElementById("scroll-v2").value) / 100) * document.getElementById("pfp-zone2").scrollTopMax;
+  document.getElementById("pfp-zone2").scrollTo(hscroll_value, vscroll_value);
+  if(timeout_render_preview_2 === null) {
+    timeout_render_preview_2 = setTimeout(function() {
+      add_preview_icon_2();
+      timeout_render_preview_2 = null;
+    }, 500);
+  }
+}
+
+function add_preview_icon_1() {
+    let circle = document.getElementById("circle").cloneNode(true);
+    document.getElementById("circle").remove()
+    html2canvas(document.querySelector("#pfp-zone")).then(canvas => {
+      let resizedCanvas = document.createElement("canvas");
+      let resizedContext = resizedCanvas.getContext("2d");
+      resizedCanvas.height = "64";
+      resizedCanvas.width = "64";
+      resizedContext.drawImage(canvas, 0, 0, 64, 64);
+      document.getElementById("preview-1").innerHTML = '';
+      document.getElementById("preview-1").appendChild(resizedCanvas);
+    });
+    document.getElementById("pfp-zone").appendChild(circle);
+}
+
+function add_preview_icon_2() {
+    let circle = document.getElementById("circle2").cloneNode(true);
+    document.getElementById("circle2").remove()
+    html2canvas(document.querySelector("#pfp-zone2")).then(canvas => {
+      let resizedCanvas = document.createElement("canvas");
+      let resizedContext = resizedCanvas.getContext("2d");
+      resizedCanvas.height = "64";
+      resizedCanvas.width = "64";
+      resizedContext.drawImage(canvas, 0, 0, 64, 64);
+      document.getElementById("preview-2").innerHTML = '';
+      document.getElementById("preview-2").appendChild(resizedCanvas);
+    });
+    document.getElementById("pfp-zone2").appendChild(circle);
+}
+
 document.body.addEventListener("drop", dropHandler);
 
 document.body.addEventListener("dragover", dragOverHandler);
@@ -85,6 +154,12 @@ slider.oninput = function() {
   new_zoom = 100 + parseInt(this.value)
   document.getElementById("preview").style.height = new_zoom + '%';
   document.getElementById("preview2").style.height = new_zoom + '%';
+  scroll_pfp1();
+  scroll_pfp2();
 }
 
 document.getElementById("save-button").addEventListener("click", savePic);
+document.getElementById("scroll-h1").oninput = scroll_pfp1;
+document.getElementById("scroll-v1").oninput = scroll_pfp1;
+document.getElementById("scroll-h2").oninput = scroll_pfp2;
+document.getElementById("scroll-v2").oninput = scroll_pfp2;
