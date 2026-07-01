@@ -10,7 +10,8 @@ const CHANNELS_NOT_AVAILABLE =
     "@videogamemusicresources5745",
     "@clubpenguin_radio",
     "@GoldenrodRadio251",
-    "@utuber6061"
+    "@utuber6061",
+    "@7GamerMinutes"
 ]
 
 /**
