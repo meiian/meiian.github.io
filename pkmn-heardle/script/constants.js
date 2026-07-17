@@ -11,7 +11,8 @@ const CHANNELS_NOT_AVAILABLE =
     "@clubpenguin_radio",
     "@GoldenrodRadio251",
     "@utuber6061",
-    "@7GamerMinutes"
+    "@7GamerMinutes",
+    "@DullBones"
 ]
 
 /**
