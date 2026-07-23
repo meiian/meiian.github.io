@@ -1,0 +1,84 @@
+.mini-profile-cont {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  background-color: #152232;
+  color: white;
+  border-radius: 10px;
+  position: relative;
+  flex-direction: column;
+}
+
+
+.mini-profile-banner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 0;
+  filter: brightness(50%);
+  border-radius: 5px;
+}
+
+.mini-profile-avatar {
+  z-index: 1;
+  height: 64px;
+  width: 64px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.mini-profile-username {
+  z-index: 1;
+  margin-bottom: 1em;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.mini-profile-header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.mini-profile-body {
+  width: calc(100% - 20px);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mini-profile-stats {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.mini-profile-stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mini-profile-stat-value {
+  font-weight: bold;
+}
+
+.mini-profile-actions {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  margin-top: 1em;
+}
+
+.mini-profile-actions>div {
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+}

@@ -1,0 +1,41 @@
+#nav-bar {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  width: 100%;
+  padding: 1em 0em;
+  border-bottom: solid 1px rgba(255,255,255,0.2);
+}
+
+#nav-bar > div {
+  width: calc(1/3*100%);
+}
+
+#nav-bar-left {
+  display: flex;
+  justify-content: end;
+}
+
+#nav-bar-profile > img {
+  height: 38px;
+  width: 38px;
+  object-fit: cover;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#hover-profile {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  display: none;
+}
+
+#hover-profile:hover {
+  display: initial;
+}
+
+#nav-bar-profile:hover>#hover-profile {
+  display: initial;
+}

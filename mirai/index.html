@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+    <title>Anime Tierlist</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="./styles/global.css"/>
+    <link rel="stylesheet" href="./styles/spinner.css"/>
+    <link rel="stylesheet" href="./styles/search.css"/>
+    <link rel="stylesheet" href="./styles/landing.css"/>
+    <link rel="stylesheet" href="./styles/navbar.css"/>
+    <link rel="stylesheet" href="./styles/profile.css"/>
+    <script type="text/javascript" src="./scripts/constants.js?v=2026.07.1"></script>
+    <script type="text/javascript" src="./scripts/utils.js?v=2026.07.1"></script>
+    <script type="text/javascript" src="./scripts/storage.js?v=2026.07.1"></script>
+    <script type="text/javascript" src="./scripts/fetch.js?v=2026.07.1"></script>
+    <script type="text/javascript" src="./scripts/landing.js?v=2026.07.1"></script>
+    <script type="text/javascript" src="./scripts/render.js?v=2026.07.1"></script>
+    <script type="text/javascript" src="./scripts/main.js?v=2026.07.1"></script>
+</head>
+
+<!--
+TODO LIST :
+- Pouvoir importer les animes de sa list
+- Sauvegarder les animes dans sa collection
+- Faire un créateur de tier list avec filtres depuis sa collection
+- Faire un calendrier des simulcast par saison
+-->
+
+<body>
+
+    <div id="loading-cont"></div>
+
+    <div id="app-cont">
+        <div id="landing-page">
+            <div id="landing-page-form" class="middle-block">
+                <p>Enter your username :</p>
+                <input id="landing-username-field" type="text" onkeydown="syncNewUser(this)"/>
+            </div>
+        </div>
+    </div>
+    
+</body>

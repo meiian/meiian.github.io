@@ -1,0 +1,48 @@
+#search-results {
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  overflow: auto;
+}
+
+.search-results-element {
+  display: flex;
+  align-items: center;
+  padding: 0.5em 0em;
+}
+
+.search-results-element > img {
+  height: 64px;
+  width: 46px;
+  object-fit: cover;
+  margin-right: 0.5em;
+  border-radius: 5px;
+}
+
+#search-results-modal-bg {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+#search-results-modal {
+  background: white;
+  width: 60vw;
+  border-radius: 5px;
+  padding: 0.5em;
+}
+
+#search-input {
+  width: calc(100% - 5px - 0.5em);
+  border: solid white 0px;
+  background: lightgray;
+  border-radius: 5px;
+  padding: 0.5em;
+}
