@@ -9,8 +9,10 @@ async function whenLoaded() {
             await syncAnimesFromUser(userInfos.name);
             storage.writeAnimesCollection(animes);
         }
-        renderIn("app-cont", renderNavBar(userInfos));
-        renderIn("nav-bar-profile", profile.renderHoverProfile(userInfos));
+        renderIn("app-cont", navbar.render(userInfos));
+        renderIn("app-cont", pages.initPageCont());
+        pages.goToPage("schedule");
+        //renderIn("nav-bar-profile", profile.renderHoverProfile(userInfos));
     }
 }
 

@@ -3,18 +3,20 @@
   top: 0px;
   left: 0px;
   display: flex;
-  width: 100%;
-  padding: 1em 0em;
-  border-bottom: solid 1px rgba(255,255,255,0.2);
+  height: 100%;
+  border-right: solid 1px rgba(255,255,255,0.2);
+  width: 15em;
+  flex-direction: column;
 }
 
-#nav-bar > div {
-  width: calc(1/3*100%);
+#nav-bar-top {
+  margin: 0em 1em;
 }
 
-#nav-bar-left {
+#nav-bar-profile {
   display: flex;
-  justify-content: end;
+  align-items: center;
+  padding: 1em 0em;
 }
 
 #nav-bar-profile > img {
@@ -23,6 +25,7 @@
   object-fit: cover;
   border-radius: 5px;
   cursor: pointer;
+  margin-right: 0.5em;
 }
 
 #hover-profile {
@@ -38,4 +41,28 @@
 
 #nav-bar-profile:hover>#hover-profile {
   display: initial;
+}
+
+#nav-bar-middle {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.nav-bar-item {
+  padding: 0.5em 0em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.nav-bar-item-icon {
+  height: 1.5em;
+  width: 1.5em;
+  margin-right: 0.5em;
+}
+
+.nav-bar-item-icon > svg {
+  width: 1.5em;
+  height: 1.5em;
 }

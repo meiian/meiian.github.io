@@ -144,8 +144,8 @@ const profile = {
 
         let hoverProfileNode = this.renderWithStats(userInfo, true);
         let navbarProfileNode = document.getElementById("nav-bar-profile");
-        hoverProfileNode.style.top = navbarProfileNode.offsetTop + navbarProfileNode.clientHeight + 'px';
-        hoverProfileNode.style.left = navbarProfileNode.offsetLeft + (navbarProfileNode.clientWidth/2) - 150 + 'px';
+        hoverProfileNode.style.top = navbarProfileNode.offsetTop + 'px';
+        hoverProfileNode.style.left = navbarProfileNode.offsetLeft + (navbarProfileNode.clientWidth) + 'px';
         
         node.append(hoverProfileNode);
         return node;
@@ -169,36 +169,6 @@ function renderConfirmUser() {
     confirmButton.classList.add("button");
     confirmButton.addEventListener("click", (e) => confirmUser());
     node.append(confirmButton);
-
-    return node;
-}
-
-function renderNavBar(userInfo) {
-    let node = document.createElement("nav");
-    node.id = "nav-bar";
-
-    let left = document.createElement("div");
-    left.id = "nav-bar-left";
-
-    let middle = document.createElement("div");
-    middle.id = "nav-bar-middle";
-
-    let right = document.createElement("div");
-    right.id = "nav-bar-right";
-
-
-    let profileIcon = document.createElement("div");
-    profileIcon.id = "nav-bar-profile";
-
-    let profileIconImg = document.createElement("img");
-    profileIconImg.src = userInfo.avatar.medium;
-
-    profileIcon.appendChild(profileIconImg);
-    left.appendChild(profileIcon);
-
-    node.appendChild(left);
-    node.appendChild(middle);
-    node.appendChild(right);
 
     return node;
 }

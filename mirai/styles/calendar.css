@@ -1,0 +1,87 @@
+.calendar-cont {
+  display: flex;
+  justify-content: space-evenly;
+  height: 100%;
+}
+
+.calendar-day {
+  width: calc(1/7*100%);
+  display: grid;
+  position: relative;
+  grid-template-columns: auto;
+  grid-template-rows: 2em auto;
+}
+
+.calendar-day-label {
+  text-align: center;
+}
+
+.calendar-day-body {
+  margin: 1em;
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+  position: relative;
+}
+
+.calendar-day:nth-child(2n-1)>.calendar-day-body {
+  background: rgba(255,255,255,0.1);
+}
+
+.calendar-day-body-hour {
+  position: absolute;
+  top: var(--position);
+  left: 0px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.calendar-day-body-hour:hover {
+  z-index: 10;
+}
+
+.calendar-day-body-hour-label {
+  width: max-content;
+  background: coral;
+  border-radius: 5px;
+  padding: 0.1em 0.2em;
+}
+
+.calendar-day-body-hour-anime {
+  border-radius: 5px;
+  border-top-left-radius: 0px;
+  position: relative;
+  cursor: pointer;
+}
+
+.calendar-day-body-hour-anime-bg {
+  position: absolute;
+  border-radius: 5px;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: url("https://s4.anilist.co/file/anilistcdn/media/anime/banner/188525-Vnei12N4wZsM.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 0;
+  filter: brightness(0.3);
+}
+
+.calendar-day-body-hour-anime-label {
+    position: relative;
+    padding: 0.1em 0.2em;
+    display: flex;
+    backdrop-filter: blur(2px);
+    border-radius: 5px;
+    border: solid 1px rgba(255,255,255,0.1);
+    flex-direction: column;
+}
+
+.calendar-day-body-hour-label-hour {
+  font-size: 0.8em;
+}
+
+.calendar-day-body-hour-label-title {
+  font-weight: bold;
+}

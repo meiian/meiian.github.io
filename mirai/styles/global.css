@@ -49,3 +49,12 @@ body {
     align-items: center;
     margin: 0 auto;
 }
+
+#page-cont {
+  width: calc(100% - 15em - 2em);
+  position: fixed;
+  top: 0em;
+  left: 15em;
+  height: calc(100% - 2em);
+  padding: 1em;
+}

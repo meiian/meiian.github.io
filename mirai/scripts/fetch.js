@@ -66,6 +66,12 @@ const query = JSON.stringify(
                         coverImage {
                             large
                         }
+                        airingSchedule {
+                            nodes {
+                                episode
+                                airingAt
+                            }
+                        }
                     }
                     status
                     score
@@ -98,6 +104,7 @@ const query = JSON.stringify(
             medias = responseObject.data.Page.mediaList;
         }
         spinner.hide();
+        animeTransform.transformList(medias)
 
         return medias;
     } catch (error) {
