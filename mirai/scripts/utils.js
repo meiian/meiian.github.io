@@ -11,7 +11,7 @@ const spinner = {
     hide() {
         document.getElementById("loading-cont").innerText = "";
     }
-}
+};
 
 const dateUtils = {
     getWeekNumber(d) {
@@ -43,4 +43,14 @@ const dateUtils = {
     formatHourMinutes(date) {
         return `${(date.getHours()<10)?'0':''}${date.getHours()}:${(date.getMinutes()<10)?'0':''}${date.getMinutes()}`
     }
+};
+
+const textUtils = {
+    trim(text, nbcharacters) {
+        return text.substring(0, nbcharacters) + "...";
+    }
+}
+
+function wait(delay){
+    return new Promise((resolve) => setTimeout(resolve, delay));
 }

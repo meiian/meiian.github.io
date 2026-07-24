@@ -12,6 +12,7 @@ async function whenLoaded() {
         renderIn("app-cont", navbar.render(userInfos));
         renderIn("app-cont", pages.initPageCont());
         pages.goToPage("schedule");
+        sidePanel.renderEmpty();
         //renderIn("nav-bar-profile", profile.renderHoverProfile(userInfos));
     }
 }

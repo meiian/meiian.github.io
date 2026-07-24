@@ -54,7 +54,7 @@ async function anilistSearch(title) {
 async function fetchPageOfAnimeListByUser(userName, pageNumber) {
 const query = JSON.stringify(
     {
-        query: `query Query($page: Int, $perPage: Int, $userName: String, $type: MediaType) {
+        query: `query Query($page: Int, $perPage: Int, $userName: String, $type: MediaType, $isMain: Boolean) {
             Page(page: $page, perPage: $perPage) {
                 mediaList(userName: $userName, type: $type) {
                     media {
@@ -62,6 +62,35 @@ const query = JSON.stringify(
                         title {
                             romaji
                             english
+                        }
+                        bannerImage
+                        averageScore
+                        description
+                        duration
+                        episodes
+                        season
+                        seasonYear
+                        studios(isMain: $isMain) {
+                            nodes {
+                                name
+                            }
+                        }
+                        externalLinks {
+                            color
+                            icon
+                            site
+                            siteId
+                            type
+                            url
+                        }
+                        rankings {
+                            allTime
+                            context
+                            rank
+                            season
+                            type
+                            format
+                            year
                         }
                         coverImage {
                             large
@@ -84,7 +113,8 @@ const query = JSON.stringify(
             userName: userName,
             type:"ANIME",
             perPage:50,
-            page:pageNumber
+            page:pageNumber,
+            isMain: true
         }
     });
 
@@ -96,7 +126,7 @@ const query = JSON.stringify(
 
     try {
         spinner.show("Fetching anime entries...");
-        const response = await fetch(url, options);
+        const response = await throttleFetch(url, options);
         const responseObject = await response.json();
         let medias = [];
 
@@ -158,7 +188,7 @@ const query = JSON.stringify(
 
     try {
         spinner.show("Fetching user info...");
-        const response = await fetch(url, options);
+        const response = await throttleFetch(url, options);
         const responseObject = await response.json();
         let userInfos = null;
 
@@ -172,4 +202,14 @@ const query = JSON.stringify(
         console.error(error);
         spinner.hide();
     }
+}
+
+async function throttleFetch(url, options) {
+    const startTime = new Date();
+    const response = await fetch(url, options);
+    const endTime = new Date();
+    if(endTime - startTime < 2000) {
+        await wait((2000 - (endTime - startTime)));
+    }
+    return response
 }
