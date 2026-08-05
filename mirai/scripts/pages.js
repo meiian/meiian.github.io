@@ -3,6 +3,8 @@ const pages = {
         schedule: {
             render() {
                 renderIn("page-cont", seasonCalendar.renderEmptyCalendar(), true);
+                let today = new Date();
+                seasonCalendar.addAnimes(dateUtils.filterAnimesFromWeek(animes, today), today);
             }
         }
     },

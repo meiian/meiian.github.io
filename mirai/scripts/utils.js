@@ -24,30 +24,45 @@ const dateUtils = {
 
     filterAnimesFromWeek(animes, weekDate) {
         return animes.filter(anime => {
-            let airDuringThisWeek = false;
+            return (this.airDuringThisWeek(anime, weekDate) != null);
+        })
+    },
+
+    airDuringThisWeek(anime, weekDate) {
+        let airDuringThisWeek = null;
             if(anime.media.airingSchedule && anime.media.airingSchedule.nodes
                 && anime.media.airingSchedule.nodes.length > 1) {
                 for (const node of anime.media.airingSchedule.nodes) {
                     const nodeDate = new Date(node.jsDate);
                     if(nodeDate.getFullYear() === weekDate.getFullYear()
                     && this.getWeekNumber(nodeDate) === this.getWeekNumber(weekDate)) {
-                        airDuringThisWeek = true;
+                        airDuringThisWeek = nodeDate;
                         break;
                     }
                 }
             }
-            return airDuringThisWeek;
-        })
+        return airDuringThisWeek;
     },
 
     formatHourMinutes(date) {
         return `${(date.getHours()<10)?'0':''}${date.getHours()}:${(date.getMinutes()<10)?'0':''}${date.getMinutes()}`
+    },
+
+    formatMinutesIntoDisplay(nbMinutes) {
+        const hours = Math.floor(nbMinutes / 60);
+        const minutes = nbMinutes % 60;
+        return `${(hours > 0) ? hours+"h" : ""}${minutes}min`
     }
 };
 
 const textUtils = {
     trim(text, nbcharacters) {
-        return text.substring(0, nbcharacters) + "...";
+        return text.substring(0, nbcharacters) + ((text.length > nbcharacters)?"...":"");
+    },
+
+    capitalize(text) {
+        let words = text.split(" ");
+        return words.map(w => w.substring(0, 1).toUpperCase() + w.substring(1).toLowerCase()).join(" ");
     }
 }
 

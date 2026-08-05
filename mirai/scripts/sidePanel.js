@@ -1,6 +1,9 @@
 const sidePanel = {
     sidepanel: null,
     body: null,
+    hidden: false,
+    hideButton: null,
+
     renderEmpty() {
         let node = document.createElement("div");
         node.classList.add("sidepanel-cont");
@@ -9,13 +12,46 @@ const sidePanel = {
         bodyNode.classList.add("sidepanel-body");
         node.append(bodyNode);
 
+        node.append(this.renderHideButton());
+
         this.body = bodyNode;
         this.sidepanel = node;
         renderIn("app-cont", node);
+        this.hide();
+    },
+
+    renderHideButton() {
+        let node = document.createElement("button");
+        node.id = "sidepanel-hide-button";
+        node.innerHTML = ICONS.RIGHTARROW;
+
+        node.addEventListener("click", function() {
+            if(sidePanel.hidden) {
+                sidePanel.show()
+            } else {
+                sidePanel.hide();
+            }
+        })
+
+        this.hideButton = node;
+        return node;
+    },
+
+    hide() {
+        this.sidepanel.style.right = "calc(0px - 30em)";
+        this.hideButton.innerHTML = ICONS.LEFTARROW;
+        this.hidden = true;
+    },
+
+    show() {
+        this.sidepanel.style.right = "1em";
+        this.hideButton.innerHTML = ICONS.RIGHTARROW;
+        this.hidden = false;
     },
 
     showAnimeDetails(anime) {
         this.clear();
+        this.show();
         if(anime.media.coverImage) {
             let coverNode = document.createElement("img");
             coverNode.classList.add("sidepanel-cover");
@@ -85,15 +121,47 @@ const sidePanel = {
                 columnOneNode.append(mostPopularNode);
             }
         }
-
         twoColumnsNode.append(columnOneNode);
+
+        let columnTwoNode = document.createElement("div");
+        columnTwoNode.classList.add("sidepanel-column-two");
+
+        if(anime.media.studios.nodes.length > 0) {
+            let studioNode = document.createElement("div");
+            studioNode.classList.add("sidepanel-stat");
+            studioNode.innerHTML = `<span class="label">Studio</span><span class="value">${anime.media.studios.nodes[0].name}</span>`;
+            columnTwoNode.append(studioNode);
+        }
+
+        if(anime.media.seasonYear) {
+            let seasonText = ((anime.media.season)? textUtils.capitalize(anime.media.season) : "") + " " + anime.media.seasonYear;
+            let seasonNode = document.createElement("div");
+            seasonNode.classList.add("sidepanel-stat");
+            seasonNode.innerHTML = `<span class="label">Season</span><span class="value">${seasonText}</span>`;
+            columnTwoNode.append(seasonNode);
+        }
+
+        if(anime.media.episodes) {
+            let episodesNode = document.createElement("div");
+            episodesNode.classList.add("sidepanel-stat");
+            episodesNode.innerHTML = `<span class="label">Episodes</span><span class="value">${anime.media.episodes}</span>`;
+            columnTwoNode.append(episodesNode);
+        }
+
+        if(anime.media.duration) {
+            let durationNode = document.createElement("div");
+            durationNode.classList.add("sidepanel-stat");
+            durationNode.innerHTML = `<span class="label">Duration</span><span class="value">${dateUtils.formatMinutesIntoDisplay(anime.media.duration)}</span>`;
+            columnTwoNode.append(durationNode);
+        }
+
+        twoColumnsNode.append(columnTwoNode);
+
         this.body.append(twoColumnsNode);
     },
 
     clear() {
-        this.sidepanel.remove();
-        this.sidepanel = null;
-        this.body = null;
-        this.renderEmpty();
-    }
+        this.sidepanel.style = null;
+        this.body.innerText = "";
+    },
 }

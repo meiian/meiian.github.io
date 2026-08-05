@@ -8,6 +8,7 @@
   border-radius: 10px;
   background-size: cover;
   background-repeat: no-repeat;
+  transition: right 0.5s;
 }
 
 .sidepanel-body {
@@ -39,6 +40,9 @@
 .primary-title {
   font-weight: bold;
   font-size: 1.5em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .secondary-title {
@@ -87,4 +91,22 @@
 .sidepanel-stat .value {
   font-weight: bold;
   font-size: 1.2em;
+}
+
+.sidepanel-column-two {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-evenly;
+  padding: 1em;
+}
+
+#sidepanel-hide-button {
+  position: absolute;
+  top: 50%;
+  left: -48px;
+  background: #0b1622;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: left 0.5s;
 }

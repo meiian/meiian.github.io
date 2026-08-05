@@ -63,8 +63,16 @@ const seasonCalendar = {
         animeNode.appendChild(labelNode);
         node.appendChild(animeNode);
 
+        node.addEventListener("click", function() {
+            sidePanel.showAnimeDetails(anime);
+        })
+
         document.getElementById(`day-${date.getDay()}-body`).appendChild(node);
         
+    },
+
+    addAnimes(animes, weekDate) {
+        animes.forEach(anime => this.addAnime(anime, dateUtils.airDuringThisWeek(anime, weekDate)));
     },
 
     calculatePositionFromHour(date) {
