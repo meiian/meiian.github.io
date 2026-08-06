@@ -4,7 +4,8 @@ const pages = {
             render() {
                 renderIn("page-cont", seasonCalendar.renderEmptyCalendar(), true);
                 let today = new Date();
-                seasonCalendar.addAnimes(dateUtils.filterAnimesFromWeek(animes, today), today);
+                renderIn("page-cont", seasonCalendar.renderWeekSelector(today));
+                seasonCalendar.addAnimes(dateUtils.filterAnimesFromWeek(animes, today));
             }
         }
     },

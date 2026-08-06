@@ -49,8 +49,8 @@ const dateUtils = {
     getWeekNumber(d) {
         d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
         d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
-        var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
-        var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
+        let yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
+        let weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
         return weekNo;
     },
 
@@ -58,6 +58,22 @@ const dateUtils = {
         return animes.filter(anime => {
             return anime.status !== CONST.STATUS.PAUSED && anime.status !== CONST.STATUS.DROPPED && (this.airDuringThisWeek(anime, weekDate) != null);
         })
+    },
+
+    getMondayOfCurrentWeek(date) {
+        const clone = new Date(date);
+        const day = date.getDay();
+        const diff = date.getDate() - day + (day === 0 ? -6 : 1);
+        clone.setDate(diff);
+        return clone;
+    },
+
+    getSundayOfCurrentWeek(date) {
+        const clone = new Date(date);
+        const day = date.getDay();
+        const diff = date.getDate() + 7 - day + (day === 0 ? -7 : 0);
+        clone.setDate(diff);
+        return clone;
     },
 
     airDuringThisWeek(anime, weekDate) {

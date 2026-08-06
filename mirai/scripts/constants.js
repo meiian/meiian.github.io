@@ -31,5 +31,7 @@ const CONST = {
         POINT_10: "POINT_10",
         POINT_5: "POINT_5",
         POINT_3: "POINT_3"
-    }
+    },
+
+    MONTHS: ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."]
 }
