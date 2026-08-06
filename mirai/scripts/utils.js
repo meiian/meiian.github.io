@@ -78,12 +78,15 @@ const dateUtils = {
 
     airDuringThisWeek(anime, weekDate) {
         let airDuringThisWeek = null;
+        const weekNumber = this.getWeekNumber(weekDate);
+        const mondayOfWeek = this.getMondayOfCurrentWeek(weekDate);
+        const sundayOfWeek = this.getSundayOfCurrentWeek(weekDate);
             if(anime.media.airingSchedule && anime.media.airingSchedule.nodes
                 && anime.media.airingSchedule.nodes.length > 1) {
                 for (const node of anime.media.airingSchedule.nodes) {
                     const nodeDate = new Date(node.jsDate);
                     if(nodeDate.getFullYear() === weekDate.getFullYear()
-                    && this.getWeekNumber(nodeDate) === this.getWeekNumber(weekDate)) {
+                    && this.getWeekNumber(nodeDate) === weekNumber && nodeDate >= mondayOfWeek && nodeDate <= sundayOfWeek) {
                         airDuringThisWeek = nodeDate;
                         break;
                     }

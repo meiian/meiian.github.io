@@ -14,7 +14,8 @@ const CONST = {
         COMPLETED: "COMPLETED",
         PAUSED: "PAUSED",
         DROPPED: "DROPPED",
-        CURRENT: "CURRENT"
+        CURRENT: "CURRENT",
+        REPEATING: "REWATCHING"
     },
 
     STATUS_DISPLAY_PROGRESSION: {
@@ -22,7 +23,8 @@ const CONST = {
         COMPLETED: "Completed",
         PAUSED: "Paused",
         DROPPED: "Dropped",
-        CURRENT: "Watching"
+        CURRENT: "Watching",
+        REPEATING: "Rewatching"
     },
 
     SCORE_FORMAT: {
