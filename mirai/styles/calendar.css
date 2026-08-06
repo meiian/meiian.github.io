@@ -83,4 +83,7 @@
 
 .calendar-day-body-hour-label-title {
   font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

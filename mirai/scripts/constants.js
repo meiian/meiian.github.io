@@ -7,5 +7,21 @@ const CONST = {
     RANKING_CONTEXT: {
         HIGHEST_RATED: "highest rated",
         MOST_POPULAR: "most popular"
+    },
+
+    STATUS: {
+        PLANNING: "PLANNING",
+        COMPLETED: "COMPLETED",
+        PAUSED: "PAUSED",
+        DROPPED: "DROPPED",
+        CURRENT: "CURRENT"
+    },
+
+    SCORE_FORMAT: {
+        POINT_100: "POINT_100",
+        POINT_10_DECIMAL: "POINT_10_DECIMAL",
+        POINT_10: "POINT_10",
+        POINT_5: "POINT_5",
+        POINT_3: "POINT_3"
     }
 }

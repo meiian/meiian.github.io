@@ -52,6 +52,14 @@ const sidePanel = {
     showAnimeDetails(anime) {
         this.clear();
         this.show();
+
+        if(anime.score) {
+            let noteNode = document.createElement("div");
+            noteNode.classList.add("sidepanel-note-cont");
+            noteNode.innerHTML = scoreUtils.displayScore(anime.score, userInfos.mediaListOptions.scoreFormat);
+            this.body.append(noteNode);
+        }
+
         if(anime.media.coverImage) {
             let coverNode = document.createElement("img");
             coverNode.classList.add("sidepanel-cover");

@@ -165,6 +165,9 @@ const query = JSON.stringify(
                             titleLanguage
                             timezone
                         }
+                        mediaListOptions {
+                            scoreFormat
+                        }
                         statistics {
                             anime {
                                 meanScore

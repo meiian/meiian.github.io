@@ -57,6 +57,7 @@
   padding-bottom: 0.5em;
   margin-bottom: 0.5em;
   border-bottom: solid 1px rgba(255,255,255,0.2);
+  width: 100%;
 }
 
 .sidepane-two-columns {
@@ -95,7 +96,7 @@
 
 .sidepanel-column-two {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 50% 50%;
   justify-content: space-evenly;
   padding: 1em;
 }
@@ -109,4 +110,29 @@
   border-radius: 10px;
   cursor: pointer;
   transition: left 0.5s;
+}
+
+.sidepanel-note-cont {
+  --size: 64px;
+
+  width: var(--size); 
+  aspect-ratio: 1;
+  --g:/calc(var(--size)*0.158) calc(var(--size)*0.158) radial-gradient(50% 50%,#000 99%,#0000 101%) no-repeat;
+  mask: calc(50% + var(--size)*0.398) calc(50% + var(--size)*0) var(--g),calc(50% + var(--size)*0.364) calc(50% + var(--size)*0.162) var(--g),calc(50% + var(--size)*0.267) calc(50% + var(--size)*0.296) var(--g),calc(50% + var(--size)*0.123) calc(50% + var(--size)*0.379) var(--g),calc(50% + var(--size)*-0.042) calc(50% + var(--size)*0.396) var(--g),calc(50% + var(--size)*-0.199) calc(50% + var(--size)*0.345) var(--g),calc(50% + var(--size)*-0.322) calc(50% + var(--size)*0.234) var(--g),calc(50% + var(--size)*-0.39) calc(50% + var(--size)*0.083) var(--g),calc(50% + var(--size)*-0.39) calc(50% + var(--size)*-0.083) var(--g),calc(50% + var(--size)*-0.322) calc(50% + var(--size)*-0.234) var(--g),calc(50% + var(--size)*-0.199) calc(50% + var(--size)*-0.345) var(--g),calc(50% + var(--size)*-0.042) calc(50% + var(--size)*-0.396) var(--g),calc(50% + var(--size)*0.123) calc(50% + var(--size)*-0.379) var(--g),calc(50% + var(--size)*0.267) calc(50% + var(--size)*-0.296) var(--g),calc(50% + var(--size)*0.364) calc(50% + var(--size)*-0.162) var(--g),radial-gradient(calc(var(--size)*0.459),#000 99%,#0000 101%) subtract,calc(50% + var(--size)*0.513) calc(50% + var(--size)*0.109) var(--g),calc(50% + var(--size)*0.424) calc(50% + var(--size)*0.308) var(--g),calc(50% + var(--size)*0.262) calc(50% + var(--size)*0.454) var(--g),calc(50% + var(--size)*0.055) calc(50% + var(--size)*0.521) var(--g),calc(50% + var(--size)*-0.162) calc(50% + var(--size)*0.499) var(--g),calc(50% + var(--size)*-0.351) calc(50% + var(--size)*0.39) var(--g),calc(50% + var(--size)*-0.479) calc(50% + var(--size)*0.213) var(--g),calc(50% + var(--size)*-0.524) calc(50% + var(--size)*0) var(--g),calc(50% + var(--size)*-0.479) calc(50% + var(--size)*-0.213) var(--g),calc(50% + var(--size)*-0.351) calc(50% + var(--size)*-0.39) var(--g),calc(50% + var(--size)*-0.162) calc(50% + var(--size)*-0.499) var(--g),calc(50% + var(--size)*0.055) calc(50% + var(--size)*-0.521) var(--g),calc(50% + var(--size)*0.262) calc(50% + var(--size)*-0.454) var(--g),calc(50% + var(--size)*0.424) calc(50% + var(--size)*-0.308) var(--g),calc(50% + var(--size)*0.513) calc(50% + var(--size)*-0.109) var(--g);
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background: wheat;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--size);
+  height: var(--size);
+}
+
+.sidepanel-note-cont>svg {
+  fill: black;
+  height: 2em;
+  width: 2em;
 }

@@ -13,6 +13,38 @@ const spinner = {
     }
 };
 
+const scoreUtils = {
+    displayScore(score, scoreFormat) {
+        let scoreDisplay = "";
+        switch (scoreFormat) {
+            case CONST.SCORE_FORMAT.POINT_10:
+            case CONST.SCORE_FORMAT.POINT_10_DECIMAL:
+                scoreDisplay = score + "/10";
+                break;
+            case CONST.SCORE_FORMAT.POINT_100:
+                scoreDisplay = score/10 + "/10";
+                break;
+            case CONST.SCORE_FORMAT.POINT_5:
+                scoreDisplay = score + "/5";
+                break;
+            case CONST.SCORE_FORMAT.POINT_3:
+                switch (score) {
+                    case 1:
+                        scoreDisplay = ICONS.EMOJIS.NOT_HAPPY
+                        break;
+                    case 2:
+                        scoreDisplay = ICONS.EMOJIS.NEUTRAL;
+                        break;
+                    case 3:
+                        scoreDisplay = ICONS.EMOJIS.HAPPY;
+                        break;
+                }
+                break;
+        }
+        return scoreDisplay;
+    }
+}
+
 const dateUtils = {
     getWeekNumber(d) {
         d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
@@ -24,7 +56,7 @@ const dateUtils = {
 
     filterAnimesFromWeek(animes, weekDate) {
         return animes.filter(anime => {
-            return (this.airDuringThisWeek(anime, weekDate) != null);
+            return anime.status !== CONST.STATUS.PAUSED && anime.status !== CONST.STATUS.DROPPED && (this.airDuringThisWeek(anime, weekDate) != null);
         })
     },
 
