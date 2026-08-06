@@ -60,6 +60,13 @@ const sidePanel = {
             this.body.append(noteNode);
         }
 
+        if(anime.progress || anime.progress === 0) {
+            let progressNode = document.createElement("div");
+            progressNode.classList.add("sidepanel-progress-cont");
+            progressNode.append(this.buildProgress(anime.progress, anime.status, anime.media.episodes));
+            this.body.append(progressNode);
+        }
+
         if(anime.media.coverImage) {
             let coverNode = document.createElement("img");
             coverNode.classList.add("sidepanel-cover");
@@ -166,6 +173,37 @@ const sidePanel = {
         twoColumnsNode.append(columnTwoNode);
 
         this.body.append(twoColumnsNode);
+    },
+
+    buildProgress(progress, status, duration) {
+        let node = document.createElement("div");
+        node.classList.add("sidepanel-progress-body");
+
+        let labelNode = document.createElement("span");
+        labelNode.classList.add("sidepanel-progress-body-label");
+        labelNode.innerText = CONST.STATUS_DISPLAY_PROGRESSION[status];
+        node.append(labelNode);
+
+        let progressBarNode = document.createElement("div");
+        progressBarNode.classList.add("sidepanel-progress-body-progress");
+        progressBarNode.classList.add("progress-bar-cont");
+
+        let progressBarFullNode = document.createElement("div");
+        progressBarFullNode.classList.add("progress-bar-full");
+        let progressPercent = (progress) ? 33 : 0;
+        if(duration) {
+            progressPercent = Math.round(progress / duration * 100);
+        }
+        progressBarFullNode.style.setProperty("--progress", progressPercent + '%');
+        progressBarNode.append(progressBarFullNode);
+        node.append(progressBarNode);
+
+        let progressLabelNode = document.createElement("span");
+        progressLabelNode.classList.add("sidepanel-progress-body-progress-label");
+        progressLabelNode.innerText = (progress + "/" + ((duration)?duration:"?"));
+        node.append(progressLabelNode);
+
+        return node;
     },
 
     clear() {

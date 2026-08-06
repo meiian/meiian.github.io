@@ -136,3 +136,35 @@
   height: 2em;
   width: 2em;
 }
+
+.sidepanel-progress-cont {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+}
+
+.sidepanel-progress-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1em;
+  background: rgba(0,0,0,0.5);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.progress-bar-cont {
+  width: 20em;
+  height: 0.5em;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.3);
+}
+
+.progress-bar-full {
+  width: var(--progress);
+  background: lightcoral;
+  height: 100%;
+  border-radius: 10px;
+}

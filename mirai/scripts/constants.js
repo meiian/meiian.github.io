@@ -17,6 +17,14 @@ const CONST = {
         CURRENT: "CURRENT"
     },
 
+    STATUS_DISPLAY_PROGRESSION: {
+        PLANNING: "Planned to watch",
+        COMPLETED: "Completed",
+        PAUSED: "Paused",
+        DROPPED: "Dropped",
+        CURRENT: "Watching"
+    },
+
     SCORE_FORMAT: {
         POINT_100: "POINT_100",
         POINT_10_DECIMAL: "POINT_10_DECIMAL",
