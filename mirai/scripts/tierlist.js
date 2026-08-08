@@ -154,9 +154,9 @@ const tierlistRenderer = {
         const bodyNode = document.createElement("div");
         bodyNode.classList.add("tier-body");
         for(const item of tier.getItems()) {
-            const itemNode = document.createElement("div");
+            const itemNode = document.createElement("img");
             itemNode.classList.add("tierlist-anime-item");
-            itemNode.style.backgroundImage = "url(" + item.getCover() + ")";
+            itemNode.src = item.getCover();
             itemNode.title = item.getTitle();
             itemNode.draggable = true;
             bodyNode.append(itemNode);
@@ -164,6 +164,20 @@ const tierlistRenderer = {
         node.append(bodyNode);
 
         return node;
+    },
+
+    savePicture() {
+        domtoimage.toBlob(this.interfaceNode).then(blob => {
+                let now = new Date();
+                const imagename = 'test_' + now.getFullYear() + "_" + (now.getMonth()+1) + "_" + now.getDate() + "_" + now.getHours() + now.getMinutes() + now.getSeconds() + ".png";
+                let blobUrl = URL.createObjectURL(blob);
+                let link = document.createElement("a");
+                link.href = blobUrl;
+                link.download = imagename;
+                document.body.appendChild(link);
+                link.click()
+                document.body.removeChild(link);
+        });
     }
 
 }
