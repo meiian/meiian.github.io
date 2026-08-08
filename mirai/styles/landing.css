@@ -9,3 +9,9 @@
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
+
+#landing-confirm-user {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}

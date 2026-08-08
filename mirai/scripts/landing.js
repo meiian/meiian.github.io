@@ -29,9 +29,15 @@ async function syncAnimesFromUser(userName) {
 }
 
 async function resyncUser(name) {
+    renderIn("app-cont", document.createElement("div"), true);
     let userInfos = await fetchUserInfo(name);
     storage.writeUserInfo(userInfos);
     await syncAnimesFromUser(name);
+    window.location.reload();
+}
+
+function logout() {
+    storage.clearAllStorage();
     window.location.reload();
 }
 

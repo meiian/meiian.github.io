@@ -1,8 +1,8 @@
 const navbar = {
     navItems: [
-        {title:"Schedule", icon: ICONS.SCHEDULE},
-        {title:"Tierlists", icon: ICONS.TIERLIST},
-        {title:"Stats", icon: ICONS.STATS}
+        {title:"Schedule", icon: ICONS.SCHEDULE, page: pages.pagesContent.schedule},
+        {title:"Tierlists", icon: ICONS.TIERLIST, page: pages.pagesContent.tierlists},
+        {title:"Stats", icon: ICONS.STATS, page: pages.pagesContent.stats}
     ],
 
     renderTop(userInfo) {
@@ -40,6 +40,9 @@ const navbar = {
             itemLabelNode.classList.add("nav-bar-item-label");
             itemLabelNode.innerText = item.title;
             itemNode.append(itemLabelNode);
+            itemNode.addEventListener("click", function() {
+                item.page.render();
+            })
             top.append(itemNode);
         }
 
@@ -49,6 +52,22 @@ const navbar = {
     renderBottom() {
         let bottom = document.createElement("div");
         bottom.id = "nav-bar-bottom";
+
+        let reloadDataButton = document.createElement("button");
+        reloadDataButton.classList.add("button");
+        reloadDataButton.innerHTML = ICONS.SYNC + " Sync";
+        reloadDataButton.addEventListener("click", function() {
+            resyncUser(userInfos.name);
+        })
+        bottom.append(reloadDataButton);
+
+        let logoutButton = document.createElement("button");
+        logoutButton.classList.add("button");
+        logoutButton.innerHTML = ICONS.LOGOUT + " Logout";
+        logoutButton.addEventListener("click", function() {
+            logout();
+        })
+        bottom.append(logoutButton);
 
         return bottom;
     },

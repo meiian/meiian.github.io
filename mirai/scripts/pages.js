@@ -7,6 +7,16 @@ const pages = {
                 renderIn("page-cont", seasonCalendar.renderWeekSelector(today));
                 seasonCalendar.addAnimes(dateUtils.filterAnimesFromWeek(animes, today));
             }
+        },
+        tierlists: {
+            render() {
+                renderIn("page-cont", wip.render(), true);
+            }
+        },
+        stats: {
+            render() {
+                renderIn("page-cont", wip.render(), true);
+            }
         }
     },
 
@@ -20,5 +30,14 @@ const pages = {
 
     goToPage(pageName) {
         this.pagesContent[pageName].render();
+    }
+}
+
+
+const wip = {
+    render() {
+        let node = document.createElement("div");
+        node.innerText = "Soon™";
+        return node;
     }
 }

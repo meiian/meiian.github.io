@@ -54,6 +54,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  user-select: none;
 }
 
 .nav-bar-item-icon {
@@ -65,4 +66,20 @@
 .nav-bar-item-icon > svg {
   width: 1.5em;
   height: 1.5em;
+}
+
+.nav-bar-item:hover {
+  color: wheat;
+}
+
+.nav-bar-item:hover .nav-bar-item-icon > svg {
+  fill: wheat;
+}
+
+#nav-bar-bottom {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: auto;
+  padding: 1em 0em;
 }
