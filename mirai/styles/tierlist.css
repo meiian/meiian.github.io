@@ -1,0 +1,103 @@
+#tierlist-interface {
+  height: 100%;
+  overflow: auto;
+  scrollbar-width: thin;
+  padding: 0em 1em;
+}
+
+#tierlist-display {
+  display: flex;
+  flex-direction: column;
+}
+
+.tierlist-display-title {
+  font-weight: bold;
+  padding-bottom: 1em;
+  font-size: 1.5em;
+}
+
+.tierlist-tiers-cont {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px rgba(255,255,255,0.2);
+  border-radius: 10px;
+}
+
+.tier-cont {
+  display: flex;
+  width: 100%;
+  min-height: 160px;
+  height: max-content;
+}
+
+.tier-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10em;
+}
+
+.tier-header-label {
+  border: 0px solid black;
+  background: none;
+  width: 90%;
+  text-align: center;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tier-header-label>span {
+  width: 100%;
+  border: solid 0px black;
+  outline: solid 0px black;
+  text-wrap: auto;
+  word-break: break-word;
+  overflow: hidden;
+  max-height: 100%;
+  color: black;
+}
+
+.tier-body {
+  width: calc(100% - 10em);
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-wrap: wrap;
+  height: max-content;
+  min-height: 160px;
+}
+
+.tier-cont:not(:last-child) {
+    border-bottom: solid 1px rgba(255,255,255,0.2);
+}
+
+.tier-cont:first-child>.tier-header {
+    border-top-left-radius: 10px;
+}
+
+.tier-cont:last-child>.tier-header {
+    border-bottom-left-radius: 10px;
+}
+
+.tier-cont:first-child>.tier-body {
+    border-top-right-radius: 10px;
+}
+
+.tier-cont:last-child>.tier-body {
+    border-bottom-right-radius: 10px;
+}
+
+.tierlist-anime-item {
+  height: calc(160px - 1em);
+  width: auto;
+  aspect-ratio: 46/65;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0.5em;
+  border-radius: 5px;
+}

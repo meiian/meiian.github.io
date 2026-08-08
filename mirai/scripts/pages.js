@@ -10,7 +10,9 @@ const pages = {
         },
         tierlists: {
             render() {
-                renderIn("page-cont", wip.render(), true);
+                tierlistRenderer.init();
+                tierlistRenderer.openTierlist(tierlistRenderer.createDefaultTierlist());
+                renderIn("page-cont", tierlistRenderer.getInterface(), true);
             }
         },
         stats: {
