@@ -102,3 +102,6 @@
   margin: 0.5em;
   border-radius: 5px;
 }
+.tierlist-anime-item.preview {
+  opacity: 0.5;
+}
