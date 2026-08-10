@@ -282,7 +282,7 @@ const tierlistRenderer = {
     },
 
     savePicture() {
-        domtoimage.toBlob(this.interfaceNode, {style: {"overflow": "visible"}}).then(blob => {
+        domtoimage.toBlob(this.interfaceNode, {style: {"overflow": "visible"}, bgcolor: "#0b1622"}).then(blob => {
                 let now = new Date();
                 const imagename = 'test_' + now.getFullYear() + "_" + (now.getMonth()+1) + "_" + now.getDate() + "_" + now.getHours() + now.getMinutes() + now.getSeconds() + ".png";
                 let blobUrl = URL.createObjectURL(blob);
