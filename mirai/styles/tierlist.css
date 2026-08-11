@@ -101,6 +101,7 @@
   background-position: center;
   margin: 0.5em;
   border-radius: 5px;
+  cursor: pointer;
 }
 .tierlist-anime-item.preview {
   opacity: 0.5;
@@ -114,10 +115,42 @@
   flex-direction: column;
   width: 100%;
   border-top: solid 1px rgba(255,255,255,0.2);
-  background: #152232;
+  background: #0b1622;
+}
+
+.anime-selector-actions {
+  padding: 0.5em;
+  display: flex;
+}
+
+.anime-selector-actions>* {
+  margin-right: 0.5em;
+}
+
+.tierlist-filter {
+  display: flex;
+  flex-direction: column;
+  width: 10em;
+}
+
+.tierlist-filter-label {
+  font-weight: lighter;
+}
+
+.tierlist-filter-select {
+  border-radius: 5px;
+  border: solid 1px rgba(255,255,255,0.2);
+  background: none;
+  color: white;
+  outline: none;
+  padding: 0.5em;
 }
 
 #anime-selector-body {
   display: flex;
   align-items: center;
+  height: 160px;
+  background: #152232;
+  margin: 0.5em;
+  border-radius: 10px;
 }

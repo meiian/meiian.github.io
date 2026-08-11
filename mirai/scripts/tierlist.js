@@ -284,6 +284,19 @@ const tierlistRenderer = {
         });
     },
 
+    copyPicture() {
+        domtoimage.toBlob(this.interfaceNode, {style: {"overflow": "visible"}, bgcolor: "#0b1622"}).then(blob => {
+            navigator.clipboard.write([new ClipboardItem({[blob.type]: blob})]).then(e => {
+                const button = document.getElementById("copy-tierlist-button");
+                const before = button.innerHTML;
+                button.innerHTML = ICONS.CHECKED + " Copied";
+                setTimeout(function() {
+                    document.getElementById("copy-tierlist-button").innerHTML = before;
+                }, 3000);
+            });
+        });
+    },
+
     calculatePosition(ev, nodeToMove) {
         const widthOfItems = nodeToMove.offsetWidth + parseInt(getComputedStyle(nodeToMove).marginLeft.replace("px", ""));
         const heightOfItems = nodeToMove.offsetHeight + parseInt(getComputedStyle(nodeToMove).marginTop.replace("px", ""));
@@ -323,6 +336,11 @@ const tierlistRenderer = {
             tierlistRenderer.tierSourceMoving = null;
             tierlistRenderer.clearPreview();
         })
+
+        itemNode.addEventListener("dblclick", function(ev) {
+            ev.preventDefault();
+            sidePanel.showAnimeDetails(item.anime);
+        })
         return itemNode;
     }
 
@@ -333,7 +351,11 @@ const animeSelector = {
     filters: {
         season: CONST.SEASONS.SUMMER,
         year: dateUtils.getCurrentYear(),
-        alreadyPlaced: []
+        alreadyPlaced: [],
+        nodes: {
+            season: null,
+            year: null
+        }
     },
     node: null,
     bodyNode: null,
@@ -352,9 +374,76 @@ const animeSelector = {
         this.filteredAnimes = filteredItems;
     },
 
+    renderButtons() {
+        const buttonsCont = document.createElement("div");
+        buttonsCont.classList.add("anime-selector-actions");
+
+        const seasonFilterNode = document.createElement("div");
+        seasonFilterNode.classList.add("tierlist-filter");
+        const seasonFilterLabel = document.createElement("span");
+        seasonFilterLabel.innerText = "Season";
+        seasonFilterLabel.classList.add("tierlist-filter-label");
+        seasonFilterNode.append(seasonFilterLabel);
+        const seasonFilterInput = document.createElement("select");
+        seasonFilterInput.classList.add("tierlist-filter-select");
+        for(const season of Object.values(CONST.SEASONS)) {
+            const option = document.createElement("option");
+            option.value = season;
+            option.innerText = textUtils.capitalize(season);
+            if(this.filters.season === season) {
+                option.selected = true;
+            }
+            seasonFilterInput.append(option);
+        }
+        seasonFilterInput.addEventListener("change", function() {
+            animeSelector.filters.season = animeSelector.filters.nodes.season.value;
+            animeSelector.fillAnime();
+        });
+        this.filters.nodes.season = seasonFilterInput;
+        seasonFilterNode.append(seasonFilterInput);
+        buttonsCont.append(seasonFilterNode);
+
+        const yearFilterNode = document.createElement("div");
+        yearFilterNode.classList.add("tierlist-filter");
+        const yearFilterLabel = document.createElement("span");
+        yearFilterLabel.innerText = "Year";
+        yearFilterLabel.classList.add("tierlist-filter-label");
+        yearFilterNode.append(yearFilterLabel);
+        const yearFilterInput = document.createElement("input");
+        yearFilterInput.classList.add("tierlist-filter-select");
+        yearFilterInput.value = this.filters.year;
+        yearFilterInput.addEventListener("change", function() {
+            animeSelector.filters.year = parseInt(animeSelector.filters.nodes.year.value);
+            animeSelector.fillAnime();
+        });
+        this.filters.nodes.year = yearFilterInput;
+        yearFilterNode.append(yearFilterInput);
+        buttonsCont.append(yearFilterNode);
+
+        const savePictureNode = document.createElement("button");
+        savePictureNode.classList.add("button");
+        savePictureNode.innerHTML = ICONS.PICTURE + " Save as PNG";
+        savePictureNode.addEventListener("click", function() {
+            tierlistRenderer.savePicture();
+        })
+        buttonsCont.append(savePictureNode);
+
+        const copyPictureNode = document.createElement("button");
+        copyPictureNode.classList.add("button");
+        copyPictureNode.innerHTML = ICONS.COPY + " Copy picture";
+        copyPictureNode.id = "copy-tierlist-button";
+        copyPictureNode.addEventListener("click", function() {
+            tierlistRenderer.copyPicture();
+        })
+        buttonsCont.append(copyPictureNode);
+
+        return buttonsCont;
+    },
+
     renderEmpty() {
         const node = document.createElement("div");
         node.id = "anime-selector-cont";
+        node.append(this.renderButtons());
 
         const bodyNode = document.createElement("div");
         bodyNode.id = "anime-selector-body";
@@ -369,6 +458,7 @@ const animeSelector = {
 
     fillAnime() {
         this.applyFilters();
+        this.bodyNode.innerText = "";
         for(const anime of Object.values(this.filteredAnimes)) {
             const itemNode = tierlistRenderer.createItem(anime, "0");
             this.bodyNode.append(itemNode);
