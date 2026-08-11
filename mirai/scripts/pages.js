@@ -13,6 +13,7 @@ const pages = {
                 tierlistRenderer.init();
                 tierlistRenderer.openTierlist(tierlistRenderer.createDefaultTierlist());
                 renderIn("page-cont", tierlistRenderer.getInterface(), true);
+                renderIn("page-cont", animeSelector.renderEmpty(), false);
             }
         },
         stats: {

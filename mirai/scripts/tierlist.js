@@ -160,9 +160,6 @@ const tierlistRenderer = {
 
     createDefaultTierlist() {
         let tierlist = new Tierlist("New Tierlist");
-        for(let i = 0; i < 150; i++) {
-            tierlist.getTierByLabel("S").addItem(new TierItem(animes[Math.round(Math.random()*300)]), i);
-        }
         return tierlist;
     },
 
@@ -212,21 +209,7 @@ const tierlistRenderer = {
         bodyNode.id = tier.getId() + "-body";
         bodyNode.setAttribute("tier-id", tier.getId());
         for(const item of Object.values(tier.getItems())) {
-            const itemNode = document.createElement("div");
-            itemNode.classList.add("tierlist-anime-item");
-            itemNode.style.backgroundImage = "url(" + item.getCover() + ")";
-            itemNode.title = item.getTitle();
-            itemNode.id = item.getId();
-            itemNode.setAttribute("tier-id", tier.getId());
-            itemNode.draggable = true;
-
-            itemNode.addEventListener("dragstart", function(ev) {
-                const tierId = ev.target.getAttribute("tier-id")
-                const itemId = ev.target.id;
-                tierlistRenderer.itemIdMoving = itemId;
-                tierlistRenderer.tierSourceMoving = tierId;
-            })
-
+            const itemNode = this.createItem(item, tier.getId());
             bodyNode.append(itemNode);
         }
 
@@ -239,9 +222,9 @@ const tierlistRenderer = {
             tierlistRenderer.clearPreview();
             const nodeToMove = document.getElementById(tierlistRenderer.itemIdMoving);
 
-            let previewNode = document.createElement("img");
+            let previewNode = document.createElement("div");
             previewNode.classList.add("tierlist-anime-item", "preview");
-            previewNode.src = nodeToMove.src;
+            previewNode.style.backgroundImage = nodeToMove.style.backgroundImage;
 
             const position = tierlistRenderer.calculatePosition(ev, nodeToMove);
             const idNodeAtRight = tierlistRenderer.currentTierlist.getTierById(ev.target.getAttribute("tier-id")).getItemIdAtPosition(position);
@@ -253,23 +236,29 @@ const tierlistRenderer = {
 
         bodyNode.addEventListener("drop", function(ev) {
             ev.preventDefault();
-            if(ev.currentTarget !== ev.target && !ev.target.classList.contains("preview")) {
-                return;
-            }
             
             const nodeToMove = document.getElementById(tierlistRenderer.itemIdMoving);
-            //ev.target.appendChild(nodeToMove);
             nodeToMove.setAttribute("tier-id", ev.currentTarget.getAttribute("tier-id"));
-            const item = tierlistRenderer.currentTierlist.getTierById(tierlistRenderer.tierSourceMoving).getItemById(tierlistRenderer.itemIdMoving);
+            let item;
+            if(tierlistRenderer.tierSourceMoving !== "0") {
+                item = tierlistRenderer.currentTierlist.getTierById(tierlistRenderer.tierSourceMoving).getItemById(tierlistRenderer.itemIdMoving);
+            } else {
+                item = animeSelector.getItemById(tierlistRenderer.itemIdMoving)
+            }
 
             let position = null;
-            if(ev.target.classList.contains("preview")) {
-                position = ev.target.getAttribute("position");
+            if(ev.currentTarget !== ev.target) {
+                position = tierlistRenderer.previewNode.getAttribute("position");
             } else {
                 position = tierlistRenderer.calculatePosition(ev, nodeToMove);
             }
 
-            tierlistRenderer.currentTierlist.getTierById(tierlistRenderer.tierSourceMoving).removeItemById(tierlistRenderer.itemIdMoving);
+            if(tierlistRenderer.tierSourceMoving !== "0") {
+                tierlistRenderer.currentTierlist.getTierById(tierlistRenderer.tierSourceMoving).removeItemById(tierlistRenderer.itemIdMoving);
+            } else {
+                animeSelector.removeItemById(tierlistRenderer.itemIdMoving);
+            }
+            
             const idNodeAtRight = tierlistRenderer.currentTierlist.getTierById(ev.currentTarget.getAttribute("tier-id")).getItemIdAtPosition(position);
             ev.currentTarget.insertBefore(nodeToMove, document.getElementById(idNodeAtRight));
             tierlistRenderer.currentTierlist.getTierById(ev.currentTarget.getAttribute("tier-id")).addItem(item, position);
@@ -311,6 +300,87 @@ const tierlistRenderer = {
             this.previewNode.remove();
             this.previewNode = null;
         }
+    },
+
+    createItem(item, tierId) {
+        const itemNode = document.createElement("div");
+        itemNode.classList.add("tierlist-anime-item");
+        itemNode.style.backgroundImage = "url(" + item.getCover() + ")";
+        itemNode.title = item.getTitle();
+        itemNode.id = item.getId();
+        itemNode.setAttribute("tier-id", tierId);
+        itemNode.draggable = true;
+
+        itemNode.addEventListener("dragstart", function (ev) {
+            const tierId = ev.target.getAttribute("tier-id")
+            const itemId = ev.target.id;
+            tierlistRenderer.itemIdMoving = itemId;
+            tierlistRenderer.tierSourceMoving = tierId;
+        })
+
+        itemNode.addEventListener("dragend", function (ev) {
+            tierlistRenderer.itemIdMoving = null;
+            tierlistRenderer.tierSourceMoving = null;
+            tierlistRenderer.clearPreview();
+        })
+        return itemNode;
     }
 
+}
+
+const animeSelector = {
+    filteredAnimes: {},
+    filters: {
+        season: CONST.SEASONS.SUMMER,
+        year: dateUtils.getCurrentYear(),
+        alreadyPlaced: []
+    },
+    node: null,
+    bodyNode: null,
+
+    applyFilters() {
+        const filtered = animes.filter(anime => {
+            return anime.media && anime.media.season === this.filters.season
+            && anime.media.seasonYear === this.filters.year
+            && !this.filters.alreadyPlaced.includes(anime.media.id);
+        });
+        let filteredItems = {};
+        for(const anime of filtered) {
+            const item = new TierItem(anime);
+            filteredItems[item.getId()] = item;
+        }
+        this.filteredAnimes = filteredItems;
+    },
+
+    renderEmpty() {
+        const node = document.createElement("div");
+        node.id = "anime-selector-cont";
+
+        const bodyNode = document.createElement("div");
+        bodyNode.id = "anime-selector-body";
+        this.bodyNode = bodyNode;
+
+        node.append(bodyNode);
+        this.node = node;
+
+        this.fillAnime();
+        return node;
+    },
+
+    fillAnime() {
+        this.applyFilters();
+        for(const anime of Object.values(this.filteredAnimes)) {
+            const itemNode = tierlistRenderer.createItem(anime, "0");
+            this.bodyNode.append(itemNode);
+        }
+    },
+
+    getItemById(id) {
+        return this.filteredAnimes[id];
+    },
+
+    removeItemById(id) {
+        this.filters.alreadyPlaced.push(this.filteredAnimes[id].animeId);
+        delete this.filteredAnimes[id];
+    }
 }

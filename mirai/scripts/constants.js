@@ -35,5 +35,12 @@ const CONST = {
         POINT_3: "POINT_3"
     },
 
-    MONTHS: ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."]
+    MONTHS: ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."],
+
+    SEASONS: {
+        WINTER: "WINTER",
+        SPRING: "SPRING",
+        SUMMER : "SUMMER",
+        FALL: "FALL"
+    }
 }

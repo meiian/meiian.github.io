@@ -103,6 +103,10 @@ const dateUtils = {
         const hours = Math.floor(nbMinutes / 60);
         const minutes = nbMinutes % 60;
         return `${(hours > 0) ? hours+"h" : ""}${minutes}min`
+    },
+
+    getCurrentYear() {
+        return new Date().getFullYear();
     }
 };
 
