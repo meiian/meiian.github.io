@@ -99,6 +99,14 @@ class Tier {
     getItemIdAtPosition(position) {
         return this.itemOrder[position];
     }
+
+    setColor(color) {
+        this.color = color;
+    }
+
+    setLabel(label) {
+        this.label = label;
+    }
 }
 
 class TierItem {
@@ -137,6 +145,7 @@ const tierlistRenderer = {
     currentTierlist: null,
     interfaceNode: null,
     tierlistDisplayNode: null,
+    tiersContNode: null,
     animeSelectionNode: null,
     previewNode: null,
     itemIdMoving: null,
@@ -182,6 +191,7 @@ const tierlistRenderer = {
             const tierNode = this.renderTier(tier);
             tiersNode.append(tierNode);
         }
+        this.tiersContNode = tiersNode;
         this.tierlistDisplayNode.append(tiersNode);
 
     },
@@ -190,16 +200,19 @@ const tierlistRenderer = {
         const node = document.createElement("div");
         node.classList.add("tier-cont");
         node.id = tier.getId();
+        node.style.setProperty("--bg-color", tier.getColor())
 
         const headerNode = document.createElement("div");
         headerNode.classList.add("tier-header");
-        headerNode.style.backgroundColor = tier.getColor();
         
         const headerLabelCont = document.createElement("div");
         headerLabelCont.classList.add("tier-header-label");
         const headerLabel = document.createElement("span");
         headerLabel.innerText = tier.getLabel();
         headerLabel.contentEditable = "true";
+        headerLabel.addEventListener("keyup", function(ev) {
+            tier.setLabel(headerLabel.innerText);
+        });
         headerLabelCont.append(headerLabel);
         headerNode.append(headerLabelCont);
         node.append(headerNode);
@@ -359,6 +372,7 @@ const animeSelector = {
     },
     node: null,
     bodyNode: null,
+    popupNode: null,
 
     applyFilters() {
         const filtered = animes.filter(anime => {
@@ -437,6 +451,15 @@ const animeSelector = {
         })
         buttonsCont.append(copyPictureNode);
 
+        const optionsNode = document.createElement("button");
+        optionsNode.classList.add("button");
+        optionsNode.innerHTML = ICONS.SETTINGS + " Options";
+        optionsNode.addEventListener("click", function() {
+            // show options
+            renderIn("page-cont", animeSelector.showOptionsPopup(), false);
+        })
+        buttonsCont.append(optionsNode);
+
         return buttonsCont;
     },
 
@@ -472,5 +495,83 @@ const animeSelector = {
     removeItemById(id) {
         this.filters.alreadyPlaced.push(this.filteredAnimes[id].animeId);
         delete this.filteredAnimes[id];
+    },
+
+    showOptionsPopup() {
+        const cont = document.createElement("div");
+        cont.id = "popup-cont";
+        cont.addEventListener("click", function(ev) {
+            ev.stopPropagation();
+            if(ev.target !== ev.currentTarget) {
+                return ;
+            }
+            animeSelector.closePopup();
+        })
+
+        const popup = document.createElement("div");
+        popup.id = "tierlist-options-popup";
+        popup.classList.add("modal");
+
+        const title = document.createElement("span");
+        title.classList.add("modal-title");
+        title.innerText = "Options";
+        popup.appendChild(title);
+
+        const tiersSubtitle = document.createElement("span");
+        tiersSubtitle.classList.add("modal-subtitle");
+        tiersSubtitle.innerText = "Tiers";
+        popup.appendChild(tiersSubtitle);
+
+        const tiersCont = document.createElement("div");
+        tiersCont.classList.add("tierlist-options-tiers-cont");
+        for (const tier of Object.values(tierlistRenderer.currentTierlist.getTiers())) {
+            const tierNode = this.renderTierOption(tier);
+            tiersCont.appendChild(tierNode);
+        }
+        popup.appendChild(tiersCont);
+
+        const addTierButton = document.createElement("button");
+        addTierButton.classList.add("button");
+        addTierButton.innerHTML = "Add new tier";
+        addTierButton.addEventListener("click", function(ev) {
+            const newTier = new Tier("New tier", "#ffffff");
+            tierlistRenderer.currentTierlist.addTier(newTier);
+            tierlistRenderer.tiersContNode.appendChild(tierlistRenderer.renderTier(newTier));
+            const tierNode = animeSelector.renderTierOption(newTier);
+            tiersCont.appendChild(tierNode);
+        });
+        popup.appendChild(addTierButton);
+
+        cont.appendChild(popup);
+
+        this.popupNode = cont;
+
+        return cont;
+    },
+
+    closePopup() {
+        this.popupNode.remove();
+        this.popupNode = null;
+    },
+
+    renderTierOption(tier) {
+        const tierNode = document.createElement("div");
+        tierNode.classList.add("tierlist-options-tier");
+        tierNode.style.backgroundColor = tier.getColor();
+
+        const tiersLabel = document.createElement("span");
+        tiersLabel.innerText = tier.getLabel();
+        tierNode.append(tiersLabel);
+
+        const tiersColor = document.createElement("input");
+        tiersColor.value = tier.getColor();
+        tiersColor.setAttribute("tier-id", tier.getId());
+        tiersColor.addEventListener("change", function (ev) {
+            tierlistRenderer.currentTierlist.getTierById(ev.target.getAttribute("tier-id")).setColor(ev.target.value);
+            document.getElementById(ev.target.getAttribute("tier-id")).style.setProperty("--bg-color", ev.target.value);
+            tierNode.style.backgroundColor = ev.target.value;
+        });
+        tierNode.append(tiersColor);
+        return tierNode;
     }
 }

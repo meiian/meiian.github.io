@@ -37,6 +37,7 @@
   justify-content: center;
   align-items: center;
   width: 10em;
+  background-color: var(--bg-color);
 }
 
 .tier-header-label {
@@ -153,4 +154,18 @@
   background: #152232;
   margin: 0.5em;
   border-radius: 10px;
+}
+
+.tierlist-options-tiers-cont {
+  display: flex;
+  flex-direction: column;
+  color: black;
+}
+
+.tierlist-options-tier {
+  padding: 0.5em;
+  margin: 0.25em 0em;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
 }
