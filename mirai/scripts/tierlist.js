@@ -143,6 +143,10 @@ class TierItem {
     getAnime() {
         return this.anime;
     }
+
+    getAnimeId() {
+        return this.animeId;
+    }
 }
 
 const tierlistRenderer = {
@@ -154,6 +158,7 @@ const tierlistRenderer = {
     previewNode: null,
     itemIdMoving: null,
     tierSourceMoving: null,
+    gapNode: null,
 
     init() {
         const interface = document.createElement("div");
@@ -288,6 +293,7 @@ const tierlistRenderer = {
     },
 
     savePicture() {
+        this.gapNode.style.display = "none";
         domtoimage.toBlob(this.interfaceNode, {style: {"overflow": "visible"}, bgcolor: "#0b1622"}).then(blob => {
                 let now = new Date();
                 const imagename = 'test_' + now.getFullYear() + "_" + (now.getMonth()+1) + "_" + now.getDate() + "_" + now.getHours() + now.getMinutes() + now.getSeconds() + ".png";
@@ -298,10 +304,12 @@ const tierlistRenderer = {
                 document.body.appendChild(link);
                 link.click()
                 document.body.removeChild(link);
+                this.gapNode.style.display = "inline-block";
         });
     },
 
     copyPicture() {
+        this.gapNode.style.display = "none";
         domtoimage.toBlob(this.interfaceNode, {style: {"overflow": "visible"}, bgcolor: "#0b1622"}).then(blob => {
             navigator.clipboard.write([new ClipboardItem({[blob.type]: blob})]).then(e => {
                 const button = document.getElementById("copy-tierlist-button");
@@ -310,6 +318,7 @@ const tierlistRenderer = {
                 setTimeout(function() {
                     document.getElementById("copy-tierlist-button").innerHTML = before;
                 }, 3000);
+                this.gapNode.style.display = "inline-block";
             });
         });
     },
@@ -488,6 +497,15 @@ const animeSelector = {
         return node;
     },
 
+    addOverflowGap() {
+        const height = this.node.offsetHeight;
+        const gapNode = document.createElement("div");
+        gapNode.style.setProperty("--gap-size", height + "px");
+        gapNode.classList.add("vertical-gap");
+        tierlistRenderer.gapNode = gapNode;
+        tierlistRenderer.interfaceNode.append(gapNode);
+    },
+
     fillAnime() {
         this.applyFilters();
         this.bodyNode.innerText = "";
@@ -558,6 +576,13 @@ const animeSelector = {
         return cont;
     },
 
+    removeFromAnimeSelected(animes) {
+        for(const anime of Object.values(animes)) {
+            this.filters.alreadyPlaced.splice(this.filters.alreadyPlaced.indexOf(anime.getAnimeId()), 1);
+        }
+        this.fillAnime();
+    },
+
     closePopup() {
         this.popupNode.remove();
         this.popupNode = null;
@@ -589,6 +614,7 @@ const animeSelector = {
         deleteButton.classList.add("tierlist-options-tier-delete");
         deleteButton.innerHTML = ICONS.CLOSE;
         deleteButton.addEventListener("click", function() {
+            animeSelector.removeFromAnimeSelected(tier.getItems());
             tierlistRenderer.removeTierById(tier.getId());
             tierNode.remove();
         })
