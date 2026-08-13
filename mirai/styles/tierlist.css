@@ -169,3 +169,25 @@
   display: flex;
   justify-content: space-between;
 }
+
+.tierlist-options-tier-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tierlist-options-tier-delete {
+  background: none;
+  border: none;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.tierlist-options-tier-delete > svg {
+  width: 1em;
+  height: 1em;
+  fill: black;
+}

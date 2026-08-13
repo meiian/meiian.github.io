@@ -18,6 +18,10 @@ class Tierlist {
         this.tiers[tier.getId()] = tier;
     }
 
+    removeTierById(id) {
+        delete this.tiers[id];
+    }
+
     getTitle() {
         return this.title;
     }
@@ -355,6 +359,11 @@ const tierlistRenderer = {
             sidePanel.showAnimeDetails(item.anime);
         })
         return itemNode;
+    },
+
+    removeTierById(id) {
+        this.currentTierlist.removeTierById(id);
+        document.getElementById(id).remove();
     }
 
 }
@@ -563,6 +572,9 @@ const animeSelector = {
         tiersLabel.innerText = tier.getLabel();
         tierNode.append(tiersLabel);
 
+        const tierActions = document.createElement("div");
+        tierActions.classList.add("tierlist-options-tier-actions");
+
         const tiersColor = document.createElement("input");
         tiersColor.value = tier.getColor();
         tiersColor.setAttribute("tier-id", tier.getId());
@@ -571,7 +583,18 @@ const animeSelector = {
             document.getElementById(ev.target.getAttribute("tier-id")).style.setProperty("--bg-color", ev.target.value);
             tierNode.style.backgroundColor = ev.target.value;
         });
-        tierNode.append(tiersColor);
+        tierActions.append(tiersColor);
+
+        const deleteButton = document.createElement("button");
+        deleteButton.classList.add("tierlist-options-tier-delete");
+        deleteButton.innerHTML = ICONS.CLOSE;
+        deleteButton.addEventListener("click", function() {
+            tierlistRenderer.removeTierById(tier.getId());
+            tierNode.remove();
+        })
+        tierActions.append(deleteButton);
+
+        tierNode.append(tierActions);
         return tierNode;
     }
 }
