@@ -122,10 +122,20 @@
 .anime-selector-actions {
   padding: 0.5em;
   display: flex;
+  justify-content: space-between;
 }
 
-.anime-selector-actions>* {
+.anime-selector-filters>*,
+.anime-selector-buttons>* {
   margin-right: 0.5em;
+}
+
+.anime-selector-filters {
+  display: flex;
+}
+
+.anime-selector-buttons {
+  display: flex;
 }
 
 .tierlist-filter {

@@ -119,6 +119,7 @@ class TierItem {
     #cover = "";
     #animeId = "";
     #anime = null;
+    #deleteEvent = false;
 
     constructor(anime) {
         this.id = crypto.randomUUID();
@@ -126,6 +127,7 @@ class TierItem {
         this.cover = anime.media.coverImage.large;
         this.animeId = anime.media.id;
         this.anime = anime;
+        this.deleteEvent = false;
     }
 
     getTitle() {
@@ -146,6 +148,14 @@ class TierItem {
 
     getAnimeId() {
         return this.animeId;
+    }
+
+    getDeleteEvent() {
+        return this.deleteEvent;
+    }
+
+    activateDeleteEvent() {
+        this.deleteEvent = true;
     }
 }
 
@@ -266,6 +276,16 @@ const tierlistRenderer = {
                 item = tierlistRenderer.currentTierlist.getTierById(tierlistRenderer.tierSourceMoving).getItemById(tierlistRenderer.itemIdMoving);
             } else {
                 item = animeSelector.getItemById(tierlistRenderer.itemIdMoving)
+            }
+
+            if(!item.getDeleteEvent()) {
+                nodeToMove.addEventListener("contextmenu", function(ev) {
+                    ev.preventDefault();
+                    tierlistRenderer.currentTierlist.getTierById(ev.target.getAttribute("tier-id")).removeItemById(item.id);
+                    nodeToMove.remove();
+                    animeSelector.removeFromAnimeSelected({"item": item});
+                })
+                item.activateDeleteEvent();
             }
 
             let position = null;
@@ -410,6 +430,8 @@ const animeSelector = {
         const buttonsCont = document.createElement("div");
         buttonsCont.classList.add("anime-selector-actions");
 
+        const filtersCont = document.createElement("div");
+        filtersCont.classList.add("anime-selector-filters");
         const seasonFilterNode = document.createElement("div");
         seasonFilterNode.classList.add("tierlist-filter");
         const seasonFilterLabel = document.createElement("span");
@@ -433,7 +455,7 @@ const animeSelector = {
         });
         this.filters.nodes.season = seasonFilterInput;
         seasonFilterNode.append(seasonFilterInput);
-        buttonsCont.append(seasonFilterNode);
+        filtersCont.append(seasonFilterNode);
 
         const yearFilterNode = document.createElement("div");
         yearFilterNode.classList.add("tierlist-filter");
@@ -450,15 +472,18 @@ const animeSelector = {
         });
         this.filters.nodes.year = yearFilterInput;
         yearFilterNode.append(yearFilterInput);
-        buttonsCont.append(yearFilterNode);
+        filtersCont.append(yearFilterNode);
+        buttonsCont.append(filtersCont);
 
+        const actionsCont = document.createElement("div");
+        actionsCont.classList.add("anime-selector-buttons");
         const savePictureNode = document.createElement("button");
         savePictureNode.classList.add("button");
         savePictureNode.innerHTML = ICONS.PICTURE + " Save as PNG";
         savePictureNode.addEventListener("click", function() {
             tierlistRenderer.savePicture();
         })
-        buttonsCont.append(savePictureNode);
+        actionsCont.append(savePictureNode);
 
         const copyPictureNode = document.createElement("button");
         copyPictureNode.classList.add("button");
@@ -467,7 +492,7 @@ const animeSelector = {
         copyPictureNode.addEventListener("click", function() {
             tierlistRenderer.copyPicture();
         })
-        buttonsCont.append(copyPictureNode);
+        actionsCont.append(copyPictureNode);
 
         const optionsNode = document.createElement("button");
         optionsNode.classList.add("button");
@@ -476,7 +501,17 @@ const animeSelector = {
             // show options
             renderIn("page-cont", animeSelector.showOptionsPopup(), false);
         })
-        buttonsCont.append(optionsNode);
+        actionsCont.append(optionsNode);
+
+        const infoNode = document.createElement("button");
+        infoNode.classList.add("button");
+        infoNode.innerHTML = ICONS.INFO + " Info";
+        infoNode.addEventListener("click", function() {
+            // show options
+            renderIn("page-cont", animeSelector.showInfoPopup(), false);
+        })
+        actionsCont.append(infoNode);
+        buttonsCont.append(actionsCont);
 
         return buttonsCont;
     },
@@ -568,6 +603,49 @@ const animeSelector = {
             tiersCont.appendChild(tierNode);
         });
         popup.appendChild(addTierButton);
+
+        cont.appendChild(popup);
+
+        this.popupNode = cont;
+
+        return cont;
+    },
+
+    showInfoPopup() {
+        const cont = document.createElement("div");
+        cont.id = "popup-cont";
+        cont.addEventListener("click", function(ev) {
+            ev.stopPropagation();
+            if(ev.target !== ev.currentTarget) {
+                return ;
+            }
+            animeSelector.closePopup();
+        })
+
+        const popup = document.createElement("div");
+        popup.id = "tierlist-infos-popup";
+        popup.classList.add("modal");
+
+        const title = document.createElement("span");
+        title.classList.add("modal-title");
+        title.innerText = "Info";
+        popup.appendChild(title);
+
+        const commandsSubtitle = document.createElement("span");
+        commandsSubtitle.classList.add("modal-subtitle");
+        commandsSubtitle.innerText = "Commands";
+        popup.appendChild(commandsSubtitle);
+
+        const commandsParagraph = document.createElement("div");
+        commandsParagraph.classList.add("modal-paragraph");
+        commandsParagraph.innerHTML = `
+            <ul>
+                <li>Add an anime in the list : <b>Drag and drop</b></li>
+                <li>Remove an anime from the list : <b>Right click</b></li>
+                <li>See anime info : <b>Double left click</b></li>
+            </ul>
+        `
+        popup.appendChild(commandsParagraph);
 
         cont.appendChild(popup);
 
