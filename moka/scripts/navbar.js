@@ -53,13 +53,16 @@ const navbar = {
         let bottom = document.createElement("div");
         bottom.id = "nav-bar-bottom";
 
+        let buttonsNode = document.createElement("div");
+        buttonsNode.classList.add("navbar-actions");
+
         let reloadDataButton = document.createElement("button");
         reloadDataButton.classList.add("button");
         reloadDataButton.innerHTML = ICONS.SYNC + " Sync";
         reloadDataButton.addEventListener("click", function() {
             resyncUser(userInfos.name);
         })
-        bottom.append(reloadDataButton);
+        buttonsNode.append(reloadDataButton);
 
         let logoutButton = document.createElement("button");
         logoutButton.classList.add("button");
@@ -67,7 +70,27 @@ const navbar = {
         logoutButton.addEventListener("click", function() {
             logout();
         })
-        bottom.append(logoutButton);
+        buttonsNode.append(logoutButton);
+        bottom.append(buttonsNode);
+
+        let infosNode = document.createElement("div");
+        infosNode.classList.add("navbar-infos");
+
+        let versionNode = document.createElement("span");
+        versionNode.innerText = `Moka - v${CONST.VERSION}`;
+        infosNode.append(versionNode);
+
+        let linksNode = document.createElement("div");
+        linksNode.classList.add("navbar-links");
+        let sourceCodeLink = document.createElement("a");
+        sourceCodeLink.classList.add("navbar-link");
+        sourceCodeLink.innerHTML = ICONS.CODEBERG;
+        sourceCodeLink.href = CONST.SOURCE; 
+        sourceCodeLink.target = "_blank";
+        linksNode.append(sourceCodeLink);
+        infosNode.append(linksNode);
+
+        bottom.append(infosNode);
 
         return bottom;
     },

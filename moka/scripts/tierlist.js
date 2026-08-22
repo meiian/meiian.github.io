@@ -2,6 +2,8 @@ class Tierlist {
     #id = null;
     #tiers = {};
     #title = "";
+    #tags = [];
+    #lastModified = null;
 
     constructor(title) {
         this.id = crypto.randomUUID();
@@ -12,6 +14,8 @@ class Tierlist {
         this.addTier(new Tier("B", "#fdffb6"));
         this.addTier(new Tier("C", "#caffbf"));
         this.addTier(new Tier("D", "#9bf6ff"));
+        this.tags = [];
+        this.lastModified = new Date();
     }
 
     addTier(tier) {
@@ -44,6 +48,20 @@ class Tierlist {
 
     getNbTiers() {
         return this.tiers.length;
+    }
+
+    toJSON() {
+        let obj = {
+            id: this.id,
+            title: this.title,
+            tags: this.tags,
+            lastModified: this.lastModified,
+            tiers: {}
+        }
+        for(const tier of Object.values(this.tiers)) {
+            obj.tiers[tier.getId()] = tier.toJSON();
+        }
+        return obj;
     }
 }
 
@@ -111,6 +129,20 @@ class Tier {
     setLabel(label) {
         this.label = label;
     }
+
+    toJSON() {
+        let obj = {
+            id: this.id,
+            label: this.label,
+            color: this.color,
+            items: {},
+            itemsOrder: this.itemOrder
+        }
+        for(const item of Object.values(this.items)) {
+            obj.items[item.getId()] = item.toJSON();
+        }
+        return obj;
+    }
 }
 
 class TierItem {
@@ -156,6 +188,15 @@ class TierItem {
 
     activateDeleteEvent() {
         this.deleteEvent = true;
+    }
+
+    toJSON() {
+        return {
+            id: this.id,
+            title: this.title,
+            cover: this.cover,
+            animeId: this.animeId
+        }
     }
 }
 
@@ -700,5 +741,32 @@ const animeSelector = {
 
         tierNode.append(tierActions);
         return tierNode;
+    }
+}
+
+
+const tierlistStorageRenderer = {
+    tierlistInStorage: {},
+    interfaceNode: null,
+    tierlistDisplayNode: null,
+
+    init() {
+        const interface = document.createElement("div");
+        interface.id = "tierlist-storage-interface";
+        
+        const tierlistStorageDisplay = document.createElement("div");
+        tierlistStorageDisplay.id = "tierlist-storage-display";
+
+        interface.append(tierlistStorageDisplay);
+        this.tierlistDisplayNode = tierlistStorageDisplay;
+        this.interfaceNode = interface;
+        this.readStorage();
+    },
+
+    readStorage() {
+        const tierlists = storage.readTierlistCollection();
+        if(tierlists) {
+            this.tierlistInStorage = tierlists;
+        }
     }
 }

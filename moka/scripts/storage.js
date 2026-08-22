@@ -29,6 +29,14 @@ const storage = {
         this.saveInStorage(CONST.STORAGE.USERINFO, obj);
     },
 
+    readTierlistCollection() {
+        return this.readFromStorage(CONST.STORAGE.TIERLISTCOLLECTION);
+    },
+
+    writeTierListCollection(obj) {
+        this.saveInStorage(CONST.STORAGE.TIERLISTCOLLECTION, obj);
+    },
+
     clearAllStorage() {
         localStorage.removeItem(CONST.STORAGE.ANIMECOLLECTION);
         localStorage.removeItem(CONST.STORAGE.USERINFO);
