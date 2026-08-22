@@ -80,7 +80,11 @@ const dateUtils = {
         let airDuringThisWeek = null;
         const weekNumber = this.getWeekNumber(weekDate);
         const mondayOfWeek = this.getMondayOfCurrentWeek(weekDate);
+        mondayOfWeek.setHours(0);
+        mondayOfWeek.setHours(0);
         const sundayOfWeek = this.getSundayOfCurrentWeek(weekDate);
+        sundayOfWeek.setHours(23);
+        sundayOfWeek.setMinutes(59);
             if(anime.media.airingSchedule && anime.media.airingSchedule.nodes
                 && anime.media.airingSchedule.nodes.length > 1) {
                 for (const node of anime.media.airingSchedule.nodes) {
