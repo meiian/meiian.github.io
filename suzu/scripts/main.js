@@ -3,6 +3,7 @@ let animes = storage.readAnimesCollection();
 let userInfos = storage.readUserInfo();
 
 async function whenLoaded() {
+    globalSettings.init();
     if(userInfos) {
         clearLanding();
         if(!animes) {
@@ -13,7 +14,12 @@ async function whenLoaded() {
         renderIn("app-cont", pages.initPageCont());
         pages.goToPage("schedule");
         sidePanel.renderEmpty();
-        //renderIn("nav-bar-profile", profile.renderHoverProfile(userInfos));
+        const lastVersion = storage.readLastVersion();
+        if(lastVersion) {
+            changelog.lastVersion = lastVersion;
+            changelog.renderNewVersionsSince();
+        }
+        storage.writeLastVersion(CONST.VERSION);
     }
 }
 

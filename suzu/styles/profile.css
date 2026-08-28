@@ -2,8 +2,8 @@
   width: 300px;
   display: flex;
   align-items: center;
-  background-color: #152232;
-  color: white;
+  background-color: var(--action-color);
+  color: var(--text-color);
   border-radius: 10px;
   position: relative;
   flex-direction: column;

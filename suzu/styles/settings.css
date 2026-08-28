@@ -1,0 +1,46 @@
+#settings-page-cont {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.settings-column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 19em;
+  padding: 0em 0.5em;
+}
+
+.settings-column-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.settings-column-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-option-button {
+  padding: 0.5em;
+  background: var(--action-color);
+  margin: 0.5em 0em;
+  border-radius: 10px;
+  border: solid 1px var(--neutral-opacity-2);
+  cursor: pointer;
+}
+
+.settings-option-button:hover,
+.settings-option-button.active {
+    background: var(--action-active-color);
+}
+
+.settings-column-subtitle {
+  font-weight: bold;
+}
+
+.settings-column-subtitle:not(:first-child) {
+  margin-top: 1em;
+}

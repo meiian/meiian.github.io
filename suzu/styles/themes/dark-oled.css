@@ -1,0 +1,20 @@
+:root {
+    --accent-color: coral;
+    --neutral-opacity-3: rgba(255, 255, 255, 0.3);
+    --neutral-opacity-2: rgba(255, 255, 255, 0.2);
+    --neutral-opacity-1: rgba(255, 255, 255, 0.1);
+    --muted: rgb(187, 187, 187);
+    --light-muted: lightgray;
+    --bg-color: black;
+    --text-color: white;
+    --text-dark-needed: black;
+    --text-light-needed: white;
+    --text-inverted-color: black;
+    --action-color: black;
+    --action-active-color: rgb(34, 34, 34);
+    --overlay-bg: rgba(255, 255, 255, 0.2);
+    --text-active-color: wheat;
+    --sidepanel-gradient-1:#e66465;
+    --sidepanel-gradient-2:#9198e5;
+    --tier-bg-color: rgba(255,255,255,0.1);
+}

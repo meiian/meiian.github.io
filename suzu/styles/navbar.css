@@ -4,7 +4,7 @@
   left: 0px;
   display: flex;
   height: 100%;
-  border-right: solid 1px rgba(255,255,255,0.2);
+  border-right: solid 1px var(--neutral-opacity-2);
   width: 15em;
   flex-direction: column;
 }
@@ -66,15 +66,16 @@
 .nav-bar-item-icon > svg {
   width: 1.5em;
   height: 1.5em;
+  fill: var(--text-color);
 }
 
 .nav-bar-item:hover {
-  color: wheat;
+  color: var(--text-active-color);
 }
 
 .nav-bar-item:hover .nav-bar-item-icon > svg,
 .navbar-link:hover>svg {
-  fill: wheat;
+  fill: var(--text-active-color);
 }
 
 #nav-bar-bottom {
@@ -94,11 +95,10 @@
 
 .navbar-infos {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
   align-content: center;
   align-items: center;
-  width: 100%;
+  width: calc(100% - 2em);
 }
 
 .navbar-infos>* {
@@ -106,9 +106,35 @@
 }
 
 .navbar-infos>span {
-  color: lightgray;
+  color: var(--light-muted);
 }
 
 .navbar-link>svg {
-  fill: lightgray;
+  fill: var(--light-muted);
+}
+
+.suzu-logo {
+  height: 3em;
+  width: 3em;
+}
+
+.version-infos {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.5em;
+}
+
+.version-infos-title {
+  font-weight: bold;
+  font-size: 1.5em;
+  line-height: 1em;
+}
+
+.version-infos-subtitle {
+  color: var(--muted);
+  font-size: 0.8em;
+}
+
+.navbar-links {
+  margin-left: auto;
 }

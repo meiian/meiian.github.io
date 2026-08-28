@@ -2,7 +2,8 @@ const navbar = {
     navItems: [
         {title:"Schedule", icon: ICONS.SCHEDULE, page: pages.pagesContent.schedule},
         {title:"Tierlists", icon: ICONS.TIERLIST, page: pages.pagesContent.tierlists},
-        {title:"Stats", icon: ICONS.STATS, page: pages.pagesContent.stats}
+        {title:"Stats", icon: ICONS.STATS, page: pages.pagesContent.stats},
+        {title:"Settings", icon: ICONS.SETTINGS, page: pages.pagesContent.settings}
     ],
 
     renderTop(userInfo) {
@@ -76,8 +77,14 @@ const navbar = {
         let infosNode = document.createElement("div");
         infosNode.classList.add("navbar-infos");
 
-        let versionNode = document.createElement("span");
-        versionNode.innerText = `Moka - v${CONST.VERSION}`;
+        let logoNode = document.createElement("img");
+        logoNode.src = "./suzu.ico";
+        logoNode.classList.add("suzu-logo");
+        infosNode.append(logoNode)
+
+        let versionNode = document.createElement("div");
+        versionNode.classList.add("version-infos");
+        versionNode.innerHTML = `<span class="version-infos-title">Suzu</span><span class="version-infos-subtitle">v${CONST.VERSION}</span>`;
         infosNode.append(versionNode);
 
         let linksNode = document.createElement("div");

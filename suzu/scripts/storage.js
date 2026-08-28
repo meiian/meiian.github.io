@@ -37,6 +37,22 @@ const storage = {
         this.saveInStorage(CONST.STORAGE.TIERLISTCOLLECTION, obj);
     },
 
+    readLastVersion() {
+        return this.readFromStorage(CONST.STORAGE.LASTVERSION);
+    },
+
+    writeLastVersion(obj) {
+        this.saveInStorage(CONST.STORAGE.LASTVERSION, obj);
+    },
+
+    readSettings() {
+        return this.readFromStorage(CONST.STORAGE.SETTINGS);
+    },
+
+    writeSettings(obj) {
+        this.saveInStorage(CONST.STORAGE.SETTINGS, obj);
+    },
+
     clearAllStorage() {
         localStorage.removeItem(CONST.STORAGE.ANIMECOLLECTION);
         localStorage.removeItem(CONST.STORAGE.USERINFO);

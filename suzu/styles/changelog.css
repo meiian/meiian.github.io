@@ -1,0 +1,28 @@
+.changelog-version-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.changelog-date {
+  display: flex;
+  align-items: center;
+  color: var(--muted);
+}
+
+.changelog-date svg {
+  fill: var(--muted);
+}
+
+.changelog-version {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.modal > .changelog-version-title {
+    border-top: solid 0px gray;
+}
+
+.modal > .changelog-version-title ~ .changelog-version-title {
+    border-top: solid 1px gray;
+    padding-top: 1em;
+}

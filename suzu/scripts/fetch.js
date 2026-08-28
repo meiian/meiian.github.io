@@ -8,17 +8,52 @@ const url = 'https://graphql.anilist.co/';
 async function anilistSearch(title) {
     const query = JSON.stringify(
     {
-        query: `query ($search: String, $type: MediaType, $perPage: Int, $page: Int) {
+        query: `query ($search: String, $type: MediaType, $perPage: Int, $page: Int, $isMain: Boolean, $sort: [MediaSort]) {
             Page(perPage: $perPage, page: $page) {
-                media(search: $search, type: $type) {
+                media(search: $search, type: $type, sort: $sort) {
                     id
-                    title {
-                        romaji
-                        english
-                    }
-                    coverImage {
-                        large
-                    }
+                        title {
+                            romaji
+                            english
+                        }
+                        bannerImage
+                        averageScore
+                        description
+                        duration
+                        episodes
+                        season
+                        seasonYear
+                        studios(isMain: $isMain) {
+                            nodes {
+                                name
+                            }
+                        }
+                        externalLinks {
+                            color
+                            icon
+                            site
+                            siteId
+                            type
+                            url
+                        }
+                        rankings {
+                            allTime
+                            context
+                            rank
+                            season
+                            type
+                            format
+                            year
+                        }
+                        coverImage {
+                            large
+                        }
+                        airingSchedule {
+                            nodes {
+                                episode
+                                airingAt
+                            }
+                        }
                 }
             }
         }`,
@@ -26,7 +61,9 @@ async function anilistSearch(title) {
             search:title,
             type:"ANIME",
             perPage:50,
-            page:1
+            page:1,
+            isMain: true,
+            sort: "POPULARITY_DESC"
         }
     });
 
@@ -37,11 +74,20 @@ async function anilistSearch(title) {
     };
 
     try {
-        const response = await fetch(url, options);
-        const data = await response.json();
-        return data;
+        spinner.show("Searching for animes...");
+        const response = await throttleFetch(url, options);
+        const responseObject = await response.json();
+        let medias = [];
+
+        if(responseObject.data && responseObject.data.Page && responseObject.data.Page.media) {
+            medias = responseObject.data.Page.media.map(function(a) {return {media: a}});
+        }
+        spinner.hide();
+
+        return medias;
     } catch (error) {
         console.error(error);
+        spinner.hide();
     }
 }
 

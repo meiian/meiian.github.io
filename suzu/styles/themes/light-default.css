@@ -1,0 +1,20 @@
+:root {
+  --accent-color: coral;
+  --neutral-opacity-3: rgba(0, 0, 0, 0.3);
+  --neutral-opacity-2: rgba(0, 0, 0, 0.2);
+  --neutral-opacity-1: rgba(0, 0, 0, 0.1);
+  --muted: rgb(132, 132, 132);
+  --light-muted: #707070;
+  --bg-color: #f2f2f2;
+  --text-color: black;
+  --text-dark-needed: black;
+  --text-light-needed: white;
+  --text-inverted-color: white;
+  --action-color: #e1e1e1;
+  --action-active-color: #8f8f8f;
+  --overlay-bg: rgba(0, 0, 0, 0.8);
+  --text-active-color: #957436;
+  --sidepanel-gradient-1: #e66465;
+  --sidepanel-gradient-2: #9198e5;
+  --tier-bg-color: rgba(0, 0, 0, 0.1);
+}

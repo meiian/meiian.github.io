@@ -22,7 +22,7 @@
 #search-results-modal-bg {
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.5);
+  background: var(--tier-bg-color);
   position: fixed;
   top: 0px;
   left: 0px;
@@ -33,7 +33,7 @@
 }
 
 #search-results-modal {
-  background: white;
+  background: var(--text-color);
   width: 60vw;
   border-radius: 5px;
   padding: 0.5em;
@@ -41,8 +41,8 @@
 
 #search-input {
   width: calc(100% - 5px - 0.5em);
-  border: solid white 0px;
-  background: lightgray;
+  border: solid var(--text-color) 0px;
+  background: var(--light-muted);
   border-radius: 5px;
   padding: 0.5em;
 }

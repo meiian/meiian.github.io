@@ -1,0 +1,20 @@
+:root {
+  --accent-color: black;
+  --neutral-opacity-3: black;
+  --neutral-opacity-2: black;
+  --neutral-opacity-1: black;
+  --muted: black;
+  --light-muted: black;
+  --bg-color: black;
+  --text-color: black;
+  --text-dark-needed: black;
+  --text-light-needed: black;
+  --text-inverted-color: black;
+  --action-color: black;
+  --action-active-color: black;
+  --overlay-bg: black;
+  --text-active-color: black;
+  --sidepanel-gradient-1: black;
+  --sidepanel-gradient-2: black;
+  --tier-bg-color: black;
+}

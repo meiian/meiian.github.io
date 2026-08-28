@@ -4,21 +4,21 @@ html {
 
 body {
     font-family: Roboto,-apple-system,BlinkMacSystemFont,Segoe UI,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
-    background-color: #0b1622;
+    background-color: var(--bg-color);
     margin: 0px;
     width: 100vw;
     height: 100%;
-    color: white;
+    color: var(--text-color);
 }
 
 .button {
   cursor: pointer;
   padding: 0.5em 1em;
-  background: #152232;
-  color: white;
+  background: var(--action-color);
+  color: var(--text-color);
   border-radius: 10px;
   text-align: center;
-  border: solid 1px rgba(255,255,255,0.2);
+  border: solid 1px var(--neutral-opacity-2);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,10 +28,15 @@ body {
   width: 1.5em;
   height: 1.5em;
   margin-right: 0.5em;
+  fill: var(--text-color);
+}
+
+svg {
+  fill: var(--text-color);
 }
 
 .button:hover {
-  background: #213855;
+  background: var(--action-active-color);
 }
 
 .button.green {
@@ -75,7 +80,7 @@ body {
   left: 0px;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.8);
+  background: var(--overlay-bg);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,11 +89,13 @@ body {
 .modal {
   width: 30vw;
   min-width: 300px;
-  background: #0b1622;
+  background: var(--bg-color);
   padding: 1em;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  max-height: 80vh;
+  overflow: auto;
 }
 
 .modal-title {
@@ -100,4 +107,19 @@ body {
 .modal-subtitle {
   font-weight: bold;
   margin-bottom: 0.25em;
+}
+
+.icon {
+  font-size: 1em;
+  height: 1em;
+  width: 1em;
+  display: inline-block;
+  margin-right: 0.5em;
+}
+
+.icon>svg {
+  font-size: 1em;
+  height: 1em;
+  width: 1em;
+  display: inline-block;
 }

@@ -1,6 +1,6 @@
 .loader {
   --color-1: #fff;
-  --color-2: #FFAA0F;
+  --color-2: var(--accent-color);
   --size: 1px;
 
   width: calc(48 * var(--size));
@@ -42,11 +42,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10000;
+  background: var(--bg-color);
+  border-radius: 10px;
+}
+
+#loading-cont:empty {
+  padding: 0em;
 }
 
 .loader-label {
   margin-right: 1em;
-  color: white;
+  color: var(--text-color);
   animation: pulse 1s linear infinite;
   animation-direction: alternate;
 }

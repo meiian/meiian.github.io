@@ -103,6 +103,10 @@ const dateUtils = {
         return `${(date.getHours()<10)?'0':''}${date.getHours()}:${(date.getMinutes()<10)?'0':''}${date.getMinutes()}`
     },
 
+    formatToDatePrintable(date) {
+        return date.toLocaleString(undefined, {year: "numeric", month: "long", day: "numeric"})
+    },
+
     formatMinutesIntoDisplay(nbMinutes) {
         const hours = Math.floor(nbMinutes / 60);
         const minutes = nbMinutes % 60;

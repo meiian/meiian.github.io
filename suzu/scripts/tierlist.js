@@ -243,6 +243,7 @@ const tierlistRenderer = {
         const titleNode = document.createElement("span");
         titleNode.classList.add("tierlist-display-title");
         titleNode.innerText = this.currentTierlist.getTitle();
+        titleNode.contentEditable = true;
         this.tierlistDisplayNode.appendChild(titleNode);
 
         const tiersNode = document.createElement("div");
@@ -355,7 +356,7 @@ const tierlistRenderer = {
 
     savePicture() {
         this.gapNode.style.display = "none";
-        domtoimage.toBlob(this.interfaceNode, {style: {"overflow": "visible"}, bgcolor: "#0b1622"}).then(blob => {
+        domtoimage.toBlob(this.interfaceNode, {style: {"overflow": "visible"}, bgcolor: "var(--bg-color"}).then(blob => {
                 let now = new Date();
                 const imagename = 'test_' + now.getFullYear() + "_" + (now.getMonth()+1) + "_" + now.getDate() + "_" + now.getHours() + now.getMinutes() + now.getSeconds() + ".png";
                 let blobUrl = URL.createObjectURL(blob);
@@ -371,7 +372,7 @@ const tierlistRenderer = {
 
     copyPicture() {
         this.gapNode.style.display = "none";
-        domtoimage.toBlob(this.interfaceNode, {style: {"overflow": "visible"}, bgcolor: "#0b1622"}).then(blob => {
+        domtoimage.toBlob(this.interfaceNode, {style: {"overflow": "visible"}, bgcolor: "var(--bg-color"}).then(blob => {
             navigator.clipboard.write([new ClipboardItem({[blob.type]: blob})]).then(e => {
                 const button = document.getElementById("copy-tierlist-button");
                 const before = button.innerHTML;
@@ -443,22 +444,34 @@ const animeSelector = {
     filters: {
         season: CONST.SEASONS.SUMMER,
         year: dateUtils.getCurrentYear(),
+        title: "",
         alreadyPlaced: [],
         nodes: {
             season: null,
-            year: null
+            year: null,
+            title: null
         }
     },
     node: null,
     bodyNode: null,
     popupNode: null,
 
-    applyFilters() {
-        const filtered = animes.filter(anime => {
-            return anime.media && anime.media.season === this.filters.season
-            && anime.media.seasonYear === this.filters.year
-            && !this.filters.alreadyPlaced.includes(anime.media.id);
-        });
+    async applyFilters() {
+        let filtered = null;
+        if(this.filters.title) {
+            this.disableSeasonalFilters();
+            const searchResults = await anilistSearch(this.filters.title);
+            filtered = searchResults.filter(anime => {
+                return !this.filters.alreadyPlaced.includes(anime.media.id);
+            });
+        } else {
+            this.activateSeasonalFilters();
+            filtered = animes.filter(anime => {
+                return anime.media && anime.media.season === this.filters.season
+                && anime.media.seasonYear === this.filters.year
+                && !this.filters.alreadyPlaced.includes(anime.media.id);
+            });
+        }
         let filteredItems = {};
         for(const anime of filtered) {
             const item = new TierItem(anime);
@@ -473,6 +486,23 @@ const animeSelector = {
 
         const filtersCont = document.createElement("div");
         filtersCont.classList.add("anime-selector-filters");
+        const searchByTitleFilterNode = document.createElement("div");
+        searchByTitleFilterNode.classList.add("tierlist-filter")
+        const searchByTitleFilterLabel = document.createElement("span");
+        searchByTitleFilterLabel.innerText = "Title";
+        searchByTitleFilterLabel.classList.add("tierlist-filter-label");
+        searchByTitleFilterNode.append(searchByTitleFilterLabel);
+        const searchByTitleFilterInput = document.createElement("input");
+        searchByTitleFilterInput.classList.add("tierlist-filter-select");
+        searchByTitleFilterInput.value = this.filters.title;
+        searchByTitleFilterInput.addEventListener("change", function() {
+            animeSelector.filters.title = animeSelector.filters.nodes.title.value;
+            animeSelector.fillAnime();
+        });
+        this.filters.nodes.title = searchByTitleFilterInput;
+        searchByTitleFilterNode.append(searchByTitleFilterInput);
+        filtersCont.append(searchByTitleFilterNode);
+
         const seasonFilterNode = document.createElement("div");
         seasonFilterNode.classList.add("tierlist-filter");
         const seasonFilterLabel = document.createElement("span");
@@ -549,7 +579,7 @@ const animeSelector = {
         infoNode.innerHTML = ICONS.INFO + " Info";
         infoNode.addEventListener("click", function() {
             // show options
-            renderIn("page-cont", animeSelector.showInfoPopup(), false);
+            animeSelector.showInfoPopup();
         })
         actionsCont.append(infoNode);
         buttonsCont.append(actionsCont);
@@ -582,13 +612,23 @@ const animeSelector = {
         tierlistRenderer.interfaceNode.append(gapNode);
     },
 
-    fillAnime() {
-        this.applyFilters();
+    async fillAnime() {
+        await this.applyFilters();
         this.bodyNode.innerText = "";
         for(const anime of Object.values(this.filteredAnimes)) {
             const itemNode = tierlistRenderer.createItem(anime, "0");
             this.bodyNode.append(itemNode);
         }
+    },
+
+    disableSeasonalFilters() {
+        this.filters.nodes.season.disabled = true;
+        this.filters.nodes.year.disabled = true;
+    },
+
+    activateSeasonalFilters() {
+        this.filters.nodes.season.disabled = false;
+        this.filters.nodes.year.disabled = false;
     },
 
     getItemById(id) {
@@ -601,29 +641,9 @@ const animeSelector = {
     },
 
     showOptionsPopup() {
-        const cont = document.createElement("div");
-        cont.id = "popup-cont";
-        cont.addEventListener("click", function(ev) {
-            ev.stopPropagation();
-            if(ev.target !== ev.currentTarget) {
-                return ;
-            }
-            animeSelector.closePopup();
-        })
-
-        const popup = document.createElement("div");
-        popup.id = "tierlist-options-popup";
-        popup.classList.add("modal");
-
-        const title = document.createElement("span");
-        title.classList.add("modal-title");
-        title.innerText = "Options";
-        popup.appendChild(title);
-
         const tiersSubtitle = document.createElement("span");
         tiersSubtitle.classList.add("modal-subtitle");
         tiersSubtitle.innerText = "Tiers";
-        popup.appendChild(tiersSubtitle);
 
         const tiersCont = document.createElement("div");
         tiersCont.classList.add("tierlist-options-tiers-cont");
@@ -631,7 +651,6 @@ const animeSelector = {
             const tierNode = this.renderTierOption(tier);
             tiersCont.appendChild(tierNode);
         }
-        popup.appendChild(tiersCont);
 
         const addTierButton = document.createElement("button");
         addTierButton.classList.add("button");
@@ -643,39 +662,15 @@ const animeSelector = {
             const tierNode = animeSelector.renderTierOption(newTier);
             tiersCont.appendChild(tierNode);
         });
-        popup.appendChild(addTierButton);
 
-        cont.appendChild(popup);
-
-        this.popupNode = cont;
-
-        return cont;
+        const optionsModal = new Modal("Options", [tiersSubtitle, tiersCont, addTierButton]);
+        optionsModal.render();
     },
 
     showInfoPopup() {
-        const cont = document.createElement("div");
-        cont.id = "popup-cont";
-        cont.addEventListener("click", function(ev) {
-            ev.stopPropagation();
-            if(ev.target !== ev.currentTarget) {
-                return ;
-            }
-            animeSelector.closePopup();
-        })
-
-        const popup = document.createElement("div");
-        popup.id = "tierlist-infos-popup";
-        popup.classList.add("modal");
-
-        const title = document.createElement("span");
-        title.classList.add("modal-title");
-        title.innerText = "Info";
-        popup.appendChild(title);
-
         const commandsSubtitle = document.createElement("span");
         commandsSubtitle.classList.add("modal-subtitle");
         commandsSubtitle.innerText = "Commands";
-        popup.appendChild(commandsSubtitle);
 
         const commandsParagraph = document.createElement("div");
         commandsParagraph.classList.add("modal-paragraph");
@@ -686,13 +681,9 @@ const animeSelector = {
                 <li>See anime info : <b>Double left click</b></li>
             </ul>
         `
-        popup.appendChild(commandsParagraph);
 
-        cont.appendChild(popup);
-
-        this.popupNode = cont;
-
-        return cont;
+        const infoModal = new Modal("Info", [commandsSubtitle, commandsParagraph]);
+        infoModal.render();
     },
 
     removeFromAnimeSelected(animes) {

@@ -21,6 +21,11 @@ const pages = {
             render() {
                 renderIn("page-cont", wip.render(), true);
             }
+        },
+        settings: {
+            render() {
+                renderIn("page-cont", globalSettings.renderPage(), true);
+            }
         }
     },
 
