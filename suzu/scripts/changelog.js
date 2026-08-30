@@ -71,6 +71,14 @@ const versions = [
             "Activity tab : fixed months not showing after current month for previous years"
         ],
         new Date("2026/08/30")
+    ),
+    new Version(
+        "2608.05",
+        [
+            "Activity: display month with correct week day placement"
+        ],
+        [],
+        new Date("2026/08/30")
     )
 ]
 

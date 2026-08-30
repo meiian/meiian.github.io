@@ -66,15 +66,27 @@ const statsRenderer = {
         const node = document.createElement("div");
         node.classList.add("stats-activities-month");
         const nbDaysInMonth = dateUtils.getNumberOfDaysInMonth(year, month);
+        let firstDayOfMonth = new Date(year, month, 1).getDay();
+        if(firstDayOfMonth === 0) {
+            firstDayOfMonth = 7;
+        }
 
-        for(let i = 0; i < 35; i++) {
+        let nbRows = (firstDayOfMonth >= 6 && nbDaysInMonth >= 30 || firstDayOfMonth == 7 && nbDaysInMonth == 31) ? 6 : 5;
+        // Feb month when starting monday
+        if(firstDayOfMonth == 1 && nbDaysInMonth == 28) {
+            nbRows = 4;
+        }
+        node.style.gridTemplateRows = `repeat(${nbRows}, ${100 / nbRows}%)`
+
+        for(let i = 0; i < nbRows*7; i++) {
             const square = document.createElement("div");
             square.classList.add("stats-activities-day");
-            if(i < nbDaysInMonth) {
-                const day = new Date(year, month, i+1);
+            const dayIndex = i + 1 - (firstDayOfMonth - 1);
+            if(dayIndex <= nbDaysInMonth && dayIndex >= 1) {
+                const day = new Date(year, month, dayIndex);
                 square.classList.add("trueday");
                 const dayLabel = document.createElement("span");
-                dayLabel.innerText = i+1;
+                dayLabel.innerText = dayIndex;
                 dayLabel.classList.add("stats-activities-day-label");
                 square.append(dayLabel);
                 const squareBody = document.createElement("div");
