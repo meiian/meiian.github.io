@@ -63,6 +63,14 @@ const versions = [
         ],
         [],
         new Date("2026/08/30")
+    ),
+    new Version(
+        "2608.04",
+        [],
+        [
+            "Activity tab : fixed months not showing after current month for previous years"
+        ],
+        new Date("2026/08/30")
     )
 ]
 

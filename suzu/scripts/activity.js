@@ -32,8 +32,11 @@ const statsRenderer = {
         const maxYear = today.getFullYear();
 
         for(let y = 2020; y <= maxYear; y++) {
-            for(let m = 0; m <= maxMonth; m++) {
+            for(let m = 0; m <= 11; m++) {
                 this.renderActivities(y, m);
+                if(y === maxYear && m === maxMonth) {
+                    break;
+                }
             }
         }
         
