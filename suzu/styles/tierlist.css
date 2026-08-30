@@ -212,3 +212,18 @@
 .vertical-gap {
   height: var(--gap-size);
 }
+
+@media only screen and (max-width: 600px) {
+  .anime-selector-filters {
+    flex-direction: column;
+  }
+
+  .anime-selector-buttons {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .anime-selector-actions {
+    justify-content: space-evenly;
+  }
+}

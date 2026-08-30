@@ -169,3 +169,16 @@
   height: 100%;
   border-radius: 10px;
 }
+
+@media only screen and (max-width: 600px) {
+
+  .sidepanel-cont {
+    width: calc(100% - 2em);
+    height: calc(100% - 2em - 10vh);
+  }
+
+  .sidepanel-body {
+    overflow: auto;
+  }
+
+}

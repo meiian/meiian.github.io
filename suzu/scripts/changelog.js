@@ -52,6 +52,17 @@ const versions = [
             "Fixed animes airing on mondays/sundays not showing on schedule in some occasions"
         ],
         new Date("2026/08/28")
+    ),
+    new Version(
+        "2608.03",
+        [
+            "Added activity tab",
+            "Added fetching activity of user at first login",
+            "Modified sync button to add fetching of activity since last time or in full mode",
+            "(WIP) Added mobile layout"
+        ],
+        [],
+        new Date("2026/08/30")
     )
 ]
 

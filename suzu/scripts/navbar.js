@@ -2,9 +2,12 @@ const navbar = {
     navItems: [
         {title:"Schedule", icon: ICONS.SCHEDULE, page: pages.pagesContent.schedule},
         {title:"Tierlists", icon: ICONS.TIERLIST, page: pages.pagesContent.tierlists},
+        {title:"Activity", icon: ICONS.WRITING, page: pages.pagesContent.activity},
         {title:"Stats", icon: ICONS.STATS, page: pages.pagesContent.stats},
         {title:"Settings", icon: ICONS.SETTINGS, page: pages.pagesContent.settings}
     ],
+
+    navbarModal: null,
 
     renderTop(userInfo) {
         let top = document.createElement("div");
@@ -59,15 +62,17 @@ const navbar = {
 
         let reloadDataButton = document.createElement("button");
         reloadDataButton.classList.add("button");
-        reloadDataButton.innerHTML = ICONS.SYNC + " Sync";
+        reloadDataButton.innerHTML = ICONS.SYNC + "<span class='navbar-button-label'> Sync</span>";
         reloadDataButton.addEventListener("click", function() {
-            resyncUser(userInfos.name);
+            if(!this.navbarModal || !this.navbarModal.node) {
+                this.navbarModal = showActivitiesSyncModal(userInfos.name);
+            } 
         })
         buttonsNode.append(reloadDataButton);
 
         let logoutButton = document.createElement("button");
         logoutButton.classList.add("button");
-        logoutButton.innerHTML = ICONS.LOGOUT + " Logout";
+        logoutButton.innerHTML = ICONS.LOGOUT + "<span class='navbar-button-label'> Logout</span>";
         logoutButton.addEventListener("click", function() {
             logout();
         })

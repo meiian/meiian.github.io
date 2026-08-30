@@ -191,6 +191,84 @@ const query = JSON.stringify(
 
 
 /**
+ * Returns all collection of activities of the user since date.
+ * @param {Number} userId 
+ * @param {Number} dateEpoch 
+ * @returns {Array} page of activities in user list
+ */
+async function fetchActivitySince(userId, dateEpoch) {
+    const query = 
+    {
+        query: `query Query($userId: Int, $type: ActivityType, $sort: [ActivitySort], $page: Int, $perPage: Int, $createdAtGreater: Int) {
+                Page(page: $page, perPage: $perPage) {
+                    activities(userId: $userId, type: $type, sort: $sort, createdAt_greater: $createdAtGreater) {
+                    ... on ListActivity {
+                        createdAt
+                        media {
+                        id
+                        }
+                        progress
+                        status
+                    }
+                    }
+                    pageInfo {
+                    currentPage
+                    hasNextPage
+                    total
+                    lastPage
+                    }
+                }
+                }`,
+        variables: {
+            userId: userId,
+            type:"ANIME_LIST",
+            perPage:50,
+            page:1,
+            createdAtGreater: dateEpoch
+        }
+    };
+
+    const options = {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(query)
+    };
+
+    let finished = false;
+    let activities = [];
+    let currentPage = 1;
+
+    do {
+        try {
+            const nbPagesShown = ".".repeat(currentPage - 1);
+            spinner.show(`Fetching activity ${nbPagesShown}...`);
+            const response = await throttleFetch(url, options);
+            const responseObject = await response.json();
+
+            if(responseObject.data && responseObject.data.Page && responseObject.data.Page.activities) {
+                activities.push(...responseObject.data.Page.activities);
+            }
+
+            if(responseObject.data && responseObject.data.Page && responseObject.data.Page.pageInfo
+                && responseObject.data.Page.pageInfo.hasNextPage) {
+                currentPage++;
+                query.variables.page = currentPage;
+                options.body = JSON.stringify(query);
+            } else {
+                finished = true;
+            }
+        } catch (error) {
+            console.error(error);
+            finished = true;
+        }
+    } while (!finished);
+
+    spinner.hide();
+    return activities;
+}
+
+
+/**
  * Returns user info.
  * @param {String} userName 
  * @returns {Object} user info
@@ -198,7 +276,7 @@ const query = JSON.stringify(
 async function fetchUserInfo(userName) {
 const query = JSON.stringify(
     {
-        query: `query Query($name: String) {
+        query: `query Query($name: String, $sort: [UserStatisticsSort]) {
                     User(name: $name) {
                         avatar {
                             medium
@@ -216,10 +294,53 @@ const query = JSON.stringify(
                         }
                         statistics {
                             anime {
+                                episodesWatched
+                                count
                                 meanScore
                                 minutesWatched
-                                count
-                                episodesWatched
+                                genres(sort: $sort) {
+                                    genre
+                                    count
+                                    meanScore
+                                    minutesWatched
+                                }
+                                lengths(sort: $sort) {
+                                    count
+                                    length
+                                    meanScore
+                                    minutesWatched
+                                }
+                                formats(sort: $sort) {
+                                    count
+                                    format
+                                    meanScore
+                                    minutesWatched
+                                }
+                                scores {
+                                    score
+                                    minutesWatched
+                                    count
+                                }
+                                tags(sort: $sort) {
+                                    count
+                                    meanScore
+                                    minutesWatched
+                                    tag {
+                                        name
+                                    }
+                                }
+                                statuses(sort: $sort) {
+                                    count
+                                    minutesWatched
+                                    status
+                                    meanScore
+                                }
+                                countries(sort: $sort) {
+                                    count
+                                    country
+                                    meanScore
+                                    minutesWatched
+                                }
                             }
                         }
                     }

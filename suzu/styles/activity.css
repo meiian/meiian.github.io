@@ -1,0 +1,159 @@
+#stats-page-cont {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#stats-body {
+  display: flex;
+  height: calc(100% - 3em);
+  overflow: auto;
+  scrollbar-width: thin;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding-bottom: 1em;
+}
+
+#stats-body::-webkit-scrollbar {
+  display: none;
+}
+
+#stats-menu {
+  height: 3em;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  border-top: solid 1px var(--neutral-opacity-3);
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+.stats-menu-item {
+  padding: 0em 1em;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.1s;
+  flex-basis: 5em;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.stats-menu-item.active {
+  background: var(--neutral-opacity-1);
+  color: var(--text-active-color);
+}
+
+.stats-menu-item:hover {
+  background: var(--neutral-opacity-1);
+}
+
+.stats-activities-month {
+  flex-basis: 100%;
+  flex-shrink: 0;
+  flex-grow: 0;
+  display: grid;
+  grid-template-columns: repeat(7, 14.2857%);
+  grid-template-rows: repeat(5, 20%);
+  background: linear-gradient(0.35turn, var(--sidepanel-gradient-1), var(--sidepanel-gradient-2));
+  width: 100%;
+}
+
+.stats-activities-day {
+  background: var(--bg-color);
+  margin: 1px;
+  padding: 0.5em;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  justify-content: start;
+  align-content: start;
+}
+
+.stats-activities-day.placeholder {
+  margin: 0px;
+  padding: calc(0.5em + 1px);
+}
+
+.stats-activities-day.trueday ~ .stats-activities-day.placeholder {
+    margin-left: 1px;
+    padding-left: 0.5em;
+}
+
+.stats-activities-day.placeholder ~ .stats-activities-day.placeholder {
+    margin-left: 0px;
+    padding-left: calc(0.5em + 1px);
+}
+
+.stats-activities-day-label {
+  position: absolute;
+  right: 0.5em;
+  background: var(--bg-color);
+  padding-bottom: 0.2em;
+}
+
+.stats-activities-day-anime {
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  background: var(--neutral-opacity-1);
+  border: solid 1px var(--neutral-opacity-2);
+  font-size: 0.7em;
+  align-items: center;
+  width: calc(100% - 2em);
+  height: 2em;
+  position: relative;
+  margin-bottom: 0.5em;
+}
+
+.stats-activities-day-anime-cover {
+  height: 100%;
+  border-radius: 2px;
+  aspect-ratio: 46/65;
+  margin-right: 0.5em;
+}
+
+.stats-activities-day-anime:hover .hover-hide {
+  opacity: 0;
+}
+
+.stats-activities-day-anime:hover .stats-activities-day-anime-body-eps {
+  opacity: 1;
+}
+
+.stats-activities-day-anime-body-eps {
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.1s;
+}
+
+.stats-activities-day-body {
+  overflow: auto;
+  height: 100%;
+  scrollbar-width: thin;
+  width: 100%;
+}
+
+.stats-activities-day-anime-body {
+  width: calc(100% - 25px);
+  display: flex;
+}
+
+.stats-activities-day-anime-body-title {
+  height: 100%;
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  transition: opacity 0.1s;
+  opacity: 1;
+}

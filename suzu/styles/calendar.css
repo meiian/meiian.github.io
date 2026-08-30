@@ -102,3 +102,18 @@
   border: none;
   cursor: pointer;
 }
+
+@media only screen and (max-width: 600px) {
+
+  .calendar-day {
+    flex-basis: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  .calendar-cont {
+    width: 100%;
+    overflow: auto;
+  }
+
+}

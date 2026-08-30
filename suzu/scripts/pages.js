@@ -17,6 +17,13 @@ const pages = {
                 animeSelector.addOverflowGap();
             }
         },
+        activity: {
+            render() {
+                statsRenderer.init();
+                renderIn("page-cont", statsRenderer.renderPage(), true);
+                statsRenderer.scrollToToday();
+            }
+        },
         stats: {
             render() {
                 renderIn("page-cont", wip.render(), true);

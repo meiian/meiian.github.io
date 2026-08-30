@@ -1,6 +1,7 @@
 let searchResults = null;
 let animes = storage.readAnimesCollection();
 let userInfos = storage.readUserInfo();
+let activities = storage.readActivities();
 
 async function whenLoaded() {
     globalSettings.init();

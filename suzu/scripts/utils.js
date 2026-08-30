@@ -107,6 +107,11 @@ const dateUtils = {
         return date.toLocaleString(undefined, {year: "numeric", month: "long", day: "numeric"})
     },
 
+    formatToMonth(month) {
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        return months[month];
+    },
+
     formatMinutesIntoDisplay(nbMinutes) {
         const hours = Math.floor(nbMinutes / 60);
         const minutes = nbMinutes % 60;
@@ -115,6 +120,18 @@ const dateUtils = {
 
     getCurrentYear() {
         return new Date().getFullYear();
+    },
+
+    getDateFromALEpoch(epoch) {
+        return new Date(epoch * 1000);
+    },
+
+    checkSameDay(date1, date2) {
+        return date1.getFullYear() === date2.getFullYear() && date1.getMonth() === date2.getMonth() && date1.getDate() === date2.getDate();
+    },
+
+    getNumberOfDaysInMonth(year, month) {
+        return new Date(year, month+1, 0).getDate();
     }
 };
 
@@ -126,6 +143,16 @@ const textUtils = {
     capitalize(text) {
         let words = text.split(" ");
         return words.map(w => w.substring(0, 1).toUpperCase() + w.substring(1).toLowerCase()).join(" ");
+    }
+}
+
+const animeUtils = {
+    getAnimeById(id) {
+        let result = animes.filter(a => a.media.id === id);
+        if(result && result.length > 0) {
+            return result[0];
+        }
+        return null;
     }
 }
 

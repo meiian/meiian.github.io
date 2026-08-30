@@ -16,6 +16,10 @@ class Modal {
         return this.body;
     }
 
+    setBody(bodyNodes) {
+        this.body = bodyNodes;
+    }
+
     render() {
         let self = this;
         const cont = document.createElement("div");
@@ -49,11 +53,5 @@ class Modal {
     close() {
         this.node.remove();
         this.node = null;
-    }
-}
-
-const modalRenderer = {
-    showModal(modal) {
-
     }
 }

@@ -53,8 +53,17 @@ const storage = {
         this.saveInStorage(CONST.STORAGE.SETTINGS, obj);
     },
 
+    readActivities() {
+        return this.readFromStorage(CONST.STORAGE.ACTIVITIES);
+    },
+
+    writeActivities(obj) {
+        this.saveInStorage(CONST.STORAGE.ACTIVITIES, obj);
+    },
+
     clearAllStorage() {
         localStorage.removeItem(CONST.STORAGE.ANIMECOLLECTION);
         localStorage.removeItem(CONST.STORAGE.USERINFO);
+        this.saveInStorage(CONST.STORAGE.ACTIVITIES, obj);
     }
 }

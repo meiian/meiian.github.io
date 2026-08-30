@@ -109,6 +109,12 @@ svg {
   margin-bottom: 0.25em;
 }
 
+.modal-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1em;
+}
+
 .icon {
   font-size: 1em;
   height: 1em;
