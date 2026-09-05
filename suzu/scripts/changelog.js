@@ -79,6 +79,15 @@ const versions = [
         ],
         [],
         new Date("2026/08/30")
+    ),
+    new Version(
+        "2608.06",
+        [
+            "Activity: changed scroll method to make calendar vertical",
+            "Activity: calendar now starts at first activity found for user"
+        ],
+        [],
+        new Date("2026/09/05")
     )
 ]
 

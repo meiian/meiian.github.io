@@ -1,10 +1,27 @@
 const statsRenderer = {
     container: null,
     menu: null,
+    menuLabel: null,
     body: null,
     maxMonth: 0,
     maxYear: 0,
     activeMonthMenuNode: null,
+    activeMonthIndicator: [],
+    activeMonthsId: [],
+    previousMonthId: -1,
+
+    observer: new IntersectionObserver((entiers, observer) => {
+            entiers.forEach(entry => {
+                if(entry.isIntersecting) {
+                        statsRenderer.activeMonthIndicator[entry.target.getAttribute("mindex")] = true;
+                        //statsRenderer.showDaysOfMonth();
+                } else {
+                        statsRenderer.activeMonthIndicator[entry.target.getAttribute("mindex")] = false;
+                        //statsRenderer.hideDaysOfPastMonth();
+                } 
+                statsRenderer.showDaysOfMonth();
+            })
+        }, {root: null, rootMargin: "0px", threshold:0}),
 
     init() {
         const today = new Date();
@@ -27,70 +44,128 @@ const statsRenderer = {
         this.menu = menu;
         node.append(menu);
 
-        const today = new Date();
-        const maxMonth = today.getMonth();
-        const maxYear = today.getFullYear();
-
-        for(let y = 2020; y <= maxYear; y++) {
-            for(let m = 0; m <= 11; m++) {
-                this.renderActivities(y, m);
-                if(y === maxYear && m === maxMonth) {
-                    break;
-                }
-            }
-        }
+        this.renderNav();
+        this.renderFullActivities();
+        
         
         return node;
     },
 
-    addToMenuAndBody(node, title, menuId) {
-        const navItem = document.createElement("div");
-        navItem.classList.add("stats-menu-item");
-        navItem.innerText = title;
-        navItem.id = menuId;
-        navItem.addEventListener("click", function(e) {
-            node.scrollIntoView({behavior: "smooth"});
-            navItem.classList.add("active");
-            if(statsRenderer.activeMonthMenuNode && statsRenderer.activeMonthMenuNode !== navItem) {
-                statsRenderer.activeMonthMenuNode.classList.remove("active");
-            }
-            statsRenderer.activeMonthMenuNode = navItem;
+    renderNav() {
+        const left = document.createElement("div");
+        left.classList.add("stats-menu-actions");
+        const bigup = document.createElement("button");
+        bigup.innerHTML = ICONS.DOUBLEUPARROW;
+        bigup.addEventListener("click", function() {
+            statsRenderer.scrollToBeginning();
         })
+        left.append(bigup);
+        const up = document.createElement("button");
+        up.innerHTML = ICONS.UPARROW;
+        up.addEventListener("click", function() {
+            statsRenderer.scrollUp();
+        })
+        left.append(up);
+        this.menu.append(left);
 
-        this.menu.append(navItem);
+        const label = document.createElement("div");
+        label.id = "stats-menu-label";
+        this.menuLabel = label;
+        this.menu.append(label);
 
-        this.body.append(node);
+        const right = document.createElement("div");
+        right.classList.add("stats-menu-actions");
+        const down = document.createElement("button");
+        down.innerHTML = ICONS.DOWNARROW;
+        down.addEventListener("click", function() {
+            statsRenderer.scrollDown();
+        })
+        right.append(down);
+        const bigdown = document.createElement("button");
+        bigdown.innerHTML = ICONS.DOUBLEDOWNARROW;
+        bigdown.addEventListener("click", function() {
+            statsRenderer.scrollToToday();
+        })
+        right.append(bigdown);
+        this.menu.append(right);
     },
 
-    renderActivities(year, month) {
+    renderFullActivities() {
+        const firstActivityDate = dateUtils.getDateFromALEpoch(Math.min(...activities.map(x => x.createdAt)));
+        let squares = [];
+
+        for(let y = firstActivityDate.getFullYear(); y <= this.maxYear; y++) {
+            for(let m = 0; m <= 11; m++) {
+                if(y === firstActivityDate.getFullYear() && m < firstActivityDate.getMonth()) {
+                    continue;
+                }
+/*                 if(y === firstActivityDate.getFullYear() && m === firstActivityDate.getMonth()) {
+                    this.fillEmptyStart(y, m);
+                } */
+                squares.push(...this.renderMonthActivities(y, m, (y === firstActivityDate.getFullYear() && m === firstActivityDate.getMonth())));
+                if(y === this.maxYear && m === this.maxMonth) {
+                    break;
+                }
+            }
+        }
+
+        this.fillBody(squares);
+    },
+
+    fillBody(squares) {
+        for(let i = 0; i < squares.length; i += 7) {
+            const row = squares.slice(i, i + 7);
+            this.body.append(this.createRow(row));
+        }
+    },
+
+    createRow(squares) {
         const node = document.createElement("div");
-        node.classList.add("stats-activities-month");
-        const nbDaysInMonth = dateUtils.getNumberOfDaysInMonth(year, month);
+        node.classList.add("stats-body-row");
+        node.append(...squares);
+        return node;
+    },
+
+    fillEmptyStart(year, month) {
         let firstDayOfMonth = new Date(year, month, 1).getDay();
         if(firstDayOfMonth === 0) {
             firstDayOfMonth = 7;
         }
-
-        let nbRows = (firstDayOfMonth >= 6 && nbDaysInMonth >= 30 || firstDayOfMonth == 7 && nbDaysInMonth == 31) ? 6 : 5;
-        // Feb month when starting monday
-        if(firstDayOfMonth == 1 && nbDaysInMonth == 28) {
-            nbRows = 4;
-        }
-        node.style.gridTemplateRows = `repeat(${nbRows}, ${100 / nbRows}%)`
-
-        for(let i = 0; i < nbRows*7; i++) {
+        let squares = [];
+        for(let i = 0; i < firstDayOfMonth-1; i++) {
             const square = document.createElement("div");
             square.classList.add("stats-activities-day");
-            const dayIndex = i + 1 - (firstDayOfMonth - 1);
-            if(dayIndex <= nbDaysInMonth && dayIndex >= 1) {
-                const day = new Date(year, month, dayIndex);
-                square.classList.add("trueday");
+            square.classList.add("placeholder")
+            squares.push(square);
+        }
+        return squares;
+    },
+
+    renderMonthActivities(year, month, isFirstMonth) {
+        let squares = [];
+        if(isFirstMonth) {
+            squares.push(...this.fillEmptyStart(year, month));
+        }
+        const nbDaysInMonth = dateUtils.getNumberOfDaysInMonth(year, month);
+        for(let i = 0; i < nbDaysInMonth; i++) {
+            const square = document.createElement("div");
+            square.classList.add("stats-activities-day");
+                const day = new Date(year, month, i+1);
                 const dayLabel = document.createElement("span");
-                dayLabel.innerText = dayIndex;
+                dayLabel.innerText = i+1;
                 dayLabel.classList.add("stats-activities-day-label");
                 square.append(dayLabel);
+                square.classList.add(this.calculateIdMonth(year, month));
                 const squareBody = document.createElement("div");
                 squareBody.classList.add("stats-activities-day-body");
+
+                if(i == 0) {
+                    square.id = this.calculateIdMonth(year, month);
+                    square.setAttribute("mindex", this.activeMonthIndicator.length);
+                    this.activeMonthIndicator.push(false);
+                    this.activeMonthsId.push(this.calculateIdMonth(year, month));
+                    this.observeFirstDayOfMonth(square);
+                }
 
                 let activitiesOfDay = activities.filter(a => a.status && a.status !== "plans to watch"
                     && dateUtils.checkSameDay(day, dateUtils.getDateFromALEpoch(a.createdAt)));
@@ -124,22 +199,72 @@ const statsRenderer = {
                     }
                 }
                 square.append(squareBody);
-            } else {
-                square.classList.add("placeholder");
-            }
         
-            node.append(square);
+            squares.push(square);
+        }    
+        return squares;
+    },
+
+    scrollToBeginning() {
+        const el = document.getElementById(this.activeMonthsId[0]);
+        el.scrollIntoView();
+    },
+
+    scrollUp() {
+        if(this.getMonthToShow() > 0) {
+            const el = document.getElementById(this.activeMonthsId[this.getMonthToShow() - 1]);
+            el.scrollIntoView({behavior: "smooth"});
         }
+    },
 
-
-        const menuLabel = dateUtils.formatToMonth(month) + " " + year;
-        const menuId = "menu" + month + year;
-        this.addToMenuAndBody(node, menuLabel, menuId);        
+    scrollDown() {
+        if(this.getMonthToShow() < this.activeMonthsId.length - 1) {
+            const el = document.getElementById(this.activeMonthsId[this.getMonthToShow() + 1]);
+            el.scrollIntoView({behavior: "smooth"});
+        }
     },
 
     scrollToToday() {
-        const menuMonth = document.getElementById("menu" + this.maxMonth + this.maxYear);
-        menuMonth.scrollIntoView();
-        menuMonth.click();
+        const el = document.getElementById(this.activeMonthsId[this.activeMonthsId.length - 1]);
+        el.scrollIntoView();
+    },
+
+    calculateIdMonth(year, month) {
+        return `${dateUtils.formatToMonth(month)}-${year}`;
+    },
+
+    observeFirstDayOfMonth(element) {
+        this.observer.observe(element);
+    },
+
+    showDaysOfMonth() {
+        this.hideDaysOfPastMonth();
+        this.previousMonthId = this.getMonthToShow();
+        const className = this.activeMonthsId[this.getMonthToShow()];
+        const squares = document.getElementsByClassName(className);
+        for(const square of squares) {
+            square.classList.add("active");
+        }
+        this.changeMenuLabel(className);
+    },
+
+    hideDaysOfPastMonth() {
+        if(this.previousMonthId >= 0) {
+            const className = this.activeMonthsId[this.previousMonthId];
+            const oldActives = document.getElementsByClassName(className);
+            for(const oldActive of oldActives) {
+                oldActive.classList.remove("active");
+            }
+        }
+    },
+
+    getMonthToShow() {
+        return this.activeMonthIndicator.indexOf(true);
+    },
+
+    changeMenuLabel(label) {
+        if(label) {
+            this.menuLabel.innerText = label.replaceAll("-", " ");
+        }
     }
 }
