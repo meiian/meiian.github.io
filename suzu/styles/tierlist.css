@@ -6,6 +6,12 @@
   background-color: var(--bg-color);
 }
 
+#tierlist-interface.screenshot {
+  width: 1920px;
+  height: max-content;
+  padding: 1em;
+}
+
 #tierlist-display {
   display: flex;
   flex-direction: column;
@@ -211,6 +217,10 @@
 
 .vertical-gap {
   height: var(--gap-size);
+}
+
+#tierlist-interface.screenshot .vertical-gap {
+  height: 0px;
 }
 
 @media only screen and (max-width: 600px) {

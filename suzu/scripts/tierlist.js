@@ -493,8 +493,13 @@ const tierlistRenderer = {
     },
 
     savePicture() {
+        const screenModal = new Modal("Generating your picture...", [], true);
+        screenModal.render();
         this.gapNode.style.display = "none";
-        domtoimage.toBlob(this.interfaceNode, {style: {"overflow": "visible"}, bgcolor: "var(--bg-color"}).then(blob => {
+        this.interfaceNode.classList.add("screenshot");
+        domtoimage.toBlob(this.interfaceNode, {style: {"overflow": "visible"}, bgcolor: "var(--bg-color)"}).then(blob => {
+                this.interfaceNode.classList.remove("screenshot");
+                setTimeout(function(){screenModal.close()}, 1000);
                 let now = new Date();
                 const imagename = tierlistRenderer.currentTierlist.getTitle() + '_' + now.getFullYear() + "_" + (now.getMonth()+1) + "_" + now.getDate() + "_" + now.getHours() + now.getMinutes() + now.getSeconds() + ".png";
                 let blobUrl = URL.createObjectURL(blob);
@@ -509,9 +514,14 @@ const tierlistRenderer = {
     },
 
     copyPicture() {
+        const screenModal = new Modal("Generating your picture...", [], true);
+        screenModal.render();
         this.gapNode.style.display = "none";
-        domtoimage.toBlob(this.interfaceNode, {style: {"overflow": "visible"}, bgcolor: "var(--bg-color"}).then(blob => {
+        this.interfaceNode.classList.add("screenshot");
+        domtoimage.toBlob(this.interfaceNode, {style: {"overflow": "visible"}, bgcolor: "var(--bg-color)"}).then(blob => {
+            this.interfaceNode.classList.remove("screenshot");
             navigator.clipboard.write([new ClipboardItem({[blob.type]: blob})]).then(e => {
+                setTimeout(function(){screenModal.close()}, 1000);
                 const button = document.getElementById("copy-tierlist-button");
                 const before = button.innerHTML;
                 button.innerHTML = ICONS.CHECKED + " Copied";

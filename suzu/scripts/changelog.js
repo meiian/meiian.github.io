@@ -103,6 +103,16 @@ const versions = [
             "Tierlists: anime selector was not reset after page change"
         ],
         new Date("2026/09/12")
+    ),
+    new Version(
+        "2609.02",
+        [
+        ],
+        [
+            "Tierlists: an empty space was present at bottom of generated pictures",
+            "Tierlists: items and text in generated pictures could be very big or small with some screen resolutions"
+        ],
+        new Date("2026/09/12")
     )
 ]
 
