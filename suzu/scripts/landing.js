@@ -14,22 +14,30 @@ async function syncAnimesFromUser(userName) {
     let finishedSync = false;
     let pageIndex = 1;
     animes = [];
+    animeFetchAnimationRenderer.setLabel("Fetching anime entries...");
     while (!finishedSync) {
         const currentPage = await fetchPageOfAnimeListByUser(userName, pageIndex);
         if (!currentPage || currentPage.length < 1) {
             finishedSync = true;
         } else {
             animes.push(...currentPage);
+            animeFetchAnimationRenderer.addAnimes(randomUtils.shuffle(currentPage.map(a => a.media.coverImage.large)));
             pageIndex++;
         }
     }
 
+    let incompleteAiring = animeUtils.getAnimesWithIncompleteAiring();
+    for(const anime of incompleteAiring) {
+        const airingSchedule = await fetchAllAiringScheduleOfAnime(anime.media.id);
+        anime.media.airingSchedule.nodes = airingSchedule;
+    }
 
     storage.writeAnimesCollection(animes);
 }
 
 async function resyncUser(name, activitiesFullSync=false) {
-    renderIn("app-cont", document.createElement("div"), true);
+    animeFetchAnimationRenderer.launch();
+    animeFetchAnimationRenderer.setLabel("...");
     let userInfos = await fetchUserInfo(name);
     storage.writeUserInfo(userInfos);
     await syncAnimesFromUser(name);
@@ -40,6 +48,7 @@ async function resyncUser(name, activitiesFullSync=false) {
             await syncActivitesFromLastSync(userInfos.id);
         }
     }
+    animeFetchAnimationRenderer.close();
     window.location.reload();
 }
 
@@ -104,12 +113,15 @@ function logout() {
 }
 
 async function confirmUser() {
+    animeFetchAnimationRenderer.launch();
+    animeFetchAnimationRenderer.setLabel("...");
     storage.writeUserInfo(userInfos);
     await syncAnimesFromUser(userInfos.name);
     storage.writeAnimesCollection(animes);
     if(userInfos) {
         await syncActivitesFull(userInfos.id);
     }
+    animeFetchAnimationRenderer.close();
     window.location.reload();
 }
 

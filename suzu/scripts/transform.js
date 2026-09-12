@@ -1,11 +1,15 @@
 const animeTransform = {
+    transformAiring(nodes) {
+        for(const node of nodes) {
+            const jsdate = new Date(0);
+            jsdate.setUTCSeconds(node.airingAt);
+            node.jsDate = jsdate;
+        }
+    },
+    
     transform(anime) {
         if(anime.media.airingSchedule.nodes) {
-            for(const node of anime.media.airingSchedule.nodes) {
-                const jsdate = new Date(0);
-                jsdate.setUTCSeconds(node.airingAt);
-                node.jsDate = jsdate;
-            }
+            this.transformAiring(anime.media.airingSchedule.nodes);
         }
     },
 

@@ -2,10 +2,12 @@ class Modal {
     title = "";
     body = [];
     node = null;
+    full = false;
 
-    constructor(title, bodyNodes) {
+    constructor(title, bodyNodes, full=false) {
         this.title = title;
         this.body = bodyNodes;
+        this.full = full;
     }
 
     getTitle() {
@@ -47,7 +49,11 @@ class Modal {
         cont.appendChild(popup);
         this.node = cont;
 
-        renderIn("page-cont", cont, false);
+        if(this.full) {
+            renderIn("app-cont", cont, false);
+        } else{
+            renderIn("page-cont", cont, false);
+        }
     }
 
     close() {

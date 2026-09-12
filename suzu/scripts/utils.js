@@ -13,6 +13,82 @@ const spinner = {
     }
 };
 
+const animeFetchAnimationRenderer = {
+    animesToShow: [],
+    animesTreadmill: null,
+    node: null,
+    label: null,
+    putAnimeOnTreadmill(url) {
+        const node = document.createElement("img");
+        node.classList.add("anime-on-treadmill");
+        node.src = url;
+        this.animesTreadmill.append(node);
+        setTimeout(function() {
+            node.remove();
+        }, 20000);
+    },
+    launch() {
+        const node = document.createElement("div");
+        node.id = "sync-animation-cont";
+        this.node = node;
+
+        const label = document.createElement("span");
+        label.classList.add("loader-label");
+        label.id = "sync-animation-label";
+        node.append(label);
+        this.label = label;
+
+        const treadmill = document.createElement("div");
+        treadmill.classList.add("treadmill");
+        node.append(treadmill);
+
+        const treadmillBg = document.createElement("div");
+        treadmillBg.classList.add("treadmill-bg");
+        treadmill.append(treadmillBg);
+
+        const animesTreadmill = document.createElement("div");
+        animesTreadmill.id = "animes-on-treadmill";
+        treadmill.append(animesTreadmill);
+        this.animesTreadmill = animesTreadmill;
+
+
+        setInterval(function() {
+            if(animeFetchAnimationRenderer.animesToShow && animeFetchAnimationRenderer.animesToShow.length > 0) {
+                animeFetchAnimationRenderer.putAnimeOnTreadmill(animeFetchAnimationRenderer.animesToShow.shift());
+            }
+        }, 1332);
+
+        renderIn("app-cont", this.node, true);
+    },
+
+    setLabel(t) {
+        if(this.label) {
+            this.label.innerText = t;
+        }
+    },
+
+    addAnime(url) {
+        if(this.animesToShow) {
+            this.animesToShow.push(url);
+        }
+    },
+
+    addAnimes(urls) {
+        for(const url of urls) {
+            this.addAnime(url);
+        }
+    },
+
+    close() {
+        this.animesToShow = [];
+        this.animesTreadmill = null;
+        this.label = null;
+        this.node.remove();
+        this.node = null;
+    }
+    
+};
+
 const scoreUtils = {
     displayScore(score, scoreFormat) {
         let scoreDisplay = "";
@@ -153,6 +229,18 @@ const animeUtils = {
             return result[0];
         }
         return null;
+    },
+
+    getAnimesWithIncompleteAiring() {
+        return animes.filter(a => a.media.airingSchedule.pageInfo.hasNextPage);
+    }
+}
+
+const randomUtils = {
+    shuffle(l) {
+        return l.map(value => ({ value, sort: Math.random() }))
+            .sort((a, b) => a.sort - b.sort)
+            .map(({ value }) => value);
     }
 }
 

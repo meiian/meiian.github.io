@@ -146,6 +146,11 @@ const query = JSON.stringify(
                                 episode
                                 airingAt
                             }
+                            pageInfo {
+                                hasNextPage
+                                currentPage
+                                lastPage
+                            }
                         }
                     }
                     status
@@ -171,7 +176,7 @@ const query = JSON.stringify(
     };
 
     try {
-        spinner.show("Fetching anime entries...");
+        //spinner.show("Fetching anime entries...");
         const response = await throttleFetch(url, options);
         const responseObject = await response.json();
         let medias = [];
@@ -179,16 +184,79 @@ const query = JSON.stringify(
         if(responseObject.data && responseObject.data.Page && responseObject.data.Page.mediaList) {
             medias = responseObject.data.Page.mediaList;
         }
-        spinner.hide();
+        //spinner.hide();
         animeTransform.transformList(medias)
 
         return medias;
     } catch (error) {
         console.error(error);
-        spinner.hide();
+        //spinner.hide();
     }
 }
 
+async function fetchAllAiringScheduleOfAnime(animeId) {
+const query = 
+    {
+        query: `query Query($mediaId: Int, $page: Int, $perPage: Int) {
+            Media(id: $mediaId) {
+                    airingSchedule(page: $page, perPage: $perPage) {
+                        nodes {
+                            episode
+                            airingAt
+                        }
+                        pageInfo {
+                            hasNextPage
+                        }
+                    }
+                }
+            }`,
+        variables: {
+            mediaId: animeId,
+            perPage:50,
+            page:1
+        }
+    };
+
+    const options = {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(query)
+    };
+
+    let finished = false;
+    let airingSchedule = [];
+    let currentPage = 1;
+
+    do {
+        try {
+            //spinner.show(`Gathering additional info...`);
+            animeFetchAnimationRenderer.setLabel("Gathering additional info...");
+            const response = await throttleFetch(url, options);
+            const responseObject = await response.json();
+
+            if(responseObject.data && responseObject.data.Media && responseObject.data.Media.airingSchedule
+                && responseObject.data.Media.airingSchedule.nodes) {
+                airingSchedule.push(...responseObject.data.Media.airingSchedule.nodes);
+            }
+
+            if(responseObject.data && responseObject.data.Media && responseObject.data.Media.airingSchedule
+                && responseObject.data.Media.airingSchedule.pageInfo && responseObject.data.Media.airingSchedule.pageInfo.hasNextPage) {
+                currentPage++;
+                query.variables.page = currentPage;
+                options.body = JSON.stringify(query);
+            } else {
+                finished = true;
+            }
+        } catch (error) {
+            console.error(error);
+            finished = true;
+        }
+    } while (!finished);
+
+    animeTransform.transformAiring(airingSchedule);
+    //spinner.hide();
+    return airingSchedule;
+}
 
 /**
  * Returns all collection of activities of the user since date.
@@ -241,7 +309,8 @@ async function fetchActivitySince(userId, dateEpoch) {
     do {
         try {
             const nbPagesShown = ".".repeat(currentPage - 1);
-            spinner.show(`Fetching activity ${nbPagesShown}...`);
+            //spinner.show(`Fetching activity ${nbPagesShown}...`);
+            animeFetchAnimationRenderer.setLabel(`Fetching activity ${nbPagesShown}...`);
             const response = await throttleFetch(url, options);
             const responseObject = await response.json();
 
@@ -263,7 +332,7 @@ async function fetchActivitySince(userId, dateEpoch) {
         }
     } while (!finished);
 
-    spinner.hide();
+    //spinner.hide();
     return activities;
 }
 
@@ -357,7 +426,8 @@ const query = JSON.stringify(
     };
 
     try {
-        spinner.show("Fetching user info...");
+        //spinner.show("Fetching user info...");
+        animeFetchAnimationRenderer.setLabel("Fetching user info...");
         const response = await throttleFetch(url, options);
         const responseObject = await response.json();
         let userInfos = null;
@@ -366,11 +436,11 @@ const query = JSON.stringify(
             userInfos = responseObject.data.User
         }
 
-        spinner.hide();
+        //spinner.hide();
         return userInfos;
     } catch (error) {
         console.error(error);
-        spinner.hide();
+        //spinner.hide();
     }
 }
 

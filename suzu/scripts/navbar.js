@@ -8,6 +8,7 @@ const navbar = {
     ],
 
     navbarModal: null,
+    itemsNodes: [],
 
     renderTop(userInfo) {
         let top = document.createElement("div");
@@ -45,10 +46,13 @@ const navbar = {
             itemLabelNode.innerText = item.title;
             itemNode.append(itemLabelNode);
             itemNode.addEventListener("click", function() {
-                item.page.render();
+                pages.goToPage(item.page, itemNode);
             })
             top.append(itemNode);
+            this.itemsNodes.push(itemNode);
         }
+
+        this.itemsNodes[0].classList.add("active");
 
         return top;
     },

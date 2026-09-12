@@ -88,6 +88,21 @@ const versions = [
         ],
         [],
         new Date("2026/09/05")
+    ),
+    new Version(
+        "2609.01",
+        [
+            "Tierlists: added modal to warn the user of risk of data loss if they don't save their tierlist",
+            "Tierlists: users can now save and open tierlists as files",
+            "Schedule: added indicator of current time",
+            "Navbar: added indicator of the displayed page",
+            "Sync: changed sync animation"
+        ],
+        [
+            "Schedule: all airing occurences were not fetched for animes with more than 24 episodes",
+            "Tierlists: anime selector was not reset after page change"
+        ],
+        new Date("2026/09/12")
     )
 ]
 

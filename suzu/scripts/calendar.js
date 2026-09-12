@@ -5,6 +5,8 @@ const seasonCalendar = {
     weekLabel: null,
     dayBodies: [],
     currentDate: null,
+    currentIndicatorInterval: null,
+    currentIndicatorNode: null,
     renderEmptyCalendar() {
         let node = document.createElement("div");
         node.classList.add("calendar-cont");
@@ -107,6 +109,7 @@ const seasonCalendar = {
 
     addAnimes(animes) {
         animes.forEach(anime => this.addAnime(anime, dateUtils.airDuringThisWeek(anime, this.currentDate)));
+        this.addCurrentTimeIndicator();
     },
 
     calculatePositionFromHour(date) {
@@ -137,5 +140,30 @@ const seasonCalendar = {
         const mondayOfWeek = dateUtils.getMondayOfCurrentWeek(this.currentDate);
         const sundayOfWeek = dateUtils.getSundayOfCurrentWeek(this.currentDate);
         return mondayOfWeek.getDate() + " " + CONST.MONTHS[mondayOfWeek.getMonth()] + " - " + sundayOfWeek.getDate() + " " + CONST.MONTHS[sundayOfWeek.getMonth()];
+    },
+
+    addCurrentTimeIndicator() {
+        const now = new Date();
+        clearInterval(this.currentIndicatorInterval);
+        if(dateUtils.checkSameDay(now, this.currentDate)) {
+            this.renderCurrentTimeIndicator();
+            this.currentIndicatorInterval = setInterval(function() {
+                seasonCalendar.renderCurrentTimeIndicator()
+            }, 5000);
+        }
+    },
+
+    renderCurrentTimeIndicator() {
+        const now = new Date();
+        if(this.currentIndicatorNode) {
+            this.currentIndicatorNode.remove();
+        }
+        if(document.getElementById(`day-${now.getDay()}-body`)) {
+            let node = document.createElement("div");
+            node.classList.add("calendar-day-body-now");
+            node.style.setProperty("--position", this.calculatePositionFromHour(now));
+            document.getElementById(`day-${now.getDay()}-body`).appendChild(node);
+            this.currentIndicatorNode = node;
+        }
     }
 }

@@ -1,4 +1,5 @@
 const pages = {
+    currentPage: null,
     pagesContent : {
         schedule: {
             render() {
@@ -11,10 +12,44 @@ const pages = {
         tierlists: {
             render() {
                 tierlistRenderer.init();
-                tierlistRenderer.openTierlist(tierlistRenderer.createDefaultTierlist());
+                animeSelector.reset();
                 renderIn("page-cont", tierlistRenderer.getInterface(), true);
                 renderIn("page-cont", animeSelector.renderEmpty(), false);
+                tierlistRenderer.openTierlist(tierlistRenderer.createDefaultTierlist());
                 animeSelector.addOverflowGap();
+            },
+
+            warningModal(pageToGo, itemNode) {
+                const infoModal = new Modal("Warning", [], true);
+                const warningParagraph = document.createElement("div");
+                warningParagraph.classList.add("modal-paragraph");
+                warningParagraph.innerHTML = `
+                    If you leave this page, you will lose your unsaved tierlist.<br>
+                    Are you sure you want to leave?
+                `;
+
+                const buttons = document.createElement("div");
+                buttons.classList.add("modal-buttons");
+
+                const leaveButton = document.createElement("button");
+                leaveButton.classList.add("button");
+                leaveButton.innerText = "Leave";
+                leaveButton.addEventListener("click", function() {
+                    infoModal.close();
+                    pages.goToPage(pageToGo, itemNode, true);
+                })
+                buttons.append(leaveButton);
+
+                const stayButton = document.createElement("button");
+                stayButton.classList.add("button");
+                stayButton.innerText = "Stay";
+                stayButton.addEventListener("click", function() {
+                    infoModal.close();
+                })
+                buttons.append(stayButton);
+
+                infoModal.setBody([warningParagraph, buttons]);
+                infoModal.render();
             }
         },
         activity: {
@@ -44,8 +79,29 @@ const pages = {
         return node;
     },
 
-    goToPage(pageName) {
-        this.pagesContent[pageName].render();
+    goToPage(pageToGo, itemNode, fromModal=false) {
+        if(!fromModal) {
+            switch(this.currentPage) {
+                case this.pagesContent.tierlists:
+                    this.currentPage.warningModal(pageToGo, itemNode);
+                    break;
+                default:
+                    pageToGo.render();
+                    this.currentPage = pageToGo;
+                    if(itemNode) {
+                        navbar.itemsNodes.forEach(n => n.classList.remove("active"));
+                        itemNode.classList.add("active");
+                    }
+                    break;
+            }
+        } else {
+            pageToGo.render();
+            this.currentPage = pageToGo;
+            if(itemNode) {
+                navbar.itemsNodes.forEach(n => n.classList.remove("active"));
+                itemNode.classList.add("active");
+            }
+        }
     }
 }
 

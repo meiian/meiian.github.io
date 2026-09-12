@@ -57,6 +57,10 @@
   user-select: none;
 }
 
+.nav-bar-item.active {
+  color: var(--text-active-color);
+}
+
 .nav-bar-item-icon {
   height: 1.5em;
   width: 1.5em;
@@ -67,6 +71,10 @@
   width: 1.5em;
   height: 1.5em;
   fill: var(--text-color);
+}
+
+.nav-bar-item.active svg {
+  fill: var(--text-active-color);
 }
 
 .nav-bar-item:hover {

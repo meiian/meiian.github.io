@@ -1,0 +1,78 @@
+#sync-animation-cont {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.treadmill {
+  width: 300em;
+  position: relative;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.treadmill-bg {
+  width: 100%;
+  background: #333;
+  height: 10em;
+  border-top: solid 1em gray;
+  border-bottom: solid 1em gray;
+  background-image: linear-gradient(90deg, #555 25%, transparent 25%, transparent 50%, #555 50%, #555 75%, transparent 75%, transparent);
+  background-size: 50em 10em;
+  transform: rotateX(60deg);
+  -webkit-box-shadow: 0px 15em 0px 0px #373737; 
+  box-shadow: 0px 1em 0px 0px #373737;
+  animation: treadmill 20s infinite linear;
+}
+
+@keyframes treadmill {
+    0% {
+        background-position: 0%;
+    }
+    100% {
+        background-position: 100%;
+    }
+}
+
+#animes-on-treadmill {
+  width: 100%;
+  margin-top: -14em;
+  position: relative;
+}
+
+.anime-on-treadmill {
+  height: 10em;
+  width: 6.875em;
+  border-radius: 5px;
+    -webkit-box-shadow: 0px -7px 13px 2px rgba(0,0,0,0.5); 
+    box-shadow: 0px -7px 13px 2px rgba(0,0,0,0.5);
+  animation: animeOnTreadmill 25s linear;
+  margin-left: 100%;
+  position: absolute;
+  animation-delay: 0.125s;
+  z-index: 10;
+  top: -1em;
+}
+
+@keyframes animeOnTreadmill {
+    0% {
+        margin-left: -6.875em;
+    }
+    100% {
+        margin-left: calc(100% + 6.875em);
+    }
+}
+
+#sync-animation-label {
+  position: fixed;
+  top: 30%;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-right: 0em;
+  text-align: center;
+}

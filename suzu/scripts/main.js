@@ -13,7 +13,7 @@ async function whenLoaded() {
         }
         renderIn("app-cont", navbar.render(userInfos));
         renderIn("app-cont", pages.initPageCont());
-        pages.goToPage("schedule");
+        pages.goToPage(pages.pagesContent.schedule, null);
         sidePanel.renderEmpty();
         const lastVersion = storage.readLastVersion();
         if(lastVersion) {

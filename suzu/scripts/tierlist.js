@@ -63,6 +63,29 @@ class Tierlist {
         }
         return obj;
     }
+
+    fromJSON(parsed) {
+        this.id = parsed.id;
+        this.lastModified = new Date(parsed.lastModified);
+        this.tags = parsed.tags;
+        this.title = parsed.title;
+        this.tiers = {};
+        for(const parsedTier of Object.values(parsed.tiers)) {
+            const tier = new Tier(parsedTier.label, parsedTier.color);
+            tier.itemOrder = parsedTier.itemsOrder;
+            tier.id = parsedTier.id;
+            for(const parsedTierItem of Object.values(parsedTier.items)) {
+                const tierItem = new TierItem(null);
+                tierItem.cover = parsedTierItem.cover;
+                tierItem.id = parsedTierItem.id;
+                tierItem.animeId = parsedTierItem.animeId;
+                tierItem.title = parsedTierItem.title;
+                tierItem.anime = animeUtils.getAnimeById(parsedTierItem.animeId);
+                tier.items[tierItem.id] = tierItem;
+            }
+            this.tiers[tier.id] = tier;
+        }
+    }
 }
 
 class Tier {
@@ -91,6 +114,10 @@ class Tier {
 
     getItems() {
         return this.items;
+    }
+
+    getItemOrder() {
+        return this.itemOrder;
     }
 
     getNbItems() {
@@ -154,12 +181,22 @@ class TierItem {
     #deleteEvent = false;
 
     constructor(anime) {
-        this.id = crypto.randomUUID();
-        this.title = anime.media.title.english;
-        this.cover = anime.media.coverImage.large;
-        this.animeId = anime.media.id;
-        this.anime = anime;
-        this.deleteEvent = false;
+        if(anime) {
+            this.id = crypto.randomUUID();
+            this.title = anime.media.title.english;
+            this.cover = anime.media.coverImage.large;
+            this.animeId = anime.media.id;
+            this.anime = anime;
+            this.deleteEvent = false;
+        } else {
+            this.id = null;
+            this.title = null;
+            this.cover = null;
+            this.animeId = null;
+            this.anime = null;
+            this.deleteEvent = false;
+        }
+        
     }
 
     getTitle() {
@@ -200,6 +237,94 @@ class TierItem {
     }
 }
 
+const tierlistParser = {
+    parseFromJSON(json) {
+        const parsedObj = JSON.parse(json);
+        if(!this.checkJSONCorrect(parsedObj)) {
+            // error
+            return null;
+        }
+
+        let tierlist = new Tierlist("");
+        tierlist.fromJSON(parsedObj);
+        return tierlist;
+    },
+
+    checkJSONCorrect(parsed) {
+        const rootCorrect = parsed && parsed.id && parsed.lastModified && parsed.tags && parsed.tiers !== null
+            && typeof parsed.tiers === 'object' && !Array.isArray(parsed.tiers) && parsed.title !== null;
+
+        if(!rootCorrect) {
+            return false;
+        }
+        let childrenCorrect = true;
+        for(const tier of Object.values(parsed.tiers)) {
+            const tierRootCorrect = tier && tier.color && tier.id && Array.isArray(tier.itemsOrder) && tier.items !== null
+                && typeof tier.items === 'object' && !Array.isArray(tier.items) && tier.label !== null;
+            if(!tierRootCorrect) {
+                childrenCorrect = false;
+                break;
+            }
+
+            for(const item of Object.values(tier.items)) {
+                const itemCorrect = (item.id && item.animeId && typeof item.animeId === 'number' && item.cover);
+                if(!itemCorrect) {
+                    childrenCorrect = false;
+                    break;
+                }
+            }
+
+            if(!childrenCorrect) {
+                break;
+            }
+        }
+
+        return childrenCorrect;
+    },
+
+    saveTierlistInFile(tierlist) {
+        const jsonContent = JSON.stringify(tierlist);
+        const filename = tierlist.title + ".json";
+        let blob = new Blob([jsonContent], {type: 'application/json'});
+        window.URL = window.URL || window.webkitURL;
+        const linkNode = document.createElement("a");
+        linkNode.href = URL.createObjectURL(blob);
+        linkNode.download = filename;
+        document.body.appendChild(linkNode);
+        linkNode.click()
+        document.body.removeChild(linkNode);
+    },
+
+    openFile() {
+        const fileInput = document.createElement("input");
+        fileInput.type = "file";
+        fileInput.accept = "application/json";
+
+        fileInput.addEventListener("change", function(e) {
+            if(fileInput.files[0]) {
+                const file = fileInput.files[0];
+                if(!/application\/.*json.*/.test(file.type)) {
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.readAsText(file, 'UTF-8');
+                reader.onload = function({target}) {
+                    const tierlist = tierlistParser.parseFromJSON(target.result);
+                    tierlistRenderer.openTierlist(tierlist);
+                }
+
+                reader.onerror = function() {
+                    // error
+                }
+
+            }
+        })
+
+        fileInput.click();
+    }
+}
+
 const tierlistRenderer = {
     currentTierlist: null,
     interfaceNode: null,
@@ -234,6 +359,8 @@ const tierlistRenderer = {
 
     openTierlist(tierlist) {
         this.currentTierlist = tierlist;
+        animeSelector.filters.alreadyPlaced = Object.values(tierlist.getTiers()).map(t => Object.values(t.getItems()).map(i => i.getAnimeId())).flat();
+        animeSelector.fillAnime();
         this.displayTierlist();
     },
 
@@ -244,6 +371,9 @@ const tierlistRenderer = {
         titleNode.classList.add("tierlist-display-title");
         titleNode.innerText = this.currentTierlist.getTitle();
         titleNode.contentEditable = true;
+        titleNode.addEventListener("keyup", function() {
+            tierlistRenderer.currentTierlist.title = titleNode.innerText;
+        });
         this.tierlistDisplayNode.appendChild(titleNode);
 
         const tiersNode = document.createElement("div");
@@ -282,8 +412,16 @@ const tierlistRenderer = {
         bodyNode.classList.add("tier-body");
         bodyNode.id = tier.getId() + "-body";
         bodyNode.setAttribute("tier-id", tier.getId());
-        for(const item of Object.values(tier.getItems())) {
+        for(const itemId of tier.getItemOrder()) {
+            const item = tier.getItemById(itemId);
             const itemNode = this.createItem(item, tier.getId());
+                itemNode.addEventListener("contextmenu", function(ev) {
+                    ev.preventDefault();
+                    tierlistRenderer.currentTierlist.getTierById(ev.target.getAttribute("tier-id")).removeItemById(item.id);
+                    itemNode.remove();
+                    animeSelector.removeFromAnimeSelected({"item": item});
+                })
+                item.activateDeleteEvent();
             bodyNode.append(itemNode);
         }
 
@@ -358,7 +496,7 @@ const tierlistRenderer = {
         this.gapNode.style.display = "none";
         domtoimage.toBlob(this.interfaceNode, {style: {"overflow": "visible"}, bgcolor: "var(--bg-color"}).then(blob => {
                 let now = new Date();
-                const imagename = 'test_' + now.getFullYear() + "_" + (now.getMonth()+1) + "_" + now.getDate() + "_" + now.getHours() + now.getMinutes() + now.getSeconds() + ".png";
+                const imagename = tierlistRenderer.currentTierlist.getTitle() + '_' + now.getFullYear() + "_" + (now.getMonth()+1) + "_" + now.getDate() + "_" + now.getHours() + now.getMinutes() + now.getSeconds() + ".png";
                 let blobUrl = URL.createObjectURL(blob);
                 let link = document.createElement("a");
                 link.href = blobUrl;
@@ -456,6 +594,25 @@ const animeSelector = {
     bodyNode: null,
     popupNode: null,
 
+    reset() {
+        this.filteredAnimes = {};
+        this.filters = {
+            season: CONST.SEASONS.SUMMER,
+            year: dateUtils.getCurrentYear(),
+            title: "",
+            alreadyPlaced: [],
+            nodes: {
+                season: null,
+                year: null,
+                title: null
+            }
+        };
+        this.node = null;
+        this.bodyNode = null;
+        this.popupNode = null;
+        //this.applyFilters();
+    },
+
     async applyFilters() {
         let filtered = null;
         if(this.filters.title) {
@@ -548,6 +705,22 @@ const animeSelector = {
 
         const actionsCont = document.createElement("div");
         actionsCont.classList.add("anime-selector-buttons");
+        const saveNode = document.createElement("button");
+        saveNode.classList.add("button");
+        saveNode.innerHTML = ICONS.SAVE + " Save";
+        saveNode.addEventListener("click", function() {
+            tierlistParser.saveTierlistInFile(tierlistRenderer.currentTierlist);
+        })
+        actionsCont.append(saveNode);
+
+        const openNode = document.createElement("button");
+        openNode.classList.add("button");
+        openNode.innerHTML = ICONS.OPEN + " Open";
+        openNode.addEventListener("click", function() {
+            tierlistParser.openFile();
+        })
+        actionsCont.append(openNode);
+
         const savePictureNode = document.createElement("button");
         savePictureNode.classList.add("button");
         savePictureNode.innerHTML = ICONS.PICTURE + " Save as PNG";
