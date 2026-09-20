@@ -293,6 +293,7 @@ const tierlistParser = {
         document.body.appendChild(linkNode);
         linkNode.click()
         document.body.removeChild(linkNode);
+        tierlistRenderer.declareContentSaved();
     },
 
     openFile() {
@@ -335,6 +336,7 @@ const tierlistRenderer = {
     itemIdMoving: null,
     tierSourceMoving: null,
     gapNode: null,
+    unsavedContent: false,
 
     init() {
         const interface = document.createElement("div");
@@ -346,6 +348,15 @@ const tierlistRenderer = {
         interface.append(tierlistDisplay);
         this.tierlistDisplayNode = tierlistDisplay;
         this.interfaceNode = interface;
+        tierlistRenderer.declareContentSaved();
+    },
+
+    declareUnsavedContent() {
+        this.unsavedContent = true;
+    },
+
+    declareContentSaved() {
+        this.unsavedContent = false;
     },
 
     getInterface() {
@@ -373,6 +384,7 @@ const tierlistRenderer = {
         titleNode.contentEditable = true;
         titleNode.addEventListener("keyup", function() {
             tierlistRenderer.currentTierlist.title = titleNode.innerText;
+            tierlistRenderer.declareUnsavedContent();
         });
         this.tierlistDisplayNode.appendChild(titleNode);
 
@@ -403,6 +415,7 @@ const tierlistRenderer = {
         headerLabel.contentEditable = "true";
         headerLabel.addEventListener("keyup", function(ev) {
             tier.setLabel(headerLabel.innerText);
+            tierlistRenderer.declareUnsavedContent();
         });
         headerLabelCont.append(headerLabel);
         headerNode.append(headerLabelCont);
@@ -420,6 +433,7 @@ const tierlistRenderer = {
                     tierlistRenderer.currentTierlist.getTierById(ev.target.getAttribute("tier-id")).removeItemById(item.id);
                     itemNode.remove();
                     animeSelector.removeFromAnimeSelected({"item": item});
+                    tierlistRenderer.declareUnsavedContent();
                 })
                 item.activateDeleteEvent();
             bodyNode.append(itemNode);
@@ -464,6 +478,7 @@ const tierlistRenderer = {
                     tierlistRenderer.currentTierlist.getTierById(ev.target.getAttribute("tier-id")).removeItemById(item.id);
                     nodeToMove.remove();
                     animeSelector.removeFromAnimeSelected({"item": item});
+                    tierlistRenderer.declareUnsavedContent();
                 })
                 item.activateDeleteEvent();
             }
@@ -485,6 +500,7 @@ const tierlistRenderer = {
             ev.currentTarget.insertBefore(nodeToMove, document.getElementById(idNodeAtRight));
             tierlistRenderer.currentTierlist.getTierById(ev.currentTarget.getAttribute("tier-id")).addItem(item, position);
             tierlistRenderer.clearPreview();
+            tierlistRenderer.declareUnsavedContent();
         })
 
         node.append(bodyNode);

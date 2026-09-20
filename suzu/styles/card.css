@@ -1,0 +1,126 @@
+#card-page-cont {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+#card-menu {
+  margin-top: 1em;
+  display: flex;
+  width: 480px;
+  justify-content: space-evenly;
+}
+
+.profile-card {
+  width: 480px;
+  height: 320px;
+  border-radius: 5px;
+  border: solid 1px var(--neutral-opacity-2);
+  background: var(--action-active-color);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-width: 100vw;
+}
+
+.profile-card-header {
+  position: relative;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: max-content;
+  padding: 0.5em;
+}
+
+.profile-card-header-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  width: 10em;
+  text-shadow: black 0px 0px 3px;
+}
+
+.profile-card-header-bg {
+  background-image: var(--bg);
+  width: 150%;
+  height: 150%;
+  position: absolute;
+  top: -25%;
+  left: -25%;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(50px) brightness(0.8) saturate(2);
+}
+
+.profile-card-icon-cont {
+  z-index: 10;
+  position: absolute;
+  right: 0.5em;
+  top: 0.5em;
+}
+
+.profile-card-icon {
+  width: 5em;
+  height: 5em;
+  background-image: var(--bg);
+  background-size: cover;
+  border-radius: 5px;
+  border: solid 1px var(--neutral-opacity-3);
+}
+
+.profile-card-date {
+  font-size: 0.8em;
+  text-align: center;
+  color: var(--muted);
+}
+
+.profile-card-body {
+  width: calc(100% - 1.2em);
+  height: calc(100% - 2em);
+  background: var(--tier-bg-color);
+  z-index: 1;
+  display: inline-block;
+  margin: 0.1em;
+  padding: 0.5em;
+}
+
+.profile-card-stat {
+  display: flex;
+  justify-content: left;
+  margin: 0.25em 0em;
+}
+
+.profile-card-stat-title {
+  font-weight: bold;
+  width: 10em;
+}
+
+.hist-cont {
+  display: flex;
+  justify-content: space-between;
+  height: 5em;
+}
+
+.hist-point-node {
+  display: flex;
+  flex-direction: column-reverse;
+  flex: 1;
+}
+
+.hist-point-bar {
+  background: var(--neutral-opacity-3);
+  height: var(--size);
+  margin: 0em 0.75em;
+}
+
+.hist-point-label {
+  margin-bottom: -1.5em;
+  padding: 0em 0.75em;
+  border-top: var(--neutral-opacity-3) 1px solid;
+  text-align: center;
+  font-size: 0.9em;
+}

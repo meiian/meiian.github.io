@@ -194,7 +194,7 @@ const query = JSON.stringify(
     }
 }
 
-async function fetchAllAiringScheduleOfAnime(animeId) {
+async function fetchAllAiringScheduleOfAnime(animeId, firstPageToFetch=1) {
 const query = 
     {
         query: `query Query($mediaId: Int, $page: Int, $perPage: Int) {
@@ -213,7 +213,7 @@ const query =
         variables: {
             mediaId: animeId,
             perPage:50,
-            page:1
+            page:firstPageToFetch
         }
     };
 
@@ -225,7 +225,7 @@ const query =
 
     let finished = false;
     let airingSchedule = [];
-    let currentPage = 1;
+    let currentPage = firstPageToFetch;
 
     do {
         try {

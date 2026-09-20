@@ -3,7 +3,8 @@ const navbar = {
         {title:"Schedule", icon: ICONS.SCHEDULE, page: pages.pagesContent.schedule},
         {title:"Tierlists", icon: ICONS.TIERLIST, page: pages.pagesContent.tierlists},
         {title:"Activity", icon: ICONS.WRITING, page: pages.pagesContent.activity},
-        {title:"Stats", icon: ICONS.STATS, page: pages.pagesContent.stats},
+        {title:"Recap", icon: ICONS.STATS, page: pages.pagesContent.wrapped},
+        {title:"Card", icon: ICONS.CARD, page: pages.pagesContent.card},
         {title:"Settings", icon: ICONS.SETTINGS, page: pages.pagesContent.settings}
     ],
 
@@ -69,7 +70,7 @@ const navbar = {
         reloadDataButton.innerHTML = ICONS.SYNC + "<span class='navbar-button-label'> Sync</span>";
         reloadDataButton.addEventListener("click", function() {
             if(!this.navbarModal || !this.navbarModal.node) {
-                this.navbarModal = showActivitiesSyncModal(userInfos.name);
+                this.navbarModal = showSyncModal(userInfos.name);
             } 
         })
         buttonsNode.append(reloadDataButton);

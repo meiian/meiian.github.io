@@ -129,3 +129,91 @@ svg {
   width: 1em;
   display: inline-block;
 }
+
+.checklist {
+  display: flex;
+  flex-direction: column;
+}
+
+.choice {
+  display: flex;
+  padding: 0.5em;
+  background: var(--action-color);
+  border: solid 1px var(--neutral-opacity-1);
+  border-radius: 5px;
+  margin: 0.5em 0em;
+  cursor: pointer;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.choice:hover, .choice.active {
+  background: var(--action-active-color);
+}
+
+.choice.not-active:hover {
+  background: var(--action-color);
+}
+
+
+.choice-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.choice-name {
+  font-weight: bold;
+}
+
+.choice-description {
+  color: var(--muted);
+  font-size: 0.9em;
+}
+
+.choice-time {
+  color: var(--text-active-color);
+  font-size: 0.9em;
+}
+
+.choice-options {
+  width: calc(100% + 1em);
+  display: flex;
+  margin-left: -0.5em;
+  margin-top: 0.5em;
+  margin-bottom: -0.5em;
+  z-index: 1;
+}
+
+.choice-option {
+  flex: 1;
+  text-align: center;
+  border-top: solid 1px var(--neutral-opacity-1);
+  padding: 0.2em 0em;
+  background: var(--action-color);
+  border-right: solid 1px var(--neutral-opacity-1);
+}
+
+.choice-option:last-child {
+  border-right: solid 0px var(--neutral-opacity-1);
+}
+
+.choice-option:hover,
+.choice-option.active {
+  background: var(--action-active-color);
+}
+
+.choice-icon-bg {
+  position: absolute;
+  right: 0px;
+  height: 8em;
+  top: -1em;
+  transform: rotate(25deg);
+}
+
+.choice-icon-bg svg {
+  height: 100%;
+  width: auto;
+  fill: var(--neutral-opacity-1);
+  z-index: 0;
+}

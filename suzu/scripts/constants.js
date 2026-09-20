@@ -1,5 +1,5 @@
 const CONST = {
-    VERSION: "2609.02",
+    VERSION: "2609.03",
     SOURCE: "https://codeberg.org/Aralie/Suzu",
     STORAGE: {
         USERINFO : "SUZU_USERINFO",

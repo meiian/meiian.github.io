@@ -59,9 +59,15 @@ const pages = {
                 statsRenderer.scrollToToday();
             }
         },
-        stats: {
+        wrapped: {
             render() {
                 renderIn("page-cont", wip.render(), true);
+            }
+        },
+        card: {
+            render() {
+                cardRenderer.init();
+                renderIn("page-cont", cardRenderer.renderPage(), true);
             }
         },
         settings: {
@@ -83,7 +89,16 @@ const pages = {
         if(!fromModal) {
             switch(this.currentPage) {
                 case this.pagesContent.tierlists:
-                    this.currentPage.warningModal(pageToGo, itemNode);
+                    if(tierlistRenderer.unsavedContent) {
+                        this.currentPage.warningModal(pageToGo, itemNode);
+                    } else {
+                        pageToGo.render();
+                        this.currentPage = pageToGo;
+                        if(itemNode) {
+                            navbar.itemsNodes.forEach(n => n.classList.remove("active"));
+                            itemNode.classList.add("active");
+                        }
+                    }
                     break;
                 default:
                     pageToGo.render();

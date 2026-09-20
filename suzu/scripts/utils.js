@@ -189,9 +189,10 @@ const dateUtils = {
     },
 
     formatMinutesIntoDisplay(nbMinutes) {
-        const hours = Math.floor(nbMinutes / 60);
+        const days = Math.floor(nbMinutes / 60 / 24);
+        const hours = Math.floor((nbMinutes - (days * 24 * 60)) / 60);
         const minutes = nbMinutes % 60;
-        return `${(hours > 0) ? hours+"h" : ""}${minutes}min`
+        return `${(days > 1) ? days + "d" : ""} ${(hours > 0) ? hours+"h" : ""} ${minutes}min`
     },
 
     getCurrentYear() {
@@ -208,6 +209,10 @@ const dateUtils = {
 
     getNumberOfDaysInMonth(year, month) {
         return new Date(year, month+1, 0).getDate();
+    },
+
+    printDateISOithoutHours(date) {
+        return date.toLocaleString(undefined, {year: "numeric", month:"numeric", day:"numeric"});
     }
 };
 

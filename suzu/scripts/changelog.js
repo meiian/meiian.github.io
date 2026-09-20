@@ -113,6 +113,20 @@ const versions = [
             "Tierlists: items and text in generated pictures could be very big or small with some screen resolutions"
         ],
         new Date("2026/09/12")
+    ),
+    new Version(
+        "2609.03",
+        [
+            "Logo: changed logo",
+            "Sync: added modal with options on what data to sync",
+            "Card: added profile card generation with possibility to copy and save the card as a picture"
+        ],
+        [
+            "Tierlists: changed resolution of generated pictures to be more readable",
+            "Tierlists: warning modal when changing pages was showing even with no modifications to save",
+            "Sync: << Gathering additional info >> part has been optimized to make it faster if you already have some additional info on your device"
+        ],
+        new Date("2026/09/20")
     )
 ]
 
