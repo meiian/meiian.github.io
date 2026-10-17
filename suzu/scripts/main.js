@@ -21,6 +21,8 @@ async function whenLoaded() {
             changelog.renderNewVersionsSince();
         }
         storage.writeLastVersion(CONST.VERSION);
+    } else {
+        landingRenderer.fillLanding();
     }
 }
 

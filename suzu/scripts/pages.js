@@ -61,7 +61,19 @@ const pages = {
         },
         wrapped: {
             render() {
-                renderIn("page-cont", wip.render(), true);
+                /*
+                Stats a afficher par année :
+                - Nombre d'animes regardés (par an et par saison)
+                - Nombre d'heures regardées (par an et par saison)
+                - Nombre de jours dans l'année où un anime a été regardé
+                - Graphique avec le nombre d'activité par mois
+                - Graphique git like sur toute la verticalité avec par jour le nombre d'activités en couleur
+                - Mean score
+                - 10 tags les plus regardés (nombre d'heures)
+                - 5 genres les plus regardés (nombre d'heures)
+                - Nombre de rewatchs de l'année
+                */
+                renderIn("page-cont", wrapperRenderer.renderPage(2025), true);
             }
         },
         card: {
@@ -98,6 +110,24 @@ const pages = {
                             navbar.itemsNodes.forEach(n => n.classList.remove("active"));
                             itemNode.classList.add("active");
                         }
+                    }
+                    break;
+                case this.pagesContent.schedule:
+                    seasonCalendar.clear();
+                    pageToGo.render();
+                    this.currentPage = pageToGo;
+                    if(itemNode) {
+                        navbar.itemsNodes.forEach(n => n.classList.remove("active"));
+                        itemNode.classList.add("active");
+                    }
+                    break;
+                case this.pagesContent.wrapped:
+                    wrapperRenderer.clear();
+                    pageToGo.render();
+                    this.currentPage = pageToGo;
+                    if(itemNode) {
+                        navbar.itemsNodes.forEach(n => n.classList.remove("active"));
+                        itemNode.classList.add("active");
                     }
                     break;
                 default:

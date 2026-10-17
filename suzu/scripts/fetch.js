@@ -152,6 +152,10 @@ const query = JSON.stringify(
                                 lastPage
                             }
                         }
+                        genres
+                        tags {
+                            name
+                        }
                     }
                     status
                     score

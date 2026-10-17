@@ -154,7 +154,7 @@ const profile = {
 
 function renderConfirmUser() {
     let node = document.createElement("div");
-    node.id = "landing-confirm-user";
+    node.classList = "modal-buttons";
 
     let cancelButton = document.createElement("a");
     cancelButton.innerText = "Cancel";

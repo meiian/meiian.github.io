@@ -27,13 +27,19 @@
   background: var(--neutral-opacity-1);
 }
 
-.calendar-day-body-hour {
+.calendar-day-body-hour-cont {
   position: absolute;
   top: var(--position);
   left: 0px;
   display: flex;
-  flex-direction: column;
   width: 100%;
+}
+
+.calendar-day-body-hour {
+  display: flex;
+  flex-direction: column;
+  width: 0px;
+  flex-grow: 1;
 }
 
 .calendar-day-body-now {
@@ -111,7 +117,7 @@
   font-weight: bold;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
+  text-overflow: clip;
 }
 
 .calendar-week-selector-cont {

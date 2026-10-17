@@ -1,0 +1,226 @@
+#wrapped-page-cont {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#wrapped-bg {
+  background-image: var(--bg-url);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+#wrapped-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  width: 60%;
+}
+
+.wrapped-header {
+  display: flex;
+  padding: 1em 0.25em;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.wrapped-header-profile {
+  display: flex;
+}
+
+.wrapped-header-icon {
+  height: 48px;
+  width: 48px;
+  border-radius: 5px;
+  margin-right: 0.5em;
+}
+
+.wrapped-header-titles {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.wrapped-header-title {
+  font-weight: bold;
+}
+
+.wrapped-header-subtitle {
+  color: var(--muted);
+}
+
+.wrapped-bento {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 2fr;
+  width: 100%;
+}
+
+.wrapped-stat-block {
+  background: var(--action-color);
+  border: solid 1px var(--neutral-opacity-2);
+  border-radius: 5px;
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0.25em;
+  height: calc(100% - 1.5em);
+}
+
+.wrapped-stats-block-number {
+  color: var(--text-active-color);
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+.wrapped-stats-block-title {
+  font-weight: bold;
+}
+
+.wrapped-stats-block-subtitle {
+  font-weight: lighter;
+  margin-top: 1em;
+}
+
+.wrapped-bento-double {
+  display: flex;
+  flex-direction: column;
+}
+
+.text-colored .wrapped-stats-block-number {
+  color: var(--neutral-opacity-8);
+}
+
+.wrapped-days-activity-graph-column {
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  grid-row-gap: 0px;
+  grid-column-gap: 00px;
+  height: max-content;
+  width: 5px;
+}
+
+.wrapped-days-activity-graph {
+  display: flex;
+  width: max-content;
+  height: max-content;
+}
+
+.wrapped-days-activity-square {
+  height: 5px;
+  width: 5px;
+  background-color: var(--action-color);
+  filter: brightness(var(--color)) saturate(var(--color));
+}
+
+.wrapped-stat-list {
+  justify-content: start;
+}
+
+.wrapped-stats-block-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.wrapped-stats-block-list-item {
+  display: grid;
+  grid-template-columns: 1fr 10fr 1fr;
+  height: 2em;
+  padding: 0em 0.5em;
+}
+
+.wrapped-stats-block-list-item:nth-child(2n) {
+  background-color: var(--neutral-opacity-1);
+}
+
+.wrapped-stats-block-list-item-rank {
+  text-align: center;
+  margin-right: 0.5em;
+  font-weight: bold;
+  align-self: center;
+}
+
+.wrapped-stats-block-list-item-nb {
+  color: var(--text-active-color);
+  font-weight: bold;
+  text-align: center;
+  align-self: center;
+}
+
+.wrapped-stats-block-list-item-label {
+  margin-left: 1em;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  align-self: center;
+}
+
+.wrapped-graph {
+  width: 100%;
+  height: 10em;
+  display: flex;
+  justify-content: space-around;
+  border-bottom: solid 1px var(--neutral-opacity-3);
+  align-items: end;
+}
+
+.wrapped-graph-node-bar {
+  height: var(--height);
+  background: var(--text-active-color);
+  width: 6%;
+  text-align: center;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  font-weight: bold;
+}
+
+.wrapped-graph-node-bar-label {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.wrapped-graph-node-bar:hover .wrapped-graph-node-bar-label  {
+  opacity: 1;
+}
+
+.wrapped-graph-title {
+  font-weight: lighter;
+}
+
+.wrapped-graph-cont {
+  margin-bottom: 1em;
+}
+
+.wrapped-year-selector-cont {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 2em;
+}
+
+.wrapped-year-selector-cont button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.wrapped-year-selector-cont button.inactive {
+  opacity: 0;
+  cursor: initial;
+}

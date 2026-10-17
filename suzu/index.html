@@ -19,27 +19,29 @@
     <link rel="stylesheet" href="./styles/calendar.css"/>
     <link rel="stylesheet" href="./styles/tierlist.css"/>
     <link rel="stylesheet" href="./styles/activity.css"/>
+    <link rel="stylesheet" href="./styles/wrapped.css"/>
     <link rel="stylesheet" href="./styles/card.css"/>
     <script type="text/javascript" src="./scripts/ext/dom-to-image.min.js"></script>
-    <script type="text/javascript" src="./scripts/constants.js?v=2609.03"></script>
-    <script type="text/javascript" src="./scripts/icons.js?v=2609.03"></script>
-    <script type="text/javascript" src="./scripts/utils.js?v=2609.03"></script>
-    <script type="text/javascript" src="./scripts/modal.js?v=2609.03"></script>
-    <script type="text/javascript" src="./scripts/settings.js?v=2609.03"></script>
-    <script type="text/javascript" src="./scripts/changelog.js?v=2609.03"></script>
-    <script type="text/javascript" src="./scripts/transform.js?v=2609.03"></script>
-    <script type="text/javascript" src="./scripts/storage.js?v=2609.03"></script>
-    <script type="text/javascript" src="./scripts/fetch.js?v=2609.03"></script>
-    <script type="text/javascript" src="./scripts/landing.js?v=2609.03"></script>
-    <script type="text/javascript" src="./scripts/sidePanel.js?v=2609.03"></script>
-    <script type="text/javascript" src="./scripts/calendar.js?v=2609.03"></script>
-    <script type="text/javascript" src="./scripts/tierlist.js?v=2609.03"></script>
-    <script type="text/javascript" src="./scripts/activity.js?v=2609.03"></script>
-    <script type="text/javascript" src="./scripts/card.js?v=2609.03"></script>
-    <script type="text/javascript" src="./scripts/pages.js?v=2609.03"></script>
-    <script type="text/javascript" src="./scripts/render.js?v=2609.03"></script>
-    <script type="text/javascript" src="./scripts/navbar.js?v=2609.03"></script>
-    <script type="text/javascript" src="./scripts/main.js?v=2609.03"></script>
+    <script type="text/javascript" src="./scripts/constants.js?v=2610.01"></script>
+    <script type="text/javascript" src="./scripts/icons.js?v=2610.01"></script>
+    <script type="text/javascript" src="./scripts/utils.js?v=2610.01"></script>
+    <script type="text/javascript" src="./scripts/modal.js?v=2610.01"></script>
+    <script type="text/javascript" src="./scripts/settings.js?v=2610.01"></script>
+    <script type="text/javascript" src="./scripts/changelog.js?v=2610.01"></script>
+    <script type="text/javascript" src="./scripts/transform.js?v=2610.01"></script>
+    <script type="text/javascript" src="./scripts/storage.js?v=2610.01"></script>
+    <script type="text/javascript" src="./scripts/fetch.js?v=2610.01"></script>
+    <script type="text/javascript" src="./scripts/landing.js?v=2610.01"></script>
+    <script type="text/javascript" src="./scripts/sidePanel.js?v=2610.01"></script>
+    <script type="text/javascript" src="./scripts/calendar.js?v=2610.01"></script>
+    <script type="text/javascript" src="./scripts/tierlist.js?v=2610.01"></script>
+    <script type="text/javascript" src="./scripts/activity.js?v=2610.01"></script>
+    <script type="text/javascript" src="./scripts/wrapped.js?v=2610.01"></script>
+    <script type="text/javascript" src="./scripts/card.js?v=2610.01"></script>
+    <script type="text/javascript" src="./scripts/pages.js?v=2610.01"></script>
+    <script type="text/javascript" src="./scripts/render.js?v=2610.01"></script>
+    <script type="text/javascript" src="./scripts/navbar.js?v=2610.01"></script>
+    <script type="text/javascript" src="./scripts/main.js?v=2610.01"></script>
 </head>
 
 <body>
@@ -48,9 +50,17 @@
 
     <div id="app-cont">
         <div id="landing-page">
+            <div id="logo-landing-cont">
+                <img src="./suzu.ico"/>
+                <span>Suzu</span>
+            </div>
+            <div id="landing-page-desc">An AniList companion to know more about what you watch.</div>
             <div id="landing-page-form" class="middle-block">
-                <p>Enter your username :</p>
-                <input id="landing-username-field" type="text" onkeydown="syncNewUser(this)"/>
+                <label id="landing-username-label">AniList username</label>
+                <input id="landing-username-field" placeholder="..." type="text" onkeydown="syncNewUser(this)"/>
+            </div>
+            <div id="landing-page-footer">
+
             </div>
         </div>
     </div>

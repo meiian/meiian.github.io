@@ -2,16 +2,84 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
-#landing-page-form>* {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-}
 
 #landing-confirm-user {
   display: flex;
   width: 100%;
   justify-content: space-evenly;
+}
+
+
+#logo-landing-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#logo-landing-cont img {
+  height: 5em;
+}
+
+#logo-landing-cont span {
+  font-size: 4em;
+  font-weight: bold;
+  margin-left: 1rem;
+}
+
+#landing-page-desc {
+  margin: 0.5em 0em;
+  color: var(--muted);
+}
+
+#landing-username-field {
+  width: calc(100% - 2em - 6px);
+  height: 2em;
+  background: var(--action-color);
+  border: solid 3px var(--action-active-color);
+  outline: solid 0px black;
+  border-radius: 5px;
+  color: var(--text-color);
+  font-weight: bold;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  text-align: center;
+}
+
+#landing-username-label {
+  background: var(--action-color);
+  margin-bottom: -0.9em;
+  margin-left: 1em;
+  z-index: 1;
+  padding: 0.2em 0.5em;
+  color: var(--text-active-color);
+  font-weight: bold;
+}
+
+#landing-page-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
+  color: var(--muted);
+}
+
+#landing-page-footer>* {
+  margin: 0em 0.25em;
+}
+
+#landing-page-footer a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+#landing-page-footer a:hover {
+  color: var(--text-active-color);
+}
+
+#landing-page-footer > *:not(:last-child)::after {
+  content: '•';
+  margin-left: 0.25em;
 }

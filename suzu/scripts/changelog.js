@@ -127,6 +127,18 @@ const versions = [
             "Sync: << Gathering additional info >> part has been optimized to make it faster if you already have some additional info on your device"
         ],
         new Date("2026/09/20")
+    ),
+    new Version(
+        "2610.01",
+        [
+            "Landing: new visuals for landing page",
+            "Recap: added year recap page"
+        ],
+        [
+            "Sync: << Gathering additional info >> part has been even more optimized to make it faster if you already have some additional info on your device",
+            "Schedule: animes on the same day and hour can now stack in the same line if each of them were piling onto each other",
+        ],
+        new Date("2026/10/17")
     )
 ]
 

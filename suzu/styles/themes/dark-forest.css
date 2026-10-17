@@ -1,5 +1,6 @@
 :root {
   --accent-color: coral;
+  --neutral-opacity-8: rgba(255, 255, 255, 0.8);
   --neutral-opacity-3: rgba(255, 255, 255, 0.3);
   --neutral-opacity-2: rgba(255, 255, 255, 0.2);
   --neutral-opacity-1: rgba(255, 255, 255, 0.1);
@@ -17,4 +18,7 @@
   --sidepanel-gradient-1: #406446;
   --sidepanel-gradient-2: #6a360e;
   --tier-bg-color: rgba(0,0,0,0.5);
+  --average-wrapped-block: #be8201;
+  --positive-wrapped-block: #cb0354;
+  --negative-wrapped-block: #0070ff;
 }

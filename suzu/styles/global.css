@@ -84,6 +84,7 @@ svg {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 100000;
 }
 
 .modal {
@@ -216,4 +217,14 @@ svg {
   width: auto;
   fill: var(--neutral-opacity-1);
   z-index: 0;
+}
+
+.justify-text {
+  text-align: justify;
+}
+
+.modal-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

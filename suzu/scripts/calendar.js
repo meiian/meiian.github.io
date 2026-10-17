@@ -4,6 +4,7 @@ const seasonCalendar = {
     weekSelector: null,
     weekLabel: null,
     dayBodies: [],
+    multipleHourCont: {},
     currentDate: null,
     currentIndicatorInterval: null,
     currentIndicatorNode: null,
@@ -66,9 +67,20 @@ const seasonCalendar = {
     },
 
     addAnime(anime, date) {
+        let multipleNode;
+        if(this.checkMultipleHourContExists(date)) {
+            multipleNode = this.multipleHourCont[date.getDay()][this.calculatePositionFromHour(date)];
+        } else {
+            multipleNode = document.createElement("div");
+            multipleNode.classList.add("calendar-day-body-hour-cont");
+            multipleNode.style.setProperty("--position", this.calculatePositionFromHour(date));
+            if(!Object.hasOwn(this.multipleHourCont, date.getDay())) {
+                this.multipleHourCont[date.getDay()] = {};   
+            }
+            this.multipleHourCont[date.getDay()][this.calculatePositionFromHour(date)] = multipleNode;
+        }
         let node = document.createElement("div");
         node.classList.add("calendar-day-body-hour");
-        node.style.setProperty("--position", this.calculatePositionFromHour(date));
 
         let animeNode = document.createElement("div");
         animeNode.classList.add("calendar-day-body-hour-anime");
@@ -103,8 +115,13 @@ const seasonCalendar = {
             sidePanel.showAnimeDetails(anime);
         })
 
-        document.getElementById(`day-${date.getDay()}-body`).appendChild(node);
+        multipleNode.append(node);
+        document.getElementById(`day-${date.getDay()}-body`).appendChild(multipleNode);
         
+    },
+
+    checkMultipleHourContExists(date) {
+        return Object.hasOwn(this.multipleHourCont, date.getDay()) && Object.hasOwn(this.multipleHourCont[date.getDay()], this.calculatePositionFromHour(date));
     },
 
     addAnimes(animes) {
@@ -134,6 +151,11 @@ const seasonCalendar = {
 
     clear() {
         this.dayBodies.forEach(day => day.innerText = "");
+        const multipleHourContNodes = Object.values(seasonCalendar.multipleHourCont).map(o => Object.values(o)).flat();
+        for(const node of multipleHourContNodes) {
+            node.remove();
+        }
+        this.multipleHourCont = {};
     },
 
     buildWeekLabel() {

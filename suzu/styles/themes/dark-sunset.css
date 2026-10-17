@@ -17,4 +17,7 @@
   --sidepanel-gradient-1: #090349;
   --sidepanel-gradient-2: #ff5e01;
   --tier-bg-color: rgba(0,0,0,0.5);
+  --average-wrapped-block: #be8201;
+  --positive-wrapped-block: #cb0354;
+  --negative-wrapped-block: #0070ff;
 }

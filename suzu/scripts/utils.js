@@ -157,12 +157,12 @@ const dateUtils = {
         const weekNumber = this.getWeekNumber(weekDate);
         const mondayOfWeek = this.getMondayOfCurrentWeek(weekDate);
         mondayOfWeek.setHours(0);
-        mondayOfWeek.setHours(0);
+        mondayOfWeek.setMinutes(0);
         const sundayOfWeek = this.getSundayOfCurrentWeek(weekDate);
         sundayOfWeek.setHours(23);
         sundayOfWeek.setMinutes(59);
             if(anime.media.airingSchedule && anime.media.airingSchedule.nodes
-                && anime.media.airingSchedule.nodes.length > 1) {
+                && anime.media.airingSchedule.nodes.length >= 1) {
                 for (const node of anime.media.airingSchedule.nodes) {
                     const nodeDate = new Date(node.jsDate);
                     if(nodeDate.getFullYear() === weekDate.getFullYear()
@@ -207,12 +207,25 @@ const dateUtils = {
         return date1.getFullYear() === date2.getFullYear() && date1.getMonth() === date2.getMonth() && date1.getDate() === date2.getDate();
     },
 
+    checkSameMonth(date1, date2) {
+        return date1.getFullYear() === date2.getFullYear() && date1.getMonth() === date2.getMonth();
+    },
+
     getNumberOfDaysInMonth(year, month) {
         return new Date(year, month+1, 0).getDate();
     },
 
     printDateISOithoutHours(date) {
         return date.toLocaleString(undefined, {year: "numeric", month:"numeric", day:"numeric"});
+    },
+
+    getDateWithoutHours(date) {
+        const dateWithoutHours = new Date(date);
+        dateWithoutHours.setHours(0);
+        dateWithoutHours.setMinutes(0);
+        dateWithoutHours.setSeconds(0);
+        dateWithoutHours.setMilliseconds(0);
+        return dateWithoutHours;
     }
 };
 
@@ -238,6 +251,28 @@ const animeUtils = {
 
     getAnimesWithIncompleteAiring() {
         return animes.filter(a => a.media.airingSchedule.pageInfo.hasNextPage);
+    },
+
+    getAnimesOfYear(year) {
+        return animes.filter(a => a.media.seasonYear === year);
+    }
+}
+
+const activityUtils = {
+    getActivitiesOfYear(year) {
+        const startDate = new Date(year, 0, 1, 0, 0, 0, 0);
+        const endDate = new Date(year, 11, 31, 23, 59, 59, 999);
+        return activities.filter(a => {
+            const aniListdate = dateUtils.getDateFromALEpoch(a.createdAt);
+            return aniListdate >= startDate && aniListdate <= endDate;
+        });
+    },
+
+    getMinYear() {
+        return Math.min(...activities.map(a => {
+            const aniListdate = dateUtils.getDateFromALEpoch(a.createdAt);
+            return aniListdate.getFullYear();
+        }));
     }
 }
 
